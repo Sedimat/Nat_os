@@ -1,0 +1,55 @@
+{% extends "os/base.html" %}
+
+{% block content %}
+
+<div class="nav">
+        <div class="element_l">
+            <img class="e_img" src="/media/img/hud.svg">
+        </div>
+
+        {% if request.user.is_staff %}
+        <a class="a_gprs" href="{% url 'admin:index' %}" ><h1 class="gprs">GPRS</h1></a>
+        {% else %}
+        <a class="a_gprs" href="{% url 'admin:index' %}" ><h1 class="gprs">GPRS</h1></a>
+        {% endif %}
+
+        <div class="element_r">
+            <img class="e_img1" src="/media/img/battery.svg">
+        </div>
+    </div>
+
+    <div class="cont">
+
+        <img class="eart" src="/media/img/earth.svg">
+
+        <h1 id="date" class="date">{{ date }}</h1>
+
+        <h1 id="time" class="time">{{ current_time }}</h1>
+    </div>
+
+    <div class="nav">
+        <div class="element_l">
+        <a href="{% url 'index' %}">
+            <img class="e_img_d" src="/media/img/hud2.svg">
+        </a>
+        </div>
+
+        <a id="fullscreenButton" class="fullscreen-button" onclick="toggleFullScreen()">
+            <img class="e_img_c" src="/media/img/hud4.svg">
+        </a>
+
+        <div class="element_r">
+            <a href="{% url 'menu' %}">
+                <img class="e_img_d" src="/media/img/hud3.svg">
+            </a>
+
+        </div>
+    </div>
+
+    <div class="control">
+        <img class="img_control" src="/media/img/nav.svg">
+
+    </div>
+
+
+{% endblock %}

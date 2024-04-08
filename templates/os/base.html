@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Natiskun OS</title>
+    {% load static %}
+    <link href="{% static 'os/css/style.css' %}" rel="stylesheet">
+    <link rel="icon" href="/media/ico.png" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'siemens_A';
+            src: url('{% static 'os/fonts/siemens_A.ttf' %}') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'siemens_B';
+            src: url('{% static 'os/fonts/siemens_B.ttf' %}') format('truetype');
+        }
+
+    </style>
+</head>
+<body>
+<div class="content">
+    {% block content %}
+
+
+    {% endblock %}
+
+</div>
+
+</body>
+<script src="{% static 'os/js/script.js' %}"></script>
+</html>
