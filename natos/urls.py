@@ -11,4 +11,6 @@ urlpatterns = [
     path('games', views.games, name='games'),
     path('settings', views.settings, name='settings'),
     path('get_menu', views.get_menu, name='get_menu'),
+    path('get_sounds', views.get_sounds, name='get_sounds'),
+    path('sounds_play', views.sounds_play, name='sounds_play'),
 ]

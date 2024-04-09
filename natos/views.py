@@ -1,6 +1,6 @@
 
 from datetime import datetime
-from .models import Menu
+from .models import Menu, Sounds, Pictures
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -25,6 +25,24 @@ def get_menu(request):
     for m in menu:
         list_menu.append([str(m.img_menu), str(m.name), str(m.link), str(m.language)])
     context.update({"list_menu": list_menu})
+    return JsonResponse(context)
+
+def get_sounds(request):
+    context = {}
+    sounds = Sounds.objects.all()
+    list_sounds = []
+    for s in sounds:
+        list_sounds.append([str(s.sound), str(s.name), str(s.description), str(s.timestamp)])
+    context.update({"list_sounds": list_sounds})
+    return JsonResponse(context)
+
+def get_pictures(request):
+    context = {}
+    pictures = Pictures.objects.all()
+    list_pictures = []
+    for p in pictures:
+        list_pictures.append([str(p.picture), str(p.name), str(p.description), str(p.timestamp)])
+    context.update({"list_pictures": list_pictures})
     return JsonResponse(context)
 
 
@@ -56,3 +74,8 @@ def games(request):
 def settings(request):
     context = {}
     return render(request, 'os/settings.html', context=context)
+
+
+def sounds_play(request):
+    context = {}
+    return render(request, 'os/sounds_play.html', context=context)

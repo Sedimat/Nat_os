@@ -19,9 +19,11 @@ body{
 }
 
 .control{
+    margin: auto;
     width: 1000px;
     height: 500px;
     background-color: #f7d57e;
+    position: relative;
 }
 
 .img_control{
@@ -38,6 +40,13 @@ body{
     height: 750px;
     overflow-y: hidden;
     overflow-x: hidden;
+}
+
+.img_content{
+    width: 960px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
 }
 
 .test{
@@ -102,10 +111,13 @@ body{
     border-radius: 10px;
 }
 
+.menu_1{
+
+}
 .eart{
-    left: 180px;
+    left: 0px;
     position: absolute;
-    width: 600px;
+    width: 960px;
 }
 
 .gprs{
@@ -126,6 +138,12 @@ body{
     float: left;
     width: 75px;
     padding: 15px 20px 9px 40px;
+}
+
+.img_sound{
+    float: left;
+    height: 80px;
+    padding: 15px 20px 9px 20px;
 }
 
 .time {
@@ -151,4 +169,67 @@ body{
 .a_gprs{
     color: inherit; /* Успадковуємо колір від батьківського елемента */
     text-decoration: none; /* Відключаємо підкреслення */
+}
+
+.left_select{
+  width: 300px;
+  height: 150px;
+  border-top-right-radius: 90px;
+  border-bottom-left-radius: 80px;
+  background-color: #291701;
+  left: 20px;
+  top: 40px;
+  position: absolute;
+}
+
+.right_select{
+    width: 300px;
+  height: 150px;
+  border-top-left-radius: 90px;
+  border-bottom-right-radius: 80px;
+  background-color: #291701;
+  left: 680px;
+  top: 40px;
+  position: absolute;
+}
+
+.up_control{
+    width: 280px;
+    height: 250px;
+    border-radius: 50px 50px 0px 0px;
+    background-color: #291701;
+    left: 360px;
+    top: 40px;
+    position: absolute;
+}
+
+.down_control{
+    width: 280px;
+    height: 220px;
+    border-radius: 0px 0px 50px 50px;
+    background-color: #291701;
+    left: 360px;
+    top: 270px;
+    position: absolute;
+
+}
+
+.left_control{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px 90px 0px 50px;
+    background-color: #291701;
+    left: 20px;
+    top: 290px;
+    position: absolute;
+}
+
+.right_control{
+    width: 300px;
+    height: 200px;
+    border-radius: 90px 5px 50px 0px;
+    background-color: #291701;
+    left: 680px;
+    top: 290px;
+    position: absolute;
 }

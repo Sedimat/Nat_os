@@ -20,7 +20,7 @@
 
     <div class="cont">
 
-        <img class="eart" src="/media/img/earth.svg">
+        <img class="eart" src="/media/img/stalker.svgz">
 
         <h1 id="date" class="date">{{ date }}</h1>
 
@@ -34,7 +34,7 @@
         </a>
         </div>
 
-        <a id="fullscreenButton" class="fullscreen-button" onclick="toggleFullScreen()">
+        <a href="{% url 'sounds_play' %}">
             <img class="e_img_c" src="/media/img/hud4.svg">
         </a>
 
@@ -46,10 +46,6 @@
         </div>
     </div>
 
-    <div class="control">
-        <img class="img_control" src="/media/img/nav.svg">
-
-    </div>
 
 
 {% endblock %}
