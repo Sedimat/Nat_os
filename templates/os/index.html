@@ -29,23 +29,20 @@
 
     <div class="nav">
         <div class="element_l">
-        <a href="{% url 'index' %}">
+
             <img class="e_img_d" src="/media/img/hud2.svg">
-        </a>
         </div>
 
-        <a href="{% url 'sounds_play' %}">
             <img class="e_img_c" src="/media/img/hud4.svg">
-        </a>
+
 
         <div class="element_r">
-            <a href="{% url 'menu' %}">
                 <img class="e_img_d" src="/media/img/hud3.svg">
-            </a>
 
         </div>
     </div>
 
-
+{% load static %}
+<script src="{% static 'os/js/script_index.js' %}"></script>
 
 {% endblock %}
