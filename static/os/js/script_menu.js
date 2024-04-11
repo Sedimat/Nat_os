@@ -31,7 +31,7 @@ var len_menu = 0;
 var  list_menu_g = null;
 
 
-if (link_name()[0] == "menu"){
+
     fetch(`/get_menu`)
     .then(response => response.json())
     .then(data => {
@@ -39,9 +39,12 @@ if (link_name()[0] == "menu"){
         list_menu_g = data.list_menu
         for (let i = 0; i < data.list_menu.length; i++) {
             add_menu(data.list_menu[i])
+
         }
+        play(select,link_name()[0] * 125)
+        numb = parseInt(link_name()[0])
     });
-}
+
 
 
 var contentDiv = document.querySelector('.cont');
@@ -92,9 +95,7 @@ function back(){
 
 
 function select_link(){
-    if (link_name()[0] == "menu"){
         window.location.href = "/" + list_menu_g[numb][2];
-    }
 }
 
 function play(elem,num){

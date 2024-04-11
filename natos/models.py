@@ -43,3 +43,18 @@ class Sounds(models.Model):
     class Meta:
         verbose_name = "Звуки"
         verbose_name_plural = "Звуки"
+
+
+class Games(models.Model):
+    img_game = models.FileField(upload_to='img_game', default='img_game/game.svg')
+    name = models.CharField(max_length=20, verbose_name="Назва")
+    link = models.CharField(max_length=20, verbose_name="Посилання")
+    description = models.TextField(blank=True, verbose_name="Опис")
+
+
+    def __str__(self):
+        return f'Гра: {self.name}'
+
+    class Meta:
+        verbose_name = "Гра"
+        verbose_name_plural = "Ігри"

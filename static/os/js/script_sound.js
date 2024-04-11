@@ -189,7 +189,7 @@ function back(){
             elementToDelete.remove();
             sounds_stop(audio1)
         }else{
-            window.location.href = "/menu";
+            window.location.href = "/menu/3";
     }
 }
 
@@ -279,6 +279,7 @@ function link_name(){
     return [name, link, currentPath]
 }
 
+
 function left_select(){
     back()
 }
@@ -340,8 +341,6 @@ function sounds_play() {
         intervalId = setInterval(move, 100);
     }
 }
-
-
 
 function sounds_stop(){
     audio1.pause();

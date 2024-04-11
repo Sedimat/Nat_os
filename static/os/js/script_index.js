@@ -138,7 +138,7 @@ function back(){
 
 // перенаправляє в меню
 function select_link(){
-    window.location.href = "/menu";
+    window.location.href = "/menu/0";
 
 }
 

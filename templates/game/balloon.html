@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Natiskun OS</title>
+    {% load static %}
+    <link href="{% static 'os/css/style_balloon.css' %}" rel="stylesheet">
+    <link rel="icon" href="/media/ico.png" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'siemens_A';
+            src: url('{% static 'os/fonts/siemens_A.ttf' %}') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'siemens_B';
+            src: url('{% static 'os/fonts/siemens_B.ttf' %}') format('truetype');
+        }
+
+    </style>
+</head>
+<body>
+<div id="content" class="content">
+<!--    <img class="e_img" src="/media/img/hud.svg">-->
+
+</div>
+
+<div class="control">
+
+        <a onclick="left_select()">
+            <div class="left_select"></div>
+        </a>
+
+        <a onclick="right_select()">
+            <div class="right_select"></div>
+        </a>
+
+        <a onclick="up_control()">
+            <div class="up_control"></div>
+        </a>
+
+        <a onclick="down_control()">
+            <div class="down_control"></div>
+        </a>
+
+        <a onclick="left_control()">
+            <div class="left_control"></div>
+        </a>
+
+        <a onclick="right_control()">
+            <div class="right_control"></div>
+        </a>
+
+</div>
+
+</body>
+
+<script src="{% static 'os/js/script_game_balloon.js' %}"></script>
+
+</html>
