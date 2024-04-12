@@ -21,6 +21,16 @@ body{
     overflow-x: hidden;
 }
 
+.score {
+    font-family: 'siemens_A', sans-serif;
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
+    left: 730px;
+    top: 680px;
+    position: absolute;
+}
+
 .control{
     margin: auto;
     width: 1000px;

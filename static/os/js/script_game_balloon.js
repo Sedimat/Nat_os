@@ -1,6 +1,27 @@
 var content = document.getElementById('content');
 
+var score = 5;
+
 function add_content(){
+
+    var img_score = document.createElement('img');
+    img_score.setAttribute('src', '/media/g_ball/score.svg');
+    img_score.id = 'score';
+    img_score.style.left = 45 + 'px';
+    img_score.style.top = 5 + 'px';
+    img_score.style.width = 71 + 'px';
+    img_score.style.position = 'absolute';
+
+    content.appendChild(img_score);
+
+    var score_n = document.createElement('h1');
+    score_n.textContent = score;
+    score_n.id = 'score_n';
+    score_n.classList.add('score');
+    score_n.style.left = 10 + 'px';
+    score_n.style.top = 0 + 'px';
+    score_n.style.position = 'absolute';
+    content.appendChild(score_n);
 
     var img_v = document.createElement('img');
     img_v.setAttribute('src', '/media/g_ball/b21.svg');
@@ -23,6 +44,8 @@ function add_content(){
 
     content.appendChild(img_x);
 
+
+
 //    var img_v1 = document.createElement('img');
 //    img_v1.setAttribute('src', '/media/g_ball/b11.svg');
 //    img_v1.id = 'img_v1';
@@ -34,6 +57,17 @@ function add_content(){
 //    img_v1.style.position = 'absolute';
 //
 //    content.appendChild(img_v1);
+
+    var img_v2 = document.createElement('img');
+    img_v2.setAttribute('src', '/media/g_ball/b31.svg');
+    img_v2.id = 'img_v2';
+    var r1 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+    img_v2.style.left = r1 + 'px';
+    img_v2.style.top = 400 + 'px';
+    img_v2.style.width = 100 + 'px';
+    img_v2.style.position = 'absolute';
+
+    content.appendChild(img_v2);
 
     var prc = document.createElement('img');
     prc.setAttribute('src', '/media/g_ball/prc.svg');
@@ -68,19 +102,27 @@ var key = 0;
 
 var img_v0 = document.getElementById("img_v")
 
+var img_v0 = document.getElementById("img_v")
+
 var img_x = document.getElementById("img_x")
 
 var img_v1 = document.getElementById("img_v1")
+var img_v2 = document.getElementById("img_v2")
+
 var prc = document.getElementById("prc")
 var prc0 = document.getElementById("prc0")
 
 var speed = 7
+
+var score_n = document.getElementById("score_n")
 
 
 
 function move(){
 
     var list_img = ["3.svg", "4.svg", "5.svg", "1.svg", "2.svg", "6.svg",]
+
+    score_n.textContent = score;
 
     // Перша кулька та його логіка
     img_v0.setAttribute('src', '/media/g_ball/b2' + list_img[num_img]);
@@ -89,8 +131,12 @@ function move(){
 
     img_x.setAttribute('src', '/media/g_ball/bx' + list_img[num_img]);
 
+    // Третя кулька
+    img_v2.setAttribute('src', '/media/g_ball/b3' + list_img[num_img]);
+
 
     if (currentTop0 < -200){
+        score -= 1;
         img_v0.style.top = 900 + 'px';
         img_x.style.top = 1016 + 'px';
         var randomNumber0 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
@@ -142,25 +188,6 @@ function move(){
         key = 0
     }
 
-
-//    var img_v1_rect = img_v1.getBoundingClientRect();
-//
-//    // Перевірка на перетин прямокутників (картинок)
-//    if (!(img_v1_rect.right < prc_rect.left ||
-//          img_v1_rect.left > prc_rect.right ||
-//          img_v1_rect.bottom < prc_rect.top ||
-//          img_v1_rect.top > prc_rect.bottom)) {
-//          console.log("опа");
-//    }
-//    var prc_rect = prc.getBoundingClientRect();
-//    var img0 = img_v0.getBoundingClientRect();
-//
-//    if (!(img0.right < prc_rect.left ||
-//          img0.left > prc_rect.right ||
-//          img0.bottom < prc_rect.top ||
-//          img0.top > prc_rect.bottom)) {
-//          console.log("опа");
-//    }
 }
 
 var intervalId = null;
@@ -178,7 +205,7 @@ var test = 1;
 // Відслідковує кнопки на клавіатурі
 document.addEventListener("keydown", function(event) {
 
-    prc_x = parseInt(prc.style.top) || 0;
+    prc_x = parseInt(prc.style.top) || 0;q
     prc_y = parseInt(prc.style.left) || 0;
     prc0_x = parseInt(prc0.style.top) || 0;
     prc0_y = parseInt(prc0.style.left) || 0;
