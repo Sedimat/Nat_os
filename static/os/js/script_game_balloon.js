@@ -115,7 +115,6 @@ list_h1[2].src = '/media/g_ball/h03.svg';
 list_h1[3].src = '/media/g_ball/h04.svg';
 
 
-
 var content = document.getElementById('content');
 
 var img = '/media/g_ball/score.svg';
@@ -198,8 +197,9 @@ function add_content(){
     img_v3.setAttribute('src', list_b1[0].src);
     img_v3.id = 'img_v3';
     var r_v_3 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+    var r_top3 = Math.floor(Math.random() * (7500 - 5000 + 1)) + 1000;
     img_v3.style.left = r_v_3 + 'px';
-    img_v3.style.top = 1200 + 'px';
+    img_v3.style.top = r_top3 + 'px';
     img_v3.style.width = 100 + 'px';
     img_v3.style.position = 'absolute';
     content.appendChild(img_v3);
@@ -208,10 +208,10 @@ function add_content(){
     var div_v3 = document.createElement('div');
     div_v3.id = 'div_v3';
     div_v3.style.left = r_v_3 + 10 + 'px';
-    div_v3.style.top = 1370 + 'px';
+    div_v3.style.top = r_top3 + 170 + 'px';
     div_v3.style.width = 80 + 'px';
     div_v3.style.height = 60 + 'px';
-    div_v3.style.backgroundColor = 'green';
+//    div_v3.style.backgroundColor = 'green';
     div_v3.style.position = 'absolute';
     content.appendChild(div_v3);
 
@@ -219,7 +219,7 @@ function add_content(){
     img_x3.setAttribute('src', list_bot1[0].src);
     img_x3.id = 'img_x3';
     img_x3.style.left = r_v_3 + 17  + 'px';
-    img_x3.style.top = 1315 + 'px';
+    img_x3.style.top = r_top3 + 115 + 'px';
     img_x3.style.width = 80 + 'px';
     img_x3.style.position = 'absolute';
     content.appendChild(img_x3);
@@ -227,9 +227,11 @@ function add_content(){
     // Четверта кулька та її хвіст
     var img_v4 = document.createElement('img');
     img_v4.setAttribute('src', list_b4[0].src);
+    var r_v_4 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+    var r_top4 = Math.floor(Math.random() * (9000 - 8000 + 1)) + 8000;
     img_v4.id = 'img_v4';
-    img_v4.style.left = 100 + 'px';
-    img_v4.style.top = 100 + 'px';
+    img_v4.style.left = r_v_4 + 'px';
+    img_v4.style.top = r_top4 + 'px';
     img_v4.style.width = 100 + 'px';
     img_v4.style.position = 'absolute';
     content.appendChild(img_v4);
@@ -237,8 +239,8 @@ function add_content(){
     var img_x4 = document.createElement('img');
     img_x4.setAttribute('src', list_bot2[0].src );
     img_x4.id = 'img_x4';
-    img_x4.style.left = 100 + 17  + 'px';
-    img_x4.style.top = 100 + 101 + 'px';
+    img_x4.style.left = r_v_4 + 17  + 'px';
+    img_x4.style.top = r_top4 + 101 + 'px';
     img_x4.style.width = 80 + 'px';
     img_x4.style.position = 'absolute';
     content.appendChild(img_x4);
@@ -247,8 +249,10 @@ function add_content(){
     var img_v5 = document.createElement('img');
     img_v5.setAttribute('src', list_b5[0].src);
     img_v5.id = 'img_v5';
-    img_v5.style.left = 250 + 'px';
-    img_v5.style.top = 100 + 'px';
+    var r_v_5 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+    var r_top_5 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+    img_v5.style.left = r_v_5 + 'px';
+    img_v5.style.top = r_top_5 + 'px';
     img_v5.style.width = 70 + 'px';
     img_v5.style.position = 'absolute';
     content.appendChild(img_v5);
@@ -256,8 +260,8 @@ function add_content(){
     var img_x5 = document.createElement('img');
     img_x5.setAttribute('src', list_x3[0].src);
     img_x5.id = 'img_x5';
-    img_x5.style.left = 250 - 20 + 'px';
-    img_x5.style.top = 100 + 84 + 'px';
+    img_x5.style.left = r_v_5 - 20 + 'px';
+    img_x5.style.top = r_top_5 + 84 + 'px';
     img_x5.style.width = 110 + 'px';
     img_x5.style.position = 'absolute';
     content.appendChild(img_x5);
@@ -268,7 +272,7 @@ function add_content(){
     var r_v_6 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
     img_v6.id = 'img_v6';
     img_v6.style.left = r_v_6 + 'px';
-    img_v6.style.top = 1000 + 'px';
+    img_v6.style.top = 3000 + 'px';
     img_v6.style.width = 77 + 'px';
     img_v6.style.position = 'absolute';
     content.appendChild(img_v6);
@@ -277,7 +281,7 @@ function add_content(){
     img_x6.setAttribute('src', list_x4[0].src);
     img_x6.id = 'img_x6';
     img_x6.style.left = r_v_6 + 2 + 'px';
-    img_x6.style.top = 1000 + 85 + 'px';
+    img_x6.style.top = 3000 + 85 + 'px';
     img_x6.style.width = 80 + 'px';
     img_x6.style.position = 'absolute';
     content.appendChild(img_x6);
@@ -285,9 +289,11 @@ function add_content(){
 // Сьома кулька та її хвіст
     var img_v7 = document.createElement('img');
     img_v7.setAttribute('src', list_b7[0].src);
+    var r_v_7 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+    var r_top_7 = Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000;
     img_v7.id = 'img_v7';
-    img_v7.style.left = 1 + 'px';
-    img_v7.style.top = 100 + 'px';
+    img_v7.style.left = r_v_7 + 'px';
+    img_v7.style.top = r_top_7 + 'px';
     img_v7.style.width = 70 + 'px';
     img_v7.style.position = 'absolute';
     content.appendChild(img_v7);
@@ -295,8 +301,8 @@ function add_content(){
     var img_x7 = document.createElement('img');
     img_x7.setAttribute('src', list_x1[0].src);
     img_x7.id = 'img_x7';
-    img_x7.style.left = 1 + 15 + 'px';
-    img_x7.style.top = 100 + 64 + 'px';
+    img_x7.style.left = r_v_7 + 15 + 'px';
+    img_x7.style.top = r_top_7 + 64 + 'px';
     img_x7.style.width = 35 + 'px';
     img_x7.style.position = 'absolute';
     content.appendChild(img_x7);
@@ -394,19 +400,7 @@ function move(){
     score_n.textContent = score;
     score_n1.textContent = score_number;
 
-    // Анімація 4 картинки
-    img_v4.setAttribute('src', list_b4[num_img].src);
-    img_x4.setAttribute('src', list_bot2[num_img].src);
 
-    // Анімація 5 картинки
-    img_v5.setAttribute('src', list_b5[num_img].src);
-    img_x5.setAttribute('src', list_x3[num_img].src);
-
-
-
-    // Анімація 7 картинки
-    img_v7.setAttribute('src', list_b7[num_img].src);
-    img_x7.setAttribute('src', list_x1[num_img].src);
 
     // Перша кулька та його логіка
 
@@ -418,10 +412,8 @@ function move(){
         var r_top = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
         img_v0.style.top = r_top + 'px';
         img_x.style.top = r_top + 116 + 'px';
-        console.log(r_top)
 
         img_v0.style.left = randomNumber0 + 'px';
-
 
         if(img_x.style.display == "none"){
             img_x.style.display = "block";
@@ -438,7 +430,6 @@ function move(){
         var r_k = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
         img_v0.style.left = r_k + 'px';
         var r_top1 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
-        console.log(r_top1)
         img_v0.style.top = r_top1 + 'px';
 
             if(img_x.style.display == "none"){
@@ -473,7 +464,7 @@ function move(){
     if (currentTop2 < -200){
         score -= 1;
         var randomNumber2 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
-        var r_top2 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+        var r_top2 = Math.floor(Math.random() * (3500 - 2000 + 1)) + 1000;
         img_v2.style.top = r_top2 + 'px';
         img_x2.style.top = r_top2 + 116 + 'px';
         img_v2.style.left = randomNumber2 + 'px';
@@ -491,7 +482,7 @@ function move(){
 
         var r_k2 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
         img_v2.style.left = r_k2 + 'px';
-        var r_top2 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+        var r_top2 = Math.floor(Math.random() * (3500 - 2000 + 1)) + 1000;
         img_v2.style.top = r_top2 + 'px';
 
             if(img_x2.style.display == "none"){
@@ -526,7 +517,7 @@ function move(){
     if (currentTop3 < -200){
         score -= 1;
         var randomNumber3 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
-        var r_top3 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+        var r_top3 = Math.floor(Math.random() * (7500 - 5000 + 1)) + 1000;
         img_v3.style.top = r_top3 + 'px';
         img_x3.style.top = r_top3 + 115 + 'px';
         img_v3.style.left = randomNumber3 + 'px';
@@ -549,7 +540,7 @@ function move(){
         var r_k3 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
         img_v3.style.left = r_k3 + 'px';
         div_v3.style.left = r_k3 + 10 + 'px';
-        var r_top3 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+        var r_top3 = Math.floor(Math.random() * (7500 - 5000 + 1)) + 1000;
         img_v3.style.top = r_top3 + 'px';
         div_v3.style.top = r_top3 + 170 + 'px';
 
@@ -584,13 +575,123 @@ function move(){
         div_v3.style.top = (current_v3 - speed) + 'px';
     }
 
+    // Четверта кулька та його логіка
+
+    var currentTop4 = parseInt(img_v4.style.top) || 0;
+    if (currentTop4 < -200){
+        score -= 1;
+        var randomNumber4 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+        var r_top4 = Math.floor(Math.random() * (9000 - 8000 + 1)) + 8000;
+        img_v4.style.top = r_top4 + 'px';
+        img_x4.style.top = r_top4 + 101 + 'px';
+        img_v4.style.left = randomNumber4 + 'px';
+
+        if(img_x4.style.display == "none"){
+            img_x4.style.display = "block";
+            img_x4.style.left = randomNumber4 + 17 + 'px';
+
+        }else{
+            img_x4.style.left = randomNumber4 + 17 + 'px';
+        }
+    }
+    if(kill_anim4 == 4){
+        kill_anim4 = 0;
+        kill_an4 = false;
+
+        var r_k4 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+        img_v4.style.left = r_k4 + 'px';
+        var r_top4 = Math.floor(Math.random() * (9000 - 8000 + 1)) + 8000;
+        img_v4.style.top = r_top4 + 'px';
+
+            if(img_x4.style.display == "none"){
+                img_x4.style.display = "block";
+                img_x4.style.left = r_k4 + 17 + 'px';
+                img_x4.style.top = r_top4 + 101 + 'px';
+
+            }else{
+                img_x4.style.left = r_k4 + 17 + 'px';
+                img_x4.style.top = r_top4 + 101 + 'px';
+            }
+        }
+
+    if(kill_an4){
+        img_v4.setAttribute('src', list_h1[kill_anim4].src);
+        kill_anim4 += 1;
+    }else{
+        if(parseInt(img_v4.style.top) < 910){
+        // Анімація 4 картинки
+            img_v4.setAttribute('src', list_b4[num_img].src);
+            img_x4.setAttribute('src', list_bot2[num_img].src);
+        }
+        currentTop4 = parseInt(img_v4.style.top) || 0;
+        img_v4.style.top = (currentTop4 - speed) + 'px';
+
+        var current_x4 = parseInt(img_x4.style.top) || 0;
+        img_x4.style.top = (current_x4 - speed) + 'px';
+    }
+
+    // Пята кулька та його логіка
+
+    var currentTop5 = parseInt(img_v5.style.top) || 0;
+    if (currentTop5 < -200){
+        score -= 1;
+        var randomNumber5 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+        var r_top5 = Math.floor(Math.random() * (2500 - 1500 + 1)) + 1500;
+        img_v5.style.top = r_top5 + 'px';
+        img_x5.style.top = r_top5 + 84 + 'px';
+        img_v5.style.left = randomNumber5 + 'px';
+
+        if(img_x5.style.display == "none"){
+            img_x5.style.display = "block";
+            img_x5.style.left = randomNumber5 - 20 + 'px';
+
+        }else{
+            img_x5.style.left = randomNumber5 - 20 + 'px';
+        }
+    }
+    if(kill_anim5 == 4){
+        kill_anim5 = 0;
+        kill_an5 = false;
+
+        var r_k5 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+        img_v5.style.left = r_k5 + 'px';
+        var r_top5 = Math.floor(Math.random() * (2500 - 1500 + 1)) + 1500;
+        img_v5.style.top = r_top5 + 'px';
+
+            if(img_x5.style.display == "none"){
+                img_x5.style.display = "block";
+                img_x5.style.left = r_k5 - 20 + 'px';
+                img_x5.style.top = r_top5 + 84 + 'px';
+
+            }else{
+                img_x5.style.left = r_k5 - 20 + 'px';
+                img_x5.style.top = r_top5 + 84 + 'px';
+            }
+        }
+
+    if(kill_an5){
+        img_v5.setAttribute('src', list_h1[kill_anim5].src);
+        kill_anim5 += 1;
+    }else{
+        if(parseInt(img_v5.style.top) < 910){
+        // Анімація 5 картинки
+            img_v5.setAttribute('src', list_b5[num_img].src);
+            img_x5.setAttribute('src', list_x3[num_img].src);
+        }
+        currentTop5 = parseInt(img_v5.style.top) || 0;
+        img_v5.style.top = (currentTop5 - speed) + 'px';
+
+        var current_x5 = parseInt(img_x5.style.top) || 0;
+        img_x5.style.top = (current_x5 - speed) + 'px';
+    }
+
     // Шоста кулька та його логіка
 
     var currentTop6 = parseInt(img_v6.style.top) || 0;
     if (currentTop6 < -200){
         score -= 1;
         var randomNumber6 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
-        var r_top6 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+        var r_top6 = Math.floor(Math.random() * (5000 - 4000 + 1)) + 4000;
         img_v6.style.top = r_top6 + 'px';
         img_x6.style.top = r_top6 + 85 + 'px';
         img_v6.style.left = randomNumber6 + 'px';
@@ -608,7 +709,7 @@ function move(){
 
         var r_k6 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
         img_v6.style.left = r_k6 + 'px';
-        var r_top6 = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+        var r_top6 = Math.floor(Math.random() * (5000 - 4000 + 1)) + 4000;
         img_v6.style.top = r_top6 + 'px';
 
             if(img_x6.style.display == "none"){
@@ -638,6 +739,60 @@ function move(){
         img_x6.style.top = (current_x6 - speed) + 'px';
     }
 
+// Сьома кулька та його логіка
+
+    var currentTop7 = parseInt(img_v7.style.top) || 0;
+    if (currentTop7 < -200){
+        score -= 1;
+        var randomNumber7 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+        var r_top7 = Math.floor(Math.random() * (3500 - 2000 + 1)) + 1000;
+        img_v7.style.top = r_top7 + 'px';
+        img_x7.style.top = r_top7 + 64 + 'px';
+        img_v7.style.left = randomNumber7 + 'px';
+        if(img_x7.style.display == "none"){
+            img_x7.style.display = "block";
+            img_x7.style.left = randomNumber7 + 16 + 'px';
+
+        }else{
+            img_x7.style.left = randomNumber7 + 16 + 'px';
+        }
+    }
+    if(kill_anim7 == 4){
+        kill_anim7 = 0;
+        kill_an7 = false;
+
+        var r_k7 = Math.floor(Math.random() * (900 - 50 + 1)) + 50;
+        img_v7.style.left = r_k7 + 'px';
+        var r_top7 = Math.floor(Math.random() * (3500 - 2000 + 1)) + 1000;
+        img_v7.style.top = r_top7 + 'px';
+
+            if(img_x7.style.display == "none"){
+                img_x7.style.display = "block";
+                img_x7.style.left = r_k7 + 16 + 'px';
+                img_x7.style.top = r_top7 + 64 + 'px';
+
+            }else{
+                img_x7.style.left = r_k7 + 16 + 'px';
+                img_x7.style.top = r_top7 + 64 + 'px';
+            }
+        }
+
+    if(kill_an7){
+        img_v7.setAttribute('src', list_h1[kill_anim7].src);
+        kill_anim7 += 1;
+    }else{
+        if(parseInt(img_v7.style.top) < 910){
+        // Анімація 7 картинки
+        img_v7.setAttribute('src', list_b7[num_img].src);
+        img_x7.setAttribute('src', list_x1[num_img].src);
+        }
+        currentTop7 = parseInt(img_v7.style.top) || 0;
+        img_v7.style.top = (currentTop7 - speed) + 'px';
+
+        var current_x7 = parseInt(img_x7.style.top) || 0;
+        img_x7.style.top = (current_x7 - speed) + 'px';
+    }
+
     // повторює анімацію
     if (key == 0){
         num_img += 1
@@ -654,7 +809,7 @@ function move(){
 
 var intervalId = null;
 
-intervalId = setInterval(move, 10);
+intervalId = setInterval(move, 100);
 
 // clearInterval(intervalId);
 
@@ -667,162 +822,30 @@ var test = 1;
 // Відслідковує кнопки на клавіатурі
 document.addEventListener("keydown", function(event) {
 
-    prc_x = parseInt(prc.style.top) || 0;
-    prc_y = parseInt(prc.style.left) || 0;
-    prc0_x = parseInt(prc0.style.top) || 0;
-    prc0_y = parseInt(prc0.style.left) || 0;
-
     // натиснута кнопка W
-    if (st == 1){
         if (event.keyCode === 87 || event.keyCode === 38){
-        prc.style.top = (prc_x - 10) + 'px';
-        prc0.style.top = (prc0_x - 10) + 'px';
-            if(prc.style.top == "-50px"){
-                prc.style.top = 860 + 'px';
-                prc0.style.top = 890 + 'px';
-            }
+            up()
         }
         // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
-        prc.style.top = (prc_x + 10) + 'px';
-        prc0.style.top = (prc0_x + 10) + 'px';
-            if(prc.style.top == "870px"){
-                prc.style.top = -40 + 'px';
-                prc0.style.top = -10 + 'px';
-
-            }
+            down()
         }
 
         // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
-        prc.style.left = (prc_y - 10) + 'px';
-        prc0.style.left = (prc0_y - 10) + 'px';
-            if(prc.style.left == "-50px"){
-                prc.style.left = 960 + 'px';
-                prc0.style.left = 990 + 'px';
-            }
-
+            left()
         }
 
         // D або стрілка вправо
         if (event.keyCode === 68 || event.keyCode === 39){
-        prc.style.left = (prc_y + 10) + 'px';
-        prc0.style.left = (prc0_y + 10) + 'px';
-            if(prc.style.left == "970px"){
-                prc.style.left = -40 + 'px';
-                prc0.style.left = -10 + 'px';
+            right()
 
-            }
-
-        }
 }
 
     // натиснута кнопка E
     if (event.keyCode === 69) {
-        var prc_rect = prc0.getBoundingClientRect();
-        var img0 = img_v0.getBoundingClientRect();
-        var img_x_r = img_x.getBoundingClientRect();
-        var img2 = img_v2.getBoundingClientRect();
-        var img_x_2 = img_x2.getBoundingClientRect();
-        var img3 = img_v3.getBoundingClientRect();
-        var div_v_3 = div_v3.getBoundingClientRect();
-
-        var img6 = img_v6.getBoundingClientRect();
-        var img_x_6 = img_x6.getBoundingClientRect();
-
-
-        // Для першої кульки та хвоста
-        if (!(img0.right < prc_rect.left ||
-            img0.left > prc_rect.right ||
-            img0.bottom < prc_rect.top ||
-            img0.top > prc_rect.bottom)) {
-            console.log("опа_кулька");
-
-            kill_an = true
-            score_number += speed * 10
-            img_x.style.display = "none"
-
+        center()
         }
-        if (!(img_x_r.right < prc_rect.left ||
-            img_x_r.left > prc_rect.right ||
-            img_x_r.bottom < prc_rect.top ||
-            img_x_r.top > prc_rect.bottom)) {
-            console.log("опа хвіст");
-            img_x.style.display = "none"
-        }
-        // Для другої кульки та хвоста
-        if (!(img2.right < prc_rect.left ||
-            img2.left > prc_rect.right ||
-            img2.bottom < prc_rect.top ||
-            img2.top > prc_rect.bottom)) {
-            console.log("опа_кулька2");
-
-            kill_an2 = true
-            score_number += speed * 9
-            img_x2.style.display = "none"
-
-        }
-        if (!(img_x_2.right < prc_rect.left ||
-            img_x_2.left > prc_rect.right ||
-            img_x_2.bottom < prc_rect.top ||
-            img_x_2.top > prc_rect.bottom)) {
-            console.log("опа хвіст2");
-            img_x2.style.display = "none"
-        }
-
-        // Для Третьої кульки та хвоста
-        if (!(img3.right < prc_rect.left ||
-            img3.left > prc_rect.right ||
-            img3.bottom < prc_rect.top ||
-            img3.top > prc_rect.bottom)) {
-            console.log("опа_кулька3");
-
-            kill_an3 = true
-            score_number += speed * 10
-            img_x3.style.display = "none"
-
-        }
-        if (!(div_v_3.right < prc_rect.left ||
-            div_v_3.left > prc_rect.right ||
-            div_v_3.bottom < prc_rect.top ||
-            div_v_3.top > prc_rect.bottom)) {
-            console.log("опа хвіст3");
-            img_x3.style.display = "none"
-
-                kill_an = true
-                img_x.style.display = "none"
-
-                kill_an2 = true
-                img_x2.style.display = "none"
-
-                kill_an3 = true
-                img_x3.style.display = "none"
-
-                kill_an6 = true
-                img_x6.style.display = "none"
-        }
-
-        // Для шостої кульки та хвоста
-        if (!(img6.right < prc_rect.left ||
-            img6.left > prc_rect.right ||
-            img6.bottom < prc_rect.top ||
-            img6.top > prc_rect.bottom)) {
-            console.log("опа_кулька6");
-
-            kill_an6 = true
-            score_number += speed * 12
-            img_x6.style.display = "none"
-
-        }
-        if (!(img_x_6.right < prc_rect.left ||
-            img_x_6.left > prc_rect.right ||
-            img_x_6.bottom < prc_rect.top ||
-            img_x_6.top > prc_rect.bottom)) {
-            console.log("опа хвіст6");
-            img_x6.style.display = "none"
-            score += 2
-        }
-    }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
         if(st == 1){
@@ -845,3 +868,338 @@ function right_control(){
 }
 
 
+
+
+
+var intervalRIGHT = null
+var intervalLEFT = null
+var intervalUP = null
+var intervalDOWN = null
+
+function center(){
+    event.preventDefault();
+    if (st == 1){
+    var prc_rect = prc0.getBoundingClientRect();
+        var img0 = img_v0.getBoundingClientRect();
+        var img_x_r = img_x.getBoundingClientRect();
+
+        var img2 = img_v2.getBoundingClientRect();
+        var img_x_2 = img_x2.getBoundingClientRect();
+
+        var img3 = img_v3.getBoundingClientRect();
+        var div_v_3 = div_v3.getBoundingClientRect();
+
+        var img4 = img_v4.getBoundingClientRect();
+        var img_x_4 = img_x4.getBoundingClientRect();
+
+        var img5 = img_v5.getBoundingClientRect();
+        var img_x_5 = img_x5.getBoundingClientRect();
+
+        var img6 = img_v6.getBoundingClientRect();
+        var img_x_6 = img_x6.getBoundingClientRect();
+
+        var img7 = img_v7.getBoundingClientRect();
+        var img_x_7 = img_x7.getBoundingClientRect();
+
+
+        // Для першої кульки та хвоста
+        if (!(img0.right < prc_rect.left ||
+            img0.left > prc_rect.right ||
+            img0.bottom < prc_rect.top ||
+            img0.top > prc_rect.bottom)) {
+
+            kill_an = true
+            score_number += speed * 10
+            img_x.style.display = "none"
+
+        }
+        if (!(img_x_r.right < prc_rect.left ||
+            img_x_r.left > prc_rect.right ||
+            img_x_r.bottom < prc_rect.top ||
+            img_x_r.top > prc_rect.bottom)) {
+            img_x.style.display = "none"
+        }
+        // Для другої кульки та хвоста
+        if (!(img2.right < prc_rect.left ||
+            img2.left > prc_rect.right ||
+            img2.bottom < prc_rect.top ||
+            img2.top > prc_rect.bottom)) {
+
+            kill_an2 = true
+            score_number += speed * 9
+            img_x2.style.display = "none"
+
+        }
+        if (!(img_x_2.right < prc_rect.left ||
+            img_x_2.left > prc_rect.right ||
+            img_x_2.bottom < prc_rect.top ||
+            img_x_2.top > prc_rect.bottom)) {
+            img_x2.style.display = "none"
+        }
+
+        // Для Третьої кульки та хвоста
+        if (!(img3.right < prc_rect.left ||
+            img3.left > prc_rect.right ||
+            img3.bottom < prc_rect.top ||
+            img3.top > prc_rect.bottom)) {
+
+            kill_an3 = true
+            score_number += speed * 10
+            img_x3.style.display = "none"
+
+        }
+        if (!(div_v_3.right < prc_rect.left ||
+            div_v_3.left > prc_rect.right ||
+            div_v_3.bottom < prc_rect.top ||
+            div_v_3.top > prc_rect.bottom)) {
+            img_x3.style.display = "none"
+
+            if(parseInt(img_v0.style.top) < 910){
+                kill_an = true
+                img_x.style.display = "none"
+            }
+
+            if(parseInt(img_v2.style.top) < 910){
+                kill_an2 = true
+                img_x2.style.display = "none"
+            }
+                kill_an3 = true
+                img_x3.style.display = "none"
+
+            if(parseInt(img_v5.style.top) < 910){
+                kill_an5 = true
+                img_x5.style.display = "none"
+            }
+
+            if(parseInt(img_v6.style.top) < 910){
+                kill_an6 = true
+                img_x6.style.display = "none"
+            }
+
+            if(parseInt(img_v7.style.top) < 910){
+                kill_an7 = true
+                img_x7.style.display = "none"
+            }
+        }
+
+        // Для четвертої кульки та хвоста
+        if (!(img4.right < prc_rect.left ||
+            img4.left > prc_rect.right ||
+            img4.bottom < prc_rect.top ||
+            img4.top > prc_rect.bottom)) {
+
+            kill_an4 = true
+            score_number += speed * 10
+            img_x4.style.display = "none"
+
+        }
+        if (!(img_x_4.right < prc_rect.left ||
+            img_x_4.left > prc_rect.right ||
+            img_x_4.bottom < prc_rect.top ||
+            img_x_4.top > prc_rect.bottom)) {
+            img_x4.style.display = "none"
+
+            if(parseInt(img_v0.style.top) < 910){
+                kill_an = true
+                img_x.style.display = "none"
+            }
+
+            if(parseInt(img_v2.style.top) < 910){
+                kill_an2 = true
+                img_x2.style.display = "none"
+            }
+
+            if(parseInt(img_v3.style.top) < 910){
+                kill_an3 = true
+                img_x3.style.display = "none"
+            }
+
+            kill_an4 = true
+            img_x4.style.display = "none"
+
+            if(parseInt(img_v5.style.top) < 910){
+                kill_an5 = true
+                img_x5.style.display = "none"
+            }
+
+            if(parseInt(img_v6.style.top) < 910){
+                kill_an6 = true
+                img_x6.style.display = "none"
+            }
+
+            if(parseInt(img_v7.style.top) < 910){
+                kill_an7 = true
+                img_x7.style.display = "none"
+            }
+        }
+
+        // Для пятої кульки та хвоста
+        if (!(img5.right < prc_rect.left ||
+            img5.left > prc_rect.right ||
+            img5.bottom < prc_rect.top ||
+            img5.top > prc_rect.bottom)) {
+
+            kill_an5 = true
+            score_number += speed * 10
+            img_x5.style.display = "none"
+
+        }
+        if (!(img_x_5.right < prc_rect.left ||
+            img_x_5.left > prc_rect.right ||
+            img_x_5.bottom < prc_rect.top ||
+            img_x_5.top > prc_rect.bottom)) {
+            img_x5.style.display = "none"
+
+            score_number += 1000
+        }
+
+        // Для шостої кульки та хвоста
+        if (!(img6.right < prc_rect.left ||
+            img6.left > prc_rect.right ||
+            img6.bottom < prc_rect.top ||
+            img6.top > prc_rect.bottom)) {
+
+            kill_an6 = true
+            score_number += speed * 12
+            img_x6.style.display = "none"
+
+        }
+        if (!(img_x_6.right < prc_rect.left ||
+            img_x_6.left > prc_rect.right ||
+            img_x_6.bottom < prc_rect.top ||
+            img_x_6.top > prc_rect.bottom)) {
+            img_x6.style.display = "none"
+            score += 2
+        }
+
+        // Для сьомої кульки та хвоста
+        if (!(img7.right < prc_rect.left ||
+            img7.left > prc_rect.right ||
+            img7.bottom < prc_rect.top ||
+            img7.top > prc_rect.bottom)) {
+
+            kill_an7 = true
+            score_number += speed * 10
+            img_x7.style.display = "none"
+
+        }
+        if (!(img_x_7.right < prc_rect.left ||
+            img_x_7.left > prc_rect.right ||
+            img_x_7.bottom < prc_rect.top ||
+            img_x_7.top > prc_rect.bottom)) {
+            img_x7.style.display = "none"
+        }
+    }
+}
+
+function up(){
+    if (st == 1){
+    prc_x = parseInt(prc.style.top) || 0;
+    prc_y = parseInt(prc.style.left) || 0;
+    prc0_x = parseInt(prc0.style.top) || 0;
+    prc0_y = parseInt(prc0.style.left) || 0;
+
+    prc.style.top = (prc_x - 10) + 'px';
+    prc0.style.top = (prc0_x - 10) + 'px';
+        if(prc.style.top == "-50px"){
+            prc.style.top = 860 + 'px';
+            prc0.style.top = 890 + 'px';
+        }
+    }
+}
+
+function down(){
+    if (st == 1){
+    prc_x = parseInt(prc.style.top) || 0;
+    prc_y = parseInt(prc.style.left) || 0;
+    prc0_x = parseInt(prc0.style.top) || 0;
+    prc0_y = parseInt(prc0.style.left) || 0;
+
+    prc.style.top = (prc_x + 10) + 'px';
+    prc0.style.top = (prc0_x + 10) + 'px';
+        if(prc.style.top == "870px"){
+            prc.style.top = -40 + 'px';
+            prc0.style.top = -10 + 'px';
+        }
+    }
+}
+
+function right(){
+    if (st == 1){
+    prc_x = parseInt(prc.style.top) || 0;
+    prc_y = parseInt(prc.style.left) || 0;
+    prc0_x = parseInt(prc0.style.top) || 0;
+    prc0_y = parseInt(prc0.style.left) || 0;
+
+    prc.style.left = (prc_y + 10) + 'px';
+    prc0.style.left = (prc0_y + 10) + 'px';
+        if(prc.style.left == "970px"){
+            prc.style.left = -40 + 'px';
+            prc0.style.left = -10 + 'px';
+        }
+    }
+}
+
+function left(){
+    if (st == 1){
+    prc_x = parseInt(prc.style.top) || 0;
+    prc_y = parseInt(prc.style.left) || 0;
+    prc0_x = parseInt(prc0.style.top) || 0;
+    prc0_y = parseInt(prc0.style.left) || 0;
+
+    prc.style.left = (prc_y - 10) + 'px';
+    prc0.style.left = (prc0_y - 10) + 'px';
+        if(prc.style.left == "-50px"){
+            prc.style.left = 960 + 'px';
+            prc0.style.left = 990 + 'px';
+        }
+    }
+}
+
+function downMouseDown(event) {
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    intervalDOWN = setInterval(down, 50);
+}
+
+function downMouseUp() {
+    clearInterval(intervalDOWN);
+}
+
+function upMouseDown(event) {
+    event.preventDefault();
+    intervalUP = setInterval(up, 50);
+}
+
+function upMouseUp() {
+    clearInterval(intervalUP);
+}
+
+function leftMouseDown(event) {
+    event.preventDefault();
+    intervalLEFT = setInterval(left, 50);
+}
+
+function leftMouseUp() {
+    clearInterval(intervalLEFT);
+}
+
+
+function rightMouseDown(event) {
+    event.preventDefault();
+    intervalRIGHT = setInterval(right, 50);
+}
+
+function rightMouseUp() {
+    clearInterval(intervalRIGHT);
+}
+
+
+function left_select(event){
+    event.preventDefault();
+    console.log("Лівий")
+}
+
+function right_select(event){
+    event.preventDefault();
+    console.log("Правий")
+}
