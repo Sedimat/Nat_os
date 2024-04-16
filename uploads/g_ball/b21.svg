@@ -5,54 +5,14 @@
 <style type="text/css">
 	.st0{fill:#1E0E01;}
 </style>
-<rect y="29.1" class="st0" width="7" height="7"/>
-<rect y="36.3" class="st0" width="7" height="7"/>
-<rect y="43.6" class="st0" width="7" height="7"/>
-<rect y="50.9" class="st0" width="7" height="7"/>
-<rect y="58.1" class="st0" width="7" height="7"/>
-<rect x="7.3" y="14.5" class="st0" width="7" height="7"/>
-<rect x="7.3" y="21.8" class="st0" width="7" height="7"/>
-<rect x="7.3" y="65.4" class="st0" width="7" height="7"/>
-<rect x="7.3" y="72.6" class="st0" width="7" height="7"/>
-<rect x="14.5" y="7.3" class="st0" width="7" height="7"/>
-<rect x="14.5" y="79.9" class="st0" width="7" height="7"/>
-<rect x="21.8" y="7.3" class="st0" width="7" height="7"/>
-<rect x="21.8" y="29.1" class="st0" width="7" height="7"/>
-<rect x="21.8" y="87.2" class="st0" width="7" height="7"/>
-<rect x="29" class="st0" width="7" height="7"/>
-<rect x="29" y="21.8" class="st0" width="7" height="7"/>
-<rect x="29" y="36.3" class="st0" width="7" height="7"/>
-<rect x="29" y="94.4" class="st0" width="7" height="7"/>
-<rect x="36.3" class="st0" width="7" height="7"/>
-<rect x="36.3" y="14.5" class="st0" width="7" height="7"/>
-<rect x="36.3" y="43.6" class="st0" width="7" height="7"/>
-<rect x="36.3" y="101.7" class="st0" width="7" height="7"/>
-<rect x="43.6" class="st0" width="7" height="7"/>
-<rect x="43.6" y="21.8" class="st0" width="7" height="7"/>
-<rect x="43.6" y="36.3" class="st0" width="7" height="7"/>
-<rect x="43.6" y="87.2" class="st0" width="7" height="7"/>
-<rect x="43.6" y="108.9" class="st0" width="7" height="7"/>
-<rect x="50.8" class="st0" width="7" height="7"/>
-<rect x="50.8" y="29.1" class="st0" width="7" height="7"/>
-<rect x="50.8" y="79.9" class="st0" width="7" height="7"/>
-<rect x="50.8" y="94.4" class="st0" width="7" height="7"/>
-<rect x="50.8" y="108.9" class="st0" width="7" height="7"/>
-<rect x="58.1" class="st0" width="7" height="7"/>
-<rect x="58.1" y="87.2" class="st0" width="7" height="7"/>
-<rect x="58.1" y="101.7" class="st0" width="7" height="7"/>
-<rect x="65.4" class="st0" width="7" height="7"/>
-<rect x="65.4" y="94.4" class="st0" width="7" height="7"/>
-<rect x="72.6" y="7.3" class="st0" width="7" height="7"/>
-<rect x="72.6" y="87.2" class="st0" width="7" height="7"/>
-<rect x="79.9" y="7.3" class="st0" width="7" height="7"/>
-<rect x="79.9" y="79.9" class="st0" width="7" height="7"/>
-<rect x="87.1" y="14.5" class="st0" width="7" height="7"/>
-<rect x="87.1" y="21.8" class="st0" width="7" height="7"/>
-<rect x="87.1" y="65.4" class="st0" width="7" height="7"/>
-<rect x="87.1" y="72.6" class="st0" width="7" height="7"/>
-<rect x="94.4" y="29.1" class="st0" width="7" height="7"/>
-<rect x="94.4" y="36.3" class="st0" width="7" height="7"/>
-<rect x="94.4" y="43.6" class="st0" width="7" height="7"/>
-<rect x="94.4" y="50.9" class="st0" width="7" height="7"/>
-<rect x="94.4" y="58.1" class="st0" width="7" height="7"/>
+<path class="st0" d="M0,29.1h7v7H0V29.1z M0,36.3h7v7H0V36.3z M0,43.6h7v7H0V43.6z M0,50.9h7v7H0V50.9z M0,58.1h7v7H0V58.1z
+	 M7.3,14.5h7v7h-7V14.5z M7.3,21.8h7v7h-7V21.8z M7.3,65.4h7v7h-7V65.4z M7.3,72.6h7v7h-7V72.6z M14.5,7.3h7v7h-7V7.3z M14.5,79.9h7
+	v7h-7V79.9z M21.8,7.3h7v7h-7V7.3z M21.8,29.1h7v7h-7V29.1z M21.8,87.2h7v7h-7V87.2z M29,0h7v7h-7V0z M29,21.8h7v7h-7V21.8z
+	 M29,36.3h7v7h-7V36.3z M29,94.4h7v7h-7V94.4z M36.3,0h7v7h-7V0z M36.3,14.5h7v7h-7V14.5z M36.3,43.6h7v7h-7V43.6z M36.3,101.7h7v7
+	h-7V101.7z M43.6,0h7v7h-7V0z M43.6,21.8h7v7h-7V21.8z M43.6,36.3h7v7h-7V36.3z M43.6,87.2h7v7h-7V87.2z M43.6,108.9h7v7h-7V108.9z
+	 M50.8,0h7v7h-7V0z M50.8,29.1h7v7h-7V29.1z M50.8,79.9h7v7h-7V79.9z M50.8,94.4h7v7h-7V94.4z M50.8,108.9h7v7h-7V108.9z M58.1,0h7
+	v7h-7V0z M58.1,87.2h7v7h-7V87.2z M58.1,101.7h7v7h-7V101.7z M65.4,0h7v7h-7V0z M65.4,94.4h7v7h-7V94.4z M72.6,7.3h7v7h-7V7.3z
+	 M72.6,87.2h7v7h-7V87.2z M79.9,7.3h7v7h-7V7.3z M79.9,79.9h7v7h-7V79.9z M87.1,14.5h7v7h-7V14.5z M87.1,21.8h7v7h-7V21.8z
+	 M87.1,65.4h7v7h-7V65.4z M87.1,72.6h7v7h-7V72.6z M94.4,29.1h7v7h-7V29.1z M94.4,36.3h7v7h-7V36.3z M94.4,43.6h7v7h-7V43.6z
+	 M94.4,50.9h7v7h-7V50.9z M94.4,58.1h7v7h-7V58.1z"/>
 </svg>

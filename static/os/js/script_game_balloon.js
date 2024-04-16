@@ -331,7 +331,7 @@ add_content()
 
 
 var menu_h = new Image()
-menu_h.src = '/media/g_ball/game_menu0.svgz'
+menu_h.src = '/media/g_ball/game_menu0.svg'
 
 var select = new Image()
 select.src = "/media/img/select.svg"
@@ -1165,6 +1165,11 @@ function center(){
             }
                 kill_an3 = true
                 img_x3.style.display = "none"
+
+            if(parseInt(img_v4.style.top) < 910){
+                kill_an4 = true
+                img_x4.style.display = "none"
+            }
 
             if(parseInt(img_v5.style.top) < 910){
                 kill_an5 = true

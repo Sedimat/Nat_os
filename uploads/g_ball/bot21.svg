@@ -3,37 +3,12 @@
 <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 79.6 86.9" style="enable-background:new 0 0 79.6 86.9;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#1E0E01;enable-background:new    ;}
+	.st0{fill:#1E0E01;}
 </style>
-<g>
-	<rect y="65.4" class="st0" width="7" height="7"/>
-	<rect y="72.6" class="st0" width="7" height="7"/>
-	<rect y="79.9" class="st0" width="7" height="7"/>
-	<rect x="7.3" y="58.1" class="st0" width="7" height="7"/>
-	<rect x="7.3" y="65.4" class="st0" width="7" height="7"/>
-	<rect x="7.3" y="72.6" class="st0" width="7" height="7"/>
-	<rect x="7.3" y="79.9" class="st0" width="7" height="7"/>
-	<rect x="14.5" y="36.3" class="st0" width="7" height="7"/>
-	<rect x="14.5" y="43.6" class="st0" width="7" height="7"/>
-	<rect x="14.5" y="50.9" class="st0" width="7" height="7"/>
-	<rect x="14.5" y="58.1" class="st0" width="7" height="7"/>
-	<rect x="14.5" y="65.4" class="st0" width="7" height="7"/>
-	<rect x="14.5" y="72.6" class="st0" width="7" height="7"/>
-	<rect x="14.5" y="79.9" class="st0" width="7" height="7"/>
-	<rect x="21.8" y="14.5" class="st0" width="7" height="7"/>
-	<rect x="21.8" y="21.8" class="st0" width="7" height="7"/>
-	<rect x="21.8" y="29.1" class="st0" width="7" height="7"/>
-	<rect x="21.8" y="50.9" class="st0" width="7" height="7"/>
-	<rect x="21.8" y="58.1" class="st0" width="7" height="7"/>
-	<rect x="21.8" y="65.4" class="st0" width="7" height="7"/>
-	<rect x="21.8" y="72.6" class="st0" width="7" height="7"/>
-	<rect x="29" class="st0" width="7" height="7"/>
-	<rect x="29" y="7.3" class="st0" width="7" height="7"/>
-	<rect x="29" y="50.9" class="st0" width="7" height="7"/>
-	<rect x="29" y="58.1" class="st0" width="7" height="7"/>
-	<rect x="29" y="65.4" class="st0" width="7" height="7"/>
-	<rect x="36.3" y="29.1" class="st0" width="7" height="7"/>
-	<rect x="36.3" y="43.6" class="st0" width="7" height="7"/>
-	<rect x="43.6" y="36.3" class="st0" width="7" height="7"/>
-</g>
+<path class="st0" d="M0,65.4h7v7H0V65.4z M0,72.6h7v7H0V72.6z M0,79.9h7v7H0V79.9z M7.3,58.1h7v7h-7V58.1z M7.3,65.4h7v7h-7V65.4z
+	 M7.3,72.6h7v7h-7V72.6z M7.3,79.9h7v7h-7V79.9z M14.5,36.3h7v7h-7V36.3z M14.5,43.6h7v7h-7V43.6z M14.5,50.9h7v7h-7V50.9z
+	 M14.5,58.1h7v7h-7V58.1z M14.5,65.4h7v7h-7V65.4z M14.5,72.6h7v7h-7V72.6z M14.5,79.9h7v7h-7V79.9z M21.8,14.5h7v7h-7V14.5z
+	 M21.8,21.8h7v7h-7V21.8z M21.8,29.1h7v7h-7V29.1z M21.8,50.9h7v7h-7V50.9z M21.8,58.1h7v7h-7V58.1z M21.8,65.4h7v7h-7V65.4z
+	 M21.8,72.6h7v7h-7V72.6z M29,0h7v7h-7V0z M29,7.3h7v7h-7V7.3z M29,50.9h7v7h-7V50.9z M29,58.1h7v7h-7V58.1z M29,65.4h7v7h-7V65.4z
+	 M36.3,29.1h7v7h-7V29.1z M36.3,43.6h7v7h-7V43.6z M43.6,36.3h7v7h-7V36.3z"/>
 </svg>
