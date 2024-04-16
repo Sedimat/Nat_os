@@ -44,7 +44,6 @@ function add_content(name){
     img_v.style.position = 'absolute';
     newDiv1.appendChild(img_v);
 
-
     var newImg5 = document.createElement('img');
     newImg5.setAttribute('src', '/media/img/01.svg' );
     newImg5.id = 'img_r';

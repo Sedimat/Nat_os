@@ -84,12 +84,6 @@ def settings(request):
     context = {}
     return render(request, 'os/settings.html', context=context)
 
-
-def sounds_play(request):
-    context = {}
-    return render(request, 'os/sounds_play.html', context=context)
-
-
 def balloon(request):
     context = {}
     return render(request, 'game/balloon.html', context=context)
