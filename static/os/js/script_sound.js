@@ -1,5 +1,31 @@
 
 
+var list_img = [new Image(), new Image(), new Image(), new Image()]
+
+
+list_img[0].src = "/media/img/02.svg";
+list_img[1].src = "/media/img/03.svg";
+list_img[2].src = "/media/img/04.svg";
+list_img[3].src = "/media/img/01.svg";
+
+var list_v = [new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_v[0].src = '/media/img/v1.svg';
+list_v[1].src = '/media/img/v2.svg';
+list_v[2].src = '/media/img/v3.svg';
+list_v[3].src = '/media/img/v4.svg';
+list_v[4].src = '/media/img/v5.svg';
+
+var img_content = new Image()
+img_content.src = '/media/img/content.svg'
+
+var img_play1 = new Image()
+img_play1.src = '/media/img/play1.svg'
+
+var img_play = new Image()
+img_play.src = '/media/img/play.svg'
+
+
 // додає на DOM елементи звуків
 function add_sounds(list_m){
     var sound = list_m[0]
@@ -31,12 +57,12 @@ function add_content(name){
 
     var newImg = document.createElement('img');
     newImg.classList.add('img_content');
-    newImg.setAttribute('src', '/media/img/content.svg' );
+    newImg.setAttribute('src', img_content.src );
 
     newDiv1.appendChild(newImg);
 
     var img_v = document.createElement('img');
-    img_v.setAttribute('src', '/media/img/v1.svg' );
+    img_v.setAttribute('src', list_v[0].src );
     img_v.id = 'img_v';
     img_v.style.left = 20 + 'px';
     img_v.style.top = 20 + 'px';
@@ -45,7 +71,7 @@ function add_content(name){
     newDiv1.appendChild(img_v);
 
     var newImg5 = document.createElement('img');
-    newImg5.setAttribute('src', '/media/img/01.svg' );
+    newImg5.setAttribute('src', list_img[3].src );
     newImg5.id = 'img_r';
     newImg5.style.left = 135 + 'px';
     newImg5.style.top = 140 + 'px';
@@ -72,7 +98,7 @@ function add_content(name){
     newDiv1.appendChild(h11);
 
     var newImg1 = document.createElement('img');
-    newImg1.setAttribute('src', '/media/img/play1.svg' );
+    newImg1.setAttribute('src', img_play1.src );
     newImg1.id = 'img_play1';
     newImg1.style.left = 130 + 'px';
     newImg1.style.top = 480 + 'px';
@@ -91,7 +117,7 @@ function add_content(name){
     newDiv1.appendChild(newdiv2);
 
     var newImg1 = document.createElement('img');
-    newImg1.setAttribute('src', '/media/img/play.svg' );
+    newImg1.setAttribute('src', img_play.src );
     newImg1.id = 'img_play';
     newImg1.style.left = 130 + 'px';
     newImg1.style.top = 480 + 'px';
@@ -203,7 +229,7 @@ function select_link(){
 
 }
 
-var list_img = ["/media/img/02.svg","/media/img/03.svg","/media/img/04.svg","/media/img/01.svg",]
+
 var num_img = 0
 var time_play = 0
 
@@ -221,7 +247,7 @@ function move(){
         divEl.style.width = (parseInt(divEl.style.width) - x1 + 'px');
     }
     var img_r = document.getElementById("img_r")
-    img_r.setAttribute('src', list_img[num_img] );
+    img_r.setAttribute('src', list_img[num_img].src );
     num_img += 1
     if (num_img == 4){
         num_img = 0
@@ -230,15 +256,15 @@ function move(){
     var img_r = document.getElementById("img_v")
 
     if(audio1.volume.toFixed(1) == 0.2){
-        img_r.setAttribute('src', '/media/img/v1.svg' );
+        img_r.setAttribute('src', list_v[0].src );
     }else if(audio1.volume.toFixed(1) == 0.4){
-        img_r.setAttribute('src', '/media/img/v2.svg' );
+        img_r.setAttribute('src', list_v[1].src );
     }else if(audio1.volume.toFixed(1) == 0.6){
-        img_r.setAttribute('src', '/media/img/v3.svg' );
+        img_r.setAttribute('src', list_v[2].src );
     }else if(audio1.volume.toFixed(1) == 0.8){
-        img_r.setAttribute('src', '/media/img/v4.svg' );
+        img_r.setAttribute('src', list_v[3].src );
     }else if(audio1.volume.toFixed(1) == 1.0){
-        img_r.setAttribute('src', '/media/img/v5.svg' );
+        img_r.setAttribute('src', list_v[4].src );
     }
 
 
@@ -279,16 +305,22 @@ function link_name(){
 }
 
 
-function left_select(){
+function left_select(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     back()
 }
 
 
-function right_select(){
+function right_select(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     select_link()
 }
 
-function up_control(){
+function up_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     var scrollHeight = len_menu * 125;
     var y = select.offsetTop;
 
@@ -303,7 +335,9 @@ function up_control(){
     }
 }
 
-function down_control(){
+function down_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     var scrollHeight = len_menu * 125;
     var y = select.offsetTop;
 
@@ -319,11 +353,15 @@ function down_control(){
 }
 
 
-function left_control(){
+function left_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     console.log("Left")
 }
 
-function right_control(){
+function right_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     console.log("Right")
 }
 

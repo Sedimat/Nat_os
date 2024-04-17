@@ -30,29 +30,46 @@
 
 <div class="control">
 
-        <a onclick="left_select()">
-            <div class="left_select"></div>
-        </a>
+        <button class="left_select"
+        ontouchstart="left_select(event)"
+        onmousedown="left_select(event)">
+            <img class="e_img1" src="/media/img/sel.svg">
+        </button>
 
-        <a onclick="right_select()">
-            <div class="right_select"></div>
-        </a>
+        <button class="right_select"
+        ontouchstart="right_select(event)"
+        onmousedown="right_select(event)">
+            <img class="e_img1" src="/media/img/sel.svg">
+        </button>
 
-        <a onclick="up_control()">
-            <div class="up_control"></div>
-        </a>
 
-        <a onclick="down_control()">
-            <div class="down_control"></div>
-        </a>
+        <button class="up_control"
+        ontouchstart="up_control(event)"
+        onmousedown="up_control(event)">
+            <img class="img_up" src="/media/img/up.svg">
+        </button>
 
-        <a onclick="left_control()">
-            <div class="left_control"></div>
-        </a>
 
-        <a onclick="right_control()">
-            <div class="right_control"></div>
-        </a>
+        <button class="down_control"
+        ontouchstart="down_control(event)"
+        onmousedown="down_control(event)">
+            <img class="img_down" src="/media/img/up.svg">
+        </button>
+
+
+
+        <button class="left_control"
+        ontouchstart="left_control(event)"
+        onmousedown="left_control(event)">
+            <img class="img_left" src="/media/img/up.svg">
+        </button>
+
+
+        <button class="right_control"
+        ontouchstart="right_control(event)"
+        onmousedown="right_control(event)">
+            <img class="img_right" src="/media/img/up.svg">
+        </button>
 
 </div>
 

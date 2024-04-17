@@ -1,3 +1,5 @@
+var img_content = new Image()
+img_content.src = '/media/img/content.svg'
 
 
 // додає на DOM елементи звуків
@@ -34,7 +36,7 @@ function add_content(list){
 
     var newImg = document.createElement('img');
     newImg.classList.add('img_content');
-    newImg.setAttribute('src', '/media/img/content.svg' );
+    newImg.setAttribute('src', img_content.src );
 
     newDiv1.appendChild(newImg);
 
@@ -183,17 +185,23 @@ function play(elem,num){
 }
 
 
-function left_select(){
+function left_select(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     back()
 }
 
 
-function right_select(){
+function right_select(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     select_link()
 }
 
 
-function up_control(){
+function up_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     var scrollHeight = len_menu * 125;
     var y = select.offsetTop;
 
@@ -202,7 +210,9 @@ function up_control(){
     }
 }
 
-function down_control(){
+function down_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     var scrollHeight = len_menu * 125;
     var y = select.offsetTop;
 
@@ -212,11 +222,15 @@ function down_control(){
 }
 
 
-function left_control(){
+function left_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     console.log("Left")
 }
 
-function right_control(){
+function right_control(event){
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
     console.log("Right")
 }
 

@@ -1039,10 +1039,12 @@ document.addEventListener("keydown", function(event) {
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
             up()
+            move_select_m()
         }
         // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
             down()
+            move_select_p()
         }
 
         // A або стрілка вліво
@@ -1298,7 +1300,6 @@ function center(){
 }
 
 function up(){
-        move_select_m()
 
     if (st == 1){
     prc_x = parseInt(prc.style.top) || 0;
@@ -1316,7 +1317,6 @@ function up(){
 }
 
 function down(){
-        move_select_p()
 
     if (st == 1){
     prc_x = parseInt(prc.style.top) || 0;
@@ -1366,6 +1366,7 @@ function left(){
 }
 
 function downMouseDown(event) {
+    move_select_p()
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
     intervalDOWN = setInterval(down, 50);
@@ -1376,6 +1377,7 @@ function downMouseUp() {
 }
 
 function upMouseDown(event) {
+    move_select_m()
     event.preventDefault();
     navigator.vibrate(50);
     intervalUP = setInterval(up, 50);
