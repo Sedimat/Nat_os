@@ -15,4 +15,5 @@ urlpatterns = [
     path('get_pictures', views.get_pictures, name='get_pictures'),
     path('get_games', views.get_games, name='get_games'),
     path('balloon', views.balloon, name='balloon'),
+    path('uhelyant', views.uhelyant, name='uhelyant'),
 ]

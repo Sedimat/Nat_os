@@ -1366,6 +1366,7 @@ function left(){
 }
 
 function downMouseDown(event) {
+    clearInterval(intervalDOWN);
     move_select_p()
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
@@ -1377,6 +1378,7 @@ function downMouseUp() {
 }
 
 function upMouseDown(event) {
+    clearInterval(intervalUP);
     move_select_m()
     event.preventDefault();
     navigator.vibrate(50);
@@ -1388,6 +1390,7 @@ function upMouseUp() {
 }
 
 function leftMouseDown(event) {
+    clearInterval(intervalLEFT);
     event.preventDefault();
     navigator.vibrate(50);
     intervalLEFT = setInterval(left, 50);
@@ -1399,6 +1402,7 @@ function leftMouseUp() {
 
 
 function rightMouseDown(event) {
+    clearInterval(intervalRIGHT);
     event.preventDefault();
     navigator.vibrate(50);
     intervalRIGHT = setInterval(right, 50);

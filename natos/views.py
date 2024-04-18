@@ -87,3 +87,8 @@ def settings(request):
 def balloon(request):
     context = {}
     return render(request, 'game/balloon.html', context=context)
+
+
+def uhelyant(request):
+    context = {}
+    return render(request, 'game/uhelyant.html', context=context)
