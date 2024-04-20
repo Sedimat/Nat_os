@@ -1,4 +1,3 @@
-console.log("Test")
 
 var list_floor = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
 
@@ -18,6 +17,20 @@ list_bus[1].src = '/media/g_uhe/bus1_3.svg';
 list_bus[2].src = '/media/g_uhe/bus1_2.svg';
 list_bus[3].src = '/media/g_uhe/bus1_1.svg';
 
+var list_msk = [new Image(), new Image(), new Image(), new Image()]
+
+list_msk[0].src = '/media/g_uhe/msk_1.svg';
+list_msk[1].src = '/media/g_uhe/msk_2.svg';
+list_msk[2].src = '/media/g_uhe/msk_3.svg';
+list_msk[3].src = '/media/g_uhe/msk_4.svg';
+
+var list_mr = [new Image(), new Image(), new Image(), new Image()]
+
+list_mr[0].src = '/media/g_uhe/mr_1.svg';
+list_mr[1].src = '/media/g_uhe/mr_2.svg';
+list_mr[2].src = '/media/g_uhe/mr_3.svg';
+list_mr[3].src = '/media/g_uhe/mr_4.svg';
+
 var list_kopt = [new Image(), new Image(), new Image(), new Image()]
 
 list_kopt[0].src = '/media/g_uhe/kopt1.svg';
@@ -26,13 +39,22 @@ list_kopt[2].src = '/media/g_uhe/kopt3.svg';
 list_kopt[3].src = '/media/g_uhe/kopt4.svg';
 
 
+var list_tck = [new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_tck[0].src = '/media/g_uhe/tck_1.svg';
+list_tck[1].src = '/media/g_uhe/tck_2.svg';
+list_tck[2].src = '/media/g_uhe/tck_3.svg';
+list_tck[3].src = '/media/g_uhe/tck_4.svg';
+list_tck[4].src = '/media/g_uhe/tck_5.svg';
+
+
 var list_man = [new Image(), new Image(), new Image(), new Image(), new Image()]
 
-list_man[0].src = '/media/g_uhe/man21.svg';
-list_man[1].src = '/media/g_uhe/man22.svg';
-list_man[2].src = '/media/g_uhe/man23.svg';
-list_man[3].src = '/media/g_uhe/man24.svg';
-list_man[4].src = '/media/g_uhe/man25.svg';
+list_man[0].src = '/media/g_uhe/man_1.svg';
+list_man[1].src = '/media/g_uhe/man_2.svg';
+list_man[2].src = '/media/g_uhe/man_3.svg';
+list_man[3].src = '/media/g_uhe/man_4.svg';
+list_man[4].src = '/media/g_uhe/man_5.svg';
 
 var list_man_b = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
 
@@ -54,12 +76,59 @@ menu_h.src = '/media/g_ball/game_menu0.svg'
 var select = new Image()
 select.src = "/media/img/select.svg"
 
+var cont = new Image()
+cont.src = "/media/g_uhe/plashka.svg"
+
 var score = 0
 
 var meters = 0
 
 
+function game_over(txt){
+    var div_game_over = document.createElement('div');
+    div_game_over.id = 'div_game_over';
+    div_game_over.style.left = 0 + 'px';
+    div_game_over.style.top = 0 + 'px';
+
+    var img_over = document.createElement('img');
+    img_over.setAttribute('src', cont.src);
+    img_over.id = 'img_over';
+    img_over.style.left = 230 + 'px';
+    img_over.style.top = 600 + 'px';
+    img_over.style.height = 250 + 'px';
+    img_over.style.position = 'absolute';
+    div_game_over.appendChild(img_over);
+
+    var txt_over = document.createElement('h1');
+    txt_over.textContent = txt;
+    txt_over.id = 'txt_over';
+    txt_over.classList.add('menu_txt');
+    txt_over.style.left = 250 + 'px';
+    txt_over.style.top = 620 + 'px';
+    txt_over.style.position = 'absolute';
+    div_game_over.appendChild(txt_over);
+
+    var txt_over1 = document.createElement('h1');
+    txt_over1.textContent = "Пройшов: " + meters + ".м";
+    txt_over1.id = 'txt_over1';
+    txt_over1.classList.add('menu_txt');
+    txt_over1.style.left = 250 + 'px';
+    txt_over1.style.top = 670 + 'px';
+    txt_over1.style.position = 'absolute';
+    div_game_over.appendChild(txt_over1);
+
+    content.appendChild(div_game_over);
+}
+
+
+var r_car = 0;
+r_car = Math.floor(Math.random() * 3);
+
 function add_game_element(){
+    var div_game1 = document.createElement('div');
+    div_game1.id = 'div_game1';
+    div_game1.style.left = 0 + 'px';
+    div_game1.style.top = 0 + 'px';
 
     var img_floor = document.createElement('img');
     img_floor.setAttribute('src', list_floor[0].src);
@@ -68,7 +137,7 @@ function add_game_element(){
     img_floor.style.top = 510 + 'px';
     img_floor.style.width = 1220 + 'px';
     img_floor.style.position = 'absolute';
-    content.appendChild(img_floor);
+    div_game1.appendChild(img_floor);
 
     var img_floor1 = document.createElement('img');
     img_floor1.setAttribute('src', list_floor[0].src);
@@ -77,7 +146,7 @@ function add_game_element(){
     img_floor1.style.top = 510 + 'px';
     img_floor1.style.width = 1220 + 'px';
     img_floor1.style.position = 'absolute';
-    content.appendChild(img_floor1);
+    div_game1.appendChild(img_floor1);
 
     var img_cloud = document.createElement('img');
     img_cloud.setAttribute('src', list_floor[5].src);
@@ -86,7 +155,7 @@ function add_game_element(){
     img_cloud.style.top = 20 + 'px';
     img_cloud.style.width = 350 + 'px';
     img_cloud.style.position = 'absolute';
-    content.appendChild(img_cloud);
+    div_game1.appendChild(img_cloud);
 
 
     var img_home = document.createElement('img');
@@ -96,7 +165,7 @@ function add_game_element(){
     img_home.style.top = 150 + 'px';
     img_home.style.width = 270 + 'px';
     img_home.style.position = 'absolute';
-    content.appendChild(img_home);
+    div_game1.appendChild(img_home);
 
     var img_home2 = document.createElement('img');
     img_home2.setAttribute('src', list_floor[2].src);
@@ -105,7 +174,7 @@ function add_game_element(){
     img_home2.style.top = 150 + 'px';
     img_home2.style.width = 270 + 'px';
     img_home2.style.position = 'absolute';
-    content.appendChild(img_home2);
+    div_game1.appendChild(img_home2);
 
     var img_tree2 = document.createElement('img');
     img_tree2.setAttribute('src', list_floor[6].src);
@@ -114,7 +183,7 @@ function add_game_element(){
     img_tree2.style.top = 130 + 'px';
     img_tree2.style.width = 290 + 'px';
     img_tree2.style.position = 'absolute';
-    content.appendChild(img_tree2);
+    div_game1.appendChild(img_tree2);
 
     var img_tree3 = document.createElement('img');
     img_tree3.setAttribute('src', list_floor[7].src);
@@ -123,7 +192,7 @@ function add_game_element(){
     img_tree3.style.top = 70 + 'px';
     img_tree3.style.width = 140 + 'px';
     img_tree3.style.position = 'absolute';
-    content.appendChild(img_tree3);
+    div_game1.appendChild(img_tree3);
 
     var img_tree = document.createElement('img');
     img_tree.setAttribute('src', list_floor[3].src);
@@ -132,18 +201,18 @@ function add_game_element(){
     img_tree.style.top = 50 + 'px';
     img_tree.style.width = 240 + 'px';
     img_tree.style.position = 'absolute';
-    content.appendChild(img_tree);
+    div_game1.appendChild(img_tree);
 
     // Головний герой його картинка та колізія
     var div_v3 = document.createElement('div');
     div_v3.id = 'div_v3';
-    div_v3.style.left =  410 + 'px';
+    div_v3.style.left =  420 + 'px';
     div_v3.style.top =  500 + 'px';
     div_v3.style.height = 80 + 'px';
-    div_v3.style.width = 50 + 'px';
+    div_v3.style.width = 60 + 'px';
     div_v3.style.backgroundColor = 'green';
     div_v3.style.position = 'absolute';
-    content.appendChild(div_v3);
+    div_game1.appendChild(div_v3);
 
     var img_man = document.createElement('img');
     img_man.setAttribute('src', list_man[0].src);
@@ -152,59 +221,77 @@ function add_game_element(){
     img_man.style.top = 480 + 'px';
     img_man.style.height = 180 + 'px';
     img_man.style.position = 'absolute';
-    content.appendChild(img_man);
+    div_game1.appendChild(img_man);
 
     // ТЦК
     var div_tck = document.createElement('div');
     div_tck.id = 'div_tck';
-    div_tck.style.left =  -100 + 'px';
-    div_tck.style.top =  500 + 'px';
+    div_tck.style.left =  -230 + 'px';
+    div_tck.style.top =  520 + 'px';
     div_tck.style.height = 80 + 'px';
     div_tck.style.width = 50 + 'px';
     div_tck.style.backgroundColor = 'green';
     div_tck.style.position = 'absolute';
-    content.appendChild(div_tck);
+    div_game1.appendChild(div_tck);
 
     var img_tck = document.createElement('img');
     img_tck.setAttribute('src', list_man[0].src);
     img_tck.id = 'tck';
-    img_tck.style.left = -90 + 'px';
+    img_tck.style.left = -210 + 'px';
     img_tck.style.top = 480 + 'px';
     img_tck.style.height = 180 + 'px';
     img_tck.style.position = 'absolute';
-    content.appendChild(img_tck);
+    div_game1.appendChild(img_tck);
 
     // Мікроавтобус
+    var div_bus = document.createElement('div');
+    div_bus.id = 'div_bus';
+    div_bus.style.left =  1200 + 'px';
+    div_bus.style.top =  730 + 'px';
+    div_bus.style.height = 120 + 'px';
+    div_bus.style.width = 400 + 'px';
+    div_bus.style.backgroundColor = 'green';
+    div_bus.style.position = 'absolute';
+    div_game1.appendChild(div_bus);
+
     var img_bus = document.createElement('img');
-    img_bus.setAttribute('src', list_bus[0].src);
+    r_car = Math.floor(Math.random() * 3) + 1;
+    console.log(r_car)
+    if(r_car == 1){
+        img_bus.setAttribute('src', list_bus[0].src)
+    }else if(r_car == 2){
+        img_bus.setAttribute('src', list_msk[0].src)
+    }else if(r_car == 3){
+        img_bus.setAttribute('src', list_mr[0].src)
+    }
     img_bus.id = 'bus';
-    img_bus.style.left = 500 + 'px';
+    img_bus.style.left = 1200 + 'px';
     img_bus.style.top = 670 + 'px';
     img_bus.style.width = 500 + 'px';
     img_bus.style.position = 'absolute';
-    content.appendChild(img_bus);
+    div_game1.appendChild(img_bus);
 
 
     // Коптер його картинка та колізія
     var div_kopt = document.createElement('div');
     div_kopt.id = 'div_kopt';
-    div_kopt.style.left =  880 + 'px';
+    div_kopt.style.left =  1280 + 'px';
     var r_index = Math.floor(Math.random() * list_koor.length);
     div_kopt.style.top =  list_koor[r_index] + 'px';
     div_kopt.style.height = 50 + 'px';
     div_kopt.style.width = 70 + 'px';
     div_kopt.style.backgroundColor = 'green';
     div_kopt.style.position = 'absolute';
-    content.appendChild(div_kopt);
+    div_game1.appendChild(div_kopt);
 
     var img_kopt = document.createElement('img');
     img_kopt.setAttribute('src', list_kopt[0].src);
     img_kopt.id = 'kopt';
-    img_kopt.style.left = 850 + 'px';
+    img_kopt.style.left = 1250 + 'px';
     img_kopt.style.top = list_koor[r_index] - 50 + 'px';
     img_kopt.style.height = 100 + 'px';
     img_kopt.style.position = 'absolute';
-    content.appendChild(img_kopt);
+    div_game1.appendChild(img_kopt);
 
     // рахунок і т.д
     var about_txt = document.createElement('h1');
@@ -215,7 +302,7 @@ function add_game_element(){
     about_txt.style.top = 0 + 'px';
     about_txt.style.height = 500 + 'px';
     about_txt.style.position = 'absolute';
-    content.appendChild(about_txt);
+    div_game1.appendChild(about_txt);
 
     var about_metr = document.createElement('h1');
     about_metr.textContent = meters;
@@ -225,7 +312,10 @@ function add_game_element(){
     about_metr.style.top = 0 + 'px';
     about_metr.style.height = 500 + 'px';
     about_metr.style.position = 'absolute';
-    content.appendChild(about_metr);
+    div_game1.appendChild(about_metr);
+
+
+    content.appendChild(div_game1);
 
 }
 
@@ -275,7 +365,7 @@ function add_menu(){
     var new_game = document.createElement('h1');
     new_game.textContent = "New game";
     new_game.id = 'new_game';
-    new_game.classList.add('menu_txt');
+    new_game.classList.add('menu_txt1');
     new_game.style.left = 60 + 'px';
     new_game.style.top = 50 + 'px';
     new_game.style.position = 'absolute';
@@ -285,7 +375,7 @@ function add_menu(){
     var about = document.createElement('h1');
     about.textContent = "About";
     about.id = 'about';
-    about.classList.add('menu_txt');
+    about.classList.add('menu_txt1');
     about.style.left = 60 + 'px';
     about.style.top = 175 + 'px';
     about.style.position = 'absolute';
@@ -294,7 +384,7 @@ function add_menu(){
     var score_n1 = document.createElement('h1');
     score_n1.textContent = "Exit";
     score_n1.id = 'exit';
-    score_n1.classList.add('menu_txt');
+    score_n1.classList.add('menu_txt1');
     score_n1.style.left = 60 + 'px';
     score_n1.style.top = 300 + 'px';
     score_n1.style.position = 'absolute';
@@ -311,6 +401,7 @@ document.addEventListener("keydown", function(event) {
         speed1 = 0
         speed2 = 14
         anim_man = 0
+        speed3 = 8
 
         }
 
@@ -320,7 +411,7 @@ document.addEventListener("keydown", function(event) {
         speed = 10 * 3
         speed1 = 5 * 3
         speed2 = 14 * 3
-        speed3 = -2
+        speed3 = -4
         anim_man = 2
 
 
@@ -334,6 +425,7 @@ document.addEventListener("keyup", function(event) {
         speed1 = 5
         speed2 = 14
         anim_man = 1
+        speed3 = 4
         }
 
     // D або стрілка вправо відпущена
@@ -388,6 +480,7 @@ document.addEventListener("keydown", function(event) {
             clearInterval(gameInterval);
             gameInterval = null
             anim_man = 0
+
         }else if (gameInterval == null){
             gameInterval = setInterval(game, 70);
             anim_man = 1
@@ -467,6 +560,21 @@ gameInterval = setInterval(game, 70);
 function right_select(event){
     event.preventDefault();
     navigator.vibrate(50); // включаємо вібрацію
+    if(document.getElementById("div_game_over")){
+        document.getElementById("div_game1").remove();
+        document.getElementById("div_game_over").remove();
+        add_menu()
+
+//        document.getElementById("div_game1").remove();
+//        add_game_element()
+//        gameInterval = setInterval(game, 70);
+//
+//        score = 0
+//        meters = 0
+//        anim_man = 1
+
+    }
+
     if (document.getElementById("zastavka")){
         document.getElementById("zastavka").remove();
         add_menu()
@@ -477,11 +585,15 @@ function right_select(event){
             if(gameInterval == null){
                 document.getElementById("div_menu").remove();
                 add_game_element()
-                gameInterval = setInterval(game, 100);
+                gameInterval = setInterval(game, 70);
+                    score = 0
+                    meters = 0
+                    anim_man = 1
 
             }else{
             clearInterval(gameInterval);
             gameInterval = null
+
             }
         }else if(menu_pos == 1){
 
@@ -503,7 +615,6 @@ function move_select_p(){
             if (menu_pos < 2){
             menu_pos += 1;
             select.style.top = currentSelect + 125 + 'px';
-            console.log(menu_pos,0)
             }
         }
         if (document.getElementById("div_menu1")){
@@ -512,7 +623,6 @@ function move_select_p(){
             if (menu_pos1 < 2){
             menu_pos1 += 1;
             select1.style.top = currentSelect1 + 120 + 'px';
-            console.log(menu_pos1,1)
             }
 
         }
@@ -532,7 +642,6 @@ function move_select_m(){
             if (menu_pos > 0){
             menu_pos -= 1;
             select.style.top = currentSelect - 125 + 'px';
-            console.log(menu_pos,0)
             }
         }
         if (document.getElementById("div_menu1")){
@@ -541,7 +650,6 @@ function move_select_m(){
             if (menu_pos1 > 0){
             menu_pos1 -= 1;
             select1.style.top = currentSelect1 - 120 + 'px';
-            console.log(menu_pos1,1)
             }
         }
     }
@@ -553,22 +661,24 @@ function move_select_m(){
 }
 
 function move_man(pos){
-    var man_kol = document.getElementById("div_v3")
-    var man = document.getElementById("man")
-    cur_man_kol = parseInt(man_kol.style.top) || 0;
-    cur_man = parseInt(man.style.top) || 0;
-    if (!anim_man == 0){
-        if (pos == 0){
-            if(cur_man > 390){
-            man.style.top = (cur_man - 15) + 'px';
-            man_kol.style.top = (cur_man_kol - 15) + 'px';
+    if (document.getElementById("div_game1")){
+        var man_kol = document.getElementById("div_v3")
+        var man = document.getElementById("man")
+        cur_man_kol = parseInt(man_kol.style.top) || 0;
+        cur_man = parseInt(man.style.top) || 0;
+        if (!anim_man == 0){
+            if (pos == 0){
+                if(cur_man > 390){
+                man.style.top = (cur_man - 15) + 'px';
+                man_kol.style.top = (cur_man_kol - 15) + 'px';
+                }
             }
-        }
 
-        if (pos == 1){
-            if(cur_man < 720){
-            man.style.top = (cur_man + 15) + 'px';
-            man_kol.style.top = (cur_man_kol + 15) + 'px';
+            if (pos == 1){
+                if(cur_man < 720){
+                man.style.top = (cur_man + 15) + 'px';
+                man_kol.style.top = (cur_man_kol + 15) + 'px';
+                }
             }
         }
     }
@@ -593,30 +703,44 @@ var speed2 = 14
 var speed3 = 4
 
 
-
-
-
 var key = 0
 
 var iterat = 0
+
+var tck_spawn = 0
+
+
 
 // головна функція гри
 function game(){
 
     var tck = document.getElementById("tck")
     var div_tck0 = document.getElementById("div_tck")
-
-    if(meters > 10){
-    var cur_tck = parseInt(tck.style.left) || 0;
-    var cur_man = parseInt(document.getElementById("man").style.top) || 0;
-    tck.style.left = (cur_tck + speed3 ) + 'px';
-    tck.style.top = cur_man + 'px';
+    if(tck_spawn == 100){
+        div_tck0.style.left = -100 + 'px';
+        tck.style.left = -90 + 'px';
     }
+
+    var cur_tck = parseInt(tck.style.left) || 0;
+        if(cur_tck > -200){
+        var cur_man = parseInt(document.getElementById("man").style.top) || 0;
+        tck.setAttribute('src', list_tck[anim].src);
+        tck.style.left = (cur_tck + speed3 ) + 'px';
+        tck.style.top = cur_man + 'px';
+
+        div_tck0.style.left = (cur_tck + speed3 + 20) + 'px';
+        div_tck0.style.top = cur_man + 40 + 'px';
+        }
 
     iterat += 1
     if (iterat == 10){
         iterat = 0
+        tck_spawn += 1;
+        if (tck_spawn > 101){
+            tck_spawn = 0;
+        }
 
+        // виводе дані повісток та метрів на екран
         if (anim_man == 1){
         meters += 1
         document.getElementById("metr").textContent = meters;
@@ -633,8 +757,6 @@ function game(){
     var home = document.getElementById("home")
     var cloud = document.getElementById("cloud")
     var home2 = document.getElementById("home2")
-
-
 
 
     var cur_home = parseInt(home.style.left) || 0;
@@ -711,15 +833,7 @@ function game(){
         anim12 = 0
     }
 
-    var bus = document.getElementById("bus")
-    bus.setAttribute('src', list_bus[anim0].src);
 
-    var cur_bus = parseInt(bus.style.left) || 0;
-    bus.style.left = (cur_bus - 38) + 'px';
-
-    if(cur_bus <= -550){
-        bus.style.left = 3750 + 'px';
-    }
 
     // функції коптера
     var kopt = document.getElementById("kopt")
@@ -736,7 +850,6 @@ function game(){
 
     if(cur_kopt <= -250){
         var r_index1 = Math.floor(Math.random() * list_koor.length);
-        console.log(list_koor[r_index1])
         kopt.style.top = list_koor[r_index1] + 'px';
         div_kopt.style.top = list_koor[r_index1] + 50 + 'px';
 
@@ -745,9 +858,22 @@ function game(){
 
     }
 
+
+
     var man_k = man_kolisia.getBoundingClientRect();
     var kopt_k = div_kopt.getBoundingClientRect();
 
+    var tck_k = div_tck0.getBoundingClientRect();
+
+        if (!(man_k.right < tck_k.left ||
+            man_k.left > tck_k.right ||
+            man_k.bottom < tck_k.top ||
+            man_k.top > tck_k.bottom)) {
+
+                clearInterval(gameInterval);
+                game_over("От ти і попався Ухилянт!")
+                anim_man = 0
+        }
 
         // Для першої кульки та хвоста
         if (!(man_k.right < kopt_k.left ||
@@ -756,7 +882,6 @@ function game(){
             man_k.top > kopt_k.bottom)) {
 
             var r_index2 = Math.floor(Math.random() * list_koor.length);
-            console.log(list_koor[r_index2])
             kopt.style.top = list_koor[r_index2] + 'px';
             div_kopt.style.top = list_koor[r_index2] + 50 + 'px';
 
@@ -767,10 +892,49 @@ function game(){
             score_num.textContent = score;
         }
 
+
+
+
+    // Бус та його анімації
+    var bus = document.getElementById("bus")
+    var div_bus = document.getElementById("div_bus")
+
+    if(r_car == 1){
+        bus.setAttribute('src', list_bus[anim0].src)
+    }else if(r_car == 2){
+        bus.setAttribute('src', list_msk[anim0].src)
+    }else if(r_car == 3){
+        bus.setAttribute('src', list_mr[anim0].src)
+    }
+
+//    bus.style.transform = 'scaleX(-1)';// рядок відзеркалення
+    var cur_bus = parseInt(bus.style.left) || 0;
+    bus.style.left = (cur_bus - 38) + 'px';
+    div_bus.style.left = (cur_bus - 38) + 'px';
+
+    if(cur_bus <= -550){
+        bus.style.left = 4750 + 'px';
+        div_bus.style.left = 4750 + 'px';
+        r_car = Math.floor(Math.random() * 3) + 1;
+        console.log(r_car)
+    }
+
     anim0 += 1
     if (anim0 == 4){
         anim0 = 0
     }
+
+    var bus_k = div_bus.getBoundingClientRect();
+
+    if (!(man_k.right < bus_k.left ||
+            man_k.left > bus_k.right ||
+            man_k.bottom < bus_k.top ||
+            man_k.top > bus_k.bottom)) {
+
+                clearInterval(gameInterval);
+                game_over("Попав під авто")
+                anim_man = 0
+        }
 
 
 
