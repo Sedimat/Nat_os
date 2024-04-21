@@ -38,20 +38,16 @@ body{
     overflow-x: hidden;
 }
 
-.score {
-    font-family: 'siemens_A', sans-serif;
-    font-size: 50px;
-    margin: 0px;
-    padding: 0px;
-    left: 730px;
-    top: 680px;
-    position: absolute;
-}
 
 .select_img{
     height: 115px;
     margin: 0px;
     padding: 0px;
+}
+
+.olya_txt{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 35px;
 }
 
 .menu_txt{

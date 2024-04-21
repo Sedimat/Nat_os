@@ -1,3 +1,21 @@
+var userAgent = navigator.userAgent;
+
+if (/Android/i.test(userAgent)) {
+    console.log("Android");
+} else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+    console.log("iOS");
+} else if (/Windows Phone/i.test(userAgent)) {
+    console.log("Windows Phone");
+} else if (/Mac/i.test(userAgent)) {
+    console.log("macOS");
+} else if (/Windows/i.test(userAgent)) {
+    console.log("Windows");
+} else if (/Linux/i.test(userAgent)) {
+    console.log("Linux");
+} else {
+    console.log("Інша операційна система");
+}
+
 
 var list_floor = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
 
@@ -67,7 +85,6 @@ list_man_b[5].src = '/media/g_uhe/man_b1_6.svg';
 
 var list_koor = [400, 500, 600, 700];
 
-
 var content = document.getElementById('content');
 
 var menu_h = new Image()
@@ -78,6 +95,9 @@ select.src = "/media/img/select.svg"
 
 var cont = new Image()
 cont.src = "/media/g_uhe/plashka.svg"
+
+var olya = new Image()
+olya.src = "/media/g_uhe/olya.svg"
 
 var score = 0
 
@@ -130,33 +150,34 @@ function add_game_element(){
     div_game1.style.left = 0 + 'px';
     div_game1.style.top = 0 + 'px';
 
-    var img_floor = document.createElement('img');
-    img_floor.setAttribute('src', list_floor[0].src);
-    img_floor.id = 'floor';
-    img_floor.style.left = 0 + 'px';
-    img_floor.style.top = 510 + 'px';
-    img_floor.style.width = 1220 + 'px';
-    img_floor.style.position = 'absolute';
-    div_game1.appendChild(img_floor);
-
-    var img_floor1 = document.createElement('img');
-    img_floor1.setAttribute('src', list_floor[0].src);
-    img_floor1.id = 'floor1';
-    img_floor1.style.left = 1200 + 'px';
-    img_floor1.style.top = 510 + 'px';
-    img_floor1.style.width = 1220 + 'px';
-    img_floor1.style.position = 'absolute';
-    div_game1.appendChild(img_floor1);
-
     var img_cloud = document.createElement('img');
     img_cloud.setAttribute('src', list_floor[5].src);
     img_cloud.id = 'cloud';
-    img_cloud.style.left = 650 + 'px';
+    img_cloud.style.left = 200 + 'px';
     img_cloud.style.top = 20 + 'px';
     img_cloud.style.width = 350 + 'px';
     img_cloud.style.position = 'absolute';
     div_game1.appendChild(img_cloud);
 
+    // Оля юа
+    var img_olya = document.createElement('img');
+    img_olya.setAttribute('src', olya.src);
+    img_olya.id = 'olya';
+    img_olya.style.left = 850 + 'px';
+    img_olya.style.top = 0 + 'px';
+    img_olya.style.width = 400 + 'px';
+    img_olya.style.position = 'absolute';
+    div_game1.appendChild(img_olya);
+
+    var olya_txt = document.createElement('h1');
+    olya_txt.textContent = "Чому не в окопі ??";
+    olya_txt.id = 'olya_txt';
+    olya_txt.classList.add('olya_txt');
+    olya_txt.style.left = 970 + 'px';
+    olya_txt.style.top = 100 + 'px';
+    olya_txt.style.width = 400 + 'px';
+    olya_txt.style.position = 'absolute';
+    div_game1.appendChild(olya_txt);
 
     var img_home = document.createElement('img');
     img_home.setAttribute('src', list_floor[4].src);
@@ -203,6 +224,24 @@ function add_game_element(){
     img_tree.style.position = 'absolute';
     div_game1.appendChild(img_tree);
 
+    var img_floor = document.createElement('img');
+    img_floor.setAttribute('src', list_floor[0].src);
+    img_floor.id = 'floor';
+    img_floor.style.left = 0 + 'px';
+    img_floor.style.top = 510 + 'px';
+    img_floor.style.width = 1220 + 'px';
+    img_floor.style.position = 'absolute';
+    div_game1.appendChild(img_floor);
+
+    var img_floor1 = document.createElement('img');
+    img_floor1.setAttribute('src', list_floor[0].src);
+    img_floor1.id = 'floor1';
+    img_floor1.style.left = 1200 + 'px';
+    img_floor1.style.top = 510 + 'px';
+    img_floor1.style.width = 1220 + 'px';
+    img_floor1.style.position = 'absolute';
+    div_game1.appendChild(img_floor1);
+
     // Головний герой його картинка та колізія
     var div_v3 = document.createElement('div');
     div_v3.id = 'div_v3';
@@ -210,7 +249,7 @@ function add_game_element(){
     div_v3.style.top =  500 + 'px';
     div_v3.style.height = 80 + 'px';
     div_v3.style.width = 60 + 'px';
-    div_v3.style.backgroundColor = 'green';
+//    div_v3.style.backgroundColor = 'green';
     div_v3.style.position = 'absolute';
     div_game1.appendChild(div_v3);
 
@@ -230,18 +269,30 @@ function add_game_element(){
     div_tck.style.top =  520 + 'px';
     div_tck.style.height = 80 + 'px';
     div_tck.style.width = 50 + 'px';
-    div_tck.style.backgroundColor = 'green';
+//    div_tck.style.backgroundColor = 'green';
     div_tck.style.position = 'absolute';
     div_game1.appendChild(div_tck);
 
     var img_tck = document.createElement('img');
-    img_tck.setAttribute('src', list_man[0].src);
+    img_tck.setAttribute('src', list_tck[0].src);
     img_tck.id = 'tck';
     img_tck.style.left = -210 + 'px';
     img_tck.style.top = 480 + 'px';
     img_tck.style.height = 180 + 'px';
     img_tck.style.position = 'absolute';
     div_game1.appendChild(img_tck);
+
+    // ТЦК 2
+
+    var img_tck2 = document.createElement('img');
+    img_tck2.setAttribute('src', list_tck[0].src);
+    img_tck2.style.transform = 'scaleX(-1)';
+    img_tck2.id = 'tck2';
+    img_tck2.style.left = 1210 + 'px';
+    img_tck2.style.top = 480 + 'px';
+    img_tck2.style.height = 180 + 'px';
+    img_tck2.style.position = 'absolute';
+    div_game1.appendChild(img_tck2);
 
     // Мікроавтобус
     var div_bus = document.createElement('div');
@@ -250,13 +301,12 @@ function add_game_element(){
     div_bus.style.top =  730 + 'px';
     div_bus.style.height = 120 + 'px';
     div_bus.style.width = 400 + 'px';
-    div_bus.style.backgroundColor = 'green';
+//    div_bus.style.backgroundColor = 'green';
     div_bus.style.position = 'absolute';
     div_game1.appendChild(div_bus);
 
     var img_bus = document.createElement('img');
     r_car = Math.floor(Math.random() * 3) + 1;
-    console.log(r_car)
     if(r_car == 1){
         img_bus.setAttribute('src', list_bus[0].src)
     }else if(r_car == 2){
@@ -271,7 +321,6 @@ function add_game_element(){
     img_bus.style.position = 'absolute';
     div_game1.appendChild(img_bus);
 
-
     // Коптер його картинка та колізія
     var div_kopt = document.createElement('div');
     div_kopt.id = 'div_kopt';
@@ -280,7 +329,7 @@ function add_game_element(){
     div_kopt.style.top =  list_koor[r_index] + 'px';
     div_kopt.style.height = 50 + 'px';
     div_kopt.style.width = 70 + 'px';
-    div_kopt.style.backgroundColor = 'green';
+//    div_kopt.style.backgroundColor = 'green';
     div_kopt.style.position = 'absolute';
     div_game1.appendChild(div_kopt);
 
@@ -295,7 +344,7 @@ function add_game_element(){
 
     // рахунок і т.д
     var about_txt = document.createElement('h1');
-    about_txt.textContent = score;
+    about_txt.textContent = 0;
     about_txt.id = 'score_num';
     about_txt.classList.add('menu_txt');
     about_txt.style.left = 950 + 'px';
@@ -305,7 +354,7 @@ function add_game_element(){
     div_game1.appendChild(about_txt);
 
     var about_metr = document.createElement('h1');
-    about_metr.textContent = meters;
+    about_metr.textContent = 0;
     about_metr.id = 'metr';
     about_metr.classList.add('menu_txt');
     about_metr.style.left = 20 + 'px';
@@ -314,26 +363,21 @@ function add_game_element(){
     about_metr.style.position = 'absolute';
     div_game1.appendChild(about_metr);
 
-
     content.appendChild(div_game1);
-
 }
 
 
 function add_zastavka(){
     // Рахунок та його картинка
     var img_zastavka = document.createElement('img');
-    img_zastavka.setAttribute('src', '/media/g_uhe/blade_out_povestka.svg');
+    img_zastavka.setAttribute('src', '/media/g_uhe/ukhylyant.svg');
     img_zastavka.id = 'zastavka';
     img_zastavka.style.left = 10 + 'px';
     img_zastavka.style.top = 50 + 'px';
     img_zastavka.style.width = 1000 + 'px';
     img_zastavka.style.position = 'absolute';
     content.appendChild(img_zastavka);
-
 }
-
-
 
 
 function add_menu(){
@@ -393,189 +437,271 @@ function add_menu(){
     content.appendChild(div_menu);
 }
 
+function add_menu1(){
+    var div_menu1 = document.createElement('div');
+    div_menu1.id = 'div_menu1';
+    div_menu1.style.left = 0 + 'px';
+    div_menu1.classList.add('div_menu');
+    div_menu1.style.top = 0 + 'px';
+
+    var img_menu = document.createElement('img');
+    img_menu.setAttribute('src', menu_h.src);
+    img_menu.id = 'img_menu1';
+    img_menu.style.left = 0 + 'px';
+    img_menu.style.top = 0 + 'px';
+    img_menu.style.height = 900 + 'px';
+    img_menu.style.position = 'absolute';
+    div_menu1.appendChild(img_menu);
+
+    var img_select = document.createElement('img');
+    img_select.setAttribute('src', select.src);
+    img_select.id = 'select1';
+    img_select.style.left = 30 + 'px';
+    img_select.style.top = 40 + 'px';
+    img_select.style.position = 'absolute';
+    img_select.classList.add('select_img');
+
+    div_menu1.appendChild(img_select);
+
+    var new_game = document.createElement('h1');
+    new_game.textContent = "Resume game";
+    new_game.id = 'resume';
+    new_game.classList.add('menu_txt1');
+    new_game.style.left = 60 + 'px';
+    new_game.style.top = 50 + 'px';
+    new_game.style.position = 'absolute';
+    div_menu1.appendChild(new_game);
+
+    var score_n1 = document.createElement('h1');
+    score_n1.textContent = "New game";
+    score_n1.id = 'new';
+    score_n1.classList.add('menu_txt1');
+    score_n1.style.left = 60 + 'px';
+    score_n1.style.top = 170 + 'px';
+    score_n1.style.position = 'absolute';
+    div_menu1.appendChild(score_n1);
+
+    var exit1 = document.createElement('h1');
+    exit1.textContent = "Exit";
+    exit1.id = 'exit1';
+    exit1.classList.add('menu_txt1');
+    exit1.style.left = 60 + 'px';
+    exit1.style.top = 290 + 'px';
+    exit1.style.position = 'absolute';
+    div_menu1.appendChild(exit1);
+
+    content.appendChild(div_menu1);
+}
+
+
 
 document.addEventListener("keydown", function(event) {
     // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
-        speed = 0
-        speed1 = 0
-        speed2 = 14
-        anim_man = 0
-        speed3 = 8
-
-        }
+            l_c_down(1)
+            }
 
 
     // D або стрілка вправо натиснута
-    if (event.keyCode === 68 || event.keyCode === 39) {
-        speed = 10 * 3
-        speed1 = 5 * 3
-        speed2 = 14 * 3
-        speed3 = -4
-        anim_man = 2
-
-
-    }
+        if (event.keyCode === 68 || event.keyCode === 39) {
+            r_c_down(1)
+            }
 });
 
 document.addEventListener("keyup", function(event) {
     // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
-        speed = 10
-        speed1 = 5
-        speed2 = 14
-        anim_man = 1
-        speed3 = 4
+            l_c_down(0)
         }
 
     // D або стрілка вправо відпущена
-    if (event.keyCode === 68 || event.keyCode === 39) {
-        speed = 10
-        speed1 = 5
-        speed2 = 14
-        speed3 = 4
-        anim_man = 1
-
-    }
+        if (event.keyCode === 68 || event.keyCode === 39) {
+            r_c_down(0)
+            }
 });
 
+function l_c_down(num){
+    if(num == 1){
+        speed = 0
+        speed1 = 0
+        speed2 = 25
+        anim_man = 0
+        speed3 = 8
+        speed4 = 7
+    }else if(num == 0){
 
+        speed = 10
+        speed1 = 5
+        speed2 = 25
+        anim_man = 1
+        speed3 = 4
+        speed4 = 10
+    }
+}
+
+function r_c_down(num){
+    if(num == 1){
+        speed = 10 * 3
+        speed1 = 5 * 3
+        speed2 = 50
+        speed3 = -4
+        anim_man = 2
+        speed4 = 15
+    }else if(num == 0){
+
+        speed = 10
+        speed1 = 5
+        speed2 = 25
+        speed3 = 4
+        anim_man = 1
+        speed4 = 10
+    }
+}
 
 // Відслідковує кнопки на клавіатурі
 document.addEventListener("keydown", function(event) {
 
-    // натиснута кнопка W
+        // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
-            move_select_m()
-            move_man(0)
+             move_select_m()
+             up()
         }
         // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
             move_select_p()
-            move_man(1)
+            down()
         }
 
-//        // A або стрілка вліво
-//        if (event.keyCode === 65 || event.keyCode === 37){
-//
-//        }
-
-        // D або стрілка вправо
-//        if (event.keyCode === 68 || event.keyCode === 39){
-//
-//
-//        }
 
     // натиснута кнопка E
     if (event.keyCode === 69) {
-         right_select(event)
+        right_select1(event)
         }
     // натиснута кнопка F
     if (event.keyCode === 70) {
-        center()
         }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-        if(gameInterval){
-            clearInterval(gameInterval);
-            gameInterval = null
-            anim_man = 0
-
-        }else if (gameInterval == null){
-            gameInterval = setInterval(game, 70);
-            anim_man = 1
-        }
-
-        left_select(event)
     }
 });
 
+var gameUP = null
+
+var gameDOWN = null
+
+function up(){
+    move_man(0)
+}
+
+function down(){
+    move_man(1)
+}
 
 function center(event){
+    document.getElementById('c_C').style.backgroundColor = "#613703";
     event.preventDefault();
     navigator.vibrate(50);
+}
 
+function center_up(event){
+    document.getElementById('c_C').style.backgroundColor = "#291701";
 }
 
 // кнопка вниз
 function downMouseDown(event) {
-    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
-    navigator.vibrate(50);
     move_select_p()
-
+    document.getElementById('d_C').style.backgroundColor = "#613703";
+    event.preventDefault();
+    navigator.vibrate(50);
+    clearInterval(gameDOWN);
+    gameDOWN = setInterval(down, 70);
 }
 
 function downMouseUp() {
+    document.getElementById('d_C').style.backgroundColor = "#291701";
+    clearInterval(gameDOWN);
 }
 
 // кнопка верх
 function upMouseDown(event) {
     move_select_m()
+    document.getElementById('u_C').style.backgroundColor = "#613703";
     event.preventDefault();
     navigator.vibrate(50);
+    clearInterval(gameUP);
+    gameUP = setInterval(up, 70);
 }
 
 function upMouseUp() {
+    document.getElementById('u_C').style.backgroundColor = "#291701";
+    clearInterval(gameUP);
 }
 
 // кнопка в ліво
 function leftMouseDown(event) {
+    document.getElementById('l_C').style.backgroundColor = "#613703";
     event.preventDefault();
     navigator.vibrate(50);
+    l_c_down(1)
 }
 
 function leftMouseUp() {
-
+    document.getElementById('l_C').style.backgroundColor = "#291701";
+    l_c_down(0)
 }
-
 
 // кнопка в право
 function rightMouseDown(event) {
+    document.getElementById('r_C').style.backgroundColor = "#613703";
     event.preventDefault();
     navigator.vibrate(50);
+    r_c_down(1)
 }
 
 function rightMouseUp() {
-
+    document.getElementById('r_C').style.backgroundColor = "#291701";
+    r_c_down(0)
 }
 
 // лівий селект
 function left_select(event) {
+    document.getElementById('l_s').style.backgroundColor = "#613703";
     event.preventDefault();
     navigator.vibrate(50);
+}
 
+function left_select_up() {
+    document.getElementById('l_s').style.backgroundColor = "#291701";
+}
+
+function right_select(event){
+    document.getElementById('r_s').style.backgroundColor = "#613703";
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
+    right_select1(event)
 }
 
 
+function right_select_up() {
+    document.getElementById('r_s').style.backgroundColor = "#291701";
+}
 
 // зміна заставки
-//add_zastavka()
+add_zastavka()
 
 // зміна запуску гри
 var gameInterval = null
-add_game_element()
-gameInterval = setInterval(game, 70);
+//add_game_element()
+//gameInterval = setInterval(game, 70);
+
 
 // правий селект
-function right_select(event){
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
+function right_select1(event){
     if(document.getElementById("div_game_over")){
         document.getElementById("div_game1").remove();
         document.getElementById("div_game_over").remove();
         add_menu()
-
-//        document.getElementById("div_game1").remove();
-//        add_game_element()
-//        gameInterval = setInterval(game, 70);
-//
-//        score = 0
-//        meters = 0
-//        anim_man = 1
-
-    }
-
-    if (document.getElementById("zastavka")){
+    }else if (document.getElementById("zastavka")){
         document.getElementById("zastavka").remove();
         add_menu()
 
@@ -600,15 +726,39 @@ function right_select(event){
         }else if(menu_pos == 2){
             window.location.href = "/games";
         }
-    }
 
+    }else if (document.getElementById("div_menu1")){
+            if(menu_pos1 == 0){
+                document.getElementById("div_menu1").remove();
+                gameInterval = setInterval(game, 70);
+                anim_man = 1
+
+            }else if(menu_pos1 == 1){
+                document.getElementById("div_menu1").remove();
+                document.getElementById("div_game1").remove();
+                add_game_element()
+                gameInterval = setInterval(game, 70);
+                score = 0
+                meters = 0
+                anim_man = 1
+                menu_pos1 = 0
+
+            }else if(menu_pos1 == 2){
+                window.location.href = "/games";
+            }
+
+    }else{
+        add_menu1()
+        clearInterval(gameInterval);
+        anim_man = 0
+    }
 }
 
 var menu_pos = 0
 var menu_pos1 = 0
 
 function move_select_p(){
-    if (!document.getElementById("about_div") && !document.getElementById("speed_div")){ // якщо немає елемента about
+
         if (document.getElementById("div_menu")){
             var select = document.getElementById("select")
             var currentSelect = parseInt(select.style.top) || 0;
@@ -626,16 +776,9 @@ function move_select_p(){
             }
 
         }
-    }
-    if (document.getElementById("speed_div")){
-        speed_p()
-        document.getElementById("speed_txt").textContent = speed_game;
-
-    }
 }
 
 function move_select_m(){
-    if (!document.getElementById("about_div") && !document.getElementById("speed_div")){ // якщо немає елемента about
         if (document.getElementById("div_menu")){
             var select = document.getElementById("select")
             var currentSelect = parseInt(select.style.top) || 0;
@@ -652,12 +795,6 @@ function move_select_m(){
             select1.style.top = currentSelect1 - 120 + 'px';
             }
         }
-    }
-    if (document.getElementById("speed_div")){
-        speed_m()
-        document.getElementById("speed_txt").textContent = speed_game;
-
-    }
 }
 
 function move_man(pos){
@@ -666,7 +803,7 @@ function move_man(pos){
         var man = document.getElementById("man")
         cur_man_kol = parseInt(man_kol.style.top) || 0;
         cur_man = parseInt(man.style.top) || 0;
-        if (!anim_man == 0){
+        if (!anim_man == 0 && !document.getElementById("div_game_over")){
             if (pos == 0){
                 if(cur_man > 390){
                 man.style.top = (cur_man - 15) + 'px';
@@ -688,7 +825,7 @@ var anim = 0
 var anim12 = 0
 var anim0 = 0
 
-var anim_man = 1
+var anim_man = 0
 
 //швидкість руху основного слою
 var speed = 10
@@ -697,22 +834,27 @@ var speed = 10
 var speed1 = 5
 
 //швидкість руху коптеру
-var speed2 = 14
+var speed2 = 25
 
 //швидкість руху ТЦК
 var speed3 = 4
-
+var speed4 = 10
 
 var key = 0
-
 var iterat = 0
-
 var tck_spawn = 0
-
-
 
 // головна функція гри
 function game(){
+    if(score >= 5){
+    var tck2 = document.getElementById("tck2")
+        tck2.setAttribute('src', list_tck[anim0].src)
+        tck2.style.transform = 'scaleX(-1)';// рядок відзеркалення
+        var cur_man = parseInt(document.getElementById("man").style.top) || 0;
+        tck2.style.top = cur_man + 'px';
+        var cur_tck2 = parseInt(tck2.style.left) || 0;
+        tck2.style.left = cur_tck2 - speed4 + 'px';
+    }
 
     var tck = document.getElementById("tck")
     var div_tck0 = document.getElementById("div_tck")
@@ -724,7 +866,7 @@ function game(){
     var cur_tck = parseInt(tck.style.left) || 0;
         if(cur_tck > -200){
         var cur_man = parseInt(document.getElementById("man").style.top) || 0;
-        tck.setAttribute('src', list_tck[anim].src);
+        tck.setAttribute('src', list_tck[anim0].src);
         tck.style.left = (cur_tck + speed3 ) + 'px';
         tck.style.top = cur_man + 'px';
 
@@ -748,7 +890,6 @@ function game(){
         meters += 3
         document.getElementById("metr").textContent = meters;
         }
-
     }
 
     // асети підлоги
@@ -795,6 +936,33 @@ function game(){
         cloud.style.left = 1350 + 'px';
     }
 
+    // Оля юа
+    var olya = document.getElementById("olya")
+    var olya_txt = document.getElementById("olya_txt")
+    var cur_olya = parseInt(olya.style.left) || 0;
+
+    olya.style.left = (cur_olya - 2) + 'px';
+    olya_txt.style.left = (cur_olya + 120 - 2) + 'px';
+
+    if (tck_spawn === 1) {
+        olya_txt.textContent = "Чому не в окопі ??";
+    }else if (tck_spawn === 10) {
+        olya_txt.textContent = "Огида Огида !!";
+    }else if (tck_spawn === 20){
+        olya_txt.textContent = "Нікчемна Аскарида !"
+    }else if (tck_spawn === 30){
+        olya_txt.textContent = "Ти просто Ухилянт !"
+    }else if (tck_spawn === 40){
+        olya_txt.textContent = "А я тримаю фронт"
+    }else if (tck_spawn === 45){
+        olya_txt.textContent = "В Європі"
+    }
+
+    if(cur_olya <= -410){
+        olya.style.left = 1350 + 'px';
+        olya_txt.style.left = 1350 + 120 + 'px';
+    }
+
 
     var cur_floor0 = parseInt(floor.style.left) || 0;
     floor.style.left = (cur_floor0 - speed) + 'px';
@@ -812,16 +980,14 @@ function game(){
         floor1.style.left = 1200 + 'px';
     }
 
-
     // Головний гравець
     var man_kolisia = document.getElementById("div_v3")
     var man = document.getElementById("man")
     if (anim_man == 1){
-    man.setAttribute('src', list_man[anim].src);
+        man.setAttribute('src', list_man[anim].src);
     }else if (anim_man == 2){
-    man.setAttribute('src', list_man_b[anim12].src);
+        man.setAttribute('src', list_man_b[anim12].src);
     }
-
 
     anim += 1
     if (anim == 5){
@@ -832,8 +998,6 @@ function game(){
     if (anim12 == 6){
         anim12 = 0
     }
-
-
 
     // функції коптера
     var kopt = document.getElementById("kopt")
@@ -858,21 +1022,31 @@ function game(){
 
     }
 
-
-
     var man_k = man_kolisia.getBoundingClientRect();
     var kopt_k = div_kopt.getBoundingClientRect();
 
     var tck_k = div_tck0.getBoundingClientRect();
+    var tck_k2 = document.getElementById("tck2").getBoundingClientRect();
 
         if (!(man_k.right < tck_k.left ||
             man_k.left > tck_k.right ||
             man_k.bottom < tck_k.top ||
             man_k.top > tck_k.bottom)) {
 
+                anim_man = 0
                 clearInterval(gameInterval);
                 game_over("От ти і попався Ухилянт!")
+
+        }
+
+        if (!(man_k.right < tck_k2.left ||
+            man_k.left > tck_k2.right ||
+            man_k.bottom < tck_k2.top ||
+            man_k.top > tck_k2.bottom)) {
+
                 anim_man = 0
+                clearInterval(gameInterval);
+                game_over("О Ухилянт Чіназес.")
         }
 
         // Для першої кульки та хвоста
@@ -892,9 +1066,6 @@ function game(){
             score_num.textContent = score;
         }
 
-
-
-
     // Бус та його анімації
     var bus = document.getElementById("bus")
     var div_bus = document.getElementById("div_bus")
@@ -907,7 +1078,6 @@ function game(){
         bus.setAttribute('src', list_mr[anim0].src)
     }
 
-//    bus.style.transform = 'scaleX(-1)';// рядок відзеркалення
     var cur_bus = parseInt(bus.style.left) || 0;
     bus.style.left = (cur_bus - 38) + 'px';
     div_bus.style.left = (cur_bus - 38) + 'px';
@@ -916,7 +1086,6 @@ function game(){
         bus.style.left = 4750 + 'px';
         div_bus.style.left = 4750 + 'px';
         r_car = Math.floor(Math.random() * 3) + 1;
-        console.log(r_car)
     }
 
     anim0 += 1
@@ -930,23 +1099,9 @@ function game(){
             man_k.left > bus_k.right ||
             man_k.bottom < bus_k.top ||
             man_k.top > bus_k.bottom)) {
-
-                clearInterval(gameInterval);
-                game_over("Попав під авто")
                 anim_man = 0
+                clearInterval(gameInterval);
+                game_over("Попав під авто");
         }
-
-
-
-//    if (key == 0){
-//        anim += 1
-//    }else{
-//        anim -= 1
-//    }
-//    if (anim == 4){
-//        key = 1
-//    }else if(anim == 0 ){
-//        key = 0
-//    }
 
 }
