@@ -38,41 +38,68 @@ function back(){
     window.location.href = "/menu/5";
 }
 
+function downMouseDown(event) {
+    document.getElementById('d_C').style.backgroundColor = "#613703";
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 
-function left_select(event){
+}
+
+function downMouseUp() {
+    document.getElementById('d_C').style.backgroundColor = "#291701";
+}
+
+function upMouseDown(event) {
+    document.getElementById('u_C').style.backgroundColor = "#613703";
     event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
+    navigator.vibrate(50);
+
+}
+
+function upMouseUp() {
+    document.getElementById('u_C').style.backgroundColor = "#291701";
+}
+
+function leftMouseDown(event) {
+    document.getElementById('l_C').style.backgroundColor = "#613703";
+    event.preventDefault();
+    navigator.vibrate(50);
+}
+
+function leftMouseUp() {
+    document.getElementById('l_C').style.backgroundColor = "#291701";
+}
+
+
+function rightMouseDown(event) {
+    document.getElementById('r_C').style.backgroundColor = "#613703";
+    event.preventDefault();
+    navigator.vibrate(50);
+}
+
+function rightMouseUp() {
+    document.getElementById('r_C').style.backgroundColor = "#291701";
+}
+
+// лівий селект
+function left_select(event){
+    document.getElementById('l_s').style.backgroundColor = "#613703";
+    event.preventDefault();
+    navigator.vibrate(50);
     back()
 }
 
+function left_select_up() {
+    document.getElementById('l_s').style.backgroundColor = "#291701";
+}
+
 function right_select(event){
+    document.getElementById('r_s').style.backgroundColor = "#613703";
     event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
-    console.log("Right select")
+    navigator.vibrate(50);
 }
 
 
-function up_control(event){
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
-    console.log("Up")
-}
-
-function down_control(event){
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
-    console.log("Down")
-}
-
-
-function left_control(event){
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
-    console.log("Left")
-}
-
-function right_control(event){
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
-    console.log("Right")
+function right_select_up() {
+    document.getElementById('r_s').style.backgroundColor = "#291701";
 }

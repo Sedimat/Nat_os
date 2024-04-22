@@ -1062,7 +1062,7 @@ document.addEventListener("keydown", function(event) {
         }
     // натиснута кнопка F
     if (event.keyCode === 70) {
-        center()
+        center1()
         }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
@@ -1076,9 +1076,20 @@ var intervalLEFT = null
 var intervalUP = null
 var intervalDOWN = null
 
-function center(){
+
+function center(event){
+    document.getElementById('c_C').style.backgroundColor = "#613703";
     event.preventDefault();
     navigator.vibrate(50);
+    center1()
+}
+
+function center_up(event){
+    document.getElementById('c_C').style.backgroundColor = "#291701";
+}
+
+
+function center1(){
     if (st == 1){
     var prc_rect = prc0.getBoundingClientRect();
         var img0 = img_v0.getBoundingClientRect();
@@ -1365,6 +1376,7 @@ function left(){
 }
 
 function downMouseDown(event) {
+    document.getElementById('d_C').style.backgroundColor = "#613703";
     clearInterval(intervalDOWN);
     move_select_p()
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
@@ -1373,10 +1385,12 @@ function downMouseDown(event) {
 }
 
 function downMouseUp() {
+    document.getElementById('d_C').style.backgroundColor = "#291701";
     clearInterval(intervalDOWN);
 }
 
 function upMouseDown(event) {
+    document.getElementById('u_C').style.backgroundColor = "#613703";
     clearInterval(intervalUP);
     move_select_m()
     event.preventDefault();
@@ -1385,10 +1399,12 @@ function upMouseDown(event) {
 }
 
 function upMouseUp() {
+    document.getElementById('u_C').style.backgroundColor = "#291701";
     clearInterval(intervalUP);
 }
 
 function leftMouseDown(event) {
+    document.getElementById('l_C').style.backgroundColor = "#613703";
     clearInterval(intervalLEFT);
     event.preventDefault();
     navigator.vibrate(50);
@@ -1396,11 +1412,13 @@ function leftMouseDown(event) {
 }
 
 function leftMouseUp() {
+    document.getElementById('l_C').style.backgroundColor = "#291701";
     clearInterval(intervalLEFT);
 }
 
 
 function rightMouseDown(event) {
+    document.getElementById('r_C').style.backgroundColor = "#613703";
     clearInterval(intervalRIGHT);
     event.preventDefault();
     navigator.vibrate(50);
@@ -1408,14 +1426,32 @@ function rightMouseDown(event) {
 }
 
 function rightMouseUp() {
+    document.getElementById('r_C').style.backgroundColor = "#291701";
     clearInterval(intervalRIGHT);
 }
 
 // лівий селект
 function left_select(event){
+    document.getElementById('l_s').style.backgroundColor = "#613703";
     event.preventDefault();
     navigator.vibrate(50);
 
+}
+
+function left_select_up() {
+    document.getElementById('l_s').style.backgroundColor = "#291701";
+}
+
+function right_select(event){
+    document.getElementById('r_s').style.backgroundColor = "#613703";
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
+    right_select1(event)
+}
+
+
+function right_select_up() {
+    document.getElementById('r_s').style.backgroundColor = "#291701";
 }
 
 // зміна швидкості гри
@@ -1435,9 +1471,7 @@ function speed_m(){
 }
 
 // правий селект
-function right_select(event){
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
+function right_select1(event){
     st = 0 // вимикає керуваня курсору
 //    var div_menu = document.getElementById("div_menu")
     var select_exit = document.getElementById("select_exit")
