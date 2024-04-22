@@ -30,164 +30,46 @@
 
 <div id="control" class="control">
 
-<!--        <button class="left_select"-->
-<!--        ontouchstart="left_select(event)"-->
-<!--        onmousedown="left_select(event)">-->
-<!--            <img class="e_img1" src="/media/img/sel.svg">-->
-<!--        </button>-->
-
-<!--        <button class="right_select"-->
-<!--        ontouchstart="right_select(event)"-->
-<!--        onmousedown="right_select(event)">-->
-<!--            <img class="e_img1" src="/media/img/sel.svg">-->
-<!--        </button>-->
+    <button id="l_s" class="left_select"
+    ontouchstart="left_select(event)" ontouchend="left_select_up()"
+    onmousedown="left_select(event)" onmouseup="left_select_up()">
+        <img class="e_img1" src="/media/img/sel.svg">
+    </button>
 
 
-<!--        <button class="up_control"-->
-<!--        ontouchstart="up_control(event)"-->
-<!--        onmousedown="up_control(event)">-->
-<!--            <img class="img_up" src="/media/img/up.svg">-->
-<!--        </button>-->
+    <button id="r_s" class="right_select"
+    ontouchstart="right_select(event)" ontouchend="right_select_up()"
+    onmousedown="right_select(event)" onmouseup="right_select_up()">
+        <img class="e_img1" src="/media/img/sel.svg">
+    </button>
 
 
-<!--        <button class="down_control"-->
-<!--        ontouchstart="down_control(event)"-->
-<!--        onmousedown="down_control(event)">-->
-<!--            <img class="img_down" src="/media/img/up.svg">-->
-<!--        </button>-->
+    <button id="u_C" class="up_control"
+    ontouchstart="upMouseDown(event)" ontouchend="upMouseUp()"
+    onmousedown="upMouseDown(event)" onmouseup="upMouseUp()">
+        <img class="img_up" src="/media/img/up.svg">
+    </button>
 
 
+    <button id="d_C" class="down_control"
+    ontouchstart="downMouseDown(event)" ontouchend="downMouseUp()"
+    onmousedown="downMouseDown(event)" onmouseup="downMouseUp()">
+        <img class="img_down" src="/media/img/up.svg">
+    </button>
 
-<!--        <button class="left_control"-->
-<!--        ontouchstart="left_control(event)"-->
-<!--        onmousedown="left_control(event)">-->
-<!--            <img class="img_left" src="/media/img/up.svg">-->
-<!--        </button>-->
+    <button id="l_C" class="left_control"
+    ontouchstart="leftMouseDown(event)" ontouchend="leftMouseUp()"
+    onmousedown="leftMouseDown(event)" onmouseup="leftMouseUp()">
+        <img class="img_left" src="/media/img/up.svg">
+    </button>
 
-
-<!--        <button class="right_control"-->
-<!--        ontouchstart="right_control(event)"-->
-<!--        onmousedown="right_control(event)">-->
-<!--            <img class="img_right" src="/media/img/up.svg">-->
-<!--        </button>-->
+    <button id="r_C" class="right_control"
+        ontouchstart="rightMouseDown(event)" ontouchend="rightMouseUp()"
+        onmousedown="rightMouseDown(event)" onmouseup="rightMouseUp()">
+            <img class="img_right" src="/media/img/up.svg">
+    </button>
 
 </div>
-
-<script>
-
-    function add_control(){
-    var control = document.getElementById('control');
-
-    var lS = document.createElement('button');
-    lS.className = 'left_select';
-    lS.id = 'l_s';
-    lS.setAttribute('onmousedown', 'left_select(event)');
-    lS.setAttribute('onmouseup', 'left_select_up(event)');
-
-    var lImg = document.createElement('img');
-    lImg.className = 'e_img1';
-    lImg.src = '/media/img/sel.svg';
-    lS.appendChild(lImg);
-
-    var rS = document.createElement('button');
-    rS.className = 'right_select';
-    rS.id = 'r_s';
-    rS.setAttribute('onmousedown', 'right_select(event)');
-    rS.setAttribute('onmouseup', 'right_select_up()');
-
-    var rImg = document.createElement('img');
-    rImg.className = 'e_img1';
-    rImg.src = '/media/img/sel.svg';
-    rS.appendChild(rImg);
-
-
-    var uC = document.createElement('button');
-    uC.className = 'up_control';
-    uC.id = 'u_C';
-    uC.setAttribute('onmousedown', 'upMouseDown(event)');
-    uC.setAttribute('onmouseup', 'upMouseUp()');
-
-    var uImg = document.createElement('img');
-    uImg.className = 'img_up';
-    uImg.src = '/media/img/up.svg';
-    uC.appendChild(uImg);
-
-
-    var dC = document.createElement('button');
-    dC.className = 'down_control';
-    dC.id = 'd_C';
-    dC.setAttribute('onmousedown', 'downMouseDown(event)');
-    dC.setAttribute('onmouseup', 'downMouseUp()');
-
-    var dImg = document.createElement('img');
-    dImg.className = 'img_down';
-    dImg.src = '/media/img/up.svg';
-    dC.appendChild(dImg);
-
-
-    var lC = document.createElement('button');
-    lC.className = 'left_control';
-    lC.id = 'l_C';
-    lC.setAttribute('onmousedown', 'leftMouseDown(event)');
-    lC.setAttribute('onmouseup', 'leftMouseUp()');
-
-    var lCImg = document.createElement('img');
-    lCImg.className = 'img_left';
-    lCImg.src = '/media/img/up.svg';
-    lC.appendChild(lCImg);
-
-
-    var rC = document.createElement('button');
-    rC.className = 'right_control';
-    rC.id = 'r_C';
-    rC.setAttribute('onmousedown', 'rightMouseDown(event)');
-    rC.setAttribute('onmouseup', 'rightMouseUp()');
-
-    var rCImg = document.createElement('img');
-    rCImg.className = 'img_right';
-    rCImg.src = '/media/img/up.svg';
-    rC.appendChild(rCImg);
-
-
-    var userAgent = navigator.userAgent;
-
-    if (/Android/i.test(userAgent)) {
-        console.log("Android");
-
-        lS.setAttribute('ontouchstart', 'left_select(event)');
-        lS.setAttribute('ontouchend', 'left_select_up()');
-
-        rS.setAttribute('ontouchstart', 'right_select(event)');
-        rS.setAttribute('ontouchend', 'right_select_up()');
-
-
-        dC.setAttribute('ontouchstart', 'downMouseDown(event)');
-        dC.setAttribute('ontouchend', 'downMouseUp()');
-
-        cC.setAttribute('ontouchstart', 'center(event)');
-        cC.setAttribute('ontouchend', 'downMouseUp()');
-
-        lC.setAttribute('ontouchstart', 'leftMouseDown(event)');
-        lC.setAttribute('ontouchend', 'leftMouseUp()');
-
-        rC.setAttribute('ontouchstart', 'rightMouseDown(event)');
-        rC.setAttribute('ontouchend', 'rightMouseUp()');
-    }
-
-
-    control.appendChild(lS);
-    control.appendChild(rS);
-    control.appendChild(uC);
-    control.appendChild(dC);
-    control.appendChild(lC);
-    control.appendChild(rC);
-
-}
-
-add_control()
-
-</script>
-
 
 
 </body>

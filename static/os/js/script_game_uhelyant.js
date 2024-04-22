@@ -603,7 +603,7 @@ function center(event){
     navigator.vibrate(50);
 }
 
-function center_up(event){
+function center_up(){
     document.getElementById('c_C').style.backgroundColor = "#291701";
 }
 
