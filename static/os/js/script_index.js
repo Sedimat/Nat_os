@@ -170,7 +170,7 @@ function right_select_up() {
 
 // повертає на головну
 function back(){
-     window.location.href = "/";
+     window.location.href = "/NatOs_web";
 }
 
 

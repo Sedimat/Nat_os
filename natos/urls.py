@@ -16,4 +16,5 @@ urlpatterns = [
     path('get_games', views.get_games, name='get_games'),
     path('balloon', views.balloon, name='balloon'),
     path('uhelyant', views.uhelyant, name='uhelyant'),
+    path('NatOs_web', views.natos_web, name='NatOs_web'),
 ]

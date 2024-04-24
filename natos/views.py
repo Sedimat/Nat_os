@@ -92,3 +92,8 @@ def balloon(request):
 def uhelyant(request):
     context = {}
     return render(request, 'game/uhelyant.html', context=context)
+
+
+def natos_web(request):
+    context = {}
+    return render(request, 'browser/NatOs_web.html', context=context)
