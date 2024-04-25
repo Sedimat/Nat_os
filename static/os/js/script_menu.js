@@ -29,6 +29,7 @@ function add_menu(list_m){
 var len_menu = 0;
 // список елементів меню
 var  list_menu_g = null;
+
     fetch(`/get_menu`)
     .then(response => response.json())
     .then(data => {

@@ -119,13 +119,15 @@ list_fan[2].src = '/media/browser/fan2.svg';
 list_fan[3].src = '/media/browser/fan3.svg';
 
 
-var list_elem = [new Image(), new Image(), new Image(), new Image(), new Image()]
+var list_elem = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
 
 list_elem[0].src = '/media/browser/Cpu0.svg';
 list_elem[1].src = '/media/browser/w_left.svg';
 list_elem[2].src = '/media/browser/w_right.svg';
 list_elem[3].src = '/media/browser/w_up.svg';
 list_elem[4].src = '/media/browser/w_down.svg';
+list_elem[5].src = '/media/browser/img_news.svg';
+list_elem[6].src = '/media/browser/mountains.svg';
 
 
 
@@ -197,8 +199,19 @@ function add_menu(){
     img_down.style.height = 319 + 'px';
     img_down.style.position = 'absolute';
     img_down.classList.add('select_img');
-
     div_menu.appendChild(img_down);
+
+    var img_mon = document.createElement('img');
+    img_mon.setAttribute('src', list_elem[6].src);
+    img_mon.id = 'img_mon';
+    img_mon.style.left = -1000 + 'px';
+    img_mon.style.top = 878 + 'px';
+    img_mon.style.height = 600 + 'px';
+    img_mon.style.position = 'absolute';
+    img_mon.classList.add('select_img');
+    div_menu.appendChild(img_mon);
+
+
 
     var img_fan = document.createElement('img');
     img_fan.setAttribute('src', list_fan[0].src);
@@ -257,6 +270,70 @@ var img_cursor = document.createElement('img');
 
     content.appendChild(div_cursor);
 
+
+var deep = -300;
+var news_pos = 1200;
+
+function add_news(title, description, time){
+    deep += -410
+    var div_menu = document.getElementById("div_menu")
+
+    var img_news = document.createElement('img');
+    img_news.setAttribute('src', list_elem[5].src);
+    img_news.id = 'img_news';
+    img_news.style.left = 50 + 'px';
+    img_news.style.top = news_pos + 'px';
+    img_news.style.height = 400 + 'px';
+    img_news.style.position = 'absolute';
+    img_news.classList.add('select_img');
+    div_menu.appendChild(img_news);
+
+    var news = document.createElement('h1');
+    news.textContent = title;
+    news.id = 'news0';
+    news.classList.add('menu_txt');
+    news.style.left = 80 + 'px';
+    news.style.top = news_pos + 25 + 'px';
+    news.style.position = 'absolute';
+    div_menu.appendChild(news);
+
+    var news1 = document.createElement('h1');
+    news1.textContent = description;
+    news1.id = 'news1';
+    news1.style.left =  80 + 'px';
+    news1.style.top =  news_pos + 100 + 'px';
+    news1.style.maxWidth = '800px';
+    news1.style.position = 'absolute';
+    news1.classList.add('menu_txt');
+    div_menu.appendChild(news1);
+
+    var news2 = document.createElement('h1');
+    news2.textContent = time;
+    news2.id = 'news2';
+    news2.style.left =  580 + 'px';
+    news2.style.top =  news_pos + 330 + 'px';
+    news2.style.position = 'absolute';
+    news2.classList.add('menu_txt');
+    div_menu.appendChild(news2);
+
+    news_pos += 410
+
+}
+
+var list_news_len = null
+var list_news = null
+
+fetch(`/get_Nat_web`)
+    .then(response => response.json())
+    .then(data => {
+        list_news_len = data.list_news.length;
+        list_news = data.list_news
+        for (let i = 0; i < data.list_news.length; i++) {
+            add_news(data.list_news[i][0],data.list_news[i][1],data.list_news[i][2])
+
+        }
+    });
+
 var speed = 20
 
 function move_element(ref,element){
@@ -264,7 +341,7 @@ function move_element(ref,element){
     var elem = document.getElementById(element)
     var cur_left = parseInt(elem.style.left) || 0;
     var cur_top = parseInt(elem.style.top) || 0;
-    console.log(cur_top, cur_left)
+
 
     var cursor0 = document.getElementById("cursor")
     var cur_cursor = parseInt(cursor0.style.left) || 0;
@@ -306,9 +383,9 @@ function move_element(ref,element){
             cursor0.style.top = cur_cursor_top + speed + 'px';
             div_cursor0.style.top = cur_cursor_top + speed + 'px';
         }else{
-
-            if(cur_top > -600){
+            if(cur_top > deep){
                 elem.style.top = cur_top - speed + 'px';
+                console.log(cur_top)
             }
         }
     }

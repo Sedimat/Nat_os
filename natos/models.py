@@ -58,3 +58,17 @@ class Games(models.Model):
     class Meta:
         verbose_name = "Гра"
         verbose_name_plural = "Ігри"
+
+
+class Nat_web(models.Model):
+    title = models.CharField(max_length=20, verbose_name="Заголовок")
+    description = models.CharField(max_length=100, verbose_name="Опис")
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f'Гра: {self.title}'
+
+    class Meta:
+        verbose_name = "новина"
+        verbose_name_plural = "новини"

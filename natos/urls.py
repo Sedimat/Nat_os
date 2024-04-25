@@ -14,6 +14,7 @@ urlpatterns = [
     path('get_sounds', views.get_sounds, name='get_sounds'),
     path('get_pictures', views.get_pictures, name='get_pictures'),
     path('get_games', views.get_games, name='get_games'),
+    path('get_Nat_web', views.get_Nat_web, name='get_Nat_web'),
     path('balloon', views.balloon, name='balloon'),
     path('uhelyant', views.uhelyant, name='uhelyant'),
     path('NatOs_web', views.natos_web, name='NatOs_web'),
