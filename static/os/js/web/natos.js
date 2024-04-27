@@ -27,6 +27,7 @@ document.addEventListener("keydown", function(event) {
         }
     // натиснута кнопка F
     if (event.keyCode === 70) {
+        virus_kill()
         console.log("F")
         }
     // натиснута кнопка Q
@@ -119,7 +120,10 @@ list_fan[2].src = '/media/browser/fan2.svg';
 list_fan[3].src = '/media/browser/fan3.svg';
 
 
-var list_elem = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
+var list_elem = [new Image(), new Image(), new Image(),
+                 new Image(), new Image(), new Image(),
+                 new Image(), new Image(), new Image()
+                ]
 
 list_elem[0].src = '/media/browser/Cpu0.svg';
 list_elem[1].src = '/media/browser/w_left.svg';
@@ -129,6 +133,7 @@ list_elem[4].src = '/media/browser/w_down.svg';
 list_elem[5].src = '/media/browser/img_news.svg';
 list_elem[6].src = '/media/browser/mountains.svg';
 list_elem[7].src = '/media/browser/hdd.svg';
+list_elem[8].src = '/media/browser/reactor2.svg';
 
 var list_hdd = [new Image(), new Image(), new Image(), new Image()]
 
@@ -144,6 +149,26 @@ list_hdd1[1].src = '/media/browser/hdd12.svg';
 list_hdd1[2].src = '/media/browser/hdd13.svg';
 list_hdd1[3].src = '/media/browser/hdd14.svg';
 
+var list_anim_r = [new Image(), new Image(), new Image(), new Image()]
+
+list_anim_r[0].src = '/media/browser/anim1.svg';
+list_anim_r[1].src = '/media/browser/anim2.svg';
+list_anim_r[2].src = '/media/browser/anim3.svg';
+list_anim_r[3].src = '/media/browser/anim4.svg';
+
+var list_virus = [new Image(), new Image(), new Image(), new Image()]
+
+list_virus[0].src = '/media/browser/virus1.svg';
+list_virus[1].src = '/media/browser/virus2.svg';
+list_virus[2].src = '/media/browser/virus3.svg';
+list_virus[3].src = '/media/browser/virus4.svg';
+
+var list_h1 = [new Image(), new Image(), new Image(), new Image()]
+
+list_h1[0].src = '/media/g_ball/h01.svg';
+list_h1[1].src = '/media/g_ball/h02.svg';
+list_h1[2].src = '/media/g_ball/h03.svg';
+list_h1[3].src = '/media/g_ball/h04.svg';
 
 
 var content = document.getElementById('content');
@@ -166,6 +191,26 @@ function add_menu(){
     div_menu.style.position = 'absolute';
 //    div_menu.style.backgroundColor = '#f0c55b';
 
+    var img_anim_r = document.createElement('img');
+    img_anim_r.setAttribute('src', list_anim_r[0].src);
+    img_anim_r.id = 'img_anim_r';
+    img_anim_r.style.left = -1020 + 'px';
+    img_anim_r.style.top = -580 + 'px';
+    img_anim_r.style.height = 850 + 'px';
+    img_anim_r.style.position = 'absolute';
+    img_anim_r.classList.add('select_img');
+    div_menu.appendChild(img_anim_r);
+
+    var img_reactor = document.createElement('img');
+    img_reactor.setAttribute('src', list_elem[8].src);
+    img_reactor.id = 'reactor';
+    img_reactor.style.left = -960 + 'px';
+    img_reactor.style.top = -590 + 'px';
+    img_reactor.style.height = 827 + 'px';
+    img_reactor.style.position = 'absolute';
+    img_reactor.classList.add('select_img');
+    div_menu.appendChild(img_reactor);
+
     var img_select = document.createElement('img');
     img_select.setAttribute('src', list_elem[0].src);
     img_select.id = 'select';
@@ -179,7 +224,7 @@ function add_menu(){
     var img_left = document.createElement('img');
     img_left.setAttribute('src', list_elem[1].src);
     img_left.id = 'left';
-    img_left.style.left = -1001 + 'px';
+    img_left.style.left = -1000 + 'px';
     img_left.style.top = 276 + 'px';
     img_left.style.height = 595 + 'px';
     img_left.style.position = 'absolute';
@@ -286,6 +331,54 @@ function add_menu(){
     div_el.style.position = 'absolute';
     div_menu.appendChild(div_el);
 
+    var img_virus1 = document.createElement('img');
+    img_virus1.setAttribute('src', list_virus[2].src);
+    img_virus1.id = 'img_virus1';
+    var r_left1 = Math.floor(Math.random() * (1950 - (-1000) + 1)) + (-1000);
+    var r_top1 = Math.floor(Math.random() * (800 - (-600) + 1)) + (-600);
+    img_virus1.style.left = r_left1 + 'px';
+    img_virus1.style.top = r_top1 + 'px';
+    img_virus1.style.height = 40 + 'px';
+    img_virus1.style.position = 'absolute';
+    img_virus1.classList.add('select_img');
+    div_menu.appendChild(img_virus1);
+
+    var img_virus2 = document.createElement('img');
+    img_virus2.setAttribute('src', list_virus[0].src);
+    img_virus2.id = 'img_virus2';
+    var r_left2 = Math.floor(Math.random() * (1950 - (-1000) + 1)) + (-1000);
+    var r_top2 = Math.floor(Math.random() * (800 - (-600) + 1)) + (-600);
+    img_virus2.style.left = r_left2 + 'px';
+    img_virus2.style.top = r_top2 + 'px';
+    img_virus2.style.height = 35 + 'px';
+    img_virus2.style.position = 'absolute';
+    img_virus2.classList.add('select_img');
+    div_menu.appendChild(img_virus2);
+
+    var img_virus3 = document.createElement('img');
+    img_virus3.setAttribute('src', list_virus[1].src);
+    img_virus3.id = 'img_virus3';
+    var r_left3 = Math.floor(Math.random() * (1950 - (-1000) + 1)) + (-1000);
+    var r_top3 = Math.floor(Math.random() * (800 - (-600) + 1)) + (-600);
+    img_virus3.style.left = r_left3 + 'px';
+    img_virus3.style.top = r_top3 + 'px';
+    img_virus3.style.height = 40 + 'px';
+    img_virus3.style.position = 'absolute';
+    img_virus3.classList.add('select_img');
+    div_menu.appendChild(img_virus3);
+
+    var img_virus4 = document.createElement('img');
+    img_virus4.setAttribute('src', list_virus[3].src);
+    img_virus4.id = 'img_virus4';
+    var r_left4 = Math.floor(Math.random() * (1950 - (-1000) + 1)) + (-1000);
+    var r_top4 = Math.floor(Math.random() * (800 - (-600) + 1)) + (-600);
+    img_virus4.style.left = r_left4 + 'px';
+    img_virus4.style.top = r_top4 + 'px';
+    img_virus4.style.height = 40 + 'px';
+    img_virus4.style.position = 'absolute';
+    img_virus4.classList.add('select_img');
+    div_menu.appendChild(img_virus4);
+
     content.appendChild(div_menu);
 }
 
@@ -300,7 +393,7 @@ var img_cursor = document.createElement('img');
     img_cursor.style.position = 'absolute';
     img_cursor.classList.add('select_img');
 
-    content.appendChild(img_cursor);
+    content.appendChild(img_cursor);ііііііі
 
     var div_cursor = document.createElement('div');
     div_cursor.id = 'div_cursor';
@@ -390,7 +483,6 @@ function move_element(ref,element){
     var cur_cursor = parseInt(cursor0.style.left) || 0;
     var cur_cursor_top = parseInt(cursor0.style.top) || 0;
     var div_cursor0 = document.getElementById("div_cursor")
-    console.log(cur_left)
 
     if(ref == "r"){
         if(cur_cursor > 10){
@@ -439,17 +531,12 @@ var anim_iter = null
 
 var anim = 0
 
+var anim_vir1 = 0
+var anim_vir2 = 0
+var anim_vir3 = 0
+var anim_vir4 = 0
+
 function animation(){
-
-    var cursor = document.getElementById("div_cursor").getBoundingClientRect();
-    var div_ele1 = document.getElementById("div_el").getBoundingClientRect();
-
-    if (!(cursor.right < div_ele1.left ||
-            cursor.left > div_ele1.right ||
-            cursor.bottom < div_ele1.top ||
-            cursor.top > div_ele1.bottom)) {
-                console.log("Є колізія");
-        }
 
     document.getElementById("img_fan").setAttribute('src', list_fan[anim].src);
 
@@ -457,9 +544,45 @@ function animation(){
     document.getElementById("img_hdd1").setAttribute('src', list_hdd[anim_hdd].src);
     document.getElementById("img_hdd2").setAttribute('src', list_hdd1[anim].src);
 
+    document.getElementById("img_anim_r").setAttribute('src', list_anim_r[anim].src);
+
     anim += 1;
     if(anim == 4){
         anim = 0;
+    }
+
+    if(caunt_v1 > 2){
+        document.getElementById("img_virus1").setAttribute('src', list_h1[anim_vir1].src);
+        anim_vir1 += 1
+        if(anim_vir1 > 3){
+            document.getElementById("img_virus1").style.display = 'none';
+            caunt_v1 = 0
+        }
+    }
+
+    if(caunt_v2 > 2){
+        document.getElementById("img_virus2").setAttribute('src', list_h1[anim_vir2].src);
+        anim_vir2 += 1
+        if(anim_vir2 > 3){
+            document.getElementById("img_virus2").style.display = 'none';
+            caunt_v2 = 0
+        }
+    }
+    if(caunt_v3 > 2){
+        document.getElementById("img_virus3").setAttribute('src', list_h1[anim_vir3].src);
+        anim_vir3 += 1
+        if(anim_vir3 > 3){
+            document.getElementById("img_virus3").style.display = 'none';
+            caunt_v3 = 0
+        }
+    }
+    if(caunt_v4 > 2){
+        document.getElementById("img_virus4").setAttribute('src', list_h1[anim_vir4].src);
+        anim_vir4 += 1
+        if(anim_vir4 > 3){
+            document.getElementById("img_virus4").style.display = 'none';
+            caunt_v4 = 0
+        }
     }
 
 }
@@ -467,6 +590,78 @@ function animation(){
 anim_iter = setInterval(animation, 80);
 
 //document.getElementById("div_menu").style.top = 600 + 'px';
-document.getElementById("div_menu").style.left = 700 + 'px';
+//document.getElementById("div_menu").style.left = 700 + 'px';
 
 //clearInterval(anim_iter);
+
+var caunt_v1 = 0
+var caunt_v2 = 0
+var caunt_v3 = 0
+var caunt_v4 = 0
+
+function virus_kill(){
+    var r_left = Math.floor(Math.random() * (1950 - (-1000) + 1)) + (-1000);
+    var r_top = Math.floor(Math.random() * (800 - (-600) + 1)) + (-600);
+
+    var cursor = document.getElementById("div_cursor").getBoundingClientRect();
+    var virus1 = document.getElementById("img_virus1").getBoundingClientRect();
+    var virus2 = document.getElementById("img_virus2").getBoundingClientRect();
+    var virus3 = document.getElementById("img_virus3").getBoundingClientRect();
+    var virus4 = document.getElementById("img_virus4").getBoundingClientRect();
+
+
+        if (!(cursor.right < virus1.left ||
+            cursor.left > virus1.right ||
+            cursor.bottom < virus1.top ||
+            cursor.top > virus1.bottom)) {
+
+            caunt_v1 += 1
+
+            if(caunt_v1 < 3){
+                document.getElementById("img_virus1").style.transition = 'left 1s linear, top 1s linear';
+                document.getElementById("img_virus1").style.left = r_left + 'px';
+                document.getElementById("img_virus1").style.top = r_top + 'px';
+            }
+
+        }else if (!(cursor.right < virus2.left ||
+            cursor.left > virus2.right ||
+            cursor.bottom < virus2.top ||
+            cursor.top > virus2.bottom)) {
+
+            caunt_v2 += 1
+
+            if(caunt_v2 < 3){
+                document.getElementById("img_virus2").style.transition = 'left 1s linear, top 1s linear';
+                document.getElementById("img_virus2").style.left = r_left + 'px';
+                document.getElementById("img_virus2").style.top = r_top + 'px';
+            }
+
+        }else if (!(cursor.right < virus3.left ||
+            cursor.left > virus3.right ||
+            cursor.bottom < virus3.top ||
+            cursor.top > virus3.bottom)) {
+
+            caunt_v3 += 1
+
+            if(caunt_v3 < 3){
+                document.getElementById("img_virus3").style.transition = 'left 1s linear, top 1s linear';
+                document.getElementById("img_virus3").style.left = r_left + 'px';
+                document.getElementById("img_virus3").style.top = r_top + 'px';
+            }
+
+        }else if (!(cursor.right < virus4.left ||
+            cursor.left > virus4.right ||
+            cursor.bottom < virus4.top ||
+            cursor.top > virus4.bottom)) {
+
+
+            caunt_v4 += 1
+
+            if(caunt_v4 < 3){
+                document.getElementById("img_virus4").style.transition = 'left 1s linear, top 1s linear';
+                document.getElementById("img_virus4").style.left = r_left + 'px';
+                document.getElementById("img_virus4").style.top = r_top + 'px';
+            }
+        }
+
+}
