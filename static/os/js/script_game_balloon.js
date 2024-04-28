@@ -620,6 +620,7 @@ function move(){
 
     }
     score_n.textContent = score;
+    score_n1.textContent = score_number;
 
     // Перша кулька та його логіка
     var currentTop0 = parseInt(img_v0.style.top) || 0;

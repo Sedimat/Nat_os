@@ -67,8 +67,22 @@ class Nat_web(models.Model):
 
 
     def __str__(self):
-        return f'Гра: {self.title}'
+        return f'Новина сайт: {self.title}'
 
     class Meta:
-        verbose_name = "новина"
-        verbose_name_plural = "новини"
+        verbose_name = "Новина сайт"
+        verbose_name_plural = "Новина сайт"
+
+class Nat_web_img(models.Model):
+    picture = models.FileField(upload_to='pictures', default='pictures/test.svg')
+    name = models.CharField(max_length=30, verbose_name="Назва")
+    description = models.CharField(max_length=100, verbose_name="Опис")
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f'Зображення сайт: {self.name}'
+
+    class Meta:
+        verbose_name = "Зображення сайт"
+        verbose_name_plural = "Зображення сайт"

@@ -1,6 +1,6 @@
 
 from datetime import datetime
-from .models import Menu, Sounds, Pictures, Games, Nat_web
+from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -57,11 +57,19 @@ def get_games(request):
 def get_Nat_web(request):
     context = {}
     news = Nat_web.objects.all().order_by("-timestamp")
+    imgs = Nat_web_img.objects.all().order_by("-timestamp")
     list_news = []
+    list_imgs = []
     for n in news:
         time = str(n.timestamp)
         list_news.append([str(n.title), str(n.description), time[:16]])
-    context.update({"list_news": list_news})
+
+    for i in imgs:
+        img_time = str(i.timestamp)
+        list_imgs.append([str(i.picture), str(i.name), str(i.description), img_time[:16]])
+
+    context.update({"list_news": list_news,
+                    "list_imgs": list_imgs})
     return JsonResponse(context)
 
 
