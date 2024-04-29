@@ -17,7 +17,9 @@ if (/Android/i.test(userAgent)) {
 }
 
 
-var list_floor = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
+var list_floor = [new Image(), new Image(), new Image(),
+                  new Image(), new Image(), new Image(),
+                  new Image(), new Image(), new Image()]
 
 list_floor[0].src = '/media/g_uhe/floor0.svg';
 list_floor[1].src = '/media/g_uhe/floor2.svg';

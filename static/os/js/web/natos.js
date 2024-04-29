@@ -1,122 +1,3 @@
-// Відслідковує кнопки на клавіатурі
-document.addEventListener("keydown", function(event) {
-
-    // натиснута кнопка W
-        if (event.keyCode === 87 || event.keyCode === 38){
-            move_element("d","div_menu")
-        }
-        // натиснута кнопка S
-        if (event.keyCode === 83 || event.keyCode === 40){
-            move_element("u","div_menu")
-        }
-
-        // A або стрілка вліво
-        if (event.keyCode === 65 || event.keyCode === 37){
-            move_element("r","div_menu")
-        }
-
-        // D або стрілка вправо
-        if (event.keyCode === 68 || event.keyCode === 39){
-            move_element("l","div_menu")
-
-        }
-
-    // натиснута кнопка E
-    if (event.keyCode === 69) {
-         console.log("E")
-        }
-    // натиснута кнопка F
-    if (event.keyCode === 70) {
-        virus_kill()
-        console.log("F")
-        }
-    // натиснута кнопка Q
-    if (event.keyCode === 81) {
-        console.log("Q")
-    }
-});
-
-
-var gameDOWN = null
-
-
-function downMouseDown(event) {
-    document.getElementById('d_C').style.backgroundColor = "#613703";
-    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
-    navigator.vibrate(50);
-    clearInterval(gameDOWN);
-    gameDOWN = setInterval(() => move_element("u", "div_menu"), 70);
-}
-
-function downMouseUp() {
-    document.getElementById('d_C').style.backgroundColor = "#291701";
-    clearInterval(gameDOWN);
-}
-
-function upMouseDown(event) {
-    document.getElementById('u_C').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
-}
-
-function upMouseUp() {
-    document.getElementById('u_C').style.backgroundColor = "#291701";
-}
-
-function leftMouseDown(event) {
-    document.getElementById('l_C').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
-}
-
-function leftMouseUp() {
-    document.getElementById('l_C').style.backgroundColor = "#291701";
-}
-
-
-function rightMouseDown(event) {
-    document.getElementById('r_C').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
-}
-
-function rightMouseUp() {
-    document.getElementById('r_C').style.backgroundColor = "#291701";
-}
-
-function center(event){
-    document.getElementById('c_C').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
-}
-
-function center_up(){
-    document.getElementById('c_C').style.backgroundColor = "#291701";
-}
-
-// лівий селект
-function left_select(event){
-    document.getElementById('l_s').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
-
-}
-
-function left_select_up() {
-    document.getElementById('l_s').style.backgroundColor = "#291701";
-}
-
-function right_select(event){
-    document.getElementById('r_s').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
-}
-
-
-function right_select_up() {
-    document.getElementById('r_s').style.backgroundColor = "#291701";
-}
-
 var list_fan = [new Image(), new Image(), new Image(), new Image()]
 
 list_fan[0].src = '/media/browser/fan0.svg';
@@ -181,6 +62,169 @@ var content = document.getElementById('content');
 
 var curs = new Image()
 curs.src = '/media/browser/curs.svg'
+
+var hud_b = new Image()
+hud_b.src = '/media/browser/hud_b.svg'
+
+var hud_virus = new Image()
+hud_virus.src = '/media/browser/hud_virus.svg'
+
+klic_s = new Audio("media/sounds/klic.mp3");
+
+function klic(){
+    klic_s.volume = 0.4; // встановлюємо гучність
+    klic_s.play();
+}
+
+// Відслідковує кнопки на клавіатурі
+document.addEventListener("keydown", function(event) {
+
+    // натиснута кнопка W
+        if (event.keyCode === 87 || event.keyCode === 38){
+            move_element("d","div_menu")
+        }
+        // натиснута кнопка S
+        if (event.keyCode === 83 || event.keyCode === 40){
+            move_element("u","div_menu")
+        }
+
+        // A або стрілка вліво
+        if (event.keyCode === 65 || event.keyCode === 37){
+            move_element("r","div_menu")
+        }
+
+        // D або стрілка вправо
+        if (event.keyCode === 68 || event.keyCode === 39){
+            move_element("l","div_menu")
+
+        }
+
+    // натиснута кнопка E
+    if (event.keyCode === 69) {
+         console.log("E")
+        }
+    // натиснута кнопка F
+    if (event.keyCode === 70) {
+        virus_kill()
+        console.log("F")
+        }
+    // натиснута кнопка Q
+    if (event.keyCode === 81) {
+        if(document.getElementById("div_mini_game")){
+            document.getElementById("div_mini_game").remove();
+        }else{
+        window.location.href = "/";
+        }
+    }
+});
+
+
+var DOWN = null
+var UP = null
+var LEFT = null
+var RIGHT = null
+
+
+function downMouseDown(event) {
+    document.getElementById('d_C').style.backgroundColor = "#613703";
+    klic()
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
+    clearInterval(DOWN);
+    DOWN = setInterval(() => move_element("u", "div_menu"), 50);
+}
+
+function downMouseUp() {
+    document.getElementById('d_C').style.backgroundColor = "#291701";
+    clearInterval(DOWN);
+}
+
+function upMouseDown(event) {
+    document.getElementById('u_C').style.backgroundColor = "#613703";
+    klic()
+    event.preventDefault();
+    navigator.vibrate(50);
+    clearInterval(UP);
+    UP = setInterval(() => move_element("d", "div_menu"), 50);
+}
+
+function upMouseUp() {
+    document.getElementById('u_C').style.backgroundColor = "#291701";
+    clearInterval(UP);
+}
+
+function leftMouseDown(event) {
+    document.getElementById('l_C').style.backgroundColor = "#613703";
+    klic()
+    event.preventDefault();
+    navigator.vibrate(50);
+    clearInterval(LEFT);
+    LEFT = setInterval(() => move_element("r", "div_menu"), 50);
+}
+
+function leftMouseUp() {
+    document.getElementById('l_C').style.backgroundColor = "#291701";
+    clearInterval(LEFT);
+}
+
+
+function rightMouseDown(event) {
+    document.getElementById('r_C').style.backgroundColor = "#613703";
+    klic()
+    event.preventDefault();
+    navigator.vibrate(50);
+    clearInterval(RIGHT);
+    RIGHT = setInterval(() => move_element("l", "div_menu"), 50);
+}
+
+function rightMouseUp() {
+    document.getElementById('r_C').style.backgroundColor = "#291701";
+    clearInterval(RIGHT);
+}
+
+function center(event){
+    document.getElementById('c_C').style.backgroundColor = "#613703";
+    klic()
+    event.preventDefault();
+    navigator.vibrate(50);
+    virus_kill()
+}
+
+function center_up(){
+    document.getElementById('c_C').style.backgroundColor = "#291701";
+}
+
+// лівий селект
+function left_select(event){
+    document.getElementById('l_s').style.backgroundColor = "#613703";
+    klic()
+    event.preventDefault();
+    navigator.vibrate(50);
+
+    if(document.getElementById("div_mini_game")){
+            document.getElementById("div_mini_game").remove();
+    }else{
+        window.location.href = "/";
+    }
+
+}
+
+function left_select_up() {
+    document.getElementById('l_s').style.backgroundColor = "#291701";
+}
+
+function right_select(event){
+    document.getElementById('r_s').style.backgroundColor = "#613703";
+    klic()
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
+}
+
+
+function right_select_up() {
+    document.getElementById('r_s').style.backgroundColor = "#291701";
+}
+
 
 
 function add_menu(){
@@ -316,16 +360,6 @@ function add_menu(){
     new_game.style.position = 'absolute';
     div_menu.appendChild(new_game);
 
-    var div_el = document.createElement('div');
-    div_el.id = 'div_el';
-    div_el.style.left =  800 + 'px';
-    div_el.style.top =  900 + 'px';
-    div_el.style.height = 100 + 'px';
-    div_el.style.width = 80 + 'px';
-    div_el.style.backgroundColor = 'green';
-    div_el.style.position = 'absolute';
-    div_menu.appendChild(div_el);
-
     var img_virus1 = document.createElement('img');
     img_virus1.setAttribute('src', list_virus[2].src);
     img_virus1.id = 'img_virus1';
@@ -376,12 +410,28 @@ function add_menu(){
 
     content.appendChild(div_menu);
 }
-
 add_menu()
 
+    var img_hud = document.createElement('img');
+    img_hud.setAttribute('src', hud_b.src);
+    img_hud.id = 'hud_b.src';
+    img_hud.style.left = 0 + 'px';
+    img_hud.style.top = -6 + 'px';
+    img_hud.style.height = 83 + 'px';
+    img_hud.style.position = 'absolute';
+    img_hud.classList.add('select_img');
+    content.appendChild(img_hud);
 
+    var new_game = document.createElement('h1');
+    new_game.textContent = "www.Nateskun_Os.com";
+    new_game.id = 'title_web';
+    new_game.classList.add('menu_txt');
+    new_game.style.left = 100 + 'px';
+    new_game.style.top = 10 + 'px';
+    new_game.style.position = 'absolute';
+    content.appendChild(new_game);
 
-var img_cursor = document.createElement('img');
+    var img_cursor = document.createElement('img');
     img_cursor.setAttribute('src', curs.src);
     img_cursor.id = 'cursor';
     img_cursor.style.left = 460 + 'px';
@@ -402,7 +452,6 @@ var img_cursor = document.createElement('img');
     div_cursor.style.position = 'absolute';
 
     content.appendChild(div_cursor);
-
 
 var deep = -300;
 var news_pos = 1200;
@@ -455,16 +504,21 @@ function add_news(title, description, time){
 
 var deep2 = 50
 var pos_img = 850;
+var count_pos = 0;
 
 function add_img(img, name, time){
-    deep2 += -820
+    count_pos += 1;
+    var pos_left = -925;
+    if(count_pos == 2){
+        pos_left = 1000;
+    }
 
 var div_menu = document.getElementById("div_menu")
 
 var img_news = document.createElement('img');
     img_news.setAttribute('src', list_elem[6].src);
     img_news.id = 'img_pictures';
-    img_news.style.left = -925 + 'px';
+    img_news.style.left = pos_left + 'px';
     img_news.style.top = pos_img + 'px';
     img_news.style.height = 812 + 'px';
     img_news.style.position = 'absolute';
@@ -474,7 +528,7 @@ var img_news = document.createElement('img');
 var img_mon = document.createElement('img');
     img_mon.setAttribute('src', "/media/" + img);
     img_mon.id = 'img_mon';
-    img_mon.style.left = -910 + 'px';
+    img_mon.style.left = pos_left + 15 + 'px';
     img_mon.style.top = pos_img + 100 + 'px';
     img_mon.style.height = 595 + 'px';
     img_mon.style.position = 'absolute';
@@ -484,8 +538,9 @@ var img_mon = document.createElement('img');
 var news1 = document.createElement('h1');
     news1.textContent = name;
     news1.id = 'name_img';
-    news1.style.left =  -890 + 'px';
+    news1.style.left =  pos_left + 35 + 'px';
     news1.style.top = pos_img + 25 + 'px';
+    news1.style.minWidth = '790px';
     news1.style.maxWidth = '800px';
     news1.style.position = 'absolute';
     news1.classList.add('menu_txt');
@@ -494,16 +549,24 @@ var news1 = document.createElement('h1');
 var news2 = document.createElement('h1');
     news2.textContent = time;
     news2.id = 'time_img';
-    news2.style.left =  -365 + 'px';
+    news2.style.left =  pos_left + 560 + 'px';
     news2.style.top = pos_img + 745 + 'px';
-    news2.style.maxWidth = '800px';
+    news2.style.minWidth = '400px';
+    news2.style.maxWidth = '400px';
     news2.style.position = 'absolute';
     news2.classList.add('menu_txt');
     div_menu.appendChild(news2);
 
-    pos_img += 820;
+    if(count_pos == 2){
+        count_pos = 0;
+
+        pos_img += 820;
+    }else{
+        deep2 += -820
+    }
 
 }
+
 
 var list_news_len = null
 var list_news = null
@@ -523,6 +586,46 @@ fetch(`/get_Nat_web`)
     });
 
 var speed = 20
+
+var kill_virus = 0;
+
+function add_hud_mini_game(){
+    var div_mini_game = document.createElement('div');
+    div_mini_game.id = 'div_mini_game';
+    div_mini_game.style.left =  0 + 'px';
+    div_mini_game.style.top =  832 + 'px';
+    div_mini_game.style.height = 70 + 'px';
+    div_mini_game.style.width = 400 + 'px';
+//    div_mini_game.style.backgroundColor = 'green';
+    div_mini_game.style.position = 'absolute';
+
+
+    var img_hud_g = document.createElement('img');
+    img_hud_g.setAttribute('src', hud_virus.src);
+    img_hud_g.id = 'img_hud_g';
+    img_hud_g.style.left = 0 + 'px';
+    img_hud_g.style.top = 0 + 'px';
+    img_hud_g.style.height = 70 + 'px';
+    img_hud_g.style.position = 'absolute';
+    img_hud_g.classList.add('select_img');
+
+    div_mini_game.appendChild(img_hud_g);
+
+    var txt_virus = document.createElement('h1');
+    txt_virus.textContent = "Піймай всі віруси " + kill_virus;
+    txt_virus.id = 'txt_virus';
+    txt_virus.classList.add('menu_txt');
+    txt_virus.style.left = 30 + 'px';
+    txt_virus.style.top = 10 + 'px';
+    txt_virus.style.minWidth = '600px';
+    txt_virus.style.position = 'absolute';
+    div_mini_game.appendChild(txt_virus);
+
+    content.appendChild(div_mini_game);
+
+    console.log("Додав")
+
+}
 
 function move_element(ref,element){
     var deep_scrol = 0
@@ -570,7 +673,7 @@ function move_element(ref,element){
             cursor0.style.top = cur_cursor_top - speed + 'px';
             div_cursor0.style.top = cur_cursor_top - speed + 'px';
         }else{
-            if(cur_top < 620){
+            if(cur_top < 680){
                 elem.style.top = cur_top + speed + 'px';
             }
         }
@@ -596,6 +699,8 @@ var anim_vir2 = 0
 var anim_vir3 = 0
 var anim_vir4 = 0
 
+
+// вмикає анімацію знищення віруса
 function animation(){
 
     document.getElementById("img_fan").setAttribute('src', list_fan[anim].src);
@@ -617,6 +722,9 @@ function animation(){
         if(anim_vir1 > 3){
             document.getElementById("img_virus1").style.display = 'none';
             caunt_v1 = 0
+            kill_virus += 1
+
+            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
         }
     }
 
@@ -626,6 +734,9 @@ function animation(){
         if(anim_vir2 > 3){
             document.getElementById("img_virus2").style.display = 'none';
             caunt_v2 = 0
+            kill_virus += 1
+
+            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
         }
     }
     if(caunt_v3 > 2){
@@ -634,6 +745,9 @@ function animation(){
         if(anim_vir3 > 3){
             document.getElementById("img_virus3").style.display = 'none';
             caunt_v3 = 0
+            kill_virus += 1
+
+            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
         }
     }
     if(caunt_v4 > 2){
@@ -642,6 +756,10 @@ function animation(){
         if(anim_vir4 > 3){
             document.getElementById("img_virus4").style.display = 'none';
             caunt_v4 = 0
+            kill_virus += 1
+
+            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
+
         }
     }
 
@@ -649,8 +767,8 @@ function animation(){
 
 anim_iter = setInterval(animation, 80);
 
-document.getElementById("div_menu").style.top = 600 + 'px';
-document.getElementById("div_menu").style.left = 1000 + 'px';
+//document.getElementById("div_menu").style.top = 600 + 'px';
+//document.getElementById("div_menu").style.left = 1000 + 'px';
 
 //clearInterval(anim_iter);
 
@@ -677,6 +795,12 @@ function virus_kill(){
 
             caunt_v1 += 1
 
+            if(!document.getElementById("div_mini_game")){
+                add_hud_mini_game()
+            }else{
+                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+            }
+
             if(caunt_v1 < 3){
                 document.getElementById("img_virus1").style.transition = 'left 1s linear, top 1s linear';
                 document.getElementById("img_virus1").style.left = r_left + 'px';
@@ -689,6 +813,13 @@ function virus_kill(){
             cursor.top > virus2.bottom)) {
 
             caunt_v2 += 1
+
+            if(!document.getElementById("div_mini_game")){
+                add_hud_mini_game()
+
+            }else{
+                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+            }
 
             if(caunt_v2 < 3){
                 document.getElementById("img_virus2").style.transition = 'left 1s linear, top 1s linear';
@@ -703,6 +834,12 @@ function virus_kill(){
 
             caunt_v3 += 1
 
+            if(!document.getElementById("div_mini_game")){
+                add_hud_mini_game()
+            }else{
+                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+            }
+
             if(caunt_v3 < 3){
                 document.getElementById("img_virus3").style.transition = 'left 1s linear, top 1s linear';
                 document.getElementById("img_virus3").style.left = r_left + 'px';
@@ -714,8 +851,13 @@ function virus_kill(){
             cursor.bottom < virus4.top ||
             cursor.top > virus4.bottom)) {
 
-
             caunt_v4 += 1
+
+            if(!document.getElementById("div_mini_game")){
+                add_hud_mini_game()
+            }else{
+                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+            }
 
             if(caunt_v4 < 3){
                 document.getElementById("img_virus4").style.transition = 'left 1s linear, top 1s linear';
