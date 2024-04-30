@@ -17,5 +17,6 @@ urlpatterns = [
     path('get_Nat_web', views.get_Nat_web, name='get_Nat_web'),
     path('balloon', views.balloon, name='balloon'),
     path('uhelyant', views.uhelyant, name='uhelyant'),
+    path('stack_attack', views.stack_attack, name='stack_attack'),
     path('NatOs_web', views.natos_web, name='NatOs_web'),
 ]

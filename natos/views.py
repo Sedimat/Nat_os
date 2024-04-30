@@ -115,3 +115,8 @@ def uhelyant(request):
 def natos_web(request):
     context = {}
     return render(request, 'browser/NatOs_web.html', context=context)
+
+
+def stack_attack(request):
+    context = {}
+    return render(request, 'game/stack_attack.html', context=context)

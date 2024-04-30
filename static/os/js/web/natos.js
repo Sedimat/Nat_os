@@ -711,6 +711,12 @@ function animation(){
 
     document.getElementById("img_anim_r").setAttribute('src', list_anim_r[anim].src);
 
+    // Умова коли знищені всі віруси
+    if(kill_virus == 4){
+        kill_virus = 0
+        document.getElementById("txt_virus").textContent = "Віруси видалені. +1 бонус ";
+    }
+
     anim += 1;
     if(anim == 4){
         anim = 0;
