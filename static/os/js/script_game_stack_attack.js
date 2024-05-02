@@ -11,35 +11,64 @@ function move_element(pos){
 }
 
 
+var mov_up = false;
+var mov_left = false;
+var mov_right = false;
+
+var kluch = true
+
 
 document.addEventListener("keydown", function(event) {
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
-            mov_up = true
+            if(kluch){
+                move_gg("up")
+            }
+
+
         }
 
     // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
-            mov_left = true
-
+            if(kluch){
+                move_gg("r")
+            }
         }
 
     // D або стрілка вправо натиснута
         if (event.keyCode === 68 || event.keyCode === 39) {
-            mov_right = true
-
+            if(kluch){
+                move_gg("l")
+            }
+        }
+    // натиснута кнопка E
+        if (event.keyCode === 69) {
+//         clearInterval(gameinterval);
+            if(kluch){
+                move_gg("d_r")
+            }
+        }
+        // натиснута кнопка F
+        if (event.keyCode === 70) {
+            console.log("F")
+            }
+        // натиснута кнопка Q
+        if (event.keyCode === 81) {
+            if(kluch){
+                move_gg("d_l")
+            }
         }
 });
 
 document.addEventListener("keyup", function(event) {
     // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
-//            mov_left = false
+
         }
 
     // D або стрілка вправо відпущена
         if (event.keyCode === 68 || event.keyCode === 39) {
-//            mov_right = false
+
 
         }
 
@@ -47,36 +76,10 @@ document.addEventListener("keyup", function(event) {
         if (event.keyCode === 87 || event.keyCode === 38){
 
         }
-});
 
-// Відслідковує кнопки на клавіатурі
-document.addEventListener("keydown", function(event) {
-
-//    // натиснута кнопка W
-//        if (event.keyCode === 87 || event.keyCode === 38){
-//            move_element("W")
-//        }
-        // натиснута кнопка S
-        if (event.keyCode === 83 || event.keyCode === 40){
-            move_element("S")
-        }
-
-//        // A або стрілка вліво
-//        if (event.keyCode === 65 || event.keyCode === 37){
-//            move_element("A")
-//            mov_left = true
-//        }
-//
-//        // D або стрілка вправо
-//        if (event.keyCode === 68 || event.keyCode === 39){
-//            move_element("D")
-//            mov_right = true
-//
-//        }
-
-    // натиснута кнопка E
+        // натиснута кнопка E
     if (event.keyCode === 69) {
-         clearInterval(gameinterval);
+//         clearInterval(gameinterval);
         }
     // натиснута кнопка F
     if (event.keyCode === 70) {
@@ -87,6 +90,7 @@ document.addEventListener("keydown", function(event) {
     if (event.keyCode === 81) {
     }
 });
+
 
 
 var DOWN = null
@@ -200,10 +204,11 @@ list_blok[6].src = '/media/g_stack/b7.svg';
 
 var list_h1 = [new Image(), new Image(), new Image(), new Image()]
 
-list_h1[0].src = '/media/g_stack/fon.svg';
+list_h1[0].src = '/media/g_stack/fon1.svg';
 list_h1[1].src = '/media/g_stack/kran.svg';
 list_h1[2].src = '/media/g_stack/kran0.svg';
-list_h1[3].src = '/media/g_stack/fon0.svg';
+list_h1[3].src = '/media/g_stack/man_jump.svg';
+
 
 var man_jump = new Image()
 man_jump.src = '/media/g_stack/man_jump.svg'
@@ -221,19 +226,61 @@ list_man_l[0].src = '/media/g_stack/man_l_1.svg';
 list_man_l[1].src = '/media/g_stack/man_l_2.svg';
 list_man_l[2].src = '/media/g_stack/man_l_3.svg';
 
+var list_man_move = [new Image(), new Image(), new Image()]
+
+list_man_move[0].src = '/media/g_stack/man_move1.svg';
+list_man_move[1].src = '/media/g_stack/man_move2.svg';
+list_man_move[2].src = '/media/g_stack/man_move3.svg';
+
+
+
+var list_del = [new Image(), new Image(), new Image()]
+
+list_del[0].src = '/media/g_stack/del1.svg';
+list_del[1].src = '/media/g_stack/del2.svg';
+list_del[2].src = '/media/g_stack/del3.svg';
+
 var list_game1 = [[0,0], [1,"b2"], [2,"Q4"], [0,0],  [1,"Q6"], [0, 0], [0,0], [1,"g6"], [0,0] ]
 
 var list_game = [[0, 0], [0,0], [0,0], [0,0], [0,0], [0, 0], [0,0], [0,0], [0,0], [0,0],[0, 0], [1,"f12"], [0,0], [0,0], [0,0],
-                 [0, 0], [0,0], [0,0], [0,0], [0,0], [0, 0], [0,0], [0,0], [0,0], [0,0],[0, 0], [0,0], [0,0], [0,0], [0,0],
-                 [0, 0], [0,0], [0,0], [0,0], [0,0], [0, 0], [0,0], [0,0], [0,0], [0,0],[0, 0], [0,0], [0,0], [0,0], [0,0],
-                 [0, 0], [0,0], [0,0], [0,0], [0,0], [0, 0], [0,0], [0,0], [0,0], [0,0],[0, 0], [0,0], [0,0], [0,0], [0,0],
-                 [1,"b1"], [1,"b2"], [1,"Q4"], [1,"b3"], [1,"Q6"], [1,"b4"], [1,"b5"], [1,"g6"], [1,"b6"], [1,"b7"], [1,"b8"], [1,"b9"], [1,"g10"], [1,"b11"], [1,"b12"],
-                 [1,"a1"], [1,"a2"], [1,"a3"], [1,"a4"], [0,"a5"], [0,"a6"], [1,"a7"], [1,"a8"], [1,"a9"], [1,"a10"], [1,"a11"], [1,"a12"], [1,"a13"], [1,"a14"], [1,"a15"],
+                 [0, 0], [0,0], [0,0], [0,0], [0,0], [0, 0], [0,0], [0,0], [0,0], [0,"wfwfwwqdwq"],[0, 0], [0,0], [0,0], [0,0], [0,0],
+                 [0, 0], [0,0], [0,0], [0,0], [0,0], [0, 0], [0,'wefgwegh'], [0,0], [0,'dqwdq'], [0,0],[0, 0], [0,0], [0,0], [0,0], [0,0],
+                 [0, 0], [0,0], [0,0], [1,"fwefwef"], [0,0], [2, 0], [0,'fwefwe1'], [0,"yuy"], [0,0], [0,0],[0, 0], [0,0], [0,0], [0,0], [1,"sdgege"],
+                 [0, 0], [0,0], [0,0], [1,"b3"], [1,"Q6"], [1,"b4"], [1,"b5"], [0,"g6"], [0,"b6"], [1,"b7"], [1,"b8"], [1,"b9"], [1,"g10"], [1,"b11"], [1,"b12"],
+                 [0,"a1"], [1,"a2"], [1,"a3"], [1,"a4"], [0,"a5"], [0,"a6"], [1,"a7"], [1,"a8"], [1,"a9"], [1,"a10"], [1,"a11"], [1,"a12"], [1,"a13"], [1,"a14"], [1,"a15"],
                  [1,"g1"], [0,"c2"], [1,"c3"], [1,"c4"], [1,"g2"], [1,"c6"], [0,"c7"], [1,"c8"], [1,"c9"], [1,"c10"], [1,"c11"], [1,"c12"], [1,"c13"], [1,"c14"], [1,"c15"]
                 ]
 
 
 var content = document.getElementById('content');
+
+var body = document.body;
+
+var txt = ''
+
+for (let i = 0; i < list_game.length; i++){
+        txt += list_game[i][0] + " "
+    }
+
+var news1 = document.createElement('h1');
+    news1.textContent = txt;
+    news1.id = 'news1';
+    news1.style.left =  80 + 'px';
+    news1.style.top =  80 + 'px';
+    news1.style.maxWidth = '330px';
+    news1.style.position = 'absolute';
+    news1.classList.add('menu_txt');
+    body.appendChild(news1);
+
+
+//var img_fon0 = document.createElement('img');
+//    img_fon0.setAttribute('src', list_h1[3].src);
+//    img_fon0.id = 'fon0';
+//    img_fon0.style.left = 52 + 'px';
+//    img_fon0.style.top = 113 + 'px';
+//    img_fon0.style.width = 899 + 'px';
+//    img_fon0.style.position = 'absolute';
+//    content.appendChild(img_fon0);
 
 var img_fon = document.createElement('img');
     img_fon.setAttribute('src', list_h1[0].src);
@@ -244,15 +291,6 @@ var img_fon = document.createElement('img');
     img_fon.style.position = 'absolute';
     content.appendChild(img_fon);
 
-var img_fon0 = document.createElement('img');
-    img_fon0.setAttribute('src', list_h1[3].src);
-    img_fon0.id = 'fon0';
-    img_fon0.style.left = 52 + 'px';
-    img_fon0.style.top = 113 + 'px';
-    img_fon0.style.width = 899 + 'px';
-    img_fon0.style.position = 'absolute';
-    content.appendChild(img_fon0);
-
 var img_kran = document.createElement('img');
     img_kran.setAttribute('src', list_h1[2].src);
     img_kran.id = 'kran';
@@ -261,6 +299,8 @@ var img_kran = document.createElement('img');
     img_kran.style.height = 140 + 'px';
     img_kran.style.position = 'absolute';
     content.appendChild(img_kran);
+
+
 
 var pos_left = 51;
 var pos_top = 465;
@@ -323,6 +363,8 @@ var list_position = [[0, 51], [1, 111], [2, 171], [3, 231], [4, 291], [5, 351], 
 
 var throw_kran = 0
 
+
+// додає блок в кран
 function add_blok_kran(){
 
     div_game = document.getElementById("div_game")
@@ -365,24 +407,348 @@ function move_man(){
     }
 }
 
+// рухає ГГ
+
+function move_gg(pos){
+
+    kluch = false
+    var index_gg = 0
+    for (let i = 0; i < list_game.length; i++){
+        if(list_game[i][0] == 2){
+            index_gg = i
+        }
+    }
+    var gg1 = document.getElementById('img_man')
+    var cur_gg1 = parseInt(gg1.style.left) || 0;
+    console.log(list_game[index_gg + 1],list_game[index_gg - 14])
+
+    // якщо йде на ліво
+    if(pos == "l"){
+        if(list_game[index_gg + 1][0] == 0 && cur_gg1 != 891){
+            var anim = 0
+            for (let i = 0; i < 4; i++) {
+                setTimeout(() => {
+
+                    var gg = document.getElementById('img_man')
+                    var cur_gg = parseInt(gg.style.left) || 0;
+                    gg.style.left = (cur_gg + 15) + 'px';
+
+                    gg.setAttribute('src', list_man_l[anim].src);
+                    gg.style.transform = "scaleX(-1)";
+                    anim += 1
+                    if(anim == 3){
+                        anim = 0
+                    }
+                    if (i === 3) {
+                        gg.setAttribute('src', list_man[0].src);
+                        gg.style.transform = "scaleX(1)";
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg + 1] = [2, 0]
+                        kluch = true
+                    }
+                }, i * 100);
+            }
+
+        // якщо рухає блок на ліво
+        }else if(list_game[index_gg + 1][0] == 1 && list_game[index_gg + 2][0] == 0
+                  && list_game[index_gg - 14][0] == 0 && cur_gg1 != 831 ){
+                 console.log(list_game[index_gg - 16])
+            var anim1 = 0
+            for (let i = 0; i < 4; i++) {
+                setTimeout(() => {
+                    var blok_id = list_game[index_gg + 1][1]
+                    var blok = document.getElementById(blok_id)
+                    var gg = document.getElementById('img_man')
+                    var cur_blok = parseInt(blok.style.left) || 0;
+                    var cur_gg = parseInt(gg.style.left) || 0;
+
+                    gg.style.left = (cur_gg + 15) + 'px';
+                    blok.style.left = (cur_blok + 15) + 'px';
+
+                    gg.setAttribute('src', list_man_move[anim1].src);
+                    gg.style.transform = "scaleX(-1)";
+                    anim1 += 1
+                    if(anim1 == 3){
+                        anim1 = 0
+                    }
+                    if (i === 3) {
+                        gg.setAttribute('src', list_man[0].src);
+                        gg.style.transform = "scaleX(1)";
+
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg + 1] = [2, 0]
+                        list_game[index_gg + 2] = [1, blok_id]
+                        kluch = true
+                    }
+                }, i * 100);
+            }
+        }else{
+            kluch = true
+        }
+    // якщо йде на право
+    }else if(pos == "r" && cur_gg1 != 51){
+        if(list_game[index_gg - 1][0] == 0){
+            var anim1 = 0
+            for (let i = 0; i < 4; i++) {
+                setTimeout(() => {
+
+                    var gg = document.getElementById('img_man')
+                    var cur_gg = parseInt(gg.style.left) || 0;
+                    gg.style.left = (cur_gg - 15) + 'px';
+
+                    gg.setAttribute('src', list_man_l[anim1].src);
+                    anim1 += 1
+                    if(anim1 == 3){
+                        anim1 = 0
+                    }
+                    if (i === 3) {
+                        gg.setAttribute('src', list_man[0].src);
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg - 1] = [2, 0]
+                        kluch = true
+                    }
+                }, i * 100);
+            }
+        }else if(list_game[index_gg - 1][0] == 1 && list_game[index_gg - 16][0] == 0 && list_game[index_gg - 2][0] == 0 && cur_gg1 != 111){
+            var anim1 = 0
+            for (let i = 0; i < 4; i++) {
+                setTimeout(() => {
+                    var blok_id = list_game[index_gg - 1][1]
+                    var blok = document.getElementById(blok_id)
+                    var gg = document.getElementById('img_man')
+                    var cur_blok = parseInt(blok.style.left) || 0;
+                    var cur_gg = parseInt(gg.style.left) || 0;
+
+                    gg.style.left = (cur_gg - 15) + 'px';
+                    blok.style.left = (cur_blok - 15) + 'px';
+
+                    gg.setAttribute('src', list_man_move[anim1].src);
+                    anim1 += 1
+                    if(anim1 == 3){
+                        anim1 = 0
+                    }
+                    if (i === 3) {
+                        gg.setAttribute('src', list_man[0].src);
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg - 1] = [2, 0]
+                        list_game[index_gg - 2] = [1, blok_id]
+                        kluch = true
+                    }
+                }, i * 100);
+            }
+        }else{
+            kluch = true
+        }
+
+    }else if(pos == "d_r"){ // якщт гравець стрибає вправо
+        if(list_game[index_gg + 1][0] == 1 && list_game[index_gg - 14][0] == 0){
+            var anim = 0
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    if (i < 4){
+                        var gg_t = document.getElementById('img_man')
+                        var cur_gg_t = parseInt(gg_t.style.top) || 0;
+                        gg_t.style.top = (cur_gg_t - 15) + 'px';
+                        gg_t.setAttribute('src', list_h1[3].src);
+                    }else{
+                        var gg = document.getElementById('img_man')
+                        var cur_gg = parseInt(gg.style.left) || 0;
+                        gg.style.left = (cur_gg + 15) + 'px';
+                        gg.setAttribute('src', list_man_l[anim].src);
+                        gg.style.transform = "scaleX(-1)";
+                        anim += 1
+                        if(anim == 3){
+                            anim = 0
+                        }
+                    }
+
+                    if (i === 7) {
+                        gg.setAttribute('src', list_man[0].src);
+                        gg.style.transform = "scaleX(1)";
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg - 14] = [2, 0]
+                        kluch = true
+                    }
+                }, i * 100);
+            }
+        }else if(list_game[index_gg + 1][0] == 1 && list_game[index_gg - 14][0] == 1 && list_game[index_gg - 13][0] == 0){ // якщо штавха по діагоналі
+            console.log("TUT")
+            var anim = 0
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    if (i < 4){
+                        var gg_t = document.getElementById('img_man')
+                        var cur_gg_t = parseInt(gg_t.style.top) || 0;
+                        gg_t.style.top = (cur_gg_t - 15) + 'px';
+                        gg_t.setAttribute('src', list_h1[3].src);
+                    }else{
+                        var gg = document.getElementById('img_man')
+                        var cur_gg = parseInt(gg.style.left) || 0;
+                        var blok_id = list_game[index_gg - 14][1]
+                        var blok = document.getElementById(blok_id)
+                        var cur_blok = parseInt(blok.style.left) || 0;
+                        blok.style.left = (cur_blok + 15) + 'px';
+                        gg.style.left = (cur_gg + 15) + 'px';
+
+                        gg.setAttribute('src', list_man_l[anim].src);
+                        gg.style.transform = "scaleX(-1)";
+                        anim += 1
+                        if(anim == 3){
+                            anim = 0
+                        }
+                    }
+                    if (i === 7) {
+                        gg.setAttribute('src', list_man[0].src);
+                        gg.style.transform = "scaleX(1)";
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg - 14] = [2, 0]
+                        list_game[index_gg - 13] = [1, blok_id]
+                        console.log(list_game[index_gg - 14], list_game[index_gg - 13])
+                        kluch = true
+                    }
+
+                }, i * 100);
+            }
+        }else{
+            kluch = true
+        }
+    }else if(pos == "d_l"){ // якщт гравець стрибає вліво
+        if(list_game[index_gg - 1][0] == 1 && list_game[index_gg - 16][0] == 0){
+            var anim = 0
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    if (i < 4){
+                        var gg_t = document.getElementById('img_man')
+                        var cur_gg_t = parseInt(gg_t.style.top) || 0;
+                        gg_t.style.top = (cur_gg_t - 15) + 'px';
+                        gg_t.setAttribute('src', list_h1[3].src);
+                        gg_t.style.transform = "scaleX(-1)";
+                    }else{
+                        var gg = document.getElementById('img_man')
+                        var cur_gg = parseInt(gg.style.left) || 0;
+                        gg.style.left = (cur_gg - 15) + 'px';
+                        gg.setAttribute('src', list_man_l[anim].src);
+                        gg.style.transform = "scaleX(1)";
+                        anim += 1
+                        if(anim == 3){
+                            anim = 0
+                        }
+                    }
+
+                    if (i === 7) {
+                        gg.setAttribute('src', list_man[0].src);
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg - 16] = [2, 0]
+                        kluch = true
+                    }
+                }, i * 100);
+            }
+        }else if(list_game[index_gg - 1][0] == 1 && list_game[index_gg - 16][0] == 1 && list_game[index_gg - 17][0] == 0){
+            var anim = 0
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    if (i < 4){
+                        var gg_t = document.getElementById('img_man')
+                        var cur_gg_t = parseInt(gg_t.style.top) || 0;
+                        gg_t.style.top = (cur_gg_t - 15) + 'px';
+                        gg_t.setAttribute('src', list_h1[3].src);
+                        gg_t.style.transform = "scaleX(-1)";
+                    }else{
+                        var gg = document.getElementById('img_man')
+                        var cur_gg = parseInt(gg.style.left) || 0;
+                        var blok_id = list_game[index_gg - 16][1]
+                        var blok = document.getElementById(blok_id)
+                        var cur_blok = parseInt(blok.style.left) || 0;
+                        blok.style.left = (cur_blok - 15) + 'px';
+                        gg.style.left = (cur_gg - 15) + 'px';
+
+                        gg.setAttribute('src', list_man_l[anim].src);
+                        gg.style.transform = "scaleX(1)";
+                        anim += 1
+                        if(anim == 3){
+                            anim = 0
+                        }
+                    }
+                    if (i === 7) {
+                        gg.setAttribute('src', list_man[0].src);
+                        list_game[index_gg] = [0, 0]
+                        list_game[index_gg - 16] = [2, 0]
+                        list_game[index_gg - 17] = [1, blok_id]
+                        kluch = true
+                    }
+
+                }, i * 100);
+            }
+        }else{
+            kluch = true
+        }
+    }else if(pos == "up"){ // якщт гравець стрибає
+        for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+            var gg_t = document.getElementById('img_man')
+            var cur_gg_t = parseInt(gg_t.style.top) || 0;
+            gg_t.style.top = (cur_gg_t - 15) + 'px';
+            gg_t.setAttribute('src', list_h1[3].src);
+
+            if (i === 3) {
+                list_game[index_gg] = [0, 0]
+                list_game[index_gg - 15] = [2, 0]
+                kluch = true
+            }
+        }, i * 100);
+    }
+    }else{
+            kluch = true
+    }
+
+
+    console.log(kluch)
+}
+
+
 // рухає блок вних по масиву
-function move_block(id) {
+var count_g = 0
+function move_block(id, index, blok) {
     for (let i = 0; i < 4; i++) {
         setTimeout(() => {
+
             var cur_blok = parseInt(document.getElementById(id).style.top) || 0;
             document.getElementById(id).style.top = (cur_blok + 15) + 'px';
-            if (i === 7) {
+            if(id == 'img_man'){
+                document.getElementById(id).setAttribute('src', list_h1[3].src);
+            }
+            if (i === 3) {
+                if(id == 'img_man'){
+                    kluch = false
+                    document.getElementById(id).setAttribute('src', list_man[0].src);
+                    }
+                list_game[index] = [0,0]
+                list_game[index + 15] = blok
+                count_g -= 1
+                kluch = true
+            }
+        }, i * 100);
+    }
+}
+// видаляє блоки по одному коли в лінії
+function dell_blok(id) {
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            document.getElementById(id).setAttribute('src', list_del[i].src);
+            if (i === 2) {
+                document.getElementById(id).remove()
             }
         }, i * 100);
     }
 }
 
+// додає блок оли його кидає кран
 function add_block_list(id,index) {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 16; i++) {
         setTimeout(() => {
             var cur_blok = parseInt(document.getElementById(id).style.top) || 0;
             document.getElementById(id).style.top = (cur_blok + 15) + 'px';
-            if (i === 11) {
+            if (i === 15) {
                 document.getElementById(id).style.top = 465 + 'px';
                 list_game[index] = [1, id]
             }
@@ -390,10 +756,6 @@ function add_block_list(id,index) {
     }
 }
 
-
-var mov_up = false;
-var mov_left = false;
-var mov_right = false;
 
 var anim = 0;
 var anim1 = 0;
@@ -404,38 +766,32 @@ var jump = 0;
 var key = true;
 var i_right = 0
 
+//
+
+
 
 function game(){
 
+    // додає новий блок в гру краном 1
     var cur_kran = parseInt(document.getElementById("kran").style.left) || 0;
-
     if(id_blok_new != 0){
         var cur_blok_left = parseInt(document.getElementById(id_blok_new).style.left) || 0;
         var cur_blok_top = parseInt(document.getElementById(id_blok_new).style.top) || 0;
-
-
         if (cur_blok_left == throw_kran[1]){
             document.getElementById("kran").setAttribute('src', list_h1[1].src); // змінює вигляд крану
-
             add_block_list(id_blok_new, throw_kran[0])
-
             id_blok_new = ""
             throw_kran = 0
 
         }else{
-
             document.getElementById(id_blok_new).style.left = (cur_blok_left + 15) + 'px';
         }
     }
-
     document.getElementById("kran").style.left = (cur_kran + 15) + 'px';
-
-
     if(cur_kran > 1200){
         add_blok_kran()
         document.getElementById("kran").setAttribute('src', list_h1[2].src);
         document.getElementById("kran").style.left = -173 + 'px';
-
     }
 
     anim += 1;
@@ -447,14 +803,13 @@ function game(){
         count = 0
         anim1 += 1;
     }
-
     if (anim1 == 4){
         anim1 = 0
     }
 
     var anim_man = Math.floor(Math.random() * 3);
 
-//    var man = document.getElementById("img_man")
+    var man = document.getElementById("img_man")
 
     var index = 0;
     for (let i = 0; i < list_game.length; i++) {
@@ -462,22 +817,35 @@ function game(){
             index = i
         }
     }
-    // тест переміщеня
-    for (let i = 0; i < list_game.length; i++){
-    if(i + 15 < 104){
-        if(list_game[i][0] == 1 && list_game[i + 15][0] == 0){
 
-            var blok = list_game[i]
-            var id_blok = list_game[i][1]
+    // переміщеня як гравітація
+    if(count_g == 0){
+        for (let i = 0; i < list_game.length; i++){
+            if(i + 15 < 105){
+                if(list_game[i][0] == 1 && list_game[i + 15][0] == 0){
+                    var blok = list_game[i]
+                    var id_blok = list_game[i][1]
+                    move_block(id_blok, i, blok)
+                    count_g += 1
+                }else if (list_game[i][0] == 2 && list_game[i + 15][0] == 0){
+                    move_block('img_man', i, [2,0])
+                    count_g += 1
+                }
 
-            move_block(id_blok)
-
-            list_game[i] = [0,0]
-            list_game[i + 15] = blok
-
-
+            }
         }
     }
+
+    // видаляє першу лінію якщо всі заповнені
+    var line_right = list_game.slice(90, 105).every(function(subarray) {
+        return subarray[0] === 1;
+    });
+
+    if (line_right) {
+        for (let i = 90; i < list_game.length; i++){
+            dell_blok(list_game[i][1])
+            list_game[i] = [0, 0]
+        }
     }
 
 //    if(mov_right){
@@ -551,6 +919,13 @@ function game(){
 //        man.style.transform = "scaleX(1)";
 //    }
 //    man.setAttribute('src', list_man[anim1].src);
+    var txt1 = ''
+
+    for (let i = 0; i < list_game.length; i++){
+        txt1 += list_game[i][0] + " "
+        }
+
+    document.getElementById("news1").textContent = txt1;
 }
 
-var gameinterval = setInterval(game, 150)
+var gameinterval = setInterval(game, 100)
