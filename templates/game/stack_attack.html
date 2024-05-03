@@ -54,6 +54,19 @@
         <img class="img_down" src="/media/img/up.svg">
     </button>
 
+    <button id="l_d" class="d_left_control"
+    ontouchstart="leftDiagonalDown(event)" ontouchend="leftDiagonalUp()"
+    onmousedown="leftDiagonalDown(event)" onmouseup="leftDiagonalUp()">
+        <img class="img_diag_left" src="/media/img/diag.svg">
+    </button>
+
+    <button id="r_d" class="d_right_control"
+        ontouchstart="rightDiagonalDown(event)" ontouchend="rightDiagonalUp()"
+        onmousedown="rightDiagonalDown(event)" onmouseup="rightDiagonalUp()">
+            <img class="img_diag_right" src="/media/img/diag.svg">
+    </button>
+
+
     <button id="l_C" class="left_control"
     ontouchstart="leftMouseDown(event)" ontouchend="leftMouseUp()"
     onmousedown="leftMouseDown(event)" onmouseup="leftMouseUp()">
@@ -66,12 +79,6 @@
             <img class="img_right" src="/media/img/up.svg">
     </button>
 
-
-    <button id="c_C" class="center_control"
-    ontouchstart="center(event)" ontouchend="center_up()"
-    onmousedown="center(event)" onmouseup="center_up()">
-        <img class="img_center" src="/media/img/center.svg">
-    </button>
 
 </div>
 
