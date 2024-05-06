@@ -128,10 +128,10 @@ var RIGHT = null
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
     klic()
-    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
-    navigator.vibrate(50);
     clearInterval(DOWN);
     DOWN = setInterval(() => move_element("u", "div_menu"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 }
 
 function downMouseUp() {
@@ -142,10 +142,10 @@ function downMouseUp() {
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
     klic()
-    event.preventDefault();
-    navigator.vibrate(50);
     clearInterval(UP);
     UP = setInterval(() => move_element("d", "div_menu"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 }
 
 function upMouseUp() {
@@ -156,10 +156,10 @@ function upMouseUp() {
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
     klic()
-    event.preventDefault();
-    navigator.vibrate(50);
     clearInterval(LEFT);
     LEFT = setInterval(() => move_element("r", "div_menu"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 }
 
 function leftMouseUp() {
@@ -171,10 +171,10 @@ function leftMouseUp() {
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
     klic()
-    event.preventDefault();
-    navigator.vibrate(50);
     clearInterval(RIGHT);
     RIGHT = setInterval(() => move_element("l", "div_menu"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 }
 
 function rightMouseUp() {
@@ -185,9 +185,9 @@ function rightMouseUp() {
 function center(event){
     document.getElementById('c_C').style.backgroundColor = "#613703";
     klic()
-    event.preventDefault();
-    navigator.vibrate(50);
     virus_kill()
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 }
 
 function center_up(){
@@ -198,14 +198,13 @@ function center_up(){
 function left_select(event){
     document.getElementById('l_s').style.backgroundColor = "#613703";
     klic()
-    event.preventDefault();
-    navigator.vibrate(50);
-
     if(document.getElementById("div_mini_game")){
             document.getElementById("div_mini_game").remove();
     }else{
         window.location.href = "/";
     }
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 
 }
 

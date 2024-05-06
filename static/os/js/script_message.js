@@ -185,14 +185,14 @@ function play(elem,num){
 
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
-    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
-    navigator.vibrate(50);
     var scrollHeight = len_menu * 125;
     var y = select.offsetTop;
 
         if (y + 125 < scrollHeight){
             down()
     }
+    event.preventDefault();
+    navigator.vibrate(50);
 }
 
 function downMouseUp() {
@@ -201,14 +201,14 @@ function downMouseUp() {
 
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
     var scrollHeight = len_menu * 125;
     var y = select.offsetTop;
 
     if (y - 125 > -1){
         up()
     }
+    event.preventDefault();
+    navigator.vibrate(50);
 }
 
 function upMouseUp() {
@@ -239,9 +239,9 @@ function rightMouseUp() {
 // лівий селект
 function left_select(event){
     document.getElementById('l_s').style.backgroundColor = "#613703";
+    back()
     event.preventDefault();
     navigator.vibrate(50);
-    back()
 }
 
 function left_select_up() {
@@ -250,9 +250,9 @@ function left_select_up() {
 
 function right_select(event){
     document.getElementById('r_s').style.backgroundColor = "#613703";
+    select_link()
     event.preventDefault();
     navigator.vibrate(50);
-    select_link()
 }
 
 

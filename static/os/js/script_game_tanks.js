@@ -128,11 +128,10 @@ var up = null
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
     document.getElementById("text").textContent = "ТАЧ";
-    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
-    navigator.vibrate(50);
-
     clearInterval(down)
     down = setInterval(() => move("d"), 100);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
 }
 
 function downMouseUp() {
@@ -144,10 +143,11 @@ function downMouseUp() {
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
     document.getElementById("text").textContent = "ТАЧ";
-    event.preventDefault();
-    navigator.vibrate(50);
+
     clearInterval(up)
     up = setInterval(() => move("u"), 100);
+    event.preventDefault();
+    navigator.vibrate(50);
 }
 
 function upMouseUp() {
@@ -214,84 +214,5 @@ function right_select(event){
 
 
 function right_select_up() {
-    document.getElementById('r_s').style.backgroundColor = "#291701";
-}
-
-//кнопки мишки
-
-// кнопка вниз
-function downMouseD(event) {
-    document.getElementById('d_C').style.backgroundColor = "#613703";
-    document.getElementById("text").textContent = "МИШКА";
-    clearInterval(down)
-    down = setInterval(() => move("d"), 100);
-}
-
-function downMouseU() {
-    document.getElementById('d_C').style.backgroundColor = "#291701";
-    clearInterval(down)
-}
-
-// кнопка верх
-function upMouseD(event) {
-    document.getElementById('u_C').style.backgroundColor = "#613703";
-    document.getElementById("text").textContent = "МИШКА";
-    clearInterval(up)
-    up = setInterval(() => move("u"), 100);
-}
-
-function upMouseU() {
-    document.getElementById('u_C').style.backgroundColor = "#291701";
-    clearInterval(up)
-}
-
-// кнопка вліво
-function leftMouseD() {
-    document.getElementById('l_C').style.backgroundColor = "#613703";
-    document.getElementById("text").textContent = "МИШКА";
-}
-
-function leftMouseU() {
-    document.getElementById('l_C').style.backgroundColor = "#291701";
-}
-
-// кнопка в право
-function rightMouseD(event) {
-    document.getElementById('r_C').style.backgroundColor = "#613703";
-    document.getElementById("text").textContent = "МИШКА";
-}
-
-function rightMouseU() {
-    document.getElementById('r_C').style.backgroundColor = "#291701";
-}
-
-function center_d(){
-    document.getElementById('c_C').style.backgroundColor = "#613703";
-    document.getElementById("text").textContent = "МИШКА";
-}
-
-function center_u(){
-    document.getElementById('c_C').style.backgroundColor = "#291701";
-}
-
-// лівий селект
-function left_s(){
-    document.getElementById('l_s').style.backgroundColor = "#613703";
-    document.getElementById("text").textContent = "МИШКА";
-
-}
-
-function left_s_up() {
-    document.getElementById('l_s').style.backgroundColor = "#291701";
-}
-
-// правий селект
-function right_s(){
-    document.getElementById('r_s').style.backgroundColor = "#613703";
-    document.getElementById("text").textContent = "МИШКА";
-}
-
-
-function right_s_up() {
     document.getElementById('r_s').style.backgroundColor = "#291701";
 }

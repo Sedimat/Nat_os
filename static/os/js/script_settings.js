@@ -84,9 +84,9 @@ function rightMouseUp() {
 // лівий селект
 function left_select(event){
     document.getElementById('l_s').style.backgroundColor = "#613703";
+    back()
     event.preventDefault();
     navigator.vibrate(50);
-    back()
 }
 
 function left_select_up() {

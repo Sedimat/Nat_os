@@ -1706,7 +1706,6 @@ function menu(nav){
                 window.location.href = "/games";
             }
         }else if (document.getElementById("div_game") && !document.getElementById("div_menu1") ){ // Ставе гру на паузу та відкрива меню
-
             clearInterval(gameinterval)
             gameinterval = null
             kluch = false

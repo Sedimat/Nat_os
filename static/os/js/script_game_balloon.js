@@ -1080,9 +1080,9 @@ var intervalDOWN = null
 
 function center(event){
     document.getElementById('c_C').style.backgroundColor = "#613703";
+    center1()
     event.preventDefault();
     navigator.vibrate(50);
-    center1()
 }
 
 function center_up(){
@@ -1380,9 +1380,9 @@ function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
     clearInterval(intervalDOWN);
     move_select_p()
-    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
-    navigator.vibrate(50);
     intervalDOWN = setInterval(down, 50);
+    event.preventDefault();
+    navigator.vibrate(50);
 }
 
 function downMouseUp() {
@@ -1394,9 +1394,9 @@ function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
     clearInterval(intervalUP);
     move_select_m()
+    intervalUP = setInterval(up, 50);
     event.preventDefault();
     navigator.vibrate(50);
-    intervalUP = setInterval(up, 50);
 }
 
 function upMouseUp() {
@@ -1407,9 +1407,9 @@ function upMouseUp() {
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
     clearInterval(intervalLEFT);
+    intervalLEFT = setInterval(left, 50);
     event.preventDefault();
     navigator.vibrate(50);
-    intervalLEFT = setInterval(left, 50);
 }
 
 function leftMouseUp() {
@@ -1421,9 +1421,9 @@ function leftMouseUp() {
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
     clearInterval(intervalRIGHT);
+    intervalRIGHT = setInterval(right, 50);
     event.preventDefault();
     navigator.vibrate(50);
-    intervalRIGHT = setInterval(right, 50);
 }
 
 function rightMouseUp() {
@@ -1445,9 +1445,9 @@ function left_select_up() {
 
 function right_select(event){
     document.getElementById('r_s').style.backgroundColor = "#613703";
+    right_select1(event)
     event.preventDefault();
     navigator.vibrate(50); // включаємо вібрацію
-    right_select1(event)
 }
 
 

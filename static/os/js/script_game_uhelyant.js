@@ -613,10 +613,10 @@ function center_up(){
 function downMouseDown(event) {
     move_select_p()
     document.getElementById('d_C').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
     clearInterval(gameDOWN);
     gameDOWN = setInterval(down, 70);
+    event.preventDefault();
+    navigator.vibrate(50);
 }
 
 function downMouseUp() {
@@ -628,10 +628,10 @@ function downMouseUp() {
 function upMouseDown(event) {
     move_select_m()
     document.getElementById('u_C').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50);
     clearInterval(gameUP);
     gameUP = setInterval(up, 70);
+    event.preventDefault();
+    navigator.vibrate(50);
 }
 
 function upMouseUp() {
@@ -642,9 +642,9 @@ function upMouseUp() {
 // кнопка в ліво
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
+    l_c_down(1)
     event.preventDefault();
     navigator.vibrate(50);
-    l_c_down(1)
 }
 
 function leftMouseUp() {
@@ -655,9 +655,9 @@ function leftMouseUp() {
 // кнопка в право
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
+    r_c_down(1)
     event.preventDefault();
     navigator.vibrate(50);
-    r_c_down(1)
 }
 
 function rightMouseUp() {
@@ -678,9 +678,10 @@ function left_select_up() {
 
 function right_select(event){
     document.getElementById('r_s').style.backgroundColor = "#613703";
-    event.preventDefault();
-    navigator.vibrate(50); // включаємо вібрацію
     right_select1(event)
+
+    event.preventDefault();
+    navigator.vibrate(50);
 }
 
 
