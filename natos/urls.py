@@ -18,5 +18,6 @@ urlpatterns = [
     path('balloon', views.balloon, name='balloon'),
     path('uhelyant', views.uhelyant, name='uhelyant'),
     path('stack_attack', views.stack_attack, name='stack_attack'),
+    path('tanks', views.tanks, name='tanks'),
     path('NatOs_web', views.natos_web, name='NatOs_web'),
 ]

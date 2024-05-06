@@ -3,7 +3,6 @@
 var gameinterval = null
 
 
-
 klic_s = new Audio("media/sounds/klic.mp3");
 
 function klic(){
@@ -288,20 +287,18 @@ menu_h.src = '/media/g_ball/game_menu0.svg'
 var select = new Image()
 select.src = "/media/img/select.svg"
 
+
 var list_game1 = [[0,0], [1,"b2"], [2,"Q4"], [0,0],  [1,"Q6"], [0, 0], [0,0], [1,"g6"], [0,0] ]
-
-
 
 var list_game = []
 //list_game =  [[1, 'hljky'], [0,0], [0,0], [0,'mfd4'], [1,'m56s'], [1, 'mx23'], [1,'fgbf098'], [1,'mb12'], [0,'mf45'], [1,'mnb78'],[1, 'bvg56'], [1,"f12"], [1,'m60'], [1,'m61'], [1,'m43'],
-//                 [1, "fwef234we"], [0,'fwvevs'], [0,'m8'], [2,'m1'], [1,"m2"], [1, 'm3'], [1,'m4'], [1,'cm23'], [1,'m0'], [1,"wfwfwwqdwq"],[1, "m55"], [1,'ergr43'], [1,'m67'], [1,'egerrge34'], [1,'fewfwef2342d'],
+//                 [1, "fwef234we"], [1,'fwvevs'], [1,'m8'], [0,'m1'], [1,"m2"], [1, 'm3'], [1,'m4'], [1,'cm23'], [1,'m0'], [1,"wfwfwwqdwq"],[1, "m55"], [1,'ergr43'], [1,'m67'], [1,'egerrge34'], [1,'fewfwef2342d'],
 //                 [1, '34rf'], [1,'fwfvsdv'], [1,'09evr'], [1,'nbnmgh'], [1,'voier0vj9'], [1, 'l1'], [1,'wefgwegh'], [1,'fer436f4'], [1,'dqwdq'], [1,'l3'],[1, 'm19'], [1,'m29'], [1,'m89'], [1,'fweccbcb'], [1,'1232dfwsf'],
 //                 [1, 'fwe0'], [1,'fwef0vsdv0'], [1,'fweewf'], [1,"fwefwef"], [1,'fwefwewe3445'], [1, 'lfg'], [1,'fwefwe1'], [1,"yuy"], [1,'l1'], [1,'l2'],[1, 'nh90'], [1,'fewfwfew'], [1,'fwfwefvgbh'], [1,'fwefw34t5'], [1,"sdgege"],
 //                 [1, 'fwefwefnvcbc'], [1,'09jrkj0'], [1,'gergre'], [1,"b3"], [1,"Q6"], [1,"b4"], [1,"b5"], [1,"g6"], [1,"b6"], [1,"b7"], [1,"b8"], [1,"b9"], [1,"g10"], [1,"b11"], [1,"b12"],
 //                 [1,"a1"], [1,"a2"], [1,"a3"], [1,"a4"], [1,"a5"], [1,"a6"], [1,"a7"], [1,"a8"], [1,"a9"], [1,"a10"], [1,"a11"], [1,"a12"], [1,"a13"], [1,"a14"], [1,"a15"],
 //                 [1,"g1"], [1,"c2"], [1,"c3"], [1,"c4"], [1,"g2"], [1,"c6"], [1,"c7"], [1,"c8"], [1,"c9"], [1,"c10"], [1,"c11"], [1,"c12"], [1,"c13"], [1,"c14"], [1,"c15"]
 //                ]
-
 
 function generate_list(){
     list_game = []
@@ -337,6 +334,21 @@ generate_list()
 var content = document.getElementById('content');
 
 var body = document.body;
+
+//var txt = ''
+//
+//for (let i = 0; i < list_game.length; i++){
+//        txt += list_game[i][0] + " "
+//    }
+//var news1 = document.createElement('h1');
+//    news1.textContent = txt;
+//    news1.id = 'news1';
+//    news1.style.left =  80 + 'px';
+//    news1.style.top =  80 + 'px';
+//    news1.style.maxWidth = '330px';
+//    news1.style.position = 'absolute';
+//    news1.classList.add('menu_txt');
+//    body.appendChild(news1);
 
 function add_setings(){
     var menu = document.getElementById('div_menu');
@@ -648,6 +660,8 @@ var pos_left = 51;
 var pos_top = 465;
 var pos_key = -1
 
+
+
 function add_blok(){
     div_game = document.getElementById("div_game")
 
@@ -690,7 +704,7 @@ var id_blok_new = ""
 var list_position = [[0, 51], [1, 111], [2, 171], [3, 231], [4, 291], [5, 351], [6, 411], [7,471],
                      [8, 531], [9, 591], [10, 651], [11, 711], [12, 771], [13, 831], [14, 891]]
 
-var throw_kran = 0
+var throw_kran = [0,0]
 
 // зміна з координатами щоб розбити блок каскою
 var kub_1 = 0
@@ -701,17 +715,23 @@ function add_blok_kran(){
 
     div_game = document.getElementById("div_game")
     throw_kran = list_position[Math.floor(Math.random() * list_position.length)];
-
-
     if (list_game[throw_kran[0]][0] == 1){
+        var cunt_it = 0
         for (let i = 0; i < 15; i++) {
             if(list_game[i][0] == 0){
+                cunt_it += 1
                 throw_kran = list_position[i]
                 break;
             }
         }
+        if(cunt_it == 0){
+                throw_kran = [16, 1000]
+            }
     }
 
+    if(throw_kran[0] === throw_kran2[0] || throw_kran[0] === throw_kran3[0] || throw_kran[0] === throw_kran4[0]){
+        throw_kran = [16, 1000]
+    }
 
     // генерує рондомний id
     var r_word = '';
@@ -737,7 +757,7 @@ function add_blok_kran(){
 
 var id_blok_new2 = ""
 
-var throw_kran2 = 0
+var throw_kran2 = [-2,0]
 
 // зміна з координатами щоб розбити блок каскою
 var kub_2 = 0
@@ -749,12 +769,22 @@ function add_blok_kran2(){
     throw_kran2 = list_position[Math.floor(Math.random() * list_position.length)];
 
         if (list_game[throw_kran2[0]][0] == 1){
+        var cunt_it = 0
         for (let i = 0; i < 15; i++) {
             if(list_game[i][0] == 0){
+                cunt_it += 1
                 throw_kran2 = list_position[i]
                 break;
             }
         }
+        if(cunt_it == 0){
+                console.log("Перший Немає пустих")
+                throw_kran2 = [16, 1000]
+            }
+    }
+
+    if(throw_kran2[0] === throw_kran[0] || throw_kran2[0] === throw_kran3[0] || throw_kran2[0] === throw_kran4[0]){
+        throw_kran2 = [16, 1000]
     }
 
     // генерує рондомний id
@@ -781,7 +811,7 @@ function add_blok_kran2(){
 
 var id_blok_new3 = ""
 
-var throw_kran3 = 0
+var throw_kran3 = [-2,0]
 
 // зміна з координатами щоб розбити блок каскою
 var kub_3 = 0
@@ -793,11 +823,22 @@ function add_blok_kran3(){
     throw_kran3 = list_position[Math.floor(Math.random() * list_position.length)];
 
         if (list_game[throw_kran3[0]][0] == 1){
+
+        var cunt_it = 0
         for (let i = 0; i < 15; i++) {
             if(list_game[i][0] == 0){
+                cunt_it += 1
                 throw_kran3 = list_position[i]
+                break;
+            }
+            }
+            if(cunt_it == 0){
+                throw_kran3 = [16, 1000]
             }
         }
+
+    if((throw_kran3[0] === throw_kran[0] || throw_kran3[0] === throw_kran2[0] || throw_kran3[0] === throw_kran4[0])){
+        throw_kran3 = [16, 1000]
     }
 
     // генерує рондомний id
@@ -824,7 +865,7 @@ function add_blok_kran3(){
 
 var id_blok_new4 = ""
 
-var throw_kran4 = 0
+var throw_kran4 = [-2,0]
 
 // зміна з координатами щоб розбити блок каскою
 var kub_4 = 0
@@ -836,13 +877,22 @@ function add_blok_kran4(){
     throw_kran4 = list_position[Math.floor(Math.random() * list_position.length)];
 
         if (list_game[throw_kran4[0]][0] == 1){
+        var cunt_it = 0
         for (let i = 0; i < 15; i++) {
             if(list_game[i][0] == 0){
+                cunt_it += 1
                 throw_kran4 = list_position[i]
+                break
             }
+        }
+        if(cunt_it == 0){
+            throw_kran4 = [16, 1000]
         }
     }
 
+    if(throw_kran4[0] === throw_kran[0] || throw_kran4[0] === throw_kran2[0] || throw_kran4[0] === throw_kran3[0]){
+        throw_kran4 = [16, 1000]
+    }
 
     // генерує рондомний id
     var r_word = '';
@@ -916,14 +966,13 @@ function move_gg(pos){
 
             // якщо рухає блок на право
             }else if(list_game[index_gg + 1][0] == 1 && list_game[index_gg + 2] && list_game[index_gg + 2][0] == 0
-                      && list_game[index_gg - 14][0] == 0 && cur_gg1 != 891 ){
+                      && list_game[index_gg - 14][0] == 0 && cur_gg1 != 831 ){
                 var anim1 = 0
                 var blok_id1 = list_game[index_gg + 1][1]
                 for (let i = 0; i < 4; i++) {
                     setTimeout(() => {
-                        if(document.getElementById(list_game[index_gg + 1][1])){
-                            var blok_id = list_game[index_gg + 1][1]
-                            var blok = document.getElementById(blok_id)
+//                            var blok_id = list_game[index_gg + 1][1]
+                            var blok = document.getElementById(blok_id1)
                             var gg = document.getElementById('img_man')
                             var cur_blok = parseInt(blok.style.left) || 0;
                             var cur_gg = parseInt(gg.style.left) || 0;
@@ -937,22 +986,18 @@ function move_gg(pos){
                             if(anim1 == 3){
                                 anim1 = 0
                             }
+                            if (i === 0) {
+                            list_game[index_gg + 1] = [0, 0]
+                            }
                             if (i === 3) {
                                 gg.setAttribute('src', list_man[0].src);
                                 gg.style.transform = "scaleX(1)";
 
                                 list_game[index_gg] = [0, 0]
                                 list_game[index_gg + 1] = [2, 0]
-                                list_game[index_gg + 2] = [1, blok_id]
-                                for (let i = 0; i < 2; i++) {
-                                        setTimeout(() => {
-                                            if (i === 1) { kluch = true }
-                                        }, i * 100);
-                                    }
+                                list_game[index_gg + 2] = [1, blok_id1]
+                                kluch = true
                             }
-                        }else{
-                            kluch = true
-                        }
                     }, i * 100);
                 }
             }else{
@@ -995,10 +1040,9 @@ function move_gg(pos){
                 var back = 0
                 for (let i = 0; i < 4; i++) {
                     setTimeout(() => {
-                        if(document.getElementById(list_game[index_gg - 1][1])){
                             back += 1
                             var blok_id = list_game[index_gg - 1][1]
-                            var blok = document.getElementById(blok_id)
+                            var blok = document.getElementById(blok_id1)
                             var gg = document.getElementById('img_man')
                             var cur_blok = parseInt(blok.style.left) || 0;
                             var cur_gg = parseInt(gg.style.left) || 0;
@@ -1010,20 +1054,16 @@ function move_gg(pos){
                             if(anim1 == 3){
                                 anim1 = 0
                             }
+                            if (i === 0) {
+                                list_game[index_gg - 1] = [0, 0]
+                            }
                             if (i === 3) {
                                 gg.setAttribute('src', list_man[0].src);
                                 list_game[index_gg] = [0, 0]
                                 list_game[index_gg - 1] = [2, 0]
-                                list_game[index_gg - 2] = [1, blok_id]
-                                for (let i = 0; i < 2; i++) {
-                                        setTimeout(() => {
-                                            if (i === 1) { kluch = true }
-                                        }, i * 100);
-                                    }
+                                list_game[index_gg - 2] = [1, blok_id1]
+                                kluch = true
                             }
-                        }else{
-                            kluch = true
-                        }
 
                     }, i * 100);
                 }
@@ -1189,6 +1229,8 @@ function move_gg(pos){
                             document.getElementById(kub_1[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_1[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1200,6 +1242,8 @@ function move_gg(pos){
                             document.getElementById(kub_1[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_1[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1211,6 +1255,8 @@ function move_gg(pos){
                             document.getElementById(kub_2[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_2[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1221,6 +1267,8 @@ function move_gg(pos){
                             document.getElementById(kub_2[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_2[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1232,6 +1280,8 @@ function move_gg(pos){
                             document.getElementById(kub_3[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_3[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1242,6 +1292,8 @@ function move_gg(pos){
                             document.getElementById(kub_3[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_3[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1253,6 +1305,8 @@ function move_gg(pos){
                             document.getElementById(kub_4[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_4[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1263,6 +1317,8 @@ function move_gg(pos){
                             document.getElementById(kub_4[1]).setAttribute('src', list_del[i].src);
                             if (i === 2) {
                                 document.getElementById(kub_4[1]).remove()
+                                score += 5
+                                document.getElementById("score").textContent = "Score: " + score;
                             }
                         }, i * 100);
                     }
@@ -1391,11 +1447,12 @@ function game(){
 
      //додає новий блок в гру краном 1
     var cur_kran = parseInt(document.getElementById("kran").style.left) || 0;
-    if(id_blok_new != 0){
+    if(id_blok_new){
         var cur_blok_left = parseInt(document.getElementById(id_blok_new).style.left) || 0;
         var cur_blok_top = parseInt(document.getElementById(id_blok_new).style.top) || 0;
         if (cur_blok_left == throw_kran[1]){
             document.getElementById("kran").setAttribute('src', list_h1[1].src); // змінює вигляд крану
+
             add_block_list(id_blok_new, throw_kran[0])
             id_blok_new = ""
             throw_kran = 0
@@ -1404,17 +1461,27 @@ function game(){
             document.getElementById(id_blok_new).style.left = (cur_blok_left + 15) + 'px';
         }
     }
-    document.getElementById("kran").style.left = (cur_kran + 15) + 'px';
+        document.getElementById("kran").style.left = (cur_kran + 15) + 'px';
     if(cur_kran > 1200){
-        add_blok_kran()
-        document.getElementById("kran").setAttribute('src', list_h1[2].src);
-        document.getElementById("kran").style.left = -173 + 'px';
+        if(cur_blok_left > 1200){
+            document.getElementById(id_blok_new).remove()
+            id_blok_new = ""
+            throw_kran = 0
+            add_blok_kran()
+            document.getElementById("kran").setAttribute('src', list_h1[2].src);
+            document.getElementById("kran").style.left = -173 + 'px';
+
+        }else{
+            add_blok_kran()
+            document.getElementById("kran").setAttribute('src', list_h1[2].src);
+            document.getElementById("kran").style.left = -173 + 'px';
+        }
     }
 
          //додає новий блок в гру краном 2
     if(number_kran >= 2){
         var cur_kran = parseInt(document.getElementById("kran2").style.left) || 0;
-        if(id_blok_new2 != 0){
+        if(id_blok_new2){
             var cur_blok_left = parseInt(document.getElementById(id_blok_new2).style.left) || 0;
             var cur_blok_top = parseInt(document.getElementById(id_blok_new2).style.top) || 0;
             if (cur_blok_left == throw_kran2[1]){
@@ -1429,15 +1496,25 @@ function game(){
         }
         document.getElementById("kran2").style.left = (cur_kran - 15) + 'px';
         if(cur_kran < -200){
-            add_blok_kran2()
-            document.getElementById("kran2").setAttribute('src', list_h1[2].src);
-            document.getElementById("kran2").style.left = 1011 + 'px';
+            if(cur_blok_left < -100){
+                document.getElementById(id_blok_new2).remove()
+                id_blok_new2 = ""
+                throw_kran2 = 0
+                add_blok_kran2()
+                document.getElementById("kran2").setAttribute('src', list_h1[2].src);
+                document.getElementById("kran2").style.left = 1011 + 'px';
+
+            }else{
+                add_blok_kran2()
+                document.getElementById("kran2").setAttribute('src', list_h1[2].src);
+                document.getElementById("kran2").style.left = 1011 + 'px';
+            }
         }
     }
 
     if(number_kran >= 3){
         var cur_kran = parseInt(document.getElementById("kran3").style.left) || 0;
-        if(id_blok_new3 != 0){
+        if(id_blok_new3){
             var cur_blok_left = parseInt(document.getElementById(id_blok_new3).style.left) || 0;
             var cur_blok_top = parseInt(document.getElementById(id_blok_new3).style.top) || 0;
             if (cur_blok_left == throw_kran3[1]){
@@ -1452,15 +1529,25 @@ function game(){
         }
         document.getElementById("kran3").style.left = (cur_kran + 15) + 'px';
         if(cur_kran > 1300){
-            add_blok_kran3()
-            document.getElementById("kran3").setAttribute('src', list_h1[2].src);
-            document.getElementById("kran3").style.left = -293 + 'px';
+            if(cur_blok_left > 1200){
+                document.getElementById(id_blok_new3).remove()
+                id_blok_new3 = ""
+                throw_kran3 = 0
+                add_blok_kran3()
+                document.getElementById("kran3").setAttribute('src', list_h1[2].src);
+                document.getElementById("kran3").style.left = -293 + 'px';
+
+            }else{
+                add_blok_kran3()
+                document.getElementById("kran3").setAttribute('src', list_h1[2].src);
+                document.getElementById("kran3").style.left = -293 + 'px';
+            }
         }
     }
 
     if(number_kran >= 4){
         var cur_kran = parseInt(document.getElementById("kran4").style.left) || 0;
-        if(id_blok_new4 != 0){
+        if(id_blok_new4){
             var cur_blok_left = parseInt(document.getElementById(id_blok_new4).style.left) || 0;
             var cur_blok_top = parseInt(document.getElementById(id_blok_new4).style.top) || 0;
             if (cur_blok_left == throw_kran4[1]){
@@ -1475,9 +1562,19 @@ function game(){
         }
         document.getElementById("kran4").style.left = (cur_kran - 15) + 'px';
         if(cur_kran < -400){
+            if(cur_blok_left < -300){
+                document.getElementById(id_blok_new4).remove()
+                id_blok_new4 = ""
+                throw_kran4 = 0
+                add_blok_kran4()
+                document.getElementById("kran4").setAttribute('src', list_h1[2].src);
+                document.getElementById("kran4").style.left = 1191 + 'px';
+
+            }else{
             add_blok_kran4()
             document.getElementById("kran4").setAttribute('src', list_h1[2].src);
             document.getElementById("kran4").style.left = 1191 + 'px';
+            }
         }
     }
 
@@ -1549,9 +1646,11 @@ function game(){
 //    for (let i = 0; i < list_game.length; i++){
 //        txt1 += list_game[i][0] + " "
 //        }
-
+//
 //    document.getElementById("news1").textContent = txt1;
 }
+
+
 function kill(){
     for (let i = 0; i < 3; i++) {
         setTimeout(() => {
@@ -1560,6 +1659,8 @@ function kill(){
         }, i * 100);
     }
 }
+
+
 
 
 

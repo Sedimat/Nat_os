@@ -120,3 +120,8 @@ def natos_web(request):
 def stack_attack(request):
     context = {}
     return render(request, 'game/stack_attack.html', context=context)
+
+
+def tanks(request):
+    context = {}
+    return render(request, 'game/tanks.html', context=context)

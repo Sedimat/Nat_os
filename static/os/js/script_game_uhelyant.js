@@ -703,12 +703,13 @@ function right_select1(event){
         document.getElementById("div_game1").remove();
         document.getElementById("div_game_over").remove();
         add_menu()
+        gameInterval = null
+
     }else if (document.getElementById("zastavka")){
         document.getElementById("zastavka").remove();
         add_menu()
 
     }else if (document.getElementById("div_menu")){
-
         if(menu_pos == 0){ // повина запустити цикл гри
             if(gameInterval == null){
                 document.getElementById("div_menu").remove();
@@ -719,9 +720,8 @@ function right_select1(event){
                     anim_man = 1
 
             }else{
-            clearInterval(gameInterval);
-            gameInterval = null
-
+                clearInterval(gameInterval);
+                gameInterval = null
             }
         }else if(menu_pos == 1){
 
