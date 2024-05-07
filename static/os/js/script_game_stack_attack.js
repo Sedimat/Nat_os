@@ -966,7 +966,7 @@ function move_gg(pos){
 
             // якщо рухає блок на право
             }else if(list_game[index_gg + 1][0] == 1 && list_game[index_gg + 2] && list_game[index_gg + 2][0] == 0
-                      && list_game[index_gg - 14][0] == 0 && cur_gg1 != 831 ){
+            && list_game[index_gg - 14][0] == 0 && cur_gg1 != 831 && list_game[index_gg - 29] && list_game[index_gg - 29][0] == 0){
                 var anim1 = 0
                 var blok_id1 = list_game[index_gg + 1][1]
                 for (let i = 0; i < 4; i++) {
@@ -987,15 +987,26 @@ function move_gg(pos){
                                 anim1 = 0
                             }
                             if (i === 0) {
-                            list_game[index_gg + 1] = [0, 0]
+                                list_game[index_gg + 1] = [0, 0]
                             }
+
                             if (i === 3) {
                                 gg.setAttribute('src', list_man[0].src);
                                 gg.style.transform = "scaleX(1)";
 
-                                list_game[index_gg] = [0, 0]
-                                list_game[index_gg + 1] = [2, 0]
-                                list_game[index_gg + 2] = [1, blok_id1]
+                                if(list_game[index_gg + 2][0] == 1){
+                                    gg.style.left = (cur_gg - 45) + 'px';
+                                    blok.style.left = (cur_blok - 45) + 'px';
+                                    list_game[index_gg] = [2, 0]
+                                    list_game[index_gg + 1] = [1, blok_id1]
+
+                                }else{
+                                    list_game[index_gg] = [0, 0]
+                                    list_game[index_gg + 1] = [2, 0]
+                                    list_game[index_gg + 2] = [1, blok_id1]
+                                }
+
+
                                 kluch = true
                             }
                     }, i * 100);
@@ -1034,7 +1045,8 @@ function move_gg(pos){
                     }, i * 100);
                 }
              // якщо рухає блок на ліво
-            }else if(list_game[index_gg - 1][0] == 1 && list_game[index_gg - 16][0] == 0 && list_game[index_gg - 2][0] == 0 && cur_gg1 != 111){
+            }else if(list_game[index_gg - 1][0] == 1 && list_game[index_gg - 16][0] == 0 && list_game[index_gg - 2][0] == 0
+                               && cur_gg1 != 111 && list_game[index_gg - 31] && list_game[index_gg - 31][0] == 0 ){
                 var anim1 = 0
                 var blok_id1 = list_game[index_gg - 1][1]
                 var back = 0
@@ -1056,12 +1068,23 @@ function move_gg(pos){
                             }
                             if (i === 0) {
                                 list_game[index_gg - 1] = [0, 0]
+
                             }
                             if (i === 3) {
                                 gg.setAttribute('src', list_man[0].src);
-                                list_game[index_gg] = [0, 0]
-                                list_game[index_gg - 1] = [2, 0]
-                                list_game[index_gg - 2] = [1, blok_id1]
+
+                                if(list_game[index_gg - 2][0] == 1){
+                                    gg.style.left = (cur_gg + 45) + 'px';
+                                    blok.style.left = (cur_blok + 45) + 'px';
+                                    list_game[index_gg] = [2, 0]
+                                    list_game[index_gg - 1] = [1, blok_id1]
+
+                                }else{
+                                    list_game[index_gg] = [0, 0]
+                                    list_game[index_gg - 1] = [2, 0]
+                                    list_game[index_gg - 2] = [1, blok_id1]
+
+                                }
                                 kluch = true
                             }
 
@@ -1105,6 +1128,7 @@ function move_gg(pos){
             }else if(list_game[index_gg + 1][0] == 1 && list_game[index_gg - 14][0] == 1
                      && list_game[index_gg - 13][0] == 0 && list_game[index_gg - 29][0] == 0 && cur_gg1 != 831 ){ // якщо штавха по діагоналі
                 var anim = 0
+                var blok_id1 = list_game[index_gg - 14][1]
                 for (let i = 0; i < 8; i++) {
                     setTimeout(() => {
                         if (i < 4){
@@ -1116,7 +1140,7 @@ function move_gg(pos){
                             var gg = document.getElementById('img_man')
                             var cur_gg = parseInt(gg.style.left) || 0;
                             var blok_id = list_game[index_gg - 14][1]
-                            var blok = document.getElementById(blok_id)
+                            var blok = document.getElementById(blok_id1)
                             var cur_blok = parseInt(blok.style.left) || 0;
                             blok.style.left = (cur_blok + 15) + 'px';
                             gg.style.left = (cur_gg + 15) + 'px';
@@ -1128,12 +1152,19 @@ function move_gg(pos){
                                 anim = 0
                             }
                         }
+
+                        if (i === 0) {
+                            list_game[index_gg - 14] = [0, 0]
+                        }
+
+
                         if (i === 7) {
                             gg.setAttribute('src', list_man[0].src);
                             gg.style.transform = "scaleX(1)";
+
                             list_game[index_gg] = [0, 0]
                             list_game[index_gg - 14] = [2, 0]
-                            list_game[index_gg - 13] = [1, blok_id]
+                            list_game[index_gg - 13] = [1, blok_id1]
                             kluch = true
                         }
 
@@ -1176,6 +1207,7 @@ function move_gg(pos){
             }else if(list_game[index_gg - 1][0] == 1 && list_game[index_gg - 16][0] == 1
                      && list_game[index_gg - 17][0] == 0 && list_game[index_gg - 31][0] == 0 && cur_gg1 != 111){
                 var anim = 0
+                var blok_id1 = list_game[index_gg - 16][1]
                 for (let i = 0; i < 8; i++) {
                     setTimeout(() => {
                         if (i < 4){
@@ -1188,7 +1220,7 @@ function move_gg(pos){
                             var gg = document.getElementById('img_man')
                             var cur_gg = parseInt(gg.style.left) || 0;
                             var blok_id = list_game[index_gg - 16][1]
-                            var blok = document.getElementById(blok_id)
+                            var blok = document.getElementById(blok_id1)
                             var cur_blok = parseInt(blok.style.left) || 0;
                             blok.style.left = (cur_blok - 15) + 'px';
                             gg.style.left = (cur_gg - 15) + 'px';
@@ -1200,11 +1232,15 @@ function move_gg(pos){
                                 anim = 0
                             }
                         }
+                        if (i === 0) {
+                            list_game[index_gg - 16] = [0, 0]
+                        }
+
                         if (i === 7) {
                             gg.setAttribute('src', list_man[0].src);
                             list_game[index_gg] = [0, 0]
                             list_game[index_gg - 16] = [2, 0]
-                            list_game[index_gg - 17] = [1, blok_id]
+                            list_game[index_gg - 17] = [1, blok_id1]
                             kluch = true
                         }
 
@@ -1389,7 +1425,7 @@ function grav_gg(index){
 
 // рухає блок вних по масиву
 function move_block(id, index, blok) {
-    list_game[index] = [0,0]
+
     for (let i = 0; i < 4; i++) {
         setTimeout(() => {
             if(document.getElementById(id)){
@@ -1397,9 +1433,11 @@ function move_block(id, index, blok) {
                 document.getElementById(id).style.top = (cur_blok + 15) + 'px';
             }
             if(i === 0){
-                list_game[index + 15] = blok
+                list_game[index] = [0,0]
+
             }
-            if (i === 3) {
+            if (i === 1) {
+                list_game[index + 15] = blok
             }
         }, i * 100);
     }
