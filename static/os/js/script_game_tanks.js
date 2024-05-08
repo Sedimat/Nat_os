@@ -3,6 +3,28 @@ var list_tank = [new Image(), new Image(), new Image(), new Image()]
 list_tank[0].src = '/media/g_tanks/tank.svg';
 list_tank[1].src = '/media/g_tanks/bulet.svg';
 list_tank[2].src = '/media/g_tanks/brick.svg';
+list_tank[3].src = '/media/g_tanks/hause.svg';
+
+var list_tank1 = [new Image(), new Image(), new Image(), new Image()]
+
+list_tank1[0].src = '/media/g_tanks/tank1.svg';
+list_tank1[1].src = '/media/g_tanks/tank2.svg';
+list_tank1[2].src = '/media/g_tanks/tank3.svg';
+list_tank1[3].src = '/media/g_tanks/tank4.svg';
+
+var list_improve = [new Image(), new Image(), new Image(), new Image()]
+
+list_improve[0].src = '/media/g_tanks/lvl_up.svg';
+list_improve[1].src = '/media/g_tanks/speed_up.svg';
+list_improve[2].src = '/media/g_tanks/armor.svg';
+list_improve[3].src = '/media/g_tanks/pusto.svg';
+
+var list_armor = [new Image(), new Image(), new Image(), new Image()]
+
+list_armor[0].src = '/media/g_tanks/armor1.svg';
+list_armor[1].src = '/media/g_tanks/armor2.svg';
+list_armor[2].src = '/media/g_tanks/armor3.svg';
+
 
 
 
@@ -13,8 +35,6 @@ function game_elements(){
     div_game.id = 'div_game';
     div_game.style.left = 0 + 'px';
     div_game.style.top = 0 + 'px';
-    div_game.style.height = 1000 + 'px';
-    div_game.style.width = 1000 + 'px';
     div_game.classList.add('content');
     div_game.style.position = 'absolute';
 
@@ -28,7 +48,7 @@ function game_elements(){
     div_game.appendChild(new_game);
 
     var img_tank = document.createElement('img');
-    img_tank.setAttribute('src', list_tank[0].src);
+    img_tank.setAttribute('src', list_tank1[0].src);
     img_tank.id = 'tank_gg';
     img_tank.style.left = 300 + 'px';
     img_tank.style.top = 400 + 'px';
@@ -36,6 +56,7 @@ function game_elements(){
     img_tank.style.position = 'absolute';
     img_tank.style.transform = "rotate(0deg)";
     div_game.appendChild(img_tank);
+
 
     var img_tank1 = document.createElement('img');
     img_tank1.setAttribute('src', list_tank[0].src);
@@ -48,39 +69,203 @@ function game_elements(){
     div_game.appendChild(img_tank1);
 
     var img_brick = document.createElement('img');
-    img_brick.setAttribute('src', list_tank[2].src);
+    img_brick.setAttribute('src', list_tank[3].src);
     img_brick.id = 'brick';
-    img_brick.style.left = 200 + 'px';
-    img_brick.style.top = 500 + 'px';
-    img_brick.style.width = 80 + 'px';
+    img_brick.style.left = 800 + 'px';
+    img_brick.style.top = 300 + 'px';
+    img_brick.style.width = 150 + 'px';
     img_brick.style.position = 'absolute';
     img_brick.style.transform = "rotate(180deg)";
     div_game.appendChild(img_brick);
+
+    var img_brick1 = document.createElement('img');
+    img_brick1.setAttribute('src', list_tank[2].src);
+    img_brick1.id = 'brick1';
+    img_brick1.style.left = 380 + 'px';
+    img_brick1.style.top = 500 + 'px';
+    img_brick1.style.width = 80 + 'px';
+    img_brick1.style.position = 'absolute';
+    img_brick1.style.transform = "rotate(180deg)";
+    div_game.appendChild(img_brick1);
+
+
+
 
     content.appendChild(div_game);
 }
 
 game_elements()
 
+function add_improve(){
+    var div_game = document.getElementById('div_game');
+
+    var random = Math.floor(Math.random() * 3);
+    var r_left = Math.floor(Math.random() * (950 - (0) + 1)) + (0);
+    var r_top = Math.floor(Math.random() * (850 - (0) + 1)) + (0);
+
+    var id = ""
+    var pic = null
+
+    if(random == 0){
+        var improve = document.createElement('img');
+        improve.setAttribute('src', list_improve[0].src );
+        improve.id = 'lvl_up';
+        improve.style.left = r_left + 'px';
+        improve.style.top = r_top + 'px';
+        improve.style.width = 50 + 'px';
+        improve.style.position = 'absolute';
+        div_game.appendChild(improve);
+        id = 'lvl_up'
+        pic = list_improve[0].src
+
+    }else if(random == 1){
+        var improve = document.createElement('img');
+        improve.setAttribute('src', list_improve[1].src );
+        improve.id = 'speed_up';
+        improve.style.left = r_left + 'px';
+        improve.style.top = r_top + 'px';
+        improve.style.width = 50 + 'px';
+        improve.style.position = 'absolute';
+        div_game.appendChild(improve);
+        id = 'speed_up'
+        pic = list_improve[1].src
+
+    }else if(random == 2){
+        var improve = document.createElement('img');
+        improve.setAttribute('src', list_improve[2].src );
+        improve.id = 'armor';
+        improve.style.left = r_left + 'px';
+        improve.style.top = r_top + 'px';
+        improve.style.width = 50 + 'px';
+        improve.style.position = 'absolute';
+        div_game.appendChild(improve);
+        id = 'armor'
+        pic = list_improve[2].src
+
+    }
+
+    var count = 0;
+    for (let i = 0; i < 200; i++) {
+        setTimeout(() => {
+        if (count == 2){
+            count = 0
+        }
+        if(document.getElementById(id)){
+
+            if(i > 150){
+                if(count == 0){
+                    document.getElementById(id).setAttribute('src', pic);
+                }else{
+                    document.getElementById(id).setAttribute('src', list_improve[3].src);
+                }
+
+            }
+        }
+        if(i == 199){
+            key_improve = true
+            if(document.getElementById(id)){
+                document.getElementById(id).remove()
+            }
+        }
+        count++
+        }, i * 100);
+    }
+}
+
+
+function speed_minus(){
+    for (let i = 0; i < 16; i++) {
+        setTimeout(() => {
+            if(i == 15){
+                speed_gg -= 5
+                }
+        }, i * 1000);
+    }
+}
+
+function anim_gg(){
+    var n = []
+    if(tank_lvl == 0){
+        n = [0,2]
+    }else if(tank_lvl == 1){
+        n = [2,4]
+    }
+    for (let i = n[0]; i < n[1]; i++) {
+        setTimeout(() => {
+            document.getElementById('tank_gg').setAttribute('src', list_tank1[i].src);
+        }, i * 50);
+    }
+}
+
+function anim_armor(){
+    var top = parseInt(document.getElementById('tank_gg').style.top) || 0;
+    var left = parseInt(document.getElementById('tank_gg').style.left) || 0;
+
+    var armor = document.createElement('img');
+    armor.setAttribute('src', list_armor[0].src);
+    armor.id = 'armor1';
+    armor.style.left = left - 10 + 'px';
+    armor.style.top = top - 10 + 'px';
+    armor.style.width = 100 + 'px';
+    armor.style.position = 'absolute';
+    document.getElementById('div_game').appendChild(armor);
+
+    var count = 0;
+    for (let i = 0; i < 400; i++) {
+        setTimeout(() => {
+        if (count == 4){
+            count = 0
+        }
+        var arm = document.getElementById('armor1')
+        var cur_m_top = parseInt(document.getElementById('tank_gg').style.top) || 0;
+        var cur_m_left = parseInt(document.getElementById('tank_gg').style.left) || 0;
+        arm.style.top = (cur_m_top - 10) + 'px';
+        arm.style.left = (cur_m_left - 10) + 'px';
+        arm.setAttribute('src', list_armor[count].src);
+        count += 1;
+
+        if(i == 399){
+            tank_armor = false
+        }
+        }, i * 50);
+    }
+}
+
+
+list_wall = ['brick','brick1', 'tank_enemy1']
+
+list_wall2 = ['brick','brick1', 'tank_gg']
+
 var list_move = [[20, "l"], [25, "r"], [17, "u"], [22, "d"]]
 var move_enemy = [0, "l"]
 
 var anim = 0;
-var count = 0;
 
+var speed_gg = 10
+
+var move_t1 = true
 var move_tank1 = 0
+var time_t1 = 0
+
+var time_gg = 0
+
+var time_e1 = 0
+
+var tank_lvl = 0
+var tank_armor = false
+
+var key_improve = true
+var time_improve = 0
 
 function game(){
 
-    if (anim == 4){
-        anim = 0
-    }
-//    document.getElementById('img_man').setAttribute('src', list_man[anim].src);
-
-    count += 1;
-    if (count == 5){
-        count = 0
-        anim += 1;
+    if(key_improve){
+        time_improve++
+        if(time_improve == 400){
+            time_improve = 0
+            add_improve()
+            key_improve = false
+        }
     }
 
 
@@ -89,27 +274,163 @@ function game(){
         move_enemy = list_move[Math.floor(Math.random() * list_move.length)];
         move_tank1 = 0;
     }
-    move_tank1++
 
-    move(move_enemy[1], "tank_enemy1")
-    var fire1 = Math.floor(Math.random() * 5);
-    if(fire1 == 2){
-        bulet_gg("bulet_enemy1", "tank_enemy1")
+    // рух першого танку ворога
+    if(move_t1){
+        move_tank1++
+        move_e(move_enemy[1], "tank_enemy1")
+        var fire1 = Math.floor(Math.random() * 5);
+        if(fire1 == 2){
+            bulet_gg("bulet_enemy1", "tank_enemy1")
+        }
 
+    }else{
+        time_t1 ++
+        if(time_t1 == 200){
+            time_t1 = 0
+            document.getElementById('tank_enemy1').style.left = 900 + 'px';
+            move_t1 = true
+
+        }
     }
 
-    var tank_rect = document.getElementById('tank_gg').getBoundingClientRect();
-    var stena_reck = document.getElementById("brick").getBoundingClientRect();
+    // реагує на перший танк та кулі гг
+    if(document.getElementById('speed_up')){
+        var tank_gg_r = document.getElementById('tank_gg').getBoundingClientRect();
+        var speed_up_r = document.getElementById('speed_up').getBoundingClientRect();
+
+        if (!(tank_gg_r.right < speed_up_r.left ||
+            tank_gg_r.left > speed_up_r.right ||
+            tank_gg_r.bottom < speed_up_r.top ||
+            tank_gg_r.top > speed_up_r.bottom)) {
+                document.getElementById('speed_up').remove()
+                speed_gg += 5
+                speed_minus()
 
 
-//        if (!(tank_rect.right < stena_reck.left ||
-//            tank_rect.left > stena_reck.right ||
-//            tank_rect.bottom < stena_reck.top ||
-//            tank_rect.top > stena_reck.bottom)) {
-//
-//            console.log("Контакт")
-//
-//        }
+            }
+    }
+
+    if(document.getElementById('lvl_up')){
+        var tank_gg_r = document.getElementById('tank_gg').getBoundingClientRect();
+        var lvl_up_r = document.getElementById('lvl_up').getBoundingClientRect();
+
+        if (!(tank_gg_r.right < lvl_up_r.left ||
+            tank_gg_r.left > lvl_up_r.right ||
+            tank_gg_r.bottom < lvl_up_r.top ||
+            tank_gg_r.top > lvl_up_r.bottom)) {
+                document.getElementById('lvl_up').remove()
+                if(tank_lvl < 2){
+                    tank_lvl++
+                }
+
+
+
+            }
+    }
+
+    if(document.getElementById('armor')){
+        var tank_gg_r = document.getElementById('tank_gg').getBoundingClientRect();
+        var armor_r = document.getElementById('armor').getBoundingClientRect();
+
+        if (!(tank_gg_r.right < armor_r.left ||
+            tank_gg_r.left > armor_r.right ||
+            tank_gg_r.bottom < armor_r.top ||
+            tank_gg_r.top > armor_r.bottom)) {
+                document.getElementById('armor').remove()
+                tank_armor = true
+                anim_armor()
+            }
+    }
+
+    // реагує на перший танк та кулі гг
+    if(document.getElementById('tank_bulet')){
+        var tank_enemy1_r = document.getElementById('tank_enemy1').getBoundingClientRect();
+        var bulet_gg_r = document.getElementById('tank_bulet').getBoundingClientRect();
+
+        if (!(tank_enemy1_r.right < bulet_gg_r.left ||
+            tank_enemy1_r.left > bulet_gg_r.right ||
+            tank_enemy1_r.bottom < bulet_gg_r.top ||
+            tank_enemy1_r.top > bulet_gg_r.bottom)) {
+                document.getElementById('tank_bulet').remove()
+                document.getElementById('tank_enemy1').style.top = 50 + 'px';
+                document.getElementById('tank_enemy1').style.left = 1050 + 'px';
+                move_t1 = false
+                console.log("Попав по ворогу")
+            }
+    }
+
+    // дає можливість рухатись гравцю після зіткненя
+    if(t_up == false || t_down == false || t_left == false || t_right == false){
+        time_gg++
+        if(time_gg == 10){
+            time_gg = 0
+            t_up = true
+            t_down = true
+            t_right = true
+            t_left = true
+        }
+    }
+
+    for (var i = 0; i < list_wall.length; i++){
+
+        var tank_rect = document.getElementById('tank_gg').getBoundingClientRect();
+        var stena_reck = document.getElementById(list_wall[i]).getBoundingClientRect();
+
+        if (!(tank_rect.right < stena_reck.left ||
+            tank_rect.left > stena_reck.right ||
+            tank_rect.bottom < stena_reck.top ||
+            tank_rect.top > stena_reck.bottom)) {
+            if(tank_rect.top > stena_reck.bottom - 20){
+                t_up = false
+            }
+            if(tank_rect.bottom < stena_reck.top + 20){
+                t_down = false
+            }
+            if(tank_rect.left > stena_reck.right - 20){
+                t_left = false
+            }
+            if(tank_rect.right < stena_reck.left + 20){
+                t_right = false
+            }
+        }
+    }
+
+    // дає можливість рухатись 1 танку після зіткненя
+    if(t_e1_up == false || t_e1_down == false || t_e1_left == false || t_e1_right == false){
+        time_e1++
+        if(time_e1 == 10){
+            time_e1 = 0
+            t_e1_up = true
+            t_e1_down = true
+            t_e1_right = true
+            t_e1_left = true
+        }
+    }
+
+    for (var i = 0; i < list_wall2.length; i++){
+
+        var tank_rect = document.getElementById('tank_enemy1').getBoundingClientRect();
+        var stena_reck = document.getElementById(list_wall2[i]).getBoundingClientRect();
+
+        if (!(tank_rect.right < stena_reck.left ||
+            tank_rect.left > stena_reck.right ||
+            tank_rect.bottom < stena_reck.top ||
+            tank_rect.top > stena_reck.bottom)) {
+            if(tank_rect.top > stena_reck.bottom - 20){
+                t_e1_up = false
+            }
+            if(tank_rect.bottom < stena_reck.top + 20){
+                t_e1_down = false
+            }
+            if(tank_rect.left > stena_reck.right - 20){
+                t_e1_left = false
+            }
+            if(tank_rect.right < stena_reck.left + 20){
+                t_e1_right = false
+            }
+        }
+    }
 
 
 }
@@ -208,54 +529,111 @@ function bulet_gg(id_bulet, id_tank){
     }
 }
 
-function move(pos, id){
+var t_up = true
+var t_down = true
+var t_right = true
+var t_left = true
+
+function move_gg(pos, id){
     var tank_gg = document.getElementById(id);
 
     var cur_m_top = parseInt(tank_gg.style.top) || 0;
     var cur_m_left = parseInt(tank_gg.style.left) || 0;
 
-
-    if(pos == "d" && cur_m_top < 800){
-        tank_gg.style.top = (cur_m_top + 10) + 'px';
+    if(pos == "d" && cur_m_top < 800 && t_down){
+        anim_gg()
+        tank_gg.style.top = (cur_m_top + speed_gg) + 'px';
         tank_gg.style.transform = "rotate(180deg)";
 
-    }else if(pos == "u" && cur_m_top > 0){
-        tank_gg.style.top = (cur_m_top - 10) + 'px';
+    }else if(pos == "u" && cur_m_top > 0 && t_up){
+        anim_gg()
+        tank_gg.style.top = (cur_m_top - speed_gg) + 'px';
         tank_gg.style.transform = "rotate(0deg)";
 
-    }else if(pos == "r" && cur_m_left < 910){
-        tank_gg.style.left = (cur_m_left + 10) + 'px';
+    }else if(pos == "r" && cur_m_left < 910 && t_right){
+        anim_gg()
+        tank_gg.style.left = (cur_m_left + speed_gg) + 'px';
         tank_gg.style.transform = "rotate(90deg)";
 
-    }else if(pos == "l" && cur_m_left > 10){
-        tank_gg.style.left = (cur_m_left - 10) + 'px';
+    }else if(pos == "l" && cur_m_left > 10 && t_left){
+        anim_gg()
+        tank_gg.style.left = (cur_m_left - speed_gg) + 'px';
         tank_gg.style.transform = "rotate(270deg)";
 
     }
 }
 
+var t_e1_up = true
+var t_e1_down = true
+var t_e1_right = true
+var t_e1_left = true
+
+function move_e(pos, id){
+    var tank_gg = document.getElementById(id);
+
+    var cur_m_top = parseInt(tank_gg.style.top) || 0;
+    var cur_m_left = parseInt(tank_gg.style.left) || 0;
+
+    if(pos == "d" && cur_m_top < 800 && t_e1_down){
+        tank_gg.style.top = (cur_m_top + 10) + 'px';
+        tank_gg.style.transform = "rotate(180deg)";
+
+    }else if(pos == "u" && cur_m_top > 0 && t_e1_up){
+        tank_gg.style.top = (cur_m_top - 10) + 'px';
+        tank_gg.style.transform = "rotate(0deg)";
+
+    }else if(pos == "r" && cur_m_left < 910 && t_e1_right){
+        tank_gg.style.left = (cur_m_left + 10) + 'px';
+        tank_gg.style.transform = "rotate(90deg)";
+
+    }else if(pos == "l" && cur_m_left > 10 && t_e1_left){
+        tank_gg.style.left = (cur_m_left - 10) + 'px';
+        tank_gg.style.transform = "rotate(270deg)";
+    }
+}
+
 var kluch = true
+var kluch_u = true
+var kluch_d = true
+var kluch_r = true
+var kluch_l = true
 
 // Відслідковує кнопки на клавіатурі
 document.addEventListener("keydown", function(event) {
 
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
-            move("u", "tank_gg")
+            if(kluch_u && down == null && left == null && right == null){
+                kluch_u = false
+                clearInterval(up)
+                up = setInterval(() => move_gg("u", "tank_gg"), 50);
+            }
         }
         // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
-            move("d", "tank_gg")
+            if(kluch_d && up == null && left == null && right == null){
+                kluch_d = false
+                clearInterval(down)
+                down = setInterval(() => move_gg("d", "tank_gg"), 50);
+            }
         }
 
         // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
-             move("l", "tank_gg")
+            if(kluch_l && down == null && up == null && right == null){
+                kluch_l = false
+                clearInterval(left)
+                left = setInterval(() => move_gg("l", "tank_gg"), 50);
+            }
         }
 
         // D або стрілка вправо
         if (event.keyCode === 68 || event.keyCode === 39){
-            move("r", "tank_gg")
+            if(kluch_r && down == null && left == null && up == null){
+                kluch_r = false
+                clearInterval(right)
+                right = setInterval(() => move_gg("r", "tank_gg"), 50);
+            }
         }
 
     // натиснута кнопка E
@@ -273,21 +651,36 @@ document.addEventListener("keydown", function(event) {
     // натиснута кнопка Q
     if (event.keyCode === 81) {
         console.log("Q")
-        document.getElementById("tank_bulet").remove()
     }
 });
 
 document.addEventListener("keyup", function(event) {
+    // натиснута кнопка W
+        if (event.keyCode === 87 || event.keyCode === 38){
+            clearInterval(up)
+            up = null
+            kluch_u = true
+        }
+    // натиснута кнопка S
+        if (event.keyCode === 83 || event.keyCode === 40){
+            clearInterval(down)
+            down = null
+            kluch_d = true
+        }
+
     // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
+            clearInterval(left)
+            left = null
+            kluch_l = true
+
         }
 
     // D або стрілка вправо відпущена
         if (event.keyCode === 68 || event.keyCode === 39) {
-        }
-
-    // натиснута кнопка W
-        if (event.keyCode === 87 || event.keyCode === 38){
+            kluch_r = true
+            clearInterval(right)
+            right = null
         }
 
         // натиснута кнопка E
@@ -314,7 +707,9 @@ var right = null
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
     clearInterval(down)
-    down = setInterval(() => move("d", "tank_gg"), 50);
+    if(up == null && left == null && right == null){
+        down = setInterval(() => move_gg("d", "tank_gg"), 50);
+    }
 
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
@@ -323,13 +718,16 @@ function downMouseDown(event) {
 function downMouseUp() {
     document.getElementById('d_C').style.backgroundColor = "#291701";
     clearInterval(down)
+    down = null
 }
 
 // кнопка верх
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
     clearInterval(up)
-    up = setInterval(() => move("u", "tank_gg"), 50);
+    if(down == null && left == null && right == null){
+        up = setInterval(() => move_gg("u", "tank_gg"), 50);
+    }
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -338,14 +736,16 @@ function upMouseDown(event) {
 function upMouseUp() {
     document.getElementById('u_C').style.backgroundColor = "#291701";
     clearInterval(up)
+    up = null
 }
 
 // кнопка вліво
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
     clearInterval(left)
-    left = setInterval(() => move("l", "tank_gg"), 50);
-
+    if(down == null && up == null && right == null){
+        left = setInterval(() => move_gg("l", "tank_gg"), 50);
+    }
     event.preventDefault();
     navigator.vibrate(50);
 }
@@ -353,14 +753,16 @@ function leftMouseDown(event) {
 function leftMouseUp() {
     document.getElementById('l_C').style.backgroundColor = "#291701";
     clearInterval(left)
+    left = null
 }
 
 // кнопка в право
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
     clearInterval(right)
-    right = setInterval(() => move("r", "tank_gg"), 50);
-
+    if(down == null && up == null && left == null){
+        right = setInterval(() => move_gg("r", "tank_gg"), 50);
+    }
     event.preventDefault();
     navigator.vibrate(50);
 }
@@ -368,6 +770,7 @@ function rightMouseDown(event) {
 function rightMouseUp() {
     document.getElementById('r_C').style.backgroundColor = "#291701";
     clearInterval(right)
+    right = null
 }
 
 function center(event){
