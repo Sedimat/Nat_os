@@ -1,9 +1,17 @@
-var list_tank = [new Image(), new Image(), new Image(), new Image()]
+var list_tank = [new Image(), new Image(), new Image(), new Image(), new Image() , new Image(), new Image()]
 
 list_tank[0].src = '/media/g_tanks/tank.svg';
 list_tank[1].src = '/media/g_tanks/bulet.svg';
-list_tank[2].src = '/media/g_tanks/brick.svg';
+list_tank[2].src = '/media/g_tanks/train.svg';
 list_tank[3].src = '/media/g_tanks/hause.svg';
+list_tank[4].src = '/media/g_tanks/bulet1.svg';
+list_tank[5].src = '/media/g_tanks/phone_t.svg';
+list_tank[6].src = '/media/g_tanks/hud.svg';
+
+var list_tank_e = [new Image(), new Image()]
+
+list_tank_e[0].src = '/media/g_tanks/tank_e1.svg';
+list_tank_e[1].src = '/media/g_tanks/tank_e2.svg';
 
 var list_tank1 = [new Image(), new Image(), new Image(), new Image()]
 
@@ -25,8 +33,18 @@ list_armor[0].src = '/media/g_tanks/armor1.svg';
 list_armor[1].src = '/media/g_tanks/armor2.svg';
 list_armor[2].src = '/media/g_tanks/armor3.svg';
 
+var list_fire = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
 
+list_fire[0].src = '/media/g_tanks/fire_1.svg';
+list_fire[1].src = '/media/g_tanks/fire_2.svg';
+list_fire[2].src = '/media/g_tanks/fire_3.svg';
+list_fire[3].src = '/media/g_tanks/fire_4.svg';
+list_fire[4].src = '/media/g_tanks/fire_5.svg';
+list_fire[5].src = '/media/g_tanks/fire_6.svg';
 
+var tank_lvl = 0
+
+var tank_hp = 100
 
 function game_elements(){
     var content = document.getElementById('content');
@@ -38,28 +56,54 @@ function game_elements(){
     div_game.classList.add('content');
     div_game.style.position = 'absolute';
 
-    var new_game = document.createElement('h1');
-    new_game.textContent = "Танкс";
-    new_game.id = 'text';
-    new_game.classList.add('menu');
-    new_game.style.left = 10 + 'px';
-    new_game.style.top = 10 + 'px';
-    new_game.style.position = 'absolute';
-    div_game.appendChild(new_game);
+    var fon = document.createElement('img');
+    fon.setAttribute('src', list_tank[5].src);
+    fon.id = 'fon';
+    fon.style.left = -50 + 'px';
+    fon.style.top = -30 + 'px';
+    fon.style.width = 1100 + 'px';
+    fon.style.position = 'absolute';
+    div_game.appendChild(fon);
+
+    var fon1 = document.createElement('img');
+    fon1.setAttribute('src', list_tank[6].src);
+    fon1.id = 'hud';
+    fon1.style.left = 0 + 'px';
+    fon1.style.top = 856 + 'px';
+    fon1.style.width = 1000 + 'px';
+    fon1.style.position = 'absolute';
+    div_game.appendChild(fon1);
+
+    var txt_lvl = document.createElement('h1');
+    txt_lvl.textContent = "Lvl: " + tank_lvl;
+    txt_lvl.id = 'lvl';
+    txt_lvl.classList.add('menu');
+    txt_lvl.style.left = 20 + 'px';
+    txt_lvl.style.top = 860 + 'px';
+    txt_lvl.style.position = 'absolute';
+    div_game.appendChild(txt_lvl);
+
+    var txt_hp = document.createElement('h1');
+    txt_hp.textContent = "HP: " + tank_hp;
+    txt_hp.id = 'hp';
+    txt_hp.classList.add('menu');
+    txt_hp.style.left = 100 + 'px';
+    txt_hp.style.top = 860 + 'px';
+    txt_hp.style.position = 'absolute';
+    div_game.appendChild(txt_hp);
 
     var img_tank = document.createElement('img');
     img_tank.setAttribute('src', list_tank1[0].src);
     img_tank.id = 'tank_gg';
-    img_tank.style.left = 300 + 'px';
-    img_tank.style.top = 400 + 'px';
+    img_tank.style.left = 10 + 'px';
+    img_tank.style.top = 760 + 'px';
     img_tank.style.width = 80 + 'px';
     img_tank.style.position = 'absolute';
     img_tank.style.transform = "rotate(0deg)";
     div_game.appendChild(img_tank);
 
-
     var img_tank1 = document.createElement('img');
-    img_tank1.setAttribute('src', list_tank[0].src);
+    img_tank1.setAttribute('src', list_tank_e[0].src);
     img_tank1.id = 'tank_enemy1';
     img_tank1.style.left = 900 + 'px';
     img_tank1.style.top = 0 + 'px';
@@ -71,9 +115,9 @@ function game_elements(){
     var img_brick = document.createElement('img');
     img_brick.setAttribute('src', list_tank[3].src);
     img_brick.id = 'brick';
-    img_brick.style.left = 800 + 'px';
+    img_brick.style.left = 100 + 'px';
     img_brick.style.top = 300 + 'px';
-    img_brick.style.width = 150 + 'px';
+    img_brick.style.width = 250 + 'px';
     img_brick.style.position = 'absolute';
     img_brick.style.transform = "rotate(180deg)";
     div_game.appendChild(img_brick);
@@ -81,9 +125,9 @@ function game_elements(){
     var img_brick1 = document.createElement('img');
     img_brick1.setAttribute('src', list_tank[2].src);
     img_brick1.id = 'brick1';
-    img_brick1.style.left = 380 + 'px';
-    img_brick1.style.top = 500 + 'px';
-    img_brick1.style.width = 80 + 'px';
+    img_brick1.style.left = 500 + 'px';
+    img_brick1.style.top = 580 + 'px';
+    img_brick1.style.width = 380 + 'px';
     img_brick1.style.position = 'absolute';
     img_brick1.style.transform = "rotate(180deg)";
     div_game.appendChild(img_brick1);
@@ -96,12 +140,38 @@ function game_elements(){
 
 game_elements()
 
+function fire_tank(left, top){
+
+    var r_word = '';
+    for (let i = 0; i < 3; i++) {
+        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+        r_word += String.fromCharCode(randomCharCode);
+    }
+    var img = document.createElement('img');
+    img.setAttribute('src', list_fire[0].src);
+    img.id = r_word;
+    img.style.left = left + 'px';
+    img.style.top = top + 'px';
+    img.style.width = 90 + 'px';
+    img.style.position = 'absolute';
+    document.getElementById('div_game').appendChild(img);
+
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            document.getElementById(r_word).setAttribute('src', list_fire[i].src);
+            if(i == 5){
+                document.getElementById(r_word).remove()
+            }
+        }, i * 100);
+    }
+}
+
 function add_improve(){
     var div_game = document.getElementById('div_game');
 
     var random = Math.floor(Math.random() * 3);
     var r_left = Math.floor(Math.random() * (950 - (0) + 1)) + (0);
-    var r_top = Math.floor(Math.random() * (850 - (0) + 1)) + (0);
+    var r_top = Math.floor(Math.random() * (820 - (0) + 1)) + (0);
 
     var id = ""
     var pic = null
@@ -197,6 +267,14 @@ function anim_gg(){
     }
 }
 
+function anim_e(){
+    for (let i = 0; i < 2; i++) {
+        setTimeout(() => {
+            document.getElementById('tank_enemy1').setAttribute('src', list_tank_e[i].src);
+        }, i * 50);
+    }
+}
+
 function anim_armor(){
     var top = parseInt(document.getElementById('tank_gg').style.top) || 0;
     var left = parseInt(document.getElementById('tank_gg').style.left) || 0;
@@ -216,25 +294,31 @@ function anim_armor(){
         if (count == 4){
             count = 0
         }
-        var arm = document.getElementById('armor1')
-        var cur_m_top = parseInt(document.getElementById('tank_gg').style.top) || 0;
-        var cur_m_left = parseInt(document.getElementById('tank_gg').style.left) || 0;
-        arm.style.top = (cur_m_top - 10) + 'px';
-        arm.style.left = (cur_m_left - 10) + 'px';
-        arm.setAttribute('src', list_armor[count].src);
+        if(document.getElementById('armor1')){
+            var arm = document.getElementById('armor1')
+            var cur_m_top = parseInt(document.getElementById('tank_gg').style.top) || 0;
+            var cur_m_left = parseInt(document.getElementById('tank_gg').style.left) || 0;
+            arm.style.top = (cur_m_top - 10) + 'px';
+            arm.style.left = (cur_m_left - 10) + 'px';
+            arm.setAttribute('src', list_armor[count].src);
+        }
         count += 1;
 
         if(i == 399){
             tank_armor = false
+            document.getElementById('armor1').remove()
         }
         }, i * 50);
     }
 }
 
-
+// список колізій для гравця
 list_wall = ['brick','brick1', 'tank_enemy1']
 
+// список колізій для ворогів
 list_wall2 = ['brick','brick1', 'tank_gg']
+
+list_wall3 = ['brick', 'brick1']
 
 var list_move = [[20, "l"], [25, "r"], [17, "u"], [22, "d"]]
 var move_enemy = [0, "l"]
@@ -248,8 +332,8 @@ var move_tank1 = 0
 var time_t1 = 0
 
 var time_gg = 0
-
 var time_e1 = 0
+var tank_e1_hp = 50
 
 var tank_lvl = 0
 var tank_armor = false
@@ -283,20 +367,53 @@ function game(){
         if(fire1 == 2){
             bulet_gg("bulet_enemy1", "tank_enemy1")
         }
-
     }else{
         time_t1 ++
         if(time_t1 == 200){
             time_t1 = 0
             document.getElementById('tank_enemy1').style.left = 900 + 'px';
             move_t1 = true
+            tank_e1_hp = 50
 
         }
     }
 
-    // реагує на перший танк та кулі гг
+    var tank_gg_r = document.getElementById('tank_gg').getBoundingClientRect();
+
+    // реагує на колізії кулі ГГ та стін
+    if(document.getElementById('tank_bulet')){
+        for (var i = 0; i < list_wall3.length; i++){
+            var bulet_r = document.getElementById('tank_bulet').getBoundingClientRect();
+            var wall_r = document.getElementById(list_wall3[i]).getBoundingClientRect();
+
+            if (!(bulet_r.right < wall_r.left ||
+                bulet_r.left > wall_r.right ||
+                bulet_r.bottom < wall_r.top ||
+                bulet_r.top > wall_r.bottom)) {
+                    document.getElementById('tank_bulet').remove()
+                    break
+                }
+        }
+    }
+
+    // реагує на колізії кулі першого танку та стін
+    if(document.getElementById('bulet_enemy1')){
+        for (var i = 0; i < list_wall3.length; i++){
+            var bulet_r = document.getElementById('bulet_enemy1').getBoundingClientRect();
+            var wall_r = document.getElementById(list_wall3[i]).getBoundingClientRect();
+
+            if (!(bulet_r.right < wall_r.left ||
+                bulet_r.left > wall_r.right ||
+                bulet_r.bottom < wall_r.top ||
+                bulet_r.top > wall_r.bottom)) {
+                    document.getElementById('bulet_enemy1').remove()
+                    break
+                }
+        }
+    }
+
+    // реагує на колізії покращень
     if(document.getElementById('speed_up')){
-        var tank_gg_r = document.getElementById('tank_gg').getBoundingClientRect();
         var speed_up_r = document.getElementById('speed_up').getBoundingClientRect();
 
         if (!(tank_gg_r.right < speed_up_r.left ||
@@ -306,13 +423,10 @@ function game(){
                 document.getElementById('speed_up').remove()
                 speed_gg += 5
                 speed_minus()
-
-
             }
     }
 
     if(document.getElementById('lvl_up')){
-        var tank_gg_r = document.getElementById('tank_gg').getBoundingClientRect();
         var lvl_up_r = document.getElementById('lvl_up').getBoundingClientRect();
 
         if (!(tank_gg_r.right < lvl_up_r.left ||
@@ -320,30 +434,28 @@ function game(){
             tank_gg_r.bottom < lvl_up_r.top ||
             tank_gg_r.top > lvl_up_r.bottom)) {
                 document.getElementById('lvl_up').remove()
-                if(tank_lvl < 2){
+                if(tank_lvl < 1){
                     tank_lvl++
                 }
-
-
-
             }
     }
 
     if(document.getElementById('armor')){
-        var tank_gg_r = document.getElementById('tank_gg').getBoundingClientRect();
         var armor_r = document.getElementById('armor').getBoundingClientRect();
 
         if (!(tank_gg_r.right < armor_r.left ||
             tank_gg_r.left > armor_r.right ||
             tank_gg_r.bottom < armor_r.top ||
             tank_gg_r.top > armor_r.bottom)) {
+
                 document.getElementById('armor').remove()
                 tank_armor = true
                 anim_armor()
             }
     }
 
-    // реагує на перший танк та кулі гг
+
+    // реагує на перший танк ворога та кулі гг
     if(document.getElementById('tank_bulet')){
         var tank_enemy1_r = document.getElementById('tank_enemy1').getBoundingClientRect();
         var bulet_gg_r = document.getElementById('tank_bulet').getBoundingClientRect();
@@ -352,11 +464,29 @@ function game(){
             tank_enemy1_r.left > bulet_gg_r.right ||
             tank_enemy1_r.bottom < bulet_gg_r.top ||
             tank_enemy1_r.top > bulet_gg_r.bottom)) {
-                document.getElementById('tank_bulet').remove()
-                document.getElementById('tank_enemy1').style.top = 50 + 'px';
-                document.getElementById('tank_enemy1').style.left = 1050 + 'px';
-                move_t1 = false
-                console.log("Попав по ворогу")
+
+                if(tank_lvl == 0){
+                    tank_e1_hp -= 25
+                    document.getElementById('tank_bulet').remove()
+                    console.log("Попав по ворогу 25 хп")
+                }else if(tank_lvl == 1){
+                tank_e1_hp -= 50
+                    document.getElementById('tank_bulet').remove()
+                    console.log("Попав по ворогу 50 хп")
+                }
+
+                if(tank_e1_hp <= 0){
+                    var cur_m_top = parseInt(document.getElementById('tank_enemy1').style.top) || 0;
+                    var cur_m_left = parseInt(document.getElementById('tank_enemy1').style.left) || 0;
+                    fire_tank(cur_m_left, cur_m_top)
+                    if(document.getElementById('tank_bulet')){
+                        document.getElementById('tank_bulet').remove()
+                    }
+                    document.getElementById('tank_enemy1').style.top = 50 + 'px';
+                    document.getElementById('tank_enemy1').style.left = 1050 + 'px';
+                    move_t1 = false
+                    console.log("Знищив ворогу")
+                }
             }
     }
 
@@ -372,6 +502,7 @@ function game(){
         }
     }
 
+    // перевіряє колізії гравця та стін
     for (var i = 0; i < list_wall.length; i++){
 
         var tank_rect = document.getElementById('tank_gg').getBoundingClientRect();
@@ -452,14 +583,25 @@ function bulet_gg(id_bulet, id_tank){
         var cur_m_left = parseInt(tank_gg.style.left) || 0;
         var cur_m_top = parseInt(tank_gg.style.top) || 0;
 
-        var img_bulet = document.createElement('img');
-        img_bulet.setAttribute('src', list_tank[1].src);
-        img_bulet.id = id_bulet;
-        img_bulet.style.left = cur_m_left + 36 + 'px';
-        img_bulet.style.top = cur_m_top + 42 + 'px';
-        img_bulet.style.width = 8 + 'px';
-        img_bulet.style.position = 'absolute';
-        div_game.appendChild(img_bulet);
+        if(id_tank == "tank_gg" && tank_lvl == 1){
+            var img_bulet = document.createElement('img');
+            img_bulet.setAttribute('src', list_tank[4].src);
+            img_bulet.id = id_bulet;
+            img_bulet.style.left = cur_m_left + 36 + 'px';
+            img_bulet.style.top = cur_m_top + 42 + 'px';
+            img_bulet.style.width = 12 + 'px';
+            img_bulet.style.position = 'absolute';
+            div_game.appendChild(img_bulet);
+        }else{
+            var img_bulet = document.createElement('img');
+            img_bulet.setAttribute('src', list_tank[1].src);
+            img_bulet.id = id_bulet;
+            img_bulet.style.left = cur_m_left + 36 + 'px';
+            img_bulet.style.top = cur_m_top + 42 + 'px';
+            img_bulet.style.width = 8 + 'px';
+            img_bulet.style.position = 'absolute';
+            div_game.appendChild(img_bulet);
+        }
 
         var bulet = img_bulet
 
@@ -501,7 +643,7 @@ function bulet_gg(id_bulet, id_tank){
                     }else{
                         clearInterval(bulet_d)
                     }
-                    if(cur_b_top > 1000){
+                    if(cur_b_top > 840){
                         bulet.remove()
                         clearInterval(bulet_d)
                     }
@@ -540,7 +682,7 @@ function move_gg(pos, id){
     var cur_m_top = parseInt(tank_gg.style.top) || 0;
     var cur_m_left = parseInt(tank_gg.style.left) || 0;
 
-    if(pos == "d" && cur_m_top < 800 && t_down){
+    if(pos == "d" && cur_m_top < 760 && t_down){
         anim_gg()
         tank_gg.style.top = (cur_m_top + speed_gg) + 'px';
         tank_gg.style.transform = "rotate(180deg)";
@@ -574,19 +716,23 @@ function move_e(pos, id){
     var cur_m_top = parseInt(tank_gg.style.top) || 0;
     var cur_m_left = parseInt(tank_gg.style.left) || 0;
 
-    if(pos == "d" && cur_m_top < 800 && t_e1_down){
+    if(pos == "d" && cur_m_top < 760 && t_e1_down){
+        anim_e()
         tank_gg.style.top = (cur_m_top + 10) + 'px';
         tank_gg.style.transform = "rotate(180deg)";
 
     }else if(pos == "u" && cur_m_top > 0 && t_e1_up){
+        anim_e()
         tank_gg.style.top = (cur_m_top - 10) + 'px';
         tank_gg.style.transform = "rotate(0deg)";
 
     }else if(pos == "r" && cur_m_left < 910 && t_e1_right){
+        anim_e()
         tank_gg.style.left = (cur_m_left + 10) + 'px';
         tank_gg.style.transform = "rotate(90deg)";
 
     }else if(pos == "l" && cur_m_left > 10 && t_e1_left){
+        anim_e()
         tank_gg.style.left = (cur_m_left - 10) + 'px';
         tank_gg.style.transform = "rotate(270deg)";
     }
