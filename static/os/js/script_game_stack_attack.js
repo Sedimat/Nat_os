@@ -335,6 +335,7 @@ var content = document.getElementById('content');
 
 var body = document.body;
 
+// виводить головний список гри
 //var txt = ''
 //
 //for (let i = 0; i < list_game.length; i++){
@@ -661,7 +662,7 @@ var pos_top = 465;
 var pos_key = -1
 
 
-
+// розставляє блоки та гравця зі списку
 function add_blok(){
     div_game = document.getElementById("div_game")
 
@@ -709,8 +710,7 @@ var throw_kran = [0,0]
 // зміна з координатами щоб розбити блок каскою
 var kub_1 = 0
 
-
-// додає блок в кран
+// додає блок в кран 1
 function add_blok_kran(){
 
     div_game = document.getElementById("div_game")
@@ -762,7 +762,7 @@ var throw_kran2 = [-2,0]
 // зміна з координатами щоб розбити блок каскою
 var kub_2 = 0
 
-// додає блок в кран
+// додає блок в кран 2
 function add_blok_kran2(){
 
     div_game = document.getElementById("div_game")
@@ -816,7 +816,7 @@ var throw_kran3 = [-2,0]
 // зміна з координатами щоб розбити блок каскою
 var kub_3 = 0
 
-// додає блок в кран
+// додає блок в кран 3
 function add_blok_kran3(){
 
     div_game = document.getElementById("div_game")
@@ -870,7 +870,7 @@ var throw_kran4 = [-2,0]
 // зміна з координатами щоб розбити блок каскою
 var kub_4 = 0
 
-// додає блок в кран
+// додає блок в кран 4
 function add_blok_kran4(){
 
     div_game = document.getElementById("div_game")
@@ -1271,7 +1271,7 @@ function move_gg(pos){
                         }, i * 100);
                     }
                 }
-                else if(list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_1[0]){
+                else if(list_game[index_gg - 45] && list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_1[0]){
                     list_game[index_gg - 45] = [0,0]
                     for (let i = 0; i < 3; i++) {
                         setTimeout(() => {
@@ -1296,7 +1296,7 @@ function move_gg(pos){
                             }
                         }, i * 100);
                     }
-                }else if(list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_2[0]){
+                }else if(list_game[index_gg - 45] && list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_2[0]){
                     list_game[index_gg - 45] = [0,0]
                     for (let i = 0; i < 3; i++) {
                         setTimeout(() => {
@@ -1321,7 +1321,7 @@ function move_gg(pos){
                             }
                         }, i * 100);
                     }
-                }else if(list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_3[0]){
+                }else if(list_game[index_gg - 45] && list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_3[0]){
                     list_game[index_gg - 45] = [0,0]
                     for (let i = 0; i < 3; i++) {
                         setTimeout(() => {
@@ -1346,7 +1346,7 @@ function move_gg(pos){
                             }
                         }, i * 100);
                     }
-                }else if(list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_4[0]){
+                }else if(list_game[index_gg - 45] && list_game[index_gg - 45][0] == 1 && cur_gg1 == kub_4[0]){
                     list_game[index_gg - 45] = [0,0]
                     for (let i = 0; i < 3; i++) {
                         setTimeout(() => {
@@ -1395,8 +1395,14 @@ function add_block_list(id,index) {
                 var cur_blok = parseInt(document.getElementById(id).style.top) || 0;
                 document.getElementById(id).style.top = (cur_blok + 15) + 'px';
                 if (i === 15) {
-                    document.getElementById(id).style.top = 465 + 'px';
-                    list_game[index] = [1, id]
+                    if(list_game[index][0] == 1){
+                        document.getElementById(id).style.top = 465 + 'px';
+                        document.getElementById(list_game[index][1]).remove()
+                        list_game[index] = [1, id]
+                    }else{
+                        document.getElementById(id).style.top = 465 + 'px';
+                        list_game[index] = [1, id]
+                    }
                 }
             }
         }, i * 100);
@@ -1423,22 +1429,37 @@ function grav_gg(index){
 
 }
 
+var list_delet = []
+
 // рухає блок вних по масиву
 function move_block(id, index, blok) {
-
-    for (let i = 0; i < 4; i++) {
+    var count = 0
+    for (let i = 0; i < 5; i++) {
         setTimeout(() => {
-            if(document.getElementById(id)){
+            if(document.getElementById(id) && i < 4){
                 var cur_blok = parseInt(document.getElementById(id).style.top) || 0;
                 document.getElementById(id).style.top = (cur_blok + 15) + 'px';
             }
             if(i === 0){
                 list_game[index] = [0,0]
-
             }
             if (i === 1) {
                 list_game[index + 15] = blok
             }
+//            if(i == 4){
+//                for (let i = 0; i < list_game.length; i++){
+//                    if(list_game[i][1] == id){
+//                        count++
+//                    }
+//                }
+//                if(count == 0){
+//                    if(document.getElementById(id)){
+//                        list_delet.push(id)
+//                    }
+//                }
+//
+//            }
+
         }, i * 100);
     }
 }
@@ -1624,7 +1645,14 @@ function game(){
     if (count == 10){
         count = 0
         anim1 += 1;
+//        for (let i = 0; i < list_game.length; i++) {
+//            if(list_game[i][0] == 2){
+//                index = i
+//            }
+//        }
+
     }
+
     if (anim1 == 4){
         anim1 = 0
     }
@@ -1642,7 +1670,7 @@ function game(){
 
     // переміщеня як гравітація блока
     if(iter_grav == 0){
-        for (let i = 105; i > -1; i--){
+        for (let i = 0; i < 105; i++){
             if(i + 15 < 105){
                 if(list_game[i][0] == 1 && list_game[i + 15][0] == 0){
                     var blok = list_game[i]
@@ -1678,7 +1706,7 @@ function game(){
         man.setAttribute('src', list_man[anim1].src);
     }
 
-    // виводе список гри
+//    // виводе список гри
 //    var txt1 = ''
 //
 //    for (let i = 0; i < list_game.length; i++){
@@ -1697,10 +1725,6 @@ function kill(){
         }, i * 100);
     }
 }
-
-
-
-
 
 kluch = false
 add_zastavka()
