@@ -291,9 +291,9 @@ select.src = "/media/img/select.svg"
 var list_game1 = [[0,0], [1,"b2"], [2,"Q4"], [0,0],  [1,"Q6"], [0, 0], [0,0], [1,"g6"], [0,0] ]
 
 var list_game = []
-//list_game =  [[1, 'hljky'], [0,0], [0,0], [0,'mfd4'], [1,'m56s'], [1, 'mx23'], [1,'fgbf098'], [1,'mb12'], [0,'mf45'], [1,'mnb78'],[1, 'bvg56'], [1,"f12"], [1,'m60'], [1,'m61'], [1,'m43'],
-//                 [1, "fwef234we"], [1,'fwvevs'], [1,'m8'], [0,'m1'], [1,"m2"], [1, 'm3'], [1,'m4'], [1,'cm23'], [1,'m0'], [1,"wfwfwwqdwq"],[1, "m55"], [1,'ergr43'], [1,'m67'], [1,'egerrge34'], [1,'fewfwef2342d'],
-//                 [1, '34rf'], [1,'fwfvsdv'], [1,'09evr'], [1,'nbnmgh'], [1,'voier0vj9'], [1, 'l1'], [1,'wefgwegh'], [1,'fer436f4'], [1,'dqwdq'], [1,'l3'],[1, 'm19'], [1,'m29'], [1,'m89'], [1,'fweccbcb'], [1,'1232dfwsf'],
+//list_game =  [[0, 'hljky'], [0,0], [0,0], [0,'mfd4'], [0,'m56s'], [0, 'mx23'], [0,'fgbf098'], [0,'mb12'], [0,'mf45'], [0,'mnb78'],[0, 'bvg56'], [0,"f12"], [0,'m60'], [0,'m61'], [0,'m43'],
+//                 [0, "fwef234we"], [1,'fwvevs'], [0,'m8'], [0,'m1'], [1,"m2"], [0, 'm3'], [0,'m4'], [0,'cm23'], [0,'m0'], [1,"wfwfwwqdwq"],[0, "m55"], [0,'ergr43'], [0,'m67'], [0,'egerrge34'], [0,'fewfwef2342d'],
+//                 [0, '34rf'], [1,'fwfvsdv'], [0,'09evr'], [1,'nbnmgh'], [1,'voier0vj9'], [1, 'l1'], [1,'wefgwegh'], [1,'fer436f4'], [1,'dqwdq'], [1,'l3'],[1, 'm19'], [0,'m29'], [0,'m89'], [1,'fweccbcb'], [2,'1232dfwsf'],
 //                 [1, 'fwe0'], [1,'fwef0vsdv0'], [1,'fweewf'], [1,"fwefwef"], [1,'fwefwewe3445'], [1, 'lfg'], [1,'fwefwe1'], [1,"yuy"], [1,'l1'], [1,'l2'],[1, 'nh90'], [1,'fewfwfew'], [1,'fwfwefvgbh'], [1,'fwefw34t5'], [1,"sdgege"],
 //                 [1, 'fwefwefnvcbc'], [1,'09jrkj0'], [1,'gergre'], [1,"b3"], [1,"Q6"], [1,"b4"], [1,"b5"], [1,"g6"], [1,"b6"], [1,"b7"], [1,"b8"], [1,"b9"], [1,"g10"], [1,"b11"], [1,"b12"],
 //                 [1,"a1"], [1,"a2"], [1,"a3"], [1,"a4"], [1,"a5"], [1,"a6"], [1,"a7"], [1,"a8"], [1,"a9"], [1,"a10"], [1,"a11"], [1,"a12"], [1,"a13"], [1,"a14"], [1,"a15"],
@@ -964,9 +964,9 @@ function move_gg(pos){
                     }, i * 100);
                 }
 
-            // якщо рухає блок на право
+            // якщо рухає блок на право && list_game[index_gg - 29] && list_game[index_gg - 29][0] == 0
             }else if(list_game[index_gg + 1][0] == 1 && list_game[index_gg + 2] && list_game[index_gg + 2][0] == 0
-            && list_game[index_gg - 14][0] == 0 && cur_gg1 != 831 && list_game[index_gg - 29] && list_game[index_gg - 29][0] == 0){
+            && list_game[index_gg - 14][0] == 0 && cur_gg1 != 831 ){
                 var anim1 = 0
                 var blok_id1 = list_game[index_gg + 1][1]
                 for (let i = 0; i < 4; i++) {
@@ -1044,9 +1044,9 @@ function move_gg(pos){
                         }
                     }, i * 100);
                 }
-             // якщо рухає блок на ліво
+             // якщо рухає блок на ліво && list_game[index_gg - 31] && list_game[index_gg - 31][0] == 0
             }else if(list_game[index_gg - 1][0] == 1 && list_game[index_gg - 16][0] == 0 && list_game[index_gg - 2][0] == 0
-                               && cur_gg1 != 111 && list_game[index_gg - 31] && list_game[index_gg - 31][0] == 0 ){
+                               && cur_gg1 != 111 ){
                 var anim1 = 0
                 var blok_id1 = list_game[index_gg - 1][1]
                 var back = 0
