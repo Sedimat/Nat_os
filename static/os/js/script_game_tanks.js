@@ -1,6 +1,7 @@
 var list_tank = [new Image(), new Image(), new Image(), new Image(),
                  new Image() , new Image(), new Image(), new Image(),
-                 new Image(), new Image(), new Image(), new Image()]
+                 new Image(), new Image(), new Image(), new Image(),
+                 new Image()]
 
 list_tank[0].src = '/media/g_tanks/tank.svg';
 list_tank[1].src = '/media/g_tanks/bulet.svg';
@@ -14,6 +15,7 @@ list_tank[8].src = '/media/g_tanks/train1.svg';
 list_tank[9].src = '/media/g_tanks/baza1.svg';
 list_tank[10].src = '/media/g_tanks/tarelka.svg';
 list_tank[11].src = '/media/g_tanks/hud_boss.svg';
+list_tank[12].src = '/media/g_tanks/train2.svg';
 
 var list_tank_e = [new Image(), new Image()]
 
@@ -396,6 +398,15 @@ function game_elements(){
     img_brick2.style.position = 'absolute';
     div_game.appendChild(img_brick2);
 
+    var img_train2 = document.createElement('img');
+    img_train2.setAttribute('src', list_tank[12].src);
+    img_train2.id = 'train2';
+    img_train2.style.left = 670 + 'px';
+    img_train2.style.top = 240 + 'px';
+    img_train2.style.width = 330 + 'px';
+    img_train2.style.position = 'absolute';
+    img_train2.style.transform = "rotate(0deg)";
+    div_game.appendChild(img_train2);
 
     content.appendChild(div_game);
 }
@@ -990,35 +1001,43 @@ function anim_armor(){
 
         if(i == 399){
             tank_armor = false
-            document.getElementById('armor1').remove()
+            if(document.getElementById('armor1')){
+                document.getElementById('armor1').remove()
+            }
         }
         }, i * 50);
     }
 }
 
 // список колізій для гравця
-list_wall = ['brick','brick1', 'tank_enemy1' , 'tank_enemy2' , 'tank_enemy3','img_rszv', "train1", 'baza', 'boss']
+list_wall = ['brick','brick1', 'tank_enemy1' , 'tank_enemy2', 'tank_enemy3',
+             'img_rszv', "train1", 'baza', 'boss', 'train2']
 
 // список колізій для ворога 1
-list_t_e1 = ['brick', 'brick1', 'tank_gg', 'tank_enemy2' , 'tank_enemy3','img_rszv', "train1", 'baza', 'boss']
+list_t_e1 = ['brick', 'brick1', 'tank_gg', 'tank_enemy2' , 'tank_enemy3',
+             'img_rszv', "train1", 'baza', 'boss', 'train2']
 
 // список колізій для ворога 2
-list_t_e2 = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy3','img_rszv', "train1", 'baza', 'boss']
+list_t_e2 = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy3',
+             'img_rszv', "train1", 'baza', 'boss', 'train2']
 
 // список колізій для ворога 3
-list_t_e3 = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy2','img_rszv', "train1", 'baza', 'boss']
+list_t_e3 = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy2',
+             'img_rszv', "train1", 'baza', 'boss', 'train2']
 
 // список колізій для РСЗВ
-list_r_e = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy2', 'tank_enemy3', "train1", 'baza', 'boss']
+list_r_e = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy2',
+             'tank_enemy3', "train1", 'baza', 'boss', 'train2']
 
 // список колізій для BOSS
-list_boss_e = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy2', 'tank_enemy3', "train1", 'baza', 'img_rszv']
+list_boss_e = ['brick', 'brick1', 'tank_gg', 'tank_enemy1' , 'tank_enemy2',
+               'tank_enemy3', "train1", 'baza', 'img_rszv', 'train2']
 
 // колізії для куля ворогів
-list_wall3 = ['brick', 'brick1', 'tank_gg', "train1"]
+list_wall3 = ['brick', 'brick1', 'tank_gg', "train1", 'train2']
 
 // колізії для куля гг
-list_wall4 = ['brick', 'brick1', "train1"]
+list_wall4 = ['brick', 'brick1', "train1", 'train2']
 
 var list_move = [[20, "l"], [25, "r"], [15, "u"], [22, "d"]]
 
