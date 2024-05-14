@@ -3,13 +3,6 @@
 var gameinterval = null
 
 
-klic_s = new Audio("media/sounds/klic.mp3");
-
-function klic(){
-    klic_s.volume = 0.4; // встановлюємо гучність
-    klic_s.play();
-}
-
 
 var mov_up = false;
 var mov_left = false;
@@ -106,7 +99,6 @@ function leftDiagonalDown(event){
     if(kluch){
         move_gg("d_l")
     }
-    klic()
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
 }
@@ -121,7 +113,6 @@ function rightDiagonalDown(event){
     if(kluch){
         move_gg("d_r")
     }
-    klic()
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
 }
@@ -135,7 +126,6 @@ function rightDiagonalUp(){
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
     menu("down")
-    klic()
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
 }
@@ -151,7 +141,6 @@ function upMouseDown(event) {
         move_gg("up")
     }
     menu("up")
-    klic()
     event.preventDefault();
     navigator.vibrate(50);
 }
@@ -166,7 +155,6 @@ function leftMouseDown(event) {
     if(kluch){
         move_gg("l")
     }
-    klic()
     event.preventDefault();
     navigator.vibrate(50);
 }
@@ -181,7 +169,6 @@ function rightMouseDown(event) {
     if(kluch){
         move_gg("r")
     }
-    klic()
     event.preventDefault();
     navigator.vibrate(50);
 }
@@ -192,7 +179,6 @@ function rightMouseUp() {
 
 function center(event){
     document.getElementById('c_C').style.backgroundColor = "#613703";
-    klic()
     event.preventDefault();
     navigator.vibrate(50);
 }
@@ -204,7 +190,6 @@ function center_up(){
 // лівий селект
 function left_select(event){
     document.getElementById('l_s').style.backgroundColor = "#613703";
-    klic()
     event.preventDefault();
     navigator.vibrate(50);
 
@@ -218,7 +203,6 @@ function left_select_up() {
 function right_select(event){
     document.getElementById('r_s').style.backgroundColor = "#613703";
     menu("r_s")
-    klic()
     event.preventDefault();
     navigator.vibrate(50); // включаємо вібрацію
 }
