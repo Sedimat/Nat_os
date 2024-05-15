@@ -125,3 +125,7 @@ def stack_attack(request):
 def tanks(request):
     context = {}
     return render(request, 'game/tanks.html', context=context)
+
+def driver(request):
+    context = {}
+    return render(request, 'game/driver.html', context=context)

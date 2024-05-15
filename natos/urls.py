@@ -19,5 +19,6 @@ urlpatterns = [
     path('uhelyant', views.uhelyant, name='uhelyant'),
     path('stack_attack', views.stack_attack, name='stack_attack'),
     path('tanks', views.tanks, name='tanks'),
+    path('driver', views.driver, name='driver'),
     path('NatOs_web', views.natos_web, name='NatOs_web'),
 ]
