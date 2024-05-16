@@ -4,11 +4,12 @@ list_tree_s1[0].src = '/media/g_driver/s1.svg';
 list_tree_s1[1].src = '/media/g_driver/s2.svg';
 list_tree_s1[2].src = '/media/g_driver/s3.svg';
 
-var list_element = [new Image(), new Image(), new Image()]
+var list_element = [new Image(), new Image(), new Image(), new Image()]
 
 list_element[0].src = '/media/g_driver/car1.svg';
 list_element[1].src = '/media/g_driver/phone_c.svg';
-//list_element[2].src = '/media/g_driver/s3.svg';
+list_element[2].src = '/media/g_driver/fura.svg';
+list_element[3].src = '/media/g_driver/truck.svg';
 
 var zastavka = new Image()
 zastavka.src = '/media/g_driver/zastavka.svg'
@@ -48,16 +49,6 @@ function game_elements(){
     div_game.classList.add('content');
     div_game.style.position = 'absolute';
 
-    var img_car = document.createElement('img');
-    img_car.setAttribute('src', list_element[0].src);
-    img_car.id = 'car';
-    img_car.style.left = 400 + 'px';
-    img_car.style.top = 700 + 'px';
-    img_car.style.width = 80 + 'px';
-    img_car.style.position = 'absolute';
-    img_car.style.transform = "rotate(0deg)";
-    div_game.appendChild(img_car);
-
     var img_fon = document.createElement('img');
     img_fon.setAttribute('src', list_element[1].src);
     img_fon.id = 'fon1';
@@ -78,6 +69,37 @@ function game_elements(){
     img_fon2.style.transform = "rotate(0deg)";
     div_game.appendChild(img_fon2);
 
+    var img_car = document.createElement('img');
+    img_car.setAttribute('src', list_element[0].src);
+    img_car.id = 'car';
+    img_car.style.left = 670 + 'px';
+    img_car.style.top = 700 + 'px';
+    img_car.style.width = 80 + 'px';
+    img_car.style.position = 'absolute';
+    img_car.style.transform = "rotate(0deg)";
+    div_game.appendChild(img_car);
+
+    var img_fura = document.createElement('img');
+    img_fura.setAttribute('src', list_element[2].src);
+    img_fura.id = 'fura';
+    img_fura.style.left = 250 + 'px';
+    img_fura.style.top = 600 + 'px';
+    img_fura.style.width = 110 + 'px';
+    img_fura.style.position = 'absolute';
+    img_fura.style.transform = "rotate(180deg)";
+    div_game.appendChild(img_fura);
+
+    var img_truck = document.createElement('img');
+    img_truck.setAttribute('src', list_element[3].src);
+    img_truck.id = 'truck';
+    img_truck.style.left = 515 + 'px';
+    img_truck.style.top = 600 + 'px';
+    img_truck.style.width = 110 + 'px';
+    img_truck.style.position = 'absolute';
+    img_truck.style.transform = "rotate(0deg)";
+    div_game.appendChild(img_truck);
+
+
     document.getElementById('content').appendChild(div_game);
 
 }
@@ -93,7 +115,7 @@ function add_tree(){
     var img_s1 = document.createElement('img');
     img_s1.setAttribute('src', list_tree_s1[0].src);
     img_s1.id = 's1';
-    img_s1.style.left = 0 + 'px';
+    img_s1.style.left = -10 + 'px';
     img_s1.style.top = 0 + 'px';
     img_s1.style.width = 175 + 'px';
     img_s1.style.position = 'absolute';
@@ -103,7 +125,7 @@ function add_tree(){
     var img_s2 = document.createElement('img');
     img_s2.setAttribute('src', list_tree_s1[1].src);
     img_s2.id = 's2';
-    img_s2.style.left = 25 + 'px';
+    img_s2.style.left = 15 + 'px';
     img_s2.style.top = 17 + 'px';
     img_s2.style.width = 121 + 'px';
     img_s2.style.position = 'absolute';
@@ -113,7 +135,7 @@ function add_tree(){
     var img_s3 = document.createElement('img');
     img_s3.setAttribute('src', list_tree_s1[2].src);
     img_s3.id = 's3';
-    img_s3.style.left = 37 + 'px';
+    img_s3.style.left = 27 + 'px';
     img_s3.style.top = 23 + 'px';
     img_s3.style.width = 92 + 'px';
     img_s3.style.position = 'absolute';
@@ -184,10 +206,11 @@ function play(elem,num){
 
 var list_coor = []
 
-var speed = 7
+var speed = 0
 
 function game(){
 
+    // рух фону
     var cur_fon1_top = parseInt(document.getElementById("fon1").style.top) || 0;
     var cur_fon2_top = parseInt(document.getElementById("fon2").style.top) || 0;
 
@@ -195,13 +218,15 @@ function game(){
     document.getElementById("fon2").style.top = (cur_fon2_top + speed) + 'px';
     if(cur_fon1_top > 1066){
 
-        document.getElementById("fon1").style.top = cur_fon2_top - 1060 + 'px';
+        var cur_fon2_top = parseInt(document.getElementById("fon2").style.top) || 0;
+        document.getElementById("fon1").style.top = cur_fon2_top - 1066 + 'px';
     }
     if(cur_fon2_top > 1066){
-        document.getElementById("fon2").style.top = cur_fon1_top - 1060 + 'px';
+        var cur_fon1_top = parseInt(document.getElementById("fon1").style.top) || 0;
+        document.getElementById("fon2").style.top = cur_fon1_top - 1066 + 'px';
     }
 
-
+    // рух 1 дерева
     var div_tree = document.getElementById("div_tree");
     var cur_tree_top = parseInt(div_tree.style.top) || 0;
 
@@ -212,6 +237,29 @@ function game(){
     }
     parallax_t(cur_tree_top)
 
+    // рух фури зустрічної
+    var cur_fura_top = parseInt(document.getElementById("fura").style.top) || 0;
+    document.getElementById("fura").style.top = cur_fura_top + (20 + speed) + 'px';
+
+    if(cur_fura_top > 1300){
+        document.getElementById("fura").style.top = -3300 + 'px';
+    }
+
+    // рух траку попутного
+    var cur_truck_top = parseInt(document.getElementById("truck").style.top) || 0;
+    console.log(cur_truck_top)
+    document.getElementById("truck").style.top = cur_truck_top - 20 + speed + 'px';
+
+    if(cur_truck_top < -500){
+        document.getElementById("truck").style.top = 1200 + 'px';
+    }
+
+    if(cur_truck_top > 1300){
+        document.getElementById("truck").style.top = -300 + 'px';
+    }
+
+
+    // керуваня авто
     if(list_coor[0] && list_coor[0] == 4){
         var car = document.getElementById("car");
         var cur_car_left = parseInt(car.style.left) || 0;
@@ -222,7 +270,17 @@ function game(){
         var cur_car_left = parseInt(car.style.left) || 0;
         car.style.left = (cur_car_left - 10) + 'px';
 
+    }else if(list_coor[0] && list_coor[0] == 1){
+        if(speed < 100){
+            speed++
+        }
     }
+    else if(list_coor[0] && list_coor[0] == 2){
+        if(speed > 0){
+            speed--
+        }
+    }
+
 
 }
 
@@ -251,12 +309,17 @@ document.addEventListener("keydown", function(event) {
 
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
-
-//            list_coor.unshift(1);
+            if(k1){
+                list_coor.unshift(1);
+                k1 = false
+            }
         }
         // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
-//            list_coor.unshift(2);
+            if(k2){
+                list_coor.unshift(2);
+                k2 = false
+            }
         }
 
         // A або стрілка вліво
@@ -292,10 +355,21 @@ document.addEventListener("keydown", function(event) {
 document.addEventListener("keyup", function(event) {
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
-
+            k1 = true
+            for (var i = 0; i < list_coor.length; i++){
+                if(list_coor[i] == 1){
+                    list_coor.splice(i, 1);
+                }
+            }
         }
     // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
+            k2 = true
+            for (var i = 0; i < list_coor.length; i++){
+                if(list_coor[i] == 2){
+                    list_coor.splice(i, 1);
+                }
+            }
 
         }
 
