@@ -1,3 +1,5 @@
+
+
 var list_tree_s1 = [new Image(), new Image(), new Image()]
 
 list_tree_s1[0].src = '/media/g_driver/s1.svg';
@@ -9,13 +11,20 @@ var list_b_s = [new Image(), new Image()]
 list_b_s[0].src = '/media/g_driver/s_t1.svg';
 list_b_s[1].src = '/media/g_driver/s_t2.svg';
 
-var list_element = [new Image(), new Image(), new Image(), new Image(), new Image()]
+var list_element = [new Image(), new Image(), new Image(), new Image(), new Image(),
+                    new Image(), new Image(), new Image(), new Image(), new Image()]
 
 list_element[0].src = '/media/g_driver/car3.svg';
 list_element[1].src = '/media/g_driver/phone_c.svg';
 list_element[2].src = '/media/g_driver/fura2.svg';
 list_element[3].src = '/media/g_driver/truck2.svg';
 list_element[4].src = '/media/g_driver/oil.svg';
+list_element[5].src = '/media/g_driver/car_e1.svg';
+list_element[6].src = '/media/g_driver/car_e2.svg';
+list_element[7].src = '/media/g_driver/kanistra.svg';
+list_element[8].src = '/media/g_driver/panel.svg';
+list_element[9].src = '/media/g_driver/panel1.svg';
+
 
 var zastavka = new Image()
 zastavka.src = '/media/g_driver/zastavka.svg'
@@ -85,6 +94,16 @@ function game_elements(){
     img_oil.style.transform = "rotate(0deg)";
     div_game.appendChild(img_oil);
 
+    var img_kan = document.createElement('img');
+    img_kan.setAttribute('src', list_element[7].src);
+    img_kan.id = 'kanistra';
+    img_kan.style.left = 300 + 'px';
+    img_kan.style.top = 900 + 'px';
+    img_kan.style.width = 40 + 'px';
+    img_kan.style.position = 'absolute';
+    img_kan.style.transform = "rotate(0deg)";
+    div_game.appendChild(img_kan);
+
     var img_car = document.createElement('img');
     img_car.setAttribute('src', list_element[0].src);
     img_car.id = 'car';
@@ -94,6 +113,26 @@ function game_elements(){
     img_car.style.position = 'absolute';
     img_car.style.transform = "rotate(0deg)";
     div_game.appendChild(img_car);
+
+    var img_car_e1 = document.createElement('img');
+    img_car_e1.setAttribute('src', list_element[5].src);
+    img_car_e1.id = 'car_e1';
+    img_car_e1.style.left = 685 + 'px';
+    img_car_e1.style.top = 200 + 'px';
+    img_car_e1.style.width = 65 + 'px';
+    img_car_e1.style.position = 'absolute';
+    img_car_e1.style.transform = "rotate(0deg)";
+    div_game.appendChild(img_car_e1);
+
+    var img_car_e2 = document.createElement('img');
+    img_car_e2.setAttribute('src', list_element[6].src);
+    img_car_e2.id = 'car_e2';
+    img_car_e2.style.left = 600 + 'px';
+    img_car_e2.style.top = 100 + 'px';
+    img_car_e2.style.width = 65 + 'px';
+    img_car_e2.style.position = 'absolute';
+    img_car_e2.style.transform = "rotate(0deg)";
+    div_game.appendChild(img_car_e2);
 
     var img_fura = document.createElement('img');
     img_fura.setAttribute('src', list_element[2].src);
@@ -193,9 +232,42 @@ function add_b_s(){
 
 }
 
+function add_panel(){
+
+    var div_panel = document.createElement('div');
+    div_panel.id = 'div_panel';
+    div_panel.style.left = 720 + 'px';
+    div_panel.style.top = 766 + 'px';
+    div_panel.style.position = 'absolute';
+
+    var img_panel1 = document.createElement('img');
+    img_panel1.setAttribute('src', list_element[9].src);
+    img_panel1.id = 'panel1';
+    img_panel1.style.left = 254 + 'px';
+    img_panel1.style.top = 17 + 'px';
+    img_panel1.style.height = 107 + 'px';
+    img_panel1.style.position = 'absolute';
+    img_panel1.style.transform = "rotate(0deg)";
+    div_panel.appendChild(img_panel1);
+
+    var img_panel = document.createElement('img');
+    img_panel.setAttribute('src', list_element[8].src);
+    img_panel.id = 'panel';
+    img_panel.style.left = 0 + 'px';
+    img_panel.style.top = 0 + 'px';
+    img_panel.style.height = 135 + 'px';
+    img_panel.style.position = 'absolute';
+    img_panel.style.transform = "rotate(0deg)";
+    div_panel.appendChild(img_panel);
+
+    document.getElementById('div_game').appendChild(div_panel);
+
+}
+
 game_elements()
 add_tree()
 add_b_s()
+add_panel()
 
 
 var key = -1
@@ -297,7 +369,39 @@ function anim_oil(){
                 angle = 0
             }
 
+        if(i == 8){
+            control = true
+        }
+
         }, i * 100);
+    }
+}
+
+function anim_right(){
+    for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+            var car = document.getElementById("car");
+            var cur_car_left = parseInt(car.style.left) || 0;
+            car.style.left = (cur_car_left + 10) + 'px';
+        if(i == 8){
+            touch_right = true
+            control = true
+        }
+        }, i * 30);
+    }
+}
+
+function anim_left(){
+    for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+            var car = document.getElementById("car");
+            var cur_car_left = parseInt(car.style.left) || 0;
+            car.style.left = (cur_car_left - 10) + 'px';
+        if(i == 8){
+            touch_left = true
+            control = true
+        }
+        }, i * 30);
     }
 }
 
@@ -309,8 +413,54 @@ var speed_fure = 10
 
 var oil_r = true
 
+var kanistra_r = true
+
+var touch_right = true
+var touch_left = true
+
+// зміна яка дозволяє керування
+var control = true
+var gas = true
+
+var bak = 0
+var bak1 = 0
+
+
+
 function game(){
 
+    // худ бензину та його логіка
+    if(bak == 20){
+        bak = 0
+    }
+    if(speed > 0 && bak == 0){
+        var cur_bak_top = parseInt(document.getElementById("panel1").style.top) || 0;
+        if(speed / 20 < 1){
+            if(bak1 == 2){
+                document.getElementById("panel1").style.top = (cur_bak_top + 1) + 'px';
+                bak1 = 0
+                console.log("-1")
+            }
+            bak1++
+
+        }else{
+            document.getElementById("panel1").style.top = (cur_bak_top + speed / 10) + 'px';
+        }
+    }
+
+    var poss = parseInt(document.getElementById("panel1").style.top) || 0
+    if(poss > 126){
+        gas = false
+        if(speed > 0){
+            speed--
+        }
+        if(speed == 0){
+//            clearInterval(gameiter)
+        }
+
+    }
+
+    bak++
     // рух фону
     var cur_fon1_top = parseInt(document.getElementById("fon1").style.top) || 0;
     var cur_fon2_top = parseInt(document.getElementById("fon2").style.top) || 0;
@@ -333,8 +483,24 @@ function game(){
     document.getElementById("oil").style.top = (cur_oil_top + speed) + 'px';
 
     if(cur_oil_top > 1066){
-        document.getElementById("oil").style.top = -1066 + 'px';
+
+        var r_left = Math.floor(Math.random() * (660 - (250) + 1)) + (250);
+        document.getElementById("oil").style.top = -5066 + 'px';
+        document.getElementById("oil").style.left = r_left + 'px';
         oil_r = true
+    }
+
+    // рух бензину по дорозі
+    var cur_kanistra_top = parseInt(document.getElementById("kanistra").style.top) || 0;
+
+    document.getElementById("kanistra").style.top = (cur_kanistra_top + speed) + 'px';
+
+    if(cur_kanistra_top > 1066){
+
+        var k_left = Math.floor(Math.random() * (660 - (250) + 1)) + (250);
+        document.getElementById("kanistra").style.top = -10100 + 'px';
+        document.getElementById("kanistra").style.left = k_left + 'px';
+        kanistra_r = true
     }
 
     // рух 1 дерева
@@ -355,7 +521,7 @@ function game(){
     div_bus_stop.style.top = (cur_bus_stop_top + speed) + 'px';
 
     if(cur_bus_stop_top > 1000){
-        div_bus_stop.style.top = -300 + 'px';
+        div_bus_stop.style.top = -6300 + 'px';
     }
     parallax_b_t(cur_bus_stop_top)
 
@@ -380,33 +546,136 @@ function game(){
         document.getElementById("truck").style.top = -300 + 'px';
     }
 
+    // рух легкового 1 авто попутного
+    var cur_car_e1_top = parseInt(document.getElementById("car_e1").style.top) || 0;
+    document.getElementById("car_e1").style.top = cur_car_e1_top - 12 + speed + 'px';
+
+    if(cur_car_e1_top < -500){
+        document.getElementById("car_e1").style.top = 1200 + 'px';
+    }
+
+    if(cur_car_e1_top > 1300){
+        document.getElementById("car_e1").style.top = -300 + 'px';
+    }
+
+    // рух легкового 2 авто попутного
+    var cur_car_e2_top = parseInt(document.getElementById("car_e2").style.top) || 0;
+    document.getElementById("car_e2").style.top = cur_car_e2_top - 14 + speed + 'px';
+
+    if(cur_car_e2_top < -500){
+        document.getElementById("car_e2").style.top = 1200 + 'px';
+    }
+
+    if(cur_car_e2_top > 1300){
+        document.getElementById("car_e2").style.top = -300 + 'px';
+    }
+
+
+
     var car = document.getElementById("car");
     var cur_car_left = parseInt(car.style.left) || 0;
 
 
     // керуваня авто
-    if(list_coor[0] && list_coor[0] == 4 && speed > 0 && cur_car_left < 685){
-        car.style.left = (cur_car_left + 10) + 'px';
+    if(control){
+        if(list_coor[0] && list_coor[0] == 4 && speed > 0 && cur_car_left < 685){
+            car.style.left = (cur_car_left + 10) + 'px';
 
-    }else if(list_coor[0] && list_coor[0] == 3 && speed > 0 && cur_car_left > 245){
-        car.style.left = (cur_car_left - 10) + 'px';
+        }else if(list_coor[0] && list_coor[0] == 3 && speed > 0 && cur_car_left > 245){
+            car.style.left = (cur_car_left - 10) + 'px';
 
-    }else if(list_coor[0] && list_coor[0] == 1){
-        if(speed < 100){
-            speed++
+        }else if(list_coor[0] && list_coor[0] == 1 && gas){
+            if(speed < 50){
+                speed++
+            }
         }
-    }
-    else if(list_coor[0] && list_coor[0] == 2){
-        if(speed > 0){
-            speed--
+        else if(list_coor[0] && list_coor[0] == 2){
+            if(speed > 0){
+                speed--
+            }
         }
     }
 
     var car_rect = document.getElementById('car').getBoundingClientRect();
+    var car_e1_rect = document.getElementById('car_e1').getBoundingClientRect();
+    var car_e2_rect = document.getElementById('car_e2').getBoundingClientRect();
     var truck_reck = document.getElementById('truck').getBoundingClientRect();
     var fura_reck = document.getElementById('fura').getBoundingClientRect();
     var oil_reck = document.getElementById('oil').getBoundingClientRect();
+    var kanistra_reck = document.getElementById('kanistra').getBoundingClientRect();
 
+        // умова колізії бензину
+        if (!(car_rect.right < kanistra_reck.left ||
+            car_rect.left > kanistra_reck.right ||
+            car_rect.bottom < kanistra_reck.top ||
+            car_rect.top > kanistra_reck.bottom)) {
+                document.getElementById("kanistra").style.top = 900 + 'px';
+                document.getElementById("panel1").style.top = 17 + 'px';
+
+
+            }
+
+        // умови 1 легкової попутної
+        if (!(car_rect.right < car_e1_rect.left ||
+            car_rect.left > car_e1_rect.right ||
+            car_rect.bottom < car_e1_rect.top ||
+            car_rect.top > car_e1_rect.bottom)) {
+
+                if(car_rect.top > car_e1_rect.bottom - 20){
+                    speed = 0
+                }else if(car_rect.bottom < car_e1_rect.top + 20){
+                    speed += 10
+                }else if(car_rect.left > car_e1_rect.right - 20){
+
+                    if(touch_right){
+                        control = false
+                        touch_right = false
+                        anim_right()
+                    }
+
+                }else if(car_rect.right < car_e1_rect.left + 20){
+                    if(touch_left){
+                        control = false
+                        touch_left = false
+                        anim_left()
+                    }
+                }else{
+                    speed = 0
+                }
+
+            }
+
+        // умови 2 легкової попутної
+        if (!(car_rect.right < car_e2_rect.left ||
+            car_rect.left > car_e2_rect.right ||
+            car_rect.bottom < car_e2_rect.top ||
+            car_rect.top > car_e2_rect.bottom)) {
+
+                if(car_rect.top > car_e2_rect.bottom - 20){
+                    speed = 0
+                }else if(car_rect.bottom < car_e2_rect.top + 20){
+                    speed += 10
+                }else if(car_rect.left > car_e2_rect.right - 20){
+
+                    if(touch_right){
+                        control = false
+                        touch_right = false
+                        anim_right()
+                    }
+
+                }else if(car_rect.right < car_e2_rect.left + 20){
+                    if(touch_left){
+                        control = false
+                        touch_left = false
+                        anim_left()
+                    }
+                }else{
+                    speed = 0
+                }
+
+            }
+
+        // умови зіткненя з траком
         if (!(car_rect.right < truck_reck.left ||
             car_rect.left > truck_reck.right ||
             car_rect.bottom < truck_reck.top ||
@@ -417,15 +686,25 @@ function game(){
                 }else if(car_rect.bottom < truck_reck.top + 20){
                     speed += 10
                 }else if(car_rect.left > truck_reck.right - 20){
-                    speed = 0
+
+                    if(touch_right){
+                        control = false
+                        touch_right = false
+                        anim_right()
+                    }
+
                 }else if(car_rect.right < truck_reck.left + 20){
-                    speed = 0
+                    if(touch_left){
+                        control = false
+                        touch_left = false
+                        anim_left()
+                    }
                 }else{
                     speed = 0
                 }
 
             }
-
+        // умови зіткненя з фурою
         if (!(car_rect.right < fura_reck.left ||
             car_rect.left > fura_reck.right ||
             car_rect.bottom < fura_reck.top ||
@@ -435,7 +714,12 @@ function game(){
                     speed = 0
                     speed_fure = 0
                 }else if(car_rect.left > fura_reck.right - 20){
-                    speed = 0
+
+                    if(touch_right){
+                        control = false
+                        touch_right = false
+                        anim_right()
+                    }
                 }else if(car_rect.right < fura_reck.left + 20){
                     speed = 0
                 }else{
@@ -444,14 +728,15 @@ function game(){
                 }
             }
 
+        // умова колізії нафтового пятна
         if (!(car_rect.right < oil_reck.left ||
             car_rect.left > oil_reck.right ||
             car_rect.bottom < oil_reck.top ||
             car_rect.top > oil_reck.bottom)) {
                 if(oil_r && speed > 20 ){
                     oil_r = false
+                    control = false
                     anim_oil()
-                    console.log("Наїхав")
                 }
 
             }
