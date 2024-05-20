@@ -1,10 +1,14 @@
 
-
 var list_tree_s1 = [new Image(), new Image(), new Image()]
 
 list_tree_s1[0].src = '/media/g_driver/s1.svg';
 list_tree_s1[1].src = '/media/g_driver/s2.svg';
 list_tree_s1[2].src = '/media/g_driver/s3.svg';
+
+var list_tree_s2 = [new Image(), new Image(), new Image()]
+
+list_tree_s2[0].src = '/media/g_driver/s11.svg';
+list_tree_s2[1].src = '/media/g_driver/s13.svg';
 
 var list_b_s = [new Image(), new Image()]
 
@@ -12,6 +16,7 @@ list_b_s[0].src = '/media/g_driver/s_t1.svg';
 list_b_s[1].src = '/media/g_driver/s_t2.svg';
 
 var list_element = [new Image(), new Image(), new Image(), new Image(), new Image(),
+                    new Image(), new Image(), new Image(), new Image(), new Image(),
                     new Image(), new Image(), new Image(), new Image(), new Image(),
                     new Image(), new Image(), new Image(), new Image(), new Image(),
                     new Image(), new Image(), new Image(), new Image(), new Image()]
@@ -35,6 +40,9 @@ list_element[15].src = '/media/g_driver/car_u1.svg';
 list_element[16].src = '/media/g_driver/car_u2.svg';
 list_element[17].src = '/media/g_driver/car_с1.svg';
 list_element[18].src = '/media/g_driver/car_с2.svg';
+list_element[19].src = '/media/g_driver/car_u1_2.svg';
+list_element[20].src = '/media/g_driver/car_u2_1.svg';
+list_element[21].src = '/media/g_driver/panel2.svg';
 
 var list_crush = [new Image(), new Image(), new Image(), new Image(), new Image()]
 
@@ -68,7 +76,7 @@ function game_over(){
     img_over.setAttribute('src', cont.src);
     img_over.id = 'img_over';
     img_over.style.left = 230 + 'px';
-    img_over.style.top = 400 + 'px';
+    img_over.style.top = 200 + 'px';
     img_over.style.height = 250 + 'px';
     img_over.style.position = 'absolute';
     div_game_over.appendChild(img_over);
@@ -78,16 +86,16 @@ function game_over(){
     txt_over.id = 'txt_over1';
     txt_over.classList.add('score');
     txt_over.style.left = 300 + 'px';
-    txt_over.style.top = 420 + 'px';
+    txt_over.style.top = 220 + 'px';
     txt_over.style.position = 'absolute';
     div_game_over.appendChild(txt_over);
 
     var txt_over1 = document.createElement('h1');
-    txt_over1.textContent = "Score: " + score;
+    txt_over1.textContent = "Distance: " + (score / 1000).toFixed(1) + "km";
     txt_over1.id = 'txt_over2';
     txt_over1.classList.add('score');
     txt_over1.style.left = 300 + 'px';
-    txt_over1.style.top = 500 + 'px';
+    txt_over1.style.top = 300 + 'px';
     txt_over1.style.position = 'absolute';
     div_game_over.appendChild(txt_over1);
 
@@ -129,20 +137,11 @@ function add_menu(){
     div_menu.appendChild(new_game);
 
     var about = document.createElement('h1');
-    about.textContent = "Settings";
-    about.id = 'settings';
-    about.classList.add('menu');
-    about.style.left = 60 + 'px';
-    about.style.top = 175 + 'px';
-    about.style.position = 'absolute';
-    div_menu.appendChild(about);
-
-    var about = document.createElement('h1');
     about.textContent = "About";
     about.id = 'about';
     about.classList.add('menu');
     about.style.left = 60 + 'px';
-    about.style.top = 300 + 'px';
+    about.style.top = 175 + 'px';
     about.style.position = 'absolute';
     div_menu.appendChild(about);
 
@@ -151,7 +150,7 @@ function add_menu(){
     score_n1.id = 'exit';
     score_n1.classList.add('menu');
     score_n1.style.left = 60 + 'px';
-    score_n1.style.top = 425 + 'px';
+    score_n1.style.top = 300 + 'px';
     score_n1.style.position = 'absolute';
     div_menu.appendChild(score_n1);
 
@@ -295,8 +294,8 @@ function game_elements(){
     var img_kluch = document.createElement('img');
     img_kluch.setAttribute('src', list_element[14].src);
     img_kluch.id = 'kluch';
-    img_kluch.style.left = 300 + 'px';
-    img_kluch.style.top = 600 + 'px';
+    img_kluch.style.left = 500 + 'px';
+    img_kluch.style.top = 900 + 'px';
     img_kluch.style.width = 50 + 'px';
     img_kluch.style.position = 'absolute';
     img_kluch.style.transform = "rotate(0deg)";
@@ -419,6 +418,38 @@ function add_tree(){
 
 }
 
+function add_tree2(){
+
+    var div_tree = document.createElement('div');
+    div_tree.id = 'div_tree2';
+    div_tree.style.left = 10 + 'px';
+    div_tree.style.top = -400 + 'px';
+    div_tree.style.position = 'absolute';
+
+    var img_s1 = document.createElement('img');
+    img_s1.setAttribute('src', list_tree_s2[0].src);
+    img_s1.id = 's11';
+    img_s1.style.left = -10 + 'px';
+    img_s1.style.top = 0 + 'px';
+    img_s1.style.width = 175 + 'px';
+    img_s1.style.position = 'absolute';
+    img_s1.style.transform = "rotate(0deg)";
+    div_tree.appendChild(img_s1);
+
+    var img_s3 = document.createElement('img');
+    img_s3.setAttribute('src', list_tree_s2[1].src);
+    img_s3.id = 's13';
+    img_s3.style.left = 27 + 'px';
+    img_s3.style.top = 23 + 'px';
+    img_s3.style.width = 122 + 'px';
+    img_s3.style.position = 'absolute';
+    img_s3.style.transform = "rotate(0deg)";
+    div_tree.appendChild(img_s3);
+
+    document.getElementById('div_game').appendChild(div_tree);
+
+}
+
 function add_b_s(){
 
     var div_bus_stop = document.createElement('div');
@@ -454,14 +485,14 @@ function add_panel(){
 
     var div_panel = document.createElement('div');
     div_panel.id = 'div_panel';
-    div_panel.style.left = 720 + 'px';
+    div_panel.style.left = 0 + 'px';
     div_panel.style.top = 766 + 'px';
     div_panel.style.position = 'absolute';
 
     var img_panel1 = document.createElement('img');
     img_panel1.setAttribute('src', list_element[9].src);
     img_panel1.id = 'panel1';
-    img_panel1.style.left = 254 + 'px';
+    img_panel1.style.left = 974 + 'px';
     img_panel1.style.top = 17 + 'px';
     img_panel1.style.height = 107 + 'px';
     img_panel1.style.position = 'absolute';
@@ -471,18 +502,37 @@ function add_panel(){
     var img_panel = document.createElement('img');
     img_panel.setAttribute('src', list_element[8].src);
     img_panel.id = 'panel';
-    img_panel.style.left = 0 + 'px';
+    img_panel.style.left = 720 + 'px';
     img_panel.style.top = 0 + 'px';
     img_panel.style.height = 135 + 'px';
     img_panel.style.position = 'absolute';
     img_panel.style.transform = "rotate(0deg)";
     div_panel.appendChild(img_panel);
 
+    var img_panel2 = document.createElement('img');
+    img_panel2.setAttribute('src', list_element[21].src);
+    img_panel2.id = 'panel2';
+    img_panel2.style.left = 0 + 'px';
+    img_panel2.style.top = 0 + 'px';
+    img_panel2.style.height = 135 + 'px';
+    img_panel2.style.position = 'absolute';
+    img_panel2.style.transform = "rotate(0deg)";
+    div_panel.appendChild(img_panel2);
+
+    var score_txt = document.createElement('h1');
+    score_txt.textContent = score;
+    score_txt.id = 'score_txt1';
+    score_txt.classList.add('score_txt');
+    score_txt.style.left = 40 + 'px';
+    score_txt.style.top = 65 + 'px';
+    score_txt.style.position = 'absolute';
+    div_panel.appendChild(score_txt);
+
     var speed_txt = document.createElement('h1');
     speed_txt.textContent = speed * 2;
     speed_txt.id = 'speed_txt';
     speed_txt.classList.add('speed_txt');
-    speed_txt.style.left = 100 + 'px';
+    speed_txt.style.left = 820 + 'px';
     speed_txt.style.top = 40 + 'px';
     speed_txt.style.position = 'absolute';
     div_panel.appendChild(speed_txt);
@@ -539,6 +589,46 @@ function parallax_t(cor_y){
         key = 8
         play("s2",47)
         play("s3",85)
+    }
+}
+
+var key2 = -1
+
+function parallax_t2(cor_y){
+
+    if(cor_y > -300 && cor_y < 0 && key2 != 0){
+        key2 = 0
+        play("s13", 23)
+
+    }else if(cor_y > 0 && cor_y < 100 && key2 != 1){
+        key2 = 1
+        play("s13", 25)
+
+    }else if(cor_y > 100 && cor_y < 200 && key2 != 2){
+        key2 = 2
+        play("s13",37)
+
+    }else if(cor_y > 200 && cor_y < 300 && key2 != 3){
+        key2 = 3
+        play("s13",44)
+
+    }else if(cor_y > 300 && cor_y < 400 && key2 != 4){
+        key2 = 4
+        play("s13",51)
+
+    }else if(cor_y > 400 && cor_y < 500 && key2 != 5){
+        key2 = 5
+        play("s13",58)
+    }else if(cor_y > 500 && cor_y < 600 && key2 != 6){
+        key2 = 6
+        play("s13",65)
+    }else if(cor_y > 600 && cor_y < 700 && key2 != 7){
+        key2 = 7
+        play("s13",72)
+
+    }else if(cor_y > 700 && cor_y < 800 && key2 != 8){
+        key2 = 8
+        play("s13",85)
     }
 }
 
@@ -639,14 +729,26 @@ function anim_teach(){
     c_back++
     if(c_back == 1 && c_up == 0){
         document.getElementById('car').setAttribute('src', list_element[10].src);
+        max_speed = 45
     }else if(c_back == 2 && c_up == 0){
         document.getElementById('car').setAttribute('src', list_element[11].src);
+        max_speed = 40
     }else if(c_back == 1 && c_up == 1){
         document.getElementById('car').setAttribute('src', list_element[17].src);
+        max_speed = 40
+    }else if(c_back == 2 && c_up == 1){
+        document.getElementById('car').setAttribute('src', list_element[19].src);
+        max_speed = 30
+    }else if(c_back == 1 && c_up == 2){
+        document.getElementById('car').setAttribute('src', list_element[20].src);
+        max_speed = 30
     }else if(c_back == 2 && c_up == 2){
         document.getElementById('car').setAttribute('src', list_element[18].src);
+        max_speed = 20
+    }else if(c_up == 3 || c_back == 3){
+        anim_crush()
+        crush = false
     }
-
     speed += 10
     for (let i = 0; i < 10; i++) {
         setTimeout(() => {
@@ -662,23 +764,30 @@ function anim_teach(){
 }
 
 // функція удару спереду
-
 function anim_up(){
     c_up++
     if(c_up == 1 && c_back == 0){
         document.getElementById('car').setAttribute('src', list_element[15].src);
+        max_speed = 45
     }else if(c_up == 2 && c_back == 0){
         document.getElementById('car').setAttribute('src', list_element[16].src);
+        max_speed = 40
     }else if(c_back == 1 && c_up == 1){
         document.getElementById('car').setAttribute('src', list_element[17].src);
+        max_speed = 40
+    }else if(c_back == 2 && c_up == 1){
+        document.getElementById('car').setAttribute('src', list_element[19].src);
+        max_speed = 30
+    }else if(c_back == 1 && c_up == 2){
+        document.getElementById('car').setAttribute('src', list_element[20].src);
+        max_speed = 30
     }else if(c_back == 2 && c_up == 2){
         document.getElementById('car').setAttribute('src', list_element[18].src);
-    }else if(c_up == 3){
+        max_speed = 20
+    }else if(c_up == 3 || c_back == 3){
         anim_crush()
         crush = false
     }
-
-
 }
 
 function anim_crush(){
@@ -718,9 +827,8 @@ var crush = true
 
 var bak = 0
 var bak1 = 0
-
-var spawn_gg = 0
-
+var max_speed = 50
+var s_time = 0
 
 function game(){
 
@@ -743,6 +851,7 @@ function game(){
     }
 
     var poss = parseInt(document.getElementById("panel1").style.top) || 0
+
     if(poss > 126){
         gas = false
         if(speed > 0){
@@ -805,7 +914,7 @@ function game(){
     if(cur_kluch_top > 1066){
 
         var k_kluch_left = Math.floor(Math.random() * (660 - (250) + 1)) + (250);
-        document.getElementById("kluch").style.top = -1100 + 'px';
+        document.getElementById("kluch").style.top = -8100 + 'px';
         document.getElementById("kluch").style.left = k_kluch_left + 'px';
     }
 
@@ -819,6 +928,17 @@ function game(){
         div_tree.style.top = -300 + 'px';
     }
     parallax_t(cur_tree_top)
+
+    // рух 2 дерева
+    var div_tree2 = document.getElementById("div_tree2");
+    var cur_tree2_top = parseInt(div_tree2.style.top) || 0;
+
+    div_tree2.style.top = (cur_tree2_top + speed) + 'px';
+
+    if(cur_tree2_top > 1000){
+        div_tree2.style.top = -300 + 'px';
+    }
+    parallax_t2(cur_tree2_top)
 
     // рух зупинки
     var div_bus_stop = document.getElementById("bus_stop");
@@ -907,6 +1027,11 @@ function game(){
 
 
     // керуваня авто
+
+    if(speed > max_speed){
+        speed = max_speed
+    }
+
     if(control){
         if(list_coor[0] && list_coor[0] == 4 && speed > 0 && cur_car_left < 685){
             car.style.left = (cur_car_left + 10) + 'px';
@@ -915,7 +1040,7 @@ function game(){
             car.style.left = (cur_car_left - 10) + 'px';
 
         }else if(list_coor[0] && list_coor[0] == 1 && gas){
-            if(speed < 50){
+            if(speed < max_speed){
                 speed++
             }
         }
@@ -1208,10 +1333,17 @@ function game(){
                 document.getElementById('car').setAttribute('src', list_element[0].src);
                 c_back = 0
                 c_up = 0
+                max_speed = 50
 
             }
+    if(s_time == 20){
+        s_time = 0
+        score += speed
+    }
+    s_time++
 
     document.getElementById("speed_txt").textContent = speed * 3;
+    document.getElementById("score_txt1").textContent = (score / 1000).toFixed(1);
 
     if(!crush){
         clearInterval(gameiter)
@@ -1219,9 +1351,6 @@ function game(){
     }
 }
 
-
-
-//clearInterval(gameiter)
 
 
 var k1 = true
@@ -1337,6 +1466,8 @@ document.addEventListener("keyup", function(event) {
 // кнопка вниз
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
+        list_coor.unshift(2);
+        move_menu("d")
 
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
@@ -1344,12 +1475,19 @@ function downMouseDown(event) {
 
 function downMouseUp() {
     document.getElementById('d_C').style.backgroundColor = "#291701";
+    for (var i = 0; i < list_coor.length; i++){
+        if(list_coor[i] == 2){
+            list_coor.splice(i, 1);
+        }
+    }
 
 }
 
 // кнопка верх
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
+        list_coor.unshift(1);
+        move_menu("u")
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -1357,12 +1495,18 @@ function upMouseDown(event) {
 
 function upMouseUp() {
     document.getElementById('u_C').style.backgroundColor = "#291701";
+    for (var i = 0; i < list_coor.length; i++){
+        if(list_coor[i] == 1){
+            list_coor.splice(i, 1);
+        }
+    }
 
 }
 
 // кнопка вліво
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
+    list_coor.unshift(3);
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -1370,12 +1514,17 @@ function leftMouseDown(event) {
 
 function leftMouseUp() {
     document.getElementById('l_C').style.backgroundColor = "#291701";
-
+    for (var i = 0; i < list_coor.length; i++){
+        if(list_coor[i] == 3){
+            list_coor.splice(i, 1);
+        }
+    }
 }
 
 // кнопка в право
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
+    list_coor.unshift(4);
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -1383,7 +1532,11 @@ function rightMouseDown(event) {
 
 function rightMouseUp() {
     document.getElementById('r_C').style.backgroundColor = "#291701";
-
+    for (var i = 0; i < list_coor.length; i++){
+        if(list_coor[i] == 4){
+            list_coor.splice(i, 1);
+        }
+    }
 }
 
 function center(event){
@@ -1412,6 +1565,7 @@ function left_select_up() {
 // правий селект
 function right_select(event){
     document.getElementById('r_s').style.backgroundColor = "#613703";
+    move_menu("r")
 
     event.preventDefault();
     navigator.vibrate(50); // включаємо вібрацію
@@ -1438,7 +1592,7 @@ function move_menu(nav){
 
     }else if(document.getElementById('div_menu') && !document.getElementById('div_game')){
         var cur_select = parseInt(document.getElementById("select").style.top) || 0;
-        if(nav == "d" && menu_pos < 3){
+        if(nav == "d" && menu_pos < 2){
             document.getElementById("select").style.top = (cur_select + 125) + 'px';
             menu_pos += 1;
         }else if(nav == "u" && menu_pos > 0){
@@ -1447,13 +1601,37 @@ function move_menu(nav){
         }else if(nav == "r"){
             if(menu_pos == 0){
                 document.getElementById('div_menu').remove()
+                if(document.getElementById('div_game')){
+                    document.getElementById('div_game').remove()
+                }
+
+                // зміні швидкості транспорту
+                speed_fura = 15
+                speed_car1 = 18
+                speed_car2 = 16
+                speed_truck = 15
+                speed_с1 = 18
+                speed_с2 = 21
+
+                speed = 0
+                max_speed = 50
+                score = 0
+
+                // зміні пошкоджень
+                c_up = 0
+                c_back = 0
+                gas = true
+                crush = true
                 game_elements()
                 add_tree()
+                add_tree2()
                 add_b_s()
                 add_panel()
                 gameiter = setInterval(game, 50)
 
-            }else if(menu_pos == 3){
+
+
+            }else if(menu_pos == 2){
                 window.location.href = "/games";
             }
         }
@@ -1475,7 +1653,39 @@ function move_menu(nav){
             if(menu_pos1 == 0){
                 document.getElementById('div_menu1').remove()
                 gameiter = setInterval(game, 50)
+
             }else if(menu_pos1 == 1){
+                document.getElementById('div_menu1').remove()
+
+                if(document.getElementById('div_game')){
+                    document.getElementById('div_game').remove()
+                }
+
+                // зміні швидкості транспорту
+                speed_fura = 15
+                speed_car1 = 18
+                speed_car2 = 16
+                speed_truck = 15
+                speed_с1 = 18
+                speed_с2 = 21
+
+                speed = 0
+                max_speed = 50
+                score = 0
+
+                // зміні пошкоджень
+                c_up = 0
+                c_back = 0
+
+                gas = true
+                crush = true
+                game_elements()
+                add_tree()
+                add_tree2()
+                add_b_s()
+                add_panel()
+                gameiter = setInterval(game, 50)
+                menu_pos1 = 0
 
             }else if(menu_pos1 == 2){
                 window.location.href = "/games";

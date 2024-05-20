@@ -49,7 +49,15 @@ body{
 
 .speed_txt{
     font-family: 'siemens_B', sans-serif;
-    font-size: 80px;
+    font-size: 70px;
+    margin: 0px;
+    padding: 0px;
+    color: #f7d57e;
+}
+
+.score_txt{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 60px;
     margin: 0px;
     padding: 0px;
     color: #f7d57e;
