@@ -1,6 +1,6 @@
 
 from datetime import datetime
-from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img
+from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -72,6 +72,15 @@ def get_Nat_web(request):
                     "list_imgs": list_imgs})
     return JsonResponse(context)
 
+def get_website(request):
+    context = {}
+    webs = Website.objects.all()
+    list_webs = []
+    for w in webs:
+        list_webs.append([str(w.img_game), str(w.name), str(w.link), str(w.description)])
+    context.update({"list_webs": list_webs})
+    return JsonResponse(context)
+
 
 def contacts(request):
     context = {}
@@ -129,3 +138,13 @@ def tanks(request):
 def driver(request):
     context = {}
     return render(request, 'game/driver.html', context=context)
+
+
+def browser(request):
+    context = {}
+    return render(request, 'browser/browser.html', context=context)
+
+
+def onebit(request):
+    context = {}
+    return render(request, 'browser/OneBit.html', context=context)

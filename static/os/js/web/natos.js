@@ -113,7 +113,7 @@ document.addEventListener("keydown", function(event) {
         if(document.getElementById("div_mini_game")){
             document.getElementById("div_mini_game").remove();
         }else{
-        window.location.href = "/";
+        window.location.href = "/browser";
         }
     }
 });
@@ -127,7 +127,6 @@ var RIGHT = null
 
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
-    klic()
     clearInterval(DOWN);
     DOWN = setInterval(() => move_element("u", "div_menu"), 50);
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
@@ -141,7 +140,6 @@ function downMouseUp() {
 
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
-    klic()
     clearInterval(UP);
     UP = setInterval(() => move_element("d", "div_menu"), 50);
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
@@ -155,7 +153,6 @@ function upMouseUp() {
 
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
-    klic()
     clearInterval(LEFT);
     LEFT = setInterval(() => move_element("r", "div_menu"), 50);
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
@@ -170,7 +167,6 @@ function leftMouseUp() {
 
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
-    klic()
     clearInterval(RIGHT);
     RIGHT = setInterval(() => move_element("l", "div_menu"), 50);
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
@@ -197,11 +193,10 @@ function center_up(){
 // лівий селект
 function left_select(event){
     document.getElementById('l_s').style.backgroundColor = "#613703";
-    klic()
     if(document.getElementById("div_mini_game")){
             document.getElementById("div_mini_game").remove();
     }else{
-        window.location.href = "/";
+        window.location.href = "/browser";
     }
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
     navigator.vibrate(50);
@@ -214,7 +209,6 @@ function left_select_up() {
 
 function right_select(event){
     document.getElementById('r_s').style.backgroundColor = "#613703";
-    klic()
     event.preventDefault();
     navigator.vibrate(50); // включаємо вібрацію
 }
@@ -415,8 +409,8 @@ add_menu()
     img_hud.setAttribute('src', hud_b.src);
     img_hud.id = 'hud_b.src';
     img_hud.style.left = 0 + 'px';
-    img_hud.style.top = -6 + 'px';
-    img_hud.style.height = 83 + 'px';
+    img_hud.style.top = 0 + 'px';
+    img_hud.style.width = 1000 + 'px';
     img_hud.style.position = 'absolute';
     img_hud.classList.add('select_img');
     content.appendChild(img_hud);
@@ -425,8 +419,8 @@ add_menu()
     new_game.textContent = "www.Nateskun_Os.com";
     new_game.id = 'title_web';
     new_game.classList.add('menu_txt');
-    new_game.style.left = 100 + 'px';
-    new_game.style.top = 10 + 'px';
+    new_game.style.left = 120 + 'px';
+    new_game.style.top = 20 + 'px';
     new_game.style.position = 'absolute';
     content.appendChild(new_game);
 
@@ -447,7 +441,7 @@ add_menu()
     div_cursor.style.top =  400 + 'px';
     div_cursor.style.height = 5 + 'px';
     div_cursor.style.width = 5 + 'px';
-    div_cursor.style.backgroundColor = 'green';
+//    div_cursor.style.backgroundColor = 'green';
     div_cursor.style.position = 'absolute';
 
     content.appendChild(div_cursor);

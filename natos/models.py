@@ -86,3 +86,17 @@ class Nat_web_img(models.Model):
     class Meta:
         verbose_name = "Зображення сайт"
         verbose_name_plural = "Зображення сайт"
+
+class Website(models.Model):
+    img_game = models.FileField(upload_to='img_web', default='img_web/site.svg')
+    name = models.CharField(max_length=20, verbose_name="Назва")
+    link = models.CharField(max_length=20, verbose_name="Посилання")
+    description = models.TextField(blank=True, verbose_name="Опис")
+
+
+    def __str__(self):
+        return f'Сайт: {self.name}'
+
+    class Meta:
+        verbose_name = "Сайт"
+        verbose_name_plural = "Сайти"

@@ -598,37 +598,37 @@ function parallax_t2(cor_y){
 
     if(cor_y > -300 && cor_y < 0 && key2 != 0){
         key2 = 0
-        play("s13", 23)
+        play("s13", 5)
 
     }else if(cor_y > 0 && cor_y < 100 && key2 != 1){
         key2 = 1
-        play("s13", 25)
+        play("s13", 15)
 
     }else if(cor_y > 100 && cor_y < 200 && key2 != 2){
         key2 = 2
-        play("s13",37)
+        play("s13",25)
 
     }else if(cor_y > 200 && cor_y < 300 && key2 != 3){
         key2 = 3
-        play("s13",44)
+        play("s13",35)
 
     }else if(cor_y > 300 && cor_y < 400 && key2 != 4){
         key2 = 4
-        play("s13",51)
+        play("s13",45)
 
     }else if(cor_y > 400 && cor_y < 500 && key2 != 5){
         key2 = 5
-        play("s13",58)
+        play("s13",50)
     }else if(cor_y > 500 && cor_y < 600 && key2 != 6){
         key2 = 6
-        play("s13",65)
+        play("s13",55)
     }else if(cor_y > 600 && cor_y < 700 && key2 != 7){
         key2 = 7
-        play("s13",72)
+        play("s13",60)
 
     }else if(cor_y > 700 && cor_y < 800 && key2 != 8){
         key2 = 8
-        play("s13",85)
+        play("s13",65)
     }
 }
 

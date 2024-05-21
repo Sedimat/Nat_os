@@ -15,10 +15,14 @@ urlpatterns = [
     path('get_pictures', views.get_pictures, name='get_pictures'),
     path('get_games', views.get_games, name='get_games'),
     path('get_Nat_web', views.get_Nat_web, name='get_Nat_web'),
+    path('get_website', views.get_website, name='get_website'),
     path('balloon', views.balloon, name='balloon'),
     path('uhelyant', views.uhelyant, name='uhelyant'),
     path('stack_attack', views.stack_attack, name='stack_attack'),
     path('tanks', views.tanks, name='tanks'),
     path('driver', views.driver, name='driver'),
     path('NatOs_web', views.natos_web, name='NatOs_web'),
+    path('OneBit', views.onebit, name='OneBit'),
+    path('browser', views.browser, name='browser'),
+
 ]
