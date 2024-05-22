@@ -57,7 +57,7 @@ class Games(models.Model):
 
     class Meta:
         verbose_name = "Гра"
-        verbose_name_plural = "Ігри"
+        verbose_name_plural = "💣 Ігри"
 
 
 class Nat_web(models.Model):
@@ -100,3 +100,20 @@ class Website(models.Model):
     class Meta:
         verbose_name = "Сайт"
         verbose_name_plural = "Сайти"
+
+
+class UserProfile(models.Model):
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Користувач")
+    avatar = models.FileField(upload_to='img_ava', default='img_ava/avatar.svg')
+    key = models.TextField(max_length=10, verbose_name="Ключ")
+    dict_img = models.TextField(blank=True, verbose_name="Словник з зображенями")
+    dict_sound = models.TextField(blank=True, verbose_name="Словник з звуками")
+    dict_games = models.TextField(blank=True, verbose_name="Словник з даними ігор ")
+
+
+    def __str__(self):
+        return f'Додаткова інформація: {self.id_user}'
+
+    class Meta:
+        verbose_name = "🎃 Користувач додаток"
+        verbose_name_plural = "🎃 Користувачі додаток"

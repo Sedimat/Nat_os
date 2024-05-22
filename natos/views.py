@@ -1,6 +1,9 @@
-
+import json
 from datetime import datetime
-from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website
+
+from django.contrib.auth.models import User
+
+from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website, UserProfile
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -66,7 +69,7 @@ def get_Nat_web(request):
 
     for i in imgs:
         img_time = str(i.timestamp)
-        list_imgs.append([str(i.picture), str(i.name), str(i.description), img_time[:16]])
+        list_imgs.append([str(i.picture), str(i.name), str(i.description), img_time[:16], int(i.id)])
 
     context.update({"list_news": list_news,
                     "list_imgs": list_imgs})
@@ -148,3 +151,31 @@ def browser(request):
 def onebit(request):
     context = {}
     return render(request, 'browser/OneBit.html', context=context)
+
+
+def onebit_share(request):
+    context = {}
+    if request.method == "POST":
+        messeg = request.POST.get('messeg')
+        messeg_dict = json.loads(messeg)
+        keys = list(messeg_dict.keys())
+
+        if request.user.username:
+            user = User.objects.get(username=request.user.username)
+            user_prof = UserProfile.objects.get(id_user=user)
+            if user_prof.dict_img == "":
+                read_dict_img = {}
+            else:
+                read_dict_img = json.loads(user_prof.dict_img)
+            if keys[0] in read_dict_img:
+                context.update({"report": "Таке зображення вже додано"})
+            else:
+                read_dict_img.update(messeg_dict)
+                dict_img_json = json.dumps(read_dict_img)
+                user_prof.dict_img = dict_img_json
+                user_prof.save()
+                context.update({"report": "Успішно додано"})
+        else:
+            context.update({"report": "Авторизуйтесь"})
+
+    return JsonResponse(context)

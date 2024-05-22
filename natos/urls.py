@@ -24,5 +24,6 @@ urlpatterns = [
     path('NatOs_web', views.natos_web, name='NatOs_web'),
     path('OneBit', views.onebit, name='OneBit'),
     path('browser', views.browser, name='browser'),
+    path("onebit_share", views.onebit_share, name='onebit_share'),
 
 ]
