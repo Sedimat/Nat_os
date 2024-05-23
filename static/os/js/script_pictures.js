@@ -1,6 +1,45 @@
 var img_content = new Image()
 img_content.src = '/media/img/content.svg'
 
+var hud_menu = new Image()
+hud_menu.src = '/media/img/hud_menu.svg'
+
+var select = new Image()
+select.src = "/media/img/select.svg"
+
+
+var content = document.querySelector(".content")
+
+var img_hud = document.createElement('img');
+    img_hud.setAttribute('src', hud_menu.src);
+    img_hud.id = 'hud_menu';
+    img_hud.style.left = 0 + 'px';
+    img_hud.style.top = 0 + 'px';
+    img_hud.style.width = 1000 + 'px';
+    img_hud.style.position = 'absolute';
+    content.appendChild(img_hud);
+
+
+var div_cont = document.createElement('div');
+    div_cont.id = 'cont';
+    div_cont.classList.add('cont');
+    div_cont.style.left = 20 + 'px';
+    div_cont.style.top = 70 + 'px';
+    div_cont.style.height = 750 + 'px';
+    div_cont.style.width = 960 + 'px';
+    div_cont.style.position = 'absolute';
+
+    var img_select = document.createElement('img');
+    img_select.setAttribute('src', select.src);
+    img_select.id = 'select';
+    img_select.classList.add('select_img');
+    img_select.style.position = 'absolute';
+    div_cont.appendChild(img_select);
+
+    content.appendChild(div_cont);
+
+
+
 
 // додає на DOM елементи звуків
 function add_picture(list_m){
@@ -21,9 +60,9 @@ function add_picture(list_m){
     newDiv.appendChild(newImg);
     newDiv.appendChild(newH1);
 
-    var contDiv = document.querySelector('.cont');
+    var div_img = document.getElementById("cont")
 
-    contDiv.appendChild(newDiv);
+    div_img.appendChild(newDiv);
 }
 
 function add_content(list){
@@ -33,6 +72,9 @@ function add_content(list){
     var newDiv1 = document.createElement('div');
     newDiv1.classList.add('menu_1');
     newDiv1.id = 'img_c';
+    newDiv1.style.left = 20 + 'px';
+    newDiv1.style.top = 70 + 'px';
+    newDiv1.style.position = 'absolute';
 
     var newImg = document.createElement('img');
     newImg.classList.add('img_content');
@@ -44,7 +86,7 @@ function add_content(list){
     img_v.setAttribute('src', '/media/' + pic );
     img_v.id = 'img_v';
     img_v.style.left = 40 + 'px';
-    img_v.style.top = 50 + 'px';
+    img_v.style.top = 86 + 'px';
     img_v.style.width = 880 + 'px';
     img_v.style.position = 'absolute';
     newDiv1.appendChild(img_v);
@@ -55,10 +97,12 @@ function add_content(list){
     h11.classList.add('time');
     h11.style.left = 40 + 'px';
     h11.style.top = 20 + 'px';
+    h11.style.minWidth = '790px';
+    h11.style.maxWidth = '800px';
     h11.style.position = 'absolute';
     newDiv1.appendChild(h11);
 
-    var contDiv = document.querySelector('.cont');
+    var contDiv = document.querySelector('.content');
 
     contDiv.appendChild(newDiv1);
 

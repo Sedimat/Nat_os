@@ -45,6 +45,22 @@ def get_pictures(request):
     list_pictures = []
     for p in pictures:
         list_pictures.append([str(p.picture), str(p.name), str(p.description), str(p.timestamp)])
+        print(str(p.picture))
+
+    # якщо користувач авторизований додає його зображеня
+    if request.user.username:
+        read_dict_img = {}
+        user = User.objects.get(username=request.user.username)
+        user_prof = UserProfile.objects.get(id_user=user)
+        if user_prof.dict_img == "":
+            read_dict_img = {}
+        else:
+            read_dict_img = json.loads(user_prof.dict_img)
+            for k, v in read_dict_img.items():
+                print(type(v))
+                list_pictures.append([v[0], v[1], v[1] + "png"])
+
+
     context.update({"list_pictures": list_pictures})
     return JsonResponse(context)
 
@@ -168,14 +184,14 @@ def onebit_share(request):
             else:
                 read_dict_img = json.loads(user_prof.dict_img)
             if keys[0] in read_dict_img:
-                context.update({"report": "Таке зображення вже додано"})
+                context.update({"reply": "Таке зображення вже є"})
             else:
                 read_dict_img.update(messeg_dict)
                 dict_img_json = json.dumps(read_dict_img)
                 user_prof.dict_img = dict_img_json
                 user_prof.save()
-                context.update({"report": "Успішно додано"})
+                context.update({"reply": "Успішно завантаженно"})
         else:
-            context.update({"report": "Авторизуйтесь"})
+            context.update({"reply": "Авторизуйтесь"})
 
     return JsonResponse(context)

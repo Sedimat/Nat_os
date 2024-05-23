@@ -1,4 +1,40 @@
 
+var hud_menu = new Image()
+hud_menu.src = '/media/img/hud_menu.svg'
+
+var select = new Image()
+select.src = "/media/img/select.svg"
+
+
+var content = document.querySelector(".content")
+
+var img_hud = document.createElement('img');
+    img_hud.setAttribute('src', hud_menu.src);
+    img_hud.id = 'hud_menu';
+    img_hud.style.left = 0 + 'px';
+    img_hud.style.top = 0 + 'px';
+    img_hud.style.width = 1000 + 'px';
+    img_hud.style.position = 'absolute';
+    content.appendChild(img_hud);
+
+
+var div_cont = document.createElement('div');
+    div_cont.id = 'cont';
+    div_cont.classList.add('cont');
+    div_cont.style.left = 20 + 'px';
+    div_cont.style.top = 70 + 'px';
+    div_cont.style.height = 750 + 'px';
+    div_cont.style.width = 960 + 'px';
+    div_cont.style.position = 'absolute';
+
+    var img_select = document.createElement('img');
+    img_select.setAttribute('src', select.src);
+    img_select.id = 'select';
+    img_select.classList.add('select_img');
+    img_select.style.position = 'absolute';
+    div_cont.appendChild(img_select);
+
+    content.appendChild(div_cont);
 
 // додає на DOM елементи меню
 function add_menu(list_m){

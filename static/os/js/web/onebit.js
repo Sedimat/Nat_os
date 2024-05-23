@@ -1,13 +1,53 @@
-console.log("Тест")
-
 var list_elem = [new Image(), new Image(), new Image(), new Image()]
 
 list_elem[0].src = '/media/browser/hud_b.svg'
 list_elem[1].src = '/media/browser/curs.svg'
+list_elem[2].src = '/media/browser/hud_d.svg'
+list_elem[3].src = '/media/browser/hud_d1.svg'
 
 var content = document.getElementById("content")
 
-    var div_menu = document.createElement('div');
+function anim_download(){
+    var div_download = document.createElement('div');
+    div_download.id = 'div_download';
+    div_download.style.left = 0 + 'px';
+    div_download.style.top = 833 + 'px';
+    div_download.style.width = 1000 + 'px';
+    div_download.style.position = 'absolute';
+
+    var img_hud = document.createElement('img');
+    img_hud.setAttribute('src', list_elem[2].src);
+    img_hud.id = 'img_d';
+    img_hud.style.left = 0 + 'px';
+    img_hud.style.top = 0 + 'px';
+    img_hud.style.width = 1000 + 'px';
+    img_hud.style.position = 'absolute';
+    div_download.appendChild(img_hud);
+
+    var img_hud1 = document.createElement('img');
+    img_hud1.setAttribute('src', list_elem[3].src);
+    img_hud1.id = 'img_d1';
+    img_hud1.style.left = 7.5 + 'px';
+    img_hud1.style.top = 7.5 + 'px';
+    img_hud1.style.width = 984 + 'px';
+    img_hud1.style.clipPath = `inset(0 100% 0 0)`
+    img_hud1.style.position = 'absolute';
+    div_download.appendChild(img_hud1);
+
+    var d_txt = document.createElement('h1');
+    d_txt.textContent = "Loading";
+    d_txt.id = 'd_txt';
+    d_txt.classList.add('menu_txt1');
+    d_txt.style.left = 50 + 'px';
+    d_txt.style.top = 8 + 'px';
+    d_txt.style.position = 'absolute';
+    div_download.appendChild(d_txt);
+
+    content.appendChild(div_download);
+
+}
+
+var div_menu = document.createElement('div');
     div_menu.id = 'div_menu';
     div_menu.classList.add('div_menu');
     div_menu.style.position = "relative";
@@ -17,6 +57,9 @@ var content = document.getElementById("content")
     div_menu.style.height = 900 + 'px';
     div_menu.style.position = 'absolute';
     content.appendChild(div_menu);
+
+
+function element(){
 
     var img_hud = document.createElement('img');
     img_hud.setAttribute('src', list_elem[0].src);
@@ -39,7 +82,7 @@ var content = document.getElementById("content")
     var img_cursor = document.createElement('img');
     img_cursor.setAttribute('src', list_elem[1].src);
     img_cursor.id = 'cursor';
-    img_cursor.style.left = 460 + 'px';
+    img_cursor.style.left = 160 + 'px';
     img_cursor.style.top = 400 + 'px';
     img_cursor.style.height = 80 + 'px';
     img_cursor.style.position = 'absolute';
@@ -49,14 +92,16 @@ var content = document.getElementById("content")
 
     var div_cursor = document.createElement('div');
     div_cursor.id = 'div_cursor';
-    div_cursor.style.left =  460 + 'px';
+    div_cursor.style.left =  160 + 'px';
     div_cursor.style.top =  400 + 'px';
     div_cursor.style.height = 5 + 'px';
     div_cursor.style.width = 5 + 'px';
-    div_cursor.style.backgroundColor = 'green';
+//    div_cursor.style.backgroundColor = 'green';
     div_cursor.style.position = 'absolute';
 
     content.appendChild(div_cursor);
+
+}
 
 
 var pos_img = 10;
@@ -65,6 +110,8 @@ var elem = new Image()
 elem.src = '/media/browser/img_pictures.svg';
 
 var id = 0
+
+var list_img_id = []
 
 function add_img(img, name, time){
 
@@ -113,22 +160,25 @@ function add_img(img, name, time){
     div_menu.appendChild(news2);
 
     var news3 = document.createElement('h1');
-    news3.textContent = "Завантажити";
+    news3.textContent = "loading";
     news3.id = 'id' + id;
     news3.style.left =  10 + 30 + 'px';
     news3.style.top = pos_img + 740 + 'px';
-    news3.style.minWidth = '260px';
-    news3.style.maxWidth = '260px';
+    news3.style.minWidth = '160px';
+    news3.style.maxWidth = '160px';
     news3.style.position = 'absolute';
     news3.style.backgroundColor = 'black'
     news3.classList.add('menu_txt1');
     div_menu.appendChild(news3);
+
+    list_img_id.push('id' + id)
 
     id++
     pos_img += 820;
 
 
 }
+
 
 var list_id_img = []
 
@@ -137,21 +187,20 @@ fetch(`/get_Nat_web`)
     .then(data => {
         for (let i = 0; i < data.list_imgs.length; i++) {
             add_img(data.list_imgs[i][0], data.list_imgs[i][1], data.list_imgs[i][3])
-            list_id_img.push([data.list_imgs[i]["4"], data.list_imgs[i][0],]);
+            list_id_img.push([data.list_imgs[i]["4"], data.list_imgs[i][0], data.list_imgs[i][1]]);
         }
 
     });
 
-console.log(list_id_img)
+var txt_replay = ""
 
-
-function sending_data(){
+function sending_data(id, link, name){
     // Отримуєм токен від DTL
     var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
     // Словник який буде відправлений
     var data = {
-        messeg: JSON.stringify({"4": "link"}),
+        messeg: JSON.stringify({[id]: [link, name]}),
     };
 
     // конвертує дані для запиту
@@ -176,15 +225,48 @@ function sending_data(){
 
     .then(response => response.json())
     .then(data => {
-        console.log(data.report)
+        txt_replay = data.reply
     });
+
 }
 
-sending_data()
+
+element()
+
+function anim(name, id, link){
+    var present = 100
+
+    sending_data(id, link, name)
+
+    if(document.getElementById("div_download")){
+        document.getElementById("div_download").remove()
+    }
+    anim_download()
+
+    document.getElementById('d_txt').textContent = "Loading: " + name;
+
+    for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+            if(i < 9){
+            var r_left = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
+            present -= r_left
+            document.getElementById("img_d1").style.clipPath = `inset(0 ${present}% 0 0)`;
+            }
+
+            if(i == 9){
+                document.getElementById("img_d1").style.clipPath = `inset(0 0% 0 0)`;
+                document.getElementById('d_txt').textContent = txt_replay;
+            }
+
+        }, i * 150);
+    }
+}
+
 
 
 function move_element(ref){
 
+    var div_cursor = document.getElementById("div_cursor")
     var cursor = document.getElementById("cursor")
     var cur_cursor_left = parseInt(cursor.style.left) || 0;
     var cur_cursor_top = parseInt(cursor.style.top) || 0;
@@ -196,6 +278,7 @@ function move_element(ref){
     if(ref == "d"){
         if(cur_cursor_top > 10){
             cursor.style.top = cur_cursor_top - 20 + 'px';
+            div_cursor.style.top = cur_cursor_top - 20 + 'px';
         }else{
             if(cur_div_menu_top < 100){
                 div_menu.style.top = (cur_div_menu_top + 30) + 'px';
@@ -206,6 +289,7 @@ function move_element(ref){
     }else if(ref == "u"){
         if(cur_cursor_top < 820){
             cursor.style.top = cur_cursor_top + 20 + 'px';
+            div_cursor.style.top = cur_cursor_top + 20 + 'px';
         }else{
             if(cur_div_menu_top > -5700){
                 div_menu.style.top = (cur_div_menu_top - 30) + 'px';
@@ -215,18 +299,47 @@ function move_element(ref){
     }else if(ref == "r"){
         if(cur_cursor_left < 960){
             cursor.style.left = cur_cursor_left + 20 + 'px';
+            div_cursor.style.left = cur_cursor_left + 20 + 'px';
         }
 
     }else if(ref == "l"){
         if(cur_cursor_left > 0){
             cursor.style.left = cur_cursor_left - 20 + 'px';
+            div_cursor.style.left = cur_cursor_left - 20 + 'px';
         }
 
     }
 }
 
+function check_id(){
+    var cursor = document.getElementById("div_cursor").getBoundingClientRect();
 
+    for (let i = 0; i < list_img_id.length; i++) {
 
+        var id_r = document.getElementById(list_img_id[i]).getBoundingClientRect();
+
+        if (!(cursor.right < id_r.left ||
+            cursor.left > id_r.right ||
+            cursor.bottom < id_r.top ||
+            cursor.top > id_r.bottom)) {
+                console.log(list_id_img[i])
+                anim(list_id_img[i][2], list_id_img[i][0], list_id_img[i][1])
+                break
+        }else{
+            if(document.getElementById("div_download")){
+                document.getElementById("div_download").remove()
+            }
+        }
+    }
+}
+
+function download(){
+    check_id()
+}
+
+var key_r = true
+
+// Коли кнопки натиснуті
 document.addEventListener("keydown", function(event) {
 
     // натиснута кнопка W
@@ -250,7 +363,12 @@ document.addEventListener("keydown", function(event) {
 
     // натиснута кнопка E
     if (event.keyCode === 69) {
+        if(key_r){
+            download()
+            key_r = false
         }
+
+    }
     // натиснута кнопка F
     if (event.keyCode === 70) {
 
@@ -261,3 +379,134 @@ document.addEventListener("keydown", function(event) {
 
     }
 });
+
+// Коли кнопки відпущені
+document.addEventListener("keyup", function(event) {
+    // натиснута кнопка W
+        if (event.keyCode === 87 || event.keyCode === 38){
+
+    }
+    // натиснута кнопка S
+        if (event.keyCode === 83 || event.keyCode === 40){
+
+    }
+    // A або стрілка вліво
+        if (event.keyCode === 65 || event.keyCode === 37){
+
+    }
+    // D або стрілка вправо відпущена
+        if (event.keyCode === 68 || event.keyCode === 39) {
+
+    }
+        // натиснута кнопка E
+    if (event.keyCode === 69) {
+        key_r = true
+    }
+    // натиснута кнопка F
+    if (event.keyCode === 70) {
+
+    }
+    // натиснута кнопка Q
+    if (event.keyCode === 81) {
+    }
+});
+
+
+var DOWN = null
+var UP = null
+var LEFT = null
+var RIGHT = null
+
+
+function downMouseDown(event) {
+    document.getElementById('d_C').style.backgroundColor = "#613703";
+    clearInterval(DOWN);
+    DOWN = setInterval(() => move_element("u"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
+}
+
+function downMouseUp() {
+    document.getElementById('d_C').style.backgroundColor = "#291701";
+    clearInterval(DOWN);
+}
+
+function upMouseDown(event) {
+    document.getElementById('u_C').style.backgroundColor = "#613703";
+    clearInterval(UP);
+    UP = setInterval(() => move_element("d"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
+}
+
+function upMouseUp() {
+    document.getElementById('u_C').style.backgroundColor = "#291701";
+    clearInterval(UP);
+}
+
+function leftMouseDown(event) {
+    document.getElementById('l_C').style.backgroundColor = "#613703";
+    clearInterval(LEFT);
+    LEFT = setInterval(() => move_element("l"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
+}
+
+function leftMouseUp() {
+    document.getElementById('l_C').style.backgroundColor = "#291701";
+    clearInterval(LEFT);
+}
+
+
+function rightMouseDown(event) {
+    document.getElementById('r_C').style.backgroundColor = "#613703";
+    clearInterval(RIGHT);
+    RIGHT = setInterval(() => move_element("r"), 50);
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
+}
+
+function rightMouseUp() {
+    document.getElementById('r_C').style.backgroundColor = "#291701";
+    clearInterval(RIGHT);
+}
+
+
+function center(event){
+    document.getElementById('c_C').style.backgroundColor = "#613703";
+    download()
+
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
+}
+
+function center_up(){
+    document.getElementById('c_C').style.backgroundColor = "#291701";
+}
+
+// лівий селект
+function left_select(event){
+    document.getElementById('l_s').style.backgroundColor = "#613703";
+    window.location.href = "/browser";
+
+    event.preventDefault(); // Перешкоджаємо дії за замовчуванням
+    navigator.vibrate(50);
+
+}
+
+function left_select_up() {
+    document.getElementById('l_s').style.backgroundColor = "#291701";
+}
+
+function right_select(event){
+    document.getElementById('r_s').style.backgroundColor = "#613703";
+    download()
+
+    event.preventDefault();
+    navigator.vibrate(50); // включаємо вібрацію
+}
+
+
+function right_select_up() {
+    document.getElementById('r_s').style.backgroundColor = "#291701";
+}
