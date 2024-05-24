@@ -1,7 +1,7 @@
 {% extends "os/base.html" %}
 
 {% block content %}
-
+{% csrf_token %}
 
 {% load static %}
 <script src="{% static 'os/js/script_pictures.js' %}"></script>

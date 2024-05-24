@@ -160,14 +160,13 @@ function add_img(img, name, time){
     div_menu.appendChild(news2);
 
     var news3 = document.createElement('h1');
-    news3.textContent = "loading";
+    news3.textContent = "download";
     news3.id = 'id' + id;
-    news3.style.left =  10 + 30 + 'px';
-    news3.style.top = pos_img + 740 + 'px';
-    news3.style.minWidth = '160px';
-    news3.style.maxWidth = '160px';
+    news3.style.left =  10 + 40 + 'px';
+    news3.style.top = pos_img + 738 + 'px';
+    news3.style.maxWidth = '200px';
     news3.style.position = 'absolute';
-    news3.style.backgroundColor = 'black'
+//    news3.style.backgroundColor = 'black'
     news3.classList.add('menu_txt1');
     div_menu.appendChild(news3);
 

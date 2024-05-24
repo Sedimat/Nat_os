@@ -109,6 +109,7 @@ class UserProfile(models.Model):
     dict_img = models.TextField(blank=True, verbose_name="Словник з зображенями")
     dict_sound = models.TextField(blank=True, verbose_name="Словник з звуками")
     dict_games = models.TextField(blank=True, verbose_name="Словник з даними ігор ")
+    screensaver = models.TextField(blank=True, verbose_name="Заставка користувача")
 
 
     def __str__(self):

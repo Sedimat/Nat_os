@@ -14,6 +14,13 @@ def index(request):
     context = {'current_time': current_time,
                'date': date}
 
+    if request.user.username:
+        user = User.objects.get(username=request.user.username)
+        user_prof = UserProfile.objects.get(id_user=user)
+        context.update({"screensaver": user_prof.screensaver})
+    else:
+        context.update({"screensaver": "pictures/impala.svg"})
+
     return render(request, 'os/index.html', context=context)
 
 
@@ -39,17 +46,17 @@ def get_sounds(request):
     context.update({"list_sounds": list_sounds})
     return JsonResponse(context)
 
+
+# дає джава скрипту список зображень
 def get_pictures(request):
     context = {}
     pictures = Pictures.objects.all()
     list_pictures = []
     for p in pictures:
-        list_pictures.append([str(p.picture), str(p.name), str(p.description), str(p.timestamp)])
-        print(str(p.picture))
+        list_pictures.append([str(p.picture), str(p.name), str(p.description)])
 
     # якщо користувач авторизований додає його зображеня
     if request.user.username:
-        read_dict_img = {}
         user = User.objects.get(username=request.user.username)
         user_prof = UserProfile.objects.get(id_user=user)
         if user_prof.dict_img == "":
@@ -57,9 +64,54 @@ def get_pictures(request):
         else:
             read_dict_img = json.loads(user_prof.dict_img)
             for k, v in read_dict_img.items():
-                print(type(v))
-                list_pictures.append([v[0], v[1], v[1] + "png"])
+                list_pictures.append([v[0], v[1], v[1] + "png", k])
 
+    context.update({"list_pictures": list_pictures})
+    return JsonResponse(context)
+
+# Встановлює заставку обрану користувачем
+def screensaver(request):
+    context = {}
+
+    if request.method == "POST":
+        img = request.POST.get('img')
+        if request.user.username:
+            user = User.objects.get(username=request.user.username)
+            user_prof = UserProfile.objects.get(id_user=user)
+            user_prof.screensaver = img
+            user_prof.save()
+            context.update({"text": "Screensaver added"})
+        else:
+            context.update({"text": "Login"})
+
+    return JsonResponse(context)
+
+
+# видаляє зображеня користувача та повертає зображення які залишились
+def dell_img_user(request):
+    context = {}
+    pictures = Pictures.objects.all()
+    list_pictures = []
+    for p in pictures:
+        list_pictures.append([str(p.picture), str(p.name), str(p.description)])
+
+    if request.method == "POST":
+        numb = request.POST.get('numb')
+
+        if request.user.username:
+            user = User.objects.get(username=request.user.username)
+            user_prof = UserProfile.objects.get(id_user=user)
+            read_dict_img = json.loads(user_prof.dict_img)
+
+            list_key = list(read_dict_img.keys())
+
+            if numb in list_key:
+                del read_dict_img[numb]
+                dict_img_json = json.dumps(read_dict_img)
+                user_prof.dict_img = dict_img_json
+                user_prof.save()
+                for k, v in read_dict_img.items():
+                    list_pictures.append([v[0], v[1], v[1] + "png", k])
 
     context.update({"list_pictures": list_pictures})
     return JsonResponse(context)
@@ -89,6 +141,7 @@ def get_Nat_web(request):
 
     context.update({"list_news": list_news,
                     "list_imgs": list_imgs})
+
     return JsonResponse(context)
 
 def get_website(request):
@@ -195,3 +248,5 @@ def onebit_share(request):
             context.update({"reply": "Авторизуйтесь"})
 
     return JsonResponse(context)
+
+
