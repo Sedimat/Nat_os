@@ -1,9 +1,10 @@
-var list_elem = [new Image(), new Image(), new Image(), new Image()]
+var list_elem = [new Image(), new Image(), new Image(), new Image(), new Image()]
 
 list_elem[0].src = '/media/browser/hud_b.svg'
 list_elem[1].src = '/media/browser/curs.svg'
 list_elem[2].src = '/media/browser/hud_d.svg'
 list_elem[3].src = '/media/browser/hud_d1.svg'
+list_elem[4].src = '/media/browser/head_onebit.svg'
 
 var content = document.getElementById("content")
 
@@ -56,6 +57,16 @@ var div_menu = document.createElement('div');
     div_menu.style.width = 900 + 'px';
     div_menu.style.height = 900 + 'px';
     div_menu.style.position = 'absolute';
+
+    var img_head = document.createElement('img');
+    img_head.setAttribute('src', list_elem[4].src);
+    img_head.id = 'head';
+    img_head.style.left = -35 + 'px';
+    img_head.style.top = -2.5 + 'px';
+    img_head.style.width = 1000 + 'px';
+    img_head.style.position = 'absolute';
+    div_menu.appendChild(img_head);
+
     content.appendChild(div_menu);
 
 
@@ -104,7 +115,7 @@ function element(){
 }
 
 
-var pos_img = 10;
+var pos_img = 560;
 
 var elem = new Image()
 elem.src = '/media/browser/img_pictures.svg';
@@ -290,7 +301,7 @@ function move_element(ref){
             cursor.style.top = cur_cursor_top + 20 + 'px';
             div_cursor.style.top = cur_cursor_top + 20 + 'px';
         }else{
-            if(cur_div_menu_top > -5700){
+            if(cur_div_menu_top > -6240){
                 div_menu.style.top = (cur_div_menu_top - 30) + 'px';
             }
         }
@@ -321,7 +332,6 @@ function check_id(){
             cursor.left > id_r.right ||
             cursor.bottom < id_r.top ||
             cursor.top > id_r.bottom)) {
-                console.log(list_id_img[i])
                 anim(list_id_img[i][2], list_id_img[i][0], list_id_img[i][1])
                 break
         }else{

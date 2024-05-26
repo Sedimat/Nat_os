@@ -16,6 +16,7 @@ urlpatterns = [
     path('get_games', views.get_games, name='get_games'),
     path('get_Nat_web', views.get_Nat_web, name='get_Nat_web'),
     path('get_website', views.get_website, name='get_website'),
+    path('get_animations', views.get_animations, name='get_animations'),
     path('dell_img_user', views.dell_img_user, name='dell_img_user'),
     path('screensaver', views.screensaver, name='screensaver'),
     path('balloon', views.balloon, name='balloon'),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('driver', views.driver, name='driver'),
     path('NatOs_web', views.natos_web, name='NatOs_web'),
     path('OneBit', views.onebit, name='OneBit'),
+    path('Pixelmove', views.pixelmove, name='Pixelmove'),
     path('browser', views.browser, name='browser'),
     path("onebit_share", views.onebit_share, name='onebit_share'),
 

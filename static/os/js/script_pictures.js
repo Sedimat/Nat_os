@@ -258,7 +258,7 @@ fetch(`/get_pictures`)
 
 
 
-var contentDiv = document.querySelector('.cont');
+
 
 var numb = 0;
 
@@ -290,6 +290,7 @@ document.addEventListener("keydown", function(event) {
 
 
 function up(){
+    var contentDiv = document.querySelector('.cont');
     var select = document.getElementById('select');
     if(select){
         var y = select.offsetTop;
@@ -302,6 +303,7 @@ function up(){
 }
 
 function down(){
+    var contentDiv = document.querySelector('.cont');
     var select = document.getElementById('select');
     if(select){
         var y = select.offsetTop;
@@ -332,6 +334,7 @@ var menu_pos1 = 0
 //add_options()
 
 function move_k(pos){
+    console.log(menu_pos1)
     var select = document.getElementById('select');
     // якщо немає елементів опцій
     if(!document.getElementById("div_opt")){
@@ -386,18 +389,20 @@ function move_k(pos){
                 info("Робимо заставкою " + list_pictures_g[numb][1])
                 sending_img(list_pictures_g[numb][0])
             }else if(menu_pos1 == 1){
+                menu_pos1 = 0
                 if(list_pictures_g[numb][3]){
 
-                    info("Видаляємо " + list_pictures_g[numb][1])
+//                    info("Видаляємо " + list_pictures_g[numb][1])
                     sending_data(list_pictures_g[numb][3])
                 }else{
                     info("Стандартне зображення не видаляється")
                 }
             }
-
         }
     }
 }
+
+
 function sending_img(img1){
     // Отримуєм токен від DTL
     var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
@@ -431,8 +436,6 @@ function sending_img(img1){
         console.log(data.text)
     });
 }
-
-
 
 function sending_data(numb1){
     // Отримуєм токен від DTL

@@ -118,3 +118,21 @@ class UserProfile(models.Model):
     class Meta:
         verbose_name = "🎃 Користувач додаток"
         verbose_name_plural = "🎃 Користувачі додаток"
+
+
+
+class Animations(models.Model):
+    picture = models.FileField(upload_to='animations', default='animations/test.svg')
+    name = models.CharField(max_length=30, verbose_name="Назва")
+    height = models.CharField(max_length=4, verbose_name="Висота")
+    width = models.CharField(max_length=100, verbose_name="Ширина")
+    description = models.CharField(max_length=100, verbose_name="Кадрів")
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f'Анімації: {self.name}'
+
+    class Meta:
+        verbose_name = "Анімація"
+        verbose_name_plural = "Анімації"

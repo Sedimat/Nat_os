@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 
-from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website, UserProfile
+from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website, UserProfile, Animations
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -250,3 +250,16 @@ def onebit_share(request):
     return JsonResponse(context)
 
 
+def pixelmove(request):
+    context = {}
+    return render(request, 'browser/Pixelmove.html', context=context)
+
+
+def get_animations(request):
+    context = {}
+    anim = Animations.objects.all()
+    list_anim = []
+    for a in anim:
+        list_anim.append([str(a.picture), str(a.name), int(a.height), int(a.width), int(a.description), str(a.timestamp)])
+    context.update({"list_anim": list_anim})
+    return JsonResponse(context)
