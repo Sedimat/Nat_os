@@ -1,7 +1,9 @@
 import json
 from datetime import datetime
+from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.models import User
+from .forms import UserRegistrationForm
 
 from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website, UserProfile, Animations
 from django.http import JsonResponse
@@ -17,7 +19,12 @@ def index(request):
     if request.user.username:
         user = User.objects.get(username=request.user.username)
         user_prof = UserProfile.objects.get(id_user=user)
-        context.update({"screensaver": user_prof.screensaver})
+
+        if user_prof.screensaver == "":
+            context.update({"screensaver": "pictures/impala.svg"})
+        else:
+            context.update({"screensaver": user_prof.screensaver})
+
     else:
         context.update({"screensaver": "pictures/impala.svg"})
 
@@ -263,3 +270,56 @@ def get_animations(request):
         list_anim.append([str(a.picture), str(a.name), int(a.height), int(a.width), int(a.description), str(a.timestamp)])
     context.update({"list_anim": list_anim})
     return JsonResponse(context)
+
+def registration(request):
+    context = {}
+
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            login(request, user)
+            profile = UserProfile(id_user=user, key='123456')
+            profile.save()
+            context.update({"reply": 1})
+        else:
+            # Якщо форма не валідна, отримайте доступ до помилок
+            errors = user_form.errors
+            context.update({"reply": errors})
+
+    return JsonResponse(context)
+
+
+def get_login(request):
+    context = {}
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            context.update({"reply": 1})
+        else:
+            context.update({"reply": "Неправильний логін чи пароль"})
+    else:
+        context.update({"reply": "Форма не заповнена"})
+
+    return JsonResponse(context)
+
+
+def get_user(request):
+    context = {}
+    if request.user.username:
+        user = User.objects.get(username=request.user.username)
+        user_prof = UserProfile.objects.get(id_user=user)
+        context.update({"user": user.username})
+    else:
+        context.update({"user": ""})
+
+
+    return JsonResponse(context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('settings')

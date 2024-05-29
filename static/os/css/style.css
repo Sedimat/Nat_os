@@ -19,6 +19,49 @@ body{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7d57e', endColorstr='#f7d276', GradientType=0 );
 }
 
+.input_r{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 80px;
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    height: 80px;
+    width: 600px;
+    position: absolute;
+    color: #291701;
+    background-color: #fbe7b0;
+}
+
+.input_r::placeholder {
+    color: #7a5230; /* Колір плейсхолдера */
+    opacity: 1; /* Необов'язково: робить плейсхолдер повністю непрозорим */
+}
+
+.reg_button{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 80px;
+    color: #f7d276;
+    width: 250px;
+    height: 280px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: #291701;
+    left: 670px;
+    top: 20px;
+    position: absolute;
+}
+
+.logout_button{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 80px;
+    color: #f7d276;
+    width: 250px;
+    height: 120px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: #291701;
+    left: 670px;
+    top: 20px;
+    position: absolute;
+}
+
 .control{
     margin: auto;
     width: 1000px;
@@ -129,11 +172,19 @@ body{
     padding: 0px;
 }
 
+.info{
+    font-family: 'siemens_A', sans-serif;
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
+}
+
 .menu{
     font-family: 'siemens_B', sans-serif;
     font-size: 80px;
     margin: 0px;
     padding: 9px 0px 9px 40px;
+    color: #291701;
 }
 
 .img_menu{

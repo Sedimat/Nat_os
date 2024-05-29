@@ -3,6 +3,7 @@ var list_elem = [new Image(), new Image(), new Image(), new Image(), new Image()
 
 list_elem[0].src = '/media/browser/hud_b.svg'
 list_elem[1].src = '/media/browser/curs.svg'
+list_elem[2].src = '/media/browser/hud_anim.svg'
 
 var content = document.getElementById("content")
 
@@ -91,7 +92,7 @@ function animation(id, w, k){
 
     }
 
-    anim_iter = setInterval(anim, 100);
+    anim_iter = setInterval(anim, 150);
 
 }
 
@@ -113,7 +114,7 @@ fetch(`/get_animations`)
                             data.list_anim[i][2], data.list_anim[i][3],
                             r_word, data.list_anim[i][4]]);
 
-            anim_e(data.list_anim[i][0], data.list_anim[i][2], data.list_anim[i][3], r_word)
+            anim_e(data.list_anim[i][0], data.list_anim[i][1], data.list_anim[i][2], data.list_anim[i][3], r_word)
         }
 
         for (let i = 0; i < list_anim.length; i++) {
@@ -123,14 +124,32 @@ fetch(`/get_animations`)
 
 var a_top = 20
 
-function anim_e(img, h, w, id){
+function anim_e(img, txt, h, w, id){
 
     var div_menu = document.getElementById("div_menu")
 
+    var d_txt = document.createElement('h1');
+    d_txt.textContent = txt;
+    d_txt.id = 'txt_' + id;
+    d_txt.classList.add('menu_txt');
+    d_txt.style.left = 50 + 'px';
+    d_txt.style.top = a_top + 10 + 'px';
+    d_txt.style.position = 'absolute';
+    div_menu.appendChild(d_txt);
+
+    var img_hud = document.createElement('img');
+    img_hud.setAttribute('src', list_elem[2].src);
+    img_hud.id = 'img_hud_' + id;
+    img_hud.style.left = 0 + 'px';
+    img_hud.style.top = a_top + 'px';
+    img_hud.style.height = 217 + 'px';
+    img_hud.style.position = 'absolute';
+    div_menu.appendChild(img_hud);
+
     var div_anim = document.createElement('div');
     div_anim.id = 'div_' + id;
-    div_anim.style.left = 40 + 'px';
-    div_anim.style.top = a_top + 'px';
+    div_anim.style.left = 50 + 'px';
+    div_anim.style.top = a_top + 110 + 'px';
     div_anim.style.height = h + 'px';
     div_anim.style.width = w + 'px';
     div_anim.style.position = 'absolute';
@@ -147,7 +166,7 @@ function anim_e(img, h, w, id){
 
     div_menu.appendChild(div_anim);
 
-    a_top += h + 20
+    a_top += h + 130
 }
 
 function move(pos){

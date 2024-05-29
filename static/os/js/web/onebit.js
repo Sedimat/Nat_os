@@ -202,6 +202,8 @@ fetch(`/get_Nat_web`)
 
     });
 
+
+
 var txt_replay = ""
 
 function sending_data(id, link, name){
@@ -276,6 +278,8 @@ function anim(name, id, link){
 
 function move_element(ref){
 
+
+
     var div_cursor = document.getElementById("div_cursor")
     var cursor = document.getElementById("cursor")
     var cur_cursor_left = parseInt(cursor.style.left) || 0;
@@ -284,6 +288,7 @@ function move_element(ref){
     var div_menu = document.getElementById("div_menu")
     var cur_div_menu_top = parseInt(div_menu.style.top) || 0;
 
+    var deep = -pos_img + 850
 
     if(ref == "d"){
         if(cur_cursor_top > 10){
@@ -301,7 +306,7 @@ function move_element(ref){
             cursor.style.top = cur_cursor_top + 20 + 'px';
             div_cursor.style.top = cur_cursor_top + 20 + 'px';
         }else{
-            if(cur_div_menu_top > -6240){
+            if(cur_div_menu_top > deep){
                 div_menu.style.top = (cur_div_menu_top - 30) + 'px';
             }
         }

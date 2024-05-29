@@ -17,6 +17,7 @@ urlpatterns = [
     path('get_Nat_web', views.get_Nat_web, name='get_Nat_web'),
     path('get_website', views.get_website, name='get_website'),
     path('get_animations', views.get_animations, name='get_animations'),
+    path('get_user', views.get_user, name='get_user'),
     path('dell_img_user', views.dell_img_user, name='dell_img_user'),
     path('screensaver', views.screensaver, name='screensaver'),
     path('balloon', views.balloon, name='balloon'),
@@ -29,5 +30,8 @@ urlpatterns = [
     path('Pixelmove', views.pixelmove, name='Pixelmove'),
     path('browser', views.browser, name='browser'),
     path("onebit_share", views.onebit_share, name='onebit_share'),
+    path("get_login", views.get_login, name='get_login'),
+    path("registration", views.registration, name='registration'),
+    path("logout", views.logout_view, name='logout'),
 
 ]
