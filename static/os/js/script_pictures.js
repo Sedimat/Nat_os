@@ -334,7 +334,6 @@ var menu_pos1 = 0
 //add_options()
 
 function move_k(pos){
-    console.log(menu_pos1)
     var select = document.getElementById('select');
     // якщо немає елементів опцій
     if(!document.getElementById("div_opt")){

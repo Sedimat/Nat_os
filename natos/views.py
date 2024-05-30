@@ -218,6 +218,10 @@ def driver(request):
     context = {}
     return render(request, 'game/driver.html', context=context)
 
+def arkanoid(request):
+    context = {}
+    return render(request, 'game/arkanoid.html', context=context)
+
 
 def browser(request):
     context = {}
@@ -323,3 +327,5 @@ def get_user(request):
 def logout_view(request):
     logout(request)
     return redirect('settings')
+
+

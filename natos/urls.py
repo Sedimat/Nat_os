@@ -25,6 +25,7 @@ urlpatterns = [
     path('stack_attack', views.stack_attack, name='stack_attack'),
     path('tanks', views.tanks, name='tanks'),
     path('driver', views.driver, name='driver'),
+    path('arkanoid', views.arkanoid, name='arkanoid'),
     path('NatOs_web', views.natos_web, name='NatOs_web'),
     path('OneBit', views.onebit, name='OneBit'),
     path('Pixelmove', views.pixelmove, name='Pixelmove'),

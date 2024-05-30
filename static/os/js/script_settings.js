@@ -503,7 +503,6 @@ function sending_data(username1, password01, password02){
 
 }
 
-
 var menu_pos = 0
 
 function move(nav){
