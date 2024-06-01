@@ -1,11 +1,14 @@
 
 
-var list_element = [new Image(), new Image(), new Image(), new Image()]
+var list_element = [new Image(), new Image(), new Image(), new Image(), new Image(),
+                    new Image(), new Image(), new Image(), new Image(), new Image()]
 
 list_element[0].src = '/media/g_arkanoid/fon.svg';
 list_element[1].src = '/media/g_arkanoid/platforma.svg';
 list_element[2].src = '/media/g_arkanoid/ball.svg';
 list_element[3].src = '/media/g_arkanoid/fon1.svg';
+list_element[4].src = '/media/g_arkanoid/deep.svg';
+list_element[5].src = '/media/g_arkanoid/im_s.svg';
 
 var list_blok = [new Image(), new Image(), new Image(),
                  new Image(), new Image(), new Image()]
@@ -26,6 +29,14 @@ list_kill[2].src = '/media/g_arkanoid/kill3.svg';
 list_kill[3].src = '/media/g_arkanoid/kill4.svg';
 list_kill[4].src = '/media/g_arkanoid/kill5.svg';
 list_kill[5].src = '/media/g_arkanoid/kill6.svg';
+
+var list_sp = [new Image(), new Image(), new Image(), new Image()]
+
+list_sp[0].src = '/media/g_arkanoid/sp1.svg';
+list_sp[1].src = '/media/g_arkanoid/sp2.svg';
+list_sp[2].src = '/media/g_arkanoid/sp3.svg';
+list_sp[3].src = '/media/g_arkanoid/sp4.svg';
+
 
 var content = document.getElementById('content')
 
@@ -50,6 +61,58 @@ function game_element(){
     div_blok.style.overflow = 'hidden';
     div_game_element.appendChild(div_blok);
 
+    var div_kolis = document.createElement('div');
+    div_kolis.id = 'kolis';
+    div_kolis.style.left = 0 + 'px';
+    div_kolis.style.top = 0 + 'px';
+    div_kolis.style.width = 50 + 'px';
+    div_kolis.style.height = 50 + 'px';
+    div_kolis.style.backgroundColor = 'green';
+    div_kolis.style.position = 'absolute';
+    div_blok.appendChild(div_kolis);
+
+    var div_up = document.createElement('div');
+    div_up.id = 'div_up';
+    div_up.style.left = 10 + 'px';
+    div_up.style.top = 0 + 'px';
+    div_up.style.width = 30 + 'px';
+    div_up.style.height = 10 + 'px';
+    div_up.style.backgroundColor = 'red';
+    div_up.style.position = 'absolute';
+    div_kolis.appendChild(div_up);
+
+    var div_down = document.createElement('div');
+    div_down.id = 'div_down';
+    div_down.style.left = 10 + 'px';
+    div_down.style.top = 40 + 'px';
+    div_down.style.width = 30 + 'px';
+    div_down.style.height = 10 + 'px';
+    div_down.style.backgroundColor = 'red';
+    div_down.style.position = 'absolute';
+    div_kolis.appendChild(div_down);
+
+    var div_left = document.createElement('div');
+    div_left.id = 'div_left';
+    div_left.style.left = 0 + 'px';
+    div_left.style.top = 10 + 'px';
+    div_left.style.width = 10 + 'px';
+    div_left.style.height = 30 + 'px';
+    div_left.style.backgroundColor = 'yellow';
+    div_left.style.position = 'absolute';
+    div_kolis.appendChild(div_left);
+
+    var div_right = document.createElement('div');
+    div_right.id = 'div_right';
+    div_right.style.left = 40 + 'px';
+    div_right.style.top = 10 + 'px';
+    div_right.style.width = 10 + 'px';
+    div_right.style.height = 30 + 'px';
+    div_right.style.backgroundColor = 'red';
+    div_right.style.position = 'absolute';
+    div_kolis.appendChild(div_right);
+
+
+
     var img_fon = document.createElement('img');
     img_fon.setAttribute('src', list_element[0].src);
     img_fon.id = 'img_fon';
@@ -58,6 +121,15 @@ function game_element(){
     img_fon.style.width = 1000 + 'px';
     img_fon.style.position = 'absolute';
     div_game_element.appendChild(img_fon);
+
+    var img_sp = document.createElement('img');
+    img_sp.setAttribute('src', list_sp[0].src);
+    img_sp.id = 'img_sp';
+    img_sp.style.left = 920 + 'px';
+    img_sp.style.top = 9 + 'px';
+    img_sp.style.width = 65 + 'px';
+    img_sp.style.position = 'absolute';
+    div_game_element.appendChild(img_sp);
 
     var txt_score = document.createElement('h1');
     txt_score.textContent = "Score: " + score;
@@ -90,11 +162,11 @@ function game_element(){
     div_game_element.appendChild(img_fon2);
 
     var img_fon3 = document.createElement('img');
-    img_fon3.setAttribute('src', list_element[0].src);
+    img_fon3.setAttribute('src', list_element[4].src);
     img_fon3.id = 'img_fon3';
-    img_fon3.style.left = 0 + 'px';
-    img_fon3.style.top = 980 + 'px';
-    img_fon3.style.width = 1000 + 'px';
+    img_fon3.style.left = 15.3 + 'px';
+    img_fon3.style.top = 871 + 'px';
+    img_fon3.style.width = 970 + 'px';
     img_fon3.style.position = 'absolute';
     div_game_element.appendChild(img_fon3);
 
@@ -102,10 +174,9 @@ function game_element(){
     img_ball.setAttribute('src', list_element[2].src);
     img_ball.id = 'ball';
     img_ball.style.left = 485 + 'px';
-    img_ball.style.top = 840 + 'px';
-    img_ball.style.height = 30 + 'px';
+    img_ball.style.top = 140 + 'px';
+    img_ball.style.height = 19 + 'px';
     img_ball.style.position = 'absolute';
-
     div_game_element.appendChild(img_ball);
 
     var div_pl_l = document.createElement('div');
@@ -175,16 +246,15 @@ function add_block(top){
         num_b = 12
     }
 
-
     for (var i = 0; i < num_b; i++){
         var r_word = '';
             for (let i = 0; i < 5; i++) {
                 let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
                 r_word += String.fromCharCode(randomCharCode);
             }
-        list_b.push(r_word)
-        var rand = Math.floor(Math.random() * 6);
 
+        var rand = Math.floor(Math.random() * 6);
+        list_b.push([r_word, rand, rand])
         var blok1 = document.createElement('img');
         blok1.setAttribute('src', list_blok[rand].src);
         blok1.id = r_word;
@@ -201,7 +271,7 @@ function add_block(top){
 game_element()
 
 add_block(0)
-add_block(50)
+add_block(51)
 
 function move_block(){
     for (let j = 0; j < 3; j++) {
@@ -209,9 +279,9 @@ function move_block(){
             if(j == 2){
                 add_block(-50)
                 for (var i = 0; i < list_b.length; i++){
-                    var block = document.getElementById(list_b[i]);
+                    var block = document.getElementById(list_b[i][0]);
                     var cur_block_top = parseInt(block.style.top) || 0;
-                    block.style.top = (cur_block_top + 50) + 'px';
+                    block.style.top = (cur_block_top + 51) + 'px';
                 }
             }
         }, j * 100);
@@ -219,15 +289,13 @@ function move_block(){
 
 }
 
-function kill_block(id){
+function kill_block(id, s){
     var block = document.getElementById(id);
     var cur_block_top = parseInt(block.style.top) || 0;
     var cur_block_left = parseInt(block.style.left) || 0;
     document.getElementById(id).remove()
-    score += 10
+    score += s + 1
     document.getElementById("score").textContent = "Score: " + score;
-
-
 
     var r_word = '';
     for (let i = 0; i < 3; i++) {
@@ -250,11 +318,57 @@ function kill_block(id){
                 document.getElementById(r_word).setAttribute('src', list_kill[i].src);
                 if(i == 5){
                     document.getElementById(r_word).remove()
+                    if(s > 3){
+                        add_improv(cur_block_top, cur_block_left)
+                    }
                 }
             }
         }, i * 100);
     }
 }
+
+var list_impruve = []
+
+function add_improv(top, left){
+    var r_word = 'i_';
+    for (let i = 0; i < 3; i++) {
+        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+        r_word += String.fromCharCode(randomCharCode);
+    }
+
+    var img = document.createElement('img');
+    img.setAttribute('src', list_element[5].src);
+    img.id = r_word;
+    img.style.left = left + 'px';
+    img.style.top = top + 'px';
+    img.style.width = 50 + 'px';
+    img.style.position = 'absolute';
+    document.getElementById('div_blok').appendChild(img);
+
+    list_impruve.push([r_word, 1])
+
+    function m_r(){
+            if(document.getElementById(r_word)){
+                var improve = document.getElementById(r_word);
+                var cur_improve_top = parseInt(improve.style.top) || 0;
+                improve.style.top = (cur_improve_top + 10) + 'px';
+                if(cur_improve_top > 850){
+                    document.getElementById(r_word).remove()
+                }
+            }else{
+                for (var i = 0; i < list_impruve.length; i++){
+                    list_impruve[i][0] == r_word
+                    list_impruve.splice(i, 1)
+                    clearInterval(inter_r)
+                    break
+                }
+
+            }
+        }
+        var inter_r = null
+        inter_r = setInterval(m_r, 50)
+}
+
 
 
 var list_coor = []
@@ -275,6 +389,8 @@ var plat_k = true
 
 var key = true
 var t_key = 0
+
+var key_l = true
 
 function game(){
     var ball = document.getElementById("ball");
@@ -342,17 +458,22 @@ function game(){
     var div_pl_l_reck = document.getElementById('div_pl_l').getBoundingClientRect();
     var div_pl_r_reck = document.getElementById('div_pl_r').getBoundingClientRect();
 
+    var div_up_reck = document.getElementById('div_up').getBoundingClientRect();
+    var div_down_reck = document.getElementById('div_down').getBoundingClientRect();
+    var div_left_reck = document.getElementById('div_left').getBoundingClientRect();
+    var div_right_reck = document.getElementById('div_right').getBoundingClientRect();
+
 
         // умови колізій стін
-//         if (!(ball_reck.right < div_fon_down_reck.left ||
-//            ball_reck.left > div_fon_down_reck.right ||
-//            ball_reck.bottom < div_fon_down_reck.top ||
-//            ball_reck.top > div_fon_down_reck.bottom)) {
-//                ab_Value02 = Math.abs(ball_r)
-//                ball_r = -ab_Value02
-//                plat_k = true
-//
-//        }else
+         if (!(ball_reck.right < div_fon_down_reck.left ||
+            ball_reck.left > div_fon_down_reck.right ||
+            ball_reck.bottom < div_fon_down_reck.top ||
+            ball_reck.top > div_fon_down_reck.bottom)) {
+                ab_Value02 = Math.abs(ball_r)
+                ball_r = -ab_Value02
+                plat_k = true
+
+        }else
         if (!(ball_reck.right < div_fon_up_reck.left ||
             ball_reck.left > div_fon_up_reck.right ||
             ball_reck.bottom < div_fon_up_reck.top ||
@@ -400,7 +521,7 @@ function game(){
                 ball_reck.left > div_pl_l_reck.right ||
                 ball_reck.bottom < div_pl_l_reck.top ||
                 ball_reck.top > div_pl_l_reck.bottom)) {
-                if(ball_reck.bottom < div_pl_l_reck.top + 10){
+//                if(ball_reck.bottom < div_pl_l_reck.top + 10){
                     if(plat_k){
                         plat_k = false
                         ball_r = -ball_r
@@ -410,15 +531,15 @@ function game(){
                             ball_l = -10
                         }
                     }
-                }else{
-                    ball_l = -10
-                }
+//                }else{
+//                    ball_l = -10
+//                }
         }
         if(!(ball_reck.right < div_pl_r_reck.left ||
                 ball_reck.left > div_pl_r_reck.right ||
                 ball_reck.bottom < div_pl_r_reck.top ||
                 ball_reck.top > div_pl_r_reck.bottom)) {
-                if(ball_reck.bottom < div_pl_r_reck.top + 10){
+//                if(ball_reck.bottom < div_pl_r_reck.top + 10){
                     if(plat_k){
                         plat_k = false
                         ball_r = -ball_r
@@ -428,40 +549,193 @@ function game(){
                             ball_l = 10
                         }
                     }
-                }else{
-                    ball_l = -10
-                }
+//                }else{
+//                    ball_l = -10
+//                }
         }
 
         for (var i = 0; i < list_b.length; i++){
-//            if(document.getElementById(list_b[i])){
-                var div_blok1_reck = document.getElementById(list_b[i]).getBoundingClientRect();
+                var div_blok1_reck = document.getElementById(list_b[i][0]).getBoundingClientRect();
+                var block = document.getElementById(list_b[i][0])
+
+
                 if (!(ball_reck.right < div_blok1_reck.left ||
                     ball_reck.left > div_blok1_reck.right ||
                     ball_reck.bottom < div_blok1_reck.top ||
                     ball_reck.top > div_blok1_reck.bottom)) {
 
-                        if(ball_reck.top > div_blok1_reck.bottom - 10){
-                            ball_r = -ball_r
-                        }else if(ball_reck.bottom < div_blok1_reck.top + 10){
-                            ball_r = -ball_r
-                        }else if(ball_reck.left > div_blok1_reck.right - 10){
-                            ball_l = -ball_l
-                        }else if(ball_reck.right < div_blok1_reck.left + 10){
-                            ball_l = -ball_l
-                        }
-                        kill_block(list_b[i])
-                        list_b.splice(i, 1)
-                        plat_k = true
+                    document.getElementById('kolis').style.left = block.style.left;
+                    document.getElementById('kolis').style.top = block.style.top;
+                        if (!(ball_reck.right < div_down_reck.left ||
+                            ball_reck.left > div_down_reck.right ||
+                            ball_reck.bottom < div_down_reck.top ||
+                            ball_reck.top > div_down_reck.bottom)) {
+                                ab_Value01 = Math.abs(ball_r)
+                                ball_r = ab_Value01
+                                plat_k = true
+                                if(list_b[i][1] > 0){
+                                    var hp = list_b[i][1] - 1
+                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                    plat_k = true
+                                    break
+                                }else{
+                                    kill_block(list_b[i][0], list_b[i][2])
+                                    list_b.splice(i, 1)
+                                    plat_k = true
+                                    break
+                                }
+                                break
+                            }
+
+                        else if (!(ball_reck.right < div_up_reck.left ||
+                            ball_reck.left > div_up_reck.right ||
+                            ball_reck.bottom < div_up_reck.top ||
+                            ball_reck.top > div_up_reck.bottom)) {
+                                ab_Value02 = Math.abs(ball_r)
+                                ball_r = -ab_Value02
+                                plat_k = true
+                                if(list_b[i][1] > 0){
+                                    var hp = list_b[i][1] - 1
+                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                    plat_k = true
+                                    break
+                                }else{
+                                    kill_block(list_b[i][0], list_b[i][2])
+                                    list_b.splice(i, 1)
+                                    plat_k = true
+                                    break
+                                }
+                                break
+                            }
+                        else if (key_l && !(ball_reck.right < div_left_reck.left ||
+                            ball_reck.left > div_left_reck.right ||
+                            ball_reck.bottom < div_left_reck.top ||
+                            ball_reck.top > div_left_reck.bottom)) {
+                                key_l = false
+                                console.log("l")
+                                ab_Value03 = Math.abs(ball_l)
+                                ball_l = -ab_Value03
+                                plat_k = true
+                                if(list_b[i][1] > 0){
+                                    var hp = list_b[i][1] - 1
+                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                    plat_k = true
+                                    break
+                                }else{
+                                    kill_block(list_b[i][0], list_b[i][2])
+                                    list_b.splice(i, 1)
+                                    plat_k = true
+                                    break
+                                }
+                                break
+                            }
+
+                        else if (key_l && !(ball_reck.right < div_right_reck.left ||
+                            ball_reck.left > div_right_reck.right ||
+                            ball_reck.bottom < div_right_reck.top ||
+                            ball_reck.top > div_right_reck.bottom)) {
+                                key_l = false
+                                console.log("r")
+                                ab_Value04 = Math.abs(ball_l)
+                                ball_l = ab_Value04
+                                plat_k = true
+                                if(list_b[i][1] > 0){
+                                    var hp = list_b[i][1] - 1
+                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                    plat_k = true
+                                    break
+                                }else{
+                                    kill_block(list_b[i][0], list_b[i][2])
+                                    list_b.splice(i, 1)
+                                    plat_k = true
+                                    break
+                                }
+                                break
+                            }
+
                         break
+
+//                        if(ball_reck.top > div_blok1_reck.bottom - 10){
+//                            ab_Value01 = Math.abs(ball_r)
+//                            ball_r = -ball_r
+//
+//                            if(list_b[i][1] > 0){
+//                                var hp = list_b[i][1] - 1
+//                                list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+//                                document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+//                                plat_k = true
+//                                break
+//                            }else{
+//                                kill_block(list_b[i][0], list_b[i][2])
+//                                list_b.splice(i, 1)
+//                                plat_k = true
+//                                break
+//                            }
+//
+//                        }else
+//
+//                         if(ball_reck.bottom < div_blok1_reck.top + 10){
+//                            ab_Value02 = Math.abs(ball_r)
+//                            ball_r = -ball_r
+//
+//                            if(list_b[i][1] > 0){
+//                                var hp = list_b[i][1] - 1
+//                                list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+//                                document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+//                                plat_k = true
+//                                break
+//                            }else{
+//                                kill_block(list_b[i][0], list_b[i][2])
+//                                list_b.splice(i, 1)
+//                                plat_k = true
+//                                break
+//                            }
+//
+//                        }else if(ball_reck.left > div_blok1_reck.right - 10){
+//                            ab_Value03 = Math.abs(ball_l)
+//                            ball_l = -ball_l
+//
+//                            if(list_b[i][1] > 0){
+//                                var hp = list_b[i][1] - 1
+//                                list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+//                                document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+//                                plat_k = true
+//                                break
+//                            }else{
+//                                kill_block(list_b[i][0], list_b[i][2])
+//                                list_b.splice(i, 1)
+//                                plat_k = true
+//                                break
+//                            }
+//
+//                        }else if(ball_reck.right < div_blok1_reck.left + 10){
+//                            ab_Value04 = Math.abs(ball_l)
+//                            ball_l = -ball_l
+//                            if(list_b[i][1] > 0){
+//                                var hp = list_b[i][1] - 1
+//                                list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+//                                document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+//                                plat_k = true
+//                                break
+//                            }else{
+//                                kill_block(list_b[i][0], list_b[i][2])
+//                                list_b.splice(i, 1)
+//                                plat_k = true
+//                                break
+//                            }
+//
+//                        }
                 }
-//            }
         }
         for (var i = 0; i < list_b.length; i++){
-            var block = document.getElementById(list_b[i]);
+            var block = document.getElementById(list_b[i][0]);
             var cur_block_top = parseInt(block.style.top) || 0;
             if(cur_block_top >= 700){
-                document.getElementById(list_b[i]).remove()
+                document.getElementById(list_b[i][0]).remove()
                 list_b.splice(i, 1)
             }
 
@@ -470,7 +744,7 @@ function game(){
 }
 
 
-gameinterval = setInterval(game, 30)
+gameinterval = setInterval(game, 300)
 
 //gameinterval = null
 //clearInterval(gameiter)
@@ -519,14 +793,14 @@ document.addEventListener("keydown", function(event) {
     // натиснута кнопка F
     if (event.keyCode === 70) {
         if(ball_r == 0 && ball_l == 0){
-            ball_l = 10
-            ball_r = -10
+            ball_l = -10
+            ball_r = -0
         }
 
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-
+        clearInterval(gameinterval)
     }
 });
 
