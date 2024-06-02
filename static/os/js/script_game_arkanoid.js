@@ -4,10 +4,17 @@ var list_element = [new Image(), new Image(), new Image(), new Image(), new Imag
                     new Image(), new Image(), new Image(), new Image(), new Image()]
 
 list_element[0].src = '/media/g_arkanoid/fon.svg';
-list_element[1].src = '/media/g_arkanoid/platforma.svg';
+
 list_element[2].src = '/media/g_arkanoid/ball.svg';
 list_element[3].src = '/media/g_arkanoid/fon1.svg';
 list_element[4].src = '/media/g_arkanoid/deep.svg';
+
+var list_plat = [new Image(), new Image(), new Image()]
+
+list_plat[0].src = '/media/g_arkanoid/platforma1.svg';
+list_plat[1].src = '/media/g_arkanoid/platforma.svg';
+list_plat[2].src = '/media/g_arkanoid/platforma2.svg';
+
 
 var list_improve = [new Image(), new Image(), new Image(), new Image(), new Image(),
                     new Image(), new Image(), new Image(), new Image(), new Image()]
@@ -247,7 +254,7 @@ function game_element(){
     div_game_element.appendChild(div_pl_r);
 
     var img_platform = document.createElement('img');
-    img_platform.setAttribute('src', list_element[1].src);
+    img_platform.setAttribute('src', list_plat[0].src);
     img_platform.id = 'platform';
     img_platform.style.left = 400 + 'px';
     img_platform.style.top = 870 + 'px';
@@ -435,6 +442,44 @@ function hud_speed(){
         document.getElementById("img_sp").setAttribute('src', list_sp[3].src)
     }
 }
+var s_plat = 1
+var r_plat = 0
+var ball_center = 0
+
+function size_platform(){
+
+    document.getElementById("platform").setAttribute('src', list_plat[s_plat].src);
+    if(s_plat == 0){
+        document.getElementById("div_pl_c").style.width = 65 + 'px';
+        ball_center = 55
+        var right = document.getElementById("div_pl_r")
+        var cur_right_left = parseInt(right.style.left) || 0;
+        r_plat = -55
+        right.style.left = (cur_right_left + r_plat) + 'px';
+
+
+    }else if(s_plat == 1){ // маленька платформа
+
+        document.getElementById("div_pl_c").style.width = 120 + 'px';
+        ball_center = 87
+        var right = document.getElementById("div_pl_r")
+        var cur_right_left = parseInt(right.style.left) || 0;
+        r_plat = 0
+        right.style.left = (cur_right_left + r_plat) + 'px';
+
+
+    }else if(s_plat == 2){ // велика платформа
+        document.getElementById("div_pl_c").style.width = 185 + 'px';
+        ball_center = 118
+        var right = document.getElementById("div_pl_r")
+        var cur_right_left = parseInt(right.style.left) || 0;
+        r_plat = 65
+        right.style.left = (cur_right_left + r_plat) + 'px';
+
+    }
+}
+
+size_platform()
 
 var gameinterval = null
 
@@ -491,12 +536,13 @@ function game(){
     var div_pl_r = document.getElementById("div_pl_r");
     var cur_platform_left = parseInt(platform.style.left) || 0;
     var cur_platform_top = parseInt(platform.style.top) || 0;
+    console.log(cur_platform_left)
 
     // якщо кулька вилетіла нижче платформу
     if(cur_ball_top > 940){
         ball_r = 0
         ball_l = 0
-        ball.style.left = (cur_platform_left + 85) + 'px';
+        ball.style.left = (cur_platform_left + ball_center) + 'px';
         ball.style.top = (cur_platform_top - 30) + 'px';
         n_ball--
         document.getElementById("txt_ball").textContent = n_ball;
@@ -508,22 +554,22 @@ function game(){
         clearInterval(gameinterval)
     }
 
-    if(list_coor[0] && list_coor[0] == 4 && cur_platform_left < 780){
+    if(list_coor[0] && list_coor[0] == 4 && cur_platform_left < (780 - r_plat)){
         platform.style.left = (cur_platform_left + speed_plat) + 'px';
         div_pl_l.style.left = (cur_platform_left + speed_plat) + 'px';
         div_pl_c.style.left = (cur_platform_left + 40 + speed_plat) + 'px';
-        div_pl_r.style.left = (cur_platform_left + 160 + speed_plat) + 'px';
+        div_pl_r.style.left = (cur_platform_left + 160 + r_plat + speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
-            ball.style.left = (cur_platform_left + 85 + speed_plat) + 'px';
+            ball.style.left = (cur_platform_left + ball_center + speed_plat) + 'px';
         }
 
     }else if(list_coor[0] && list_coor[0] == 3 && cur_platform_left > 15){
         platform.style.left = (cur_platform_left - speed_plat) + 'px';
         div_pl_l.style.left = (cur_platform_left - speed_plat) + 'px';
         div_pl_c.style.left = (cur_platform_left + 40 - speed_plat) + 'px';
-        div_pl_r.style.left = (cur_platform_left + 160 - speed_plat) + 'px';
+        div_pl_r.style.left = (cur_platform_left + 160 + r_plat - speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
-            ball.style.left = (cur_platform_left + 85 - speed_plat) + 'px';
+            ball.style.left = (cur_platform_left + ball_center - speed_plat) + 'px';
         }
 
     }else if(list_coor[0] && list_coor[0] == 1){
