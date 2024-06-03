@@ -5,9 +5,15 @@ var list_element = [new Image(), new Image(), new Image(), new Image(), new Imag
 
 list_element[0].src = '/media/g_arkanoid/fon.svg';
 
-list_element[2].src = '/media/g_arkanoid/ball.svg';
 list_element[3].src = '/media/g_arkanoid/fon1.svg';
 list_element[4].src = '/media/g_arkanoid/deep.svg';
+
+var list_ball = [new Image(), new Image(), new Image()]
+
+list_ball[0].src = '/media/g_arkanoid/ball.svg';
+list_ball[1].src = '/media/g_arkanoid/ball1.svg';
+list_ball[2].src = '/media/g_arkanoid/ball2.svg';
+
 
 var list_plat = [new Image(), new Image(), new Image()]
 
@@ -23,6 +29,10 @@ list_improve[0].src = '/media/g_arkanoid/im_s.svg';
 list_improve[1].src = '/media/g_arkanoid/im_m.svg';
 list_improve[2].src = '/media/g_arkanoid/im_b.svg';
 list_improve[3].src = '/media/g_arkanoid/im_a.svg';
+list_improve[4].src = '/media/g_arkanoid/im_minus.svg';
+list_improve[5].src = '/media/g_arkanoid/im_plus.svg';
+list_improve[6].src = '/media/g_arkanoid/im_b1.svg';
+list_improve[7].src = '/media/g_arkanoid/im_b2.svg';
 
 
 var list_blok = [new Image(), new Image(), new Image(),
@@ -126,6 +136,7 @@ function game_element(){
     img_fon.style.position = 'absolute';
     div_game_element.appendChild(img_fon);
 
+    // худ швидкості
     var img_sp = document.createElement('img');
     img_sp.setAttribute('src', list_sp[0].src);
     img_sp.id = 'img_sp';
@@ -135,28 +146,72 @@ function game_element(){
     img_sp.style.position = 'absolute';
     div_game_element.appendChild(img_sp);
 
+    // худ кульки рекошету
+    var img_reco = document.createElement('img');
+    img_reco.setAttribute('src', list_improve[7].src);
+    img_reco.id = 'img_reco';
+    img_reco.style.left = 480 + 'px';
+    img_reco.style.top = 8 + 'px';
+    img_reco.style.height = 49 + 'px';
+    img_reco.style.position = 'absolute';
+    div_game_element.appendChild(img_reco);
+
+    var txt_reco = document.createElement('h1');
+    txt_reco.textContent = "0";
+    txt_reco.id = 'txt_reco';
+    txt_reco.classList.add('menu_txt');
+    txt_reco.style.left = 540 + 'px';
+    txt_reco.style.top = 7 + 'px';
+    txt_reco.style.minWidth = '290px';
+    txt_reco.style.maxWidth = '300px';
+    txt_reco.style.position = 'absolute';
+    div_game_element.appendChild(txt_reco);
+
+    // худ кульки пошкодження
+    var img_dam = document.createElement('img');
+    img_dam.setAttribute('src', list_improve[6].src);
+    img_dam.id = 'img_dam';
+    img_dam.style.left = 590 + 'px';
+    img_dam.style.top = 8 + 'px';
+    img_dam.style.height = 49 + 'px';
+    img_dam.style.position = 'absolute';
+    div_game_element.appendChild(img_dam);
+
+    var txt_dam = document.createElement('h1');
+    txt_dam.textContent = "0";
+    txt_dam.id = 'txt_dam';
+    txt_dam.classList.add('menu_txt');
+    txt_dam.style.left = 650 + 'px';
+    txt_dam.style.top = 7 + 'px';
+    txt_dam.style.minWidth = '290px';
+    txt_dam.style.maxWidth = '300px';
+    txt_dam.style.position = 'absolute';
+    div_game_element.appendChild(txt_dam);
+
+    // худ броні
     var img_arm = document.createElement('img');
     img_arm.setAttribute('src', list_improve[3].src);
-    img_arm.id = 'ball1';
-    img_arm.style.left = 680 + 'px';
+    img_arm.id = 'img_arm';
+    img_arm.style.left = 700 + 'px';
     img_arm.style.top = 8 + 'px';
     img_arm.style.height = 49 + 'px';
     img_arm.style.position = 'absolute';
     div_game_element.appendChild(img_arm);
 
     var txt_arm = document.createElement('h1');
-    txt_arm.textContent = "00";
+    txt_arm.textContent = "0";
     txt_arm.id = 'txt_arm';
     txt_arm.classList.add('menu_txt');
-    txt_arm.style.left = 740 + 'px';
+    txt_arm.style.left = 760 + 'px';
     txt_arm.style.top = 7 + 'px';
     txt_arm.style.minWidth = '290px';
     txt_arm.style.maxWidth = '300px';
     txt_arm.style.position = 'absolute';
     div_game_element.appendChild(txt_arm);
 
+    // худ кількості кульок
     var img_ball1 = document.createElement('img');
-    img_ball1.setAttribute('src', list_element[2].src);
+    img_ball1.setAttribute('src', list_ball[1].src);
     img_ball1.id = 'ball1';
     img_ball1.style.left = 820 + 'px';
     img_ball1.style.top = 18 + 'px';
@@ -215,9 +270,9 @@ function game_element(){
     div_game_element.appendChild(img_fon3);
 
     var img_ball = document.createElement('img');
-    img_ball.setAttribute('src', list_element[2].src);
+    img_ball.setAttribute('src', list_ball[0].src);
     img_ball.id = 'ball';
-    img_ball.style.left = 470 + 'px';
+    img_ball.style.left = 488 + 'px';
     img_ball.style.top = 840 + 'px';
     img_ball.style.height = 30 + 'px';
     img_ball.style.position = 'absolute';
@@ -254,7 +309,7 @@ function game_element(){
     div_game_element.appendChild(div_pl_r);
 
     var img_platform = document.createElement('img');
-    img_platform.setAttribute('src', list_plat[0].src);
+    img_platform.setAttribute('src', list_plat[1].src);
     img_platform.id = 'platform';
     img_platform.style.left = 400 + 'px';
     img_platform.style.top = 870 + 'px';
@@ -316,6 +371,9 @@ game_element()
 
 add_block(0)
 add_block(51)
+add_block(101)
+add_block(151)
+add_block(201)
 
 var m_key = 0
 
@@ -384,44 +442,57 @@ var list_impruve = []
 
 function add_improv(top, left){
 
-    var r_word = 'i_';
-    for (let i = 0; i < 3; i++) {
-        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
-        r_word += String.fromCharCode(randomCharCode);
+
+    var r_numb = Math.floor(Math.random() * 8);
+
+    if(r_numb < 2){
+        var r_pr = Math.floor(Math.random() * 4);
+    }else if(r_numb < 4){
+        var r_pr = Math.floor(Math.random() * 6);
+    }else if(r_numb < 7){
+        var r_pr = Math.floor(Math.random() * 9);
     }
 
-    var r_numb = Math.floor(Math.random() * 4);
 
-    var img = document.createElement('img');
-    img.setAttribute('src', list_improve[r_numb].src);
-    img.id = r_word;
-    img.style.left = left + 'px';
-    img.style.top = top + 'px';
-    img.style.width = 50 + 'px';
-    img.style.position = 'absolute';
-    document.getElementById('div_blok').appendChild(img);
+    if(r_pr == 2){
 
-    list_impruve.push([r_word, r_numb + 1])
+        var r_word = 'i_';
+        for (let i = 0; i < 3; i++) {
+            let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+            r_word += String.fromCharCode(randomCharCode);
+        }
 
-    function m_r(){
-            if(document.getElementById(r_word)){
-                var improve = document.getElementById(r_word);
-                var cur_improve_top = parseInt(improve.style.top) || 0;
-                improve.style.top = (cur_improve_top + 10) + 'px';
-                if(cur_improve_top > 950){
-                    document.getElementById(r_word).remove()
-                    for (var i = 0; i < list_impruve.length; i++){
-                        list_impruve[i][0] == r_word
-                        list_impruve.splice(i, 1)
-                        clearInterval(inter_r)
-                        break
-                        }
-                    console.log("Не піймав")
+
+        var img = document.createElement('img');
+        img.setAttribute('src', list_improve[r_numb].src);
+        img.id = r_word;
+        img.style.left = left + 'px';
+        img.style.top = top + 'px';
+        img.style.width = 50 + 'px';
+        img.style.position = 'absolute';
+        document.getElementById('div_blok').appendChild(img);
+
+        list_impruve.push([r_word, r_numb + 1])
+
+        function m_r(){
+                if(document.getElementById(r_word)){
+                    var improve = document.getElementById(r_word);
+                    var cur_improve_top = parseInt(improve.style.top) || 0;
+                    improve.style.top = (cur_improve_top + 10) + 'px';
+                    if(cur_improve_top > 950){
+                        document.getElementById(r_word).remove()
+                        for (var i = 0; i < list_impruve.length; i++){
+                            list_impruve[i][0] == r_word
+                            list_impruve.splice(i, 1)
+                            clearInterval(inter_r)
+                            break
+                            }
+                    }
                 }
             }
-        }
-        var inter_r = null
-        inter_r = setInterval(m_r, 50)
+            var inter_r = null
+            inter_r = setInterval(m_r, 50)
+    }
 }
 
 
@@ -431,7 +502,6 @@ var list_coor = []
 // відображає швидкість
 function hud_speed(){
     plus1 = Math.abs(ball_r)
-
     if(plus1 == 6){
         document.getElementById("img_sp").setAttribute('src', list_sp[0].src)
     }else if(plus1 == 8){
@@ -444,11 +514,13 @@ function hud_speed(){
 }
 var s_plat = 1
 var r_plat = 0
-var ball_center = 0
+var ball_center = 87
 
 function size_platform(){
 
-    document.getElementById("platform").setAttribute('src', list_plat[s_plat].src);
+    var platf = document.getElementById("platform")
+    platf.setAttribute('src', list_plat[s_plat].src);
+
     if(s_plat == 0){
         document.getElementById("div_pl_c").style.width = 65 + 'px';
         ball_center = 55
@@ -461,11 +533,13 @@ function size_platform(){
     }else if(s_plat == 1){ // маленька платформа
 
         document.getElementById("div_pl_c").style.width = 120 + 'px';
+        var cur_center_left = parseInt(document.getElementById("div_pl_c").style.left) || 0;
+
         ball_center = 87
         var right = document.getElementById("div_pl_r")
-        var cur_right_left = parseInt(right.style.left) || 0;
+
         r_plat = 0
-        right.style.left = (cur_right_left + r_plat) + 'px';
+        right.style.left = (cur_center_left + 120) + 'px';
 
 
     }else if(s_plat == 2){ // велика платформа
@@ -479,9 +553,19 @@ function size_platform(){
     }
 }
 
-size_platform()
 
 var gameinterval = null
+
+// зміна сили пошкодженя
+var damage_power = 1
+var time_damage = -1
+var damage_t = 0
+
+
+// зміна рекошету від блоків
+var ricochet = true
+var time_ricochet = -1
+var ricochet_t = 0
 
 // швидкість вертикальна
 var ball_r = 0
@@ -491,9 +575,7 @@ var ball_l = 0
 
 var speed_plat = 10
 
-
 var plat_k = true
-
 
 var key = true
 var t_key = 0
@@ -504,24 +586,68 @@ var key_r = true
 var time_armor = -1
 var arm_t = 0
 
+
+
 function game(){
 
+    var ball = document.getElementById("ball");
+
+    // умова рекошету
+    if(time_ricochet > 0)
+        ricochet_t++
+        if(ricochet_t >= 40){
+            ricochet_t = 0
+            time_ricochet--
+            document.getElementById("txt_reco").textContent = time_ricochet;
+            ball.setAttribute('src', list_ball[2].src);
+            damage_power = 6
+        }
+    if(time_ricochet == 0){
+        ricochet = true
+        damage_power = 1
+        time_ricochet = -1
+        document.getElementById("txt_reco").textContent = "0";
+        ball.setAttribute('src', list_ball[0].src);
+        console.log("Рекошет")
+    }
+
+    // умови дамагу 6
+    if(time_damage > 0)
+        damage_t++
+        if(damage_t >= 40){
+            damage_t = 0
+            time_damage--
+            document.getElementById("txt_dam").textContent = time_damage;
+            ball.setAttribute('src', list_ball[1].src);
+            damage_power = 6
+        }
+    if(time_damage == 0){
+        damage_power = 1
+        time_damage = -1
+        document.getElementById("txt_dam").textContent = "0";
+        ball.setAttribute('src', list_ball[0].src);
+        console.log("Дамаг 1")
+    }
+
+    // умова таймеру броні
     if(time_armor > 0){
         arm_t++
         if(arm_t >= 40){
             arm_t = 0
-            console.log(time_armor)
             time_armor--
             document.getElementById("txt_arm").textContent = time_armor;
         }
     }
 
     if(time_armor == 0){
+        console.log("Бронь опустилась")
+        time_armor = -1
+        document.getElementById("txt_arm").textContent = "0";
         document.getElementById("img_fon3").style.top = 1070 + 'px';
     }
 
 
-    var ball = document.getElementById("ball");
+
     var cur_ball_left = parseInt(ball.style.left) || 0;
     var cur_ball_top = parseInt(ball.style.top) || 0;
 
@@ -536,12 +662,13 @@ function game(){
     var div_pl_r = document.getElementById("div_pl_r");
     var cur_platform_left = parseInt(platform.style.left) || 0;
     var cur_platform_top = parseInt(platform.style.top) || 0;
-    console.log(cur_platform_left)
 
     // якщо кулька вилетіла нижче платформу
     if(cur_ball_top > 940){
         ball_r = 0
         ball_l = 0
+        time_damage = 0
+        time_ricochet = 0
         ball.style.left = (cur_platform_left + ball_center) + 'px';
         ball.style.top = (cur_platform_top - 30) + 'px';
         n_ball--
@@ -620,13 +747,37 @@ function game(){
                     document.getElementById("txt_ball").textContent = n_ball;
 
                 }else if(list_impruve[i][1] == 4){
-                    console.log("броня")
+
                     time_armor = 60
                     document.getElementById("img_fon3").style.top = 869 + 'px';
 
 
-                }
+                }else if(list_impruve[i][1] == 5){
+                    if(s_plat > 0){
+                        s_plat--
+                        size_platform()
+                    }
 
+
+
+                }else if(list_impruve[i][1] == 6){
+
+                    if(s_plat < 2){
+                        s_plat++
+                        size_platform()
+                    }
+
+                }else if(list_impruve[i][1] == 7){
+                    time_damage = 60
+                    ball.setAttribute('src', list_ball[1].src);
+                    time_ricochet = 0
+
+                }else if(list_impruve[i][1] == 8){
+                    time_ricochet = 60
+                    ricochet = false
+                    ball.setAttribute('src', list_ball[2].src);
+                    time_damage = 0
+                }
 
                 document.getElementById(list_impruve[i][0]).remove()
                 list_impruve.splice(i, 1)
@@ -755,12 +906,14 @@ function game(){
                     ball_reck.top > div_blok1_reck.bottom)) {
 
                         if(ball_reck.top > div_blok1_reck.bottom - 15){
-                            ab_Value01 = Math.abs(ball_r)
-                            ball_r = -ball_r
-                            ball.style.top = (cur_ball_top + 10) + 'px';
 
-                            if(list_b[i][1] > 0){
-                                var hp = list_b[i][1] - 1
+                            if(ricochet){
+                                ball_r = -ball_r
+                                ball.style.top = (cur_ball_top + 10) + 'px';
+                            }
+
+                            var hp = list_b[i][1] - damage_power
+                            if(hp > 0){
                                 list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
                                 document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
                                 plat_k = true
@@ -775,12 +928,14 @@ function game(){
                         }else
 
                          if(ball_reck.bottom < div_blok1_reck.top + 15){
-                            ab_Value02 = Math.abs(ball_r)
-                            ball_r = -ball_r
-                            ball.style.top = (cur_ball_top - 10) + 'px';
 
-                            if(list_b[i][1] > 0){
-                                var hp = list_b[i][1] - 1
+                            if(ricochet){
+                                ball_r = -ball_r
+                                ball.style.top = (cur_ball_top - 10) + 'px';
+                            }
+
+                            var hp = list_b[i][1] - damage_power
+                            if(hp > 0){
                                 list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
                                 document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
                                 plat_k = true
@@ -793,12 +948,14 @@ function game(){
                             }
 
                         }else if(ball_reck.left > div_blok1_reck.right - 15){
-                            ab_Value03 = Math.abs(ball_l)
-                            ball_l = -ball_l
-                            ball.style.left = (cur_ball_left + 10) + 'px';
 
-                            if(list_b[i][1] > 0){
-                                var hp = list_b[i][1] - 1
+                            if(ricochet){
+                                ball_l = -ball_l
+                                ball.style.left = (cur_ball_left + 10) + 'px';
+                            }
+
+                            var hp = list_b[i][1] - damage_power
+                            if(hp > 0){
                                 list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
                                 document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
                                 plat_k = true
@@ -811,11 +968,14 @@ function game(){
                             }
 
                         }else if(ball_reck.right < div_blok1_reck.left + 15){
-                            ab_Value04 = Math.abs(ball_l)
-                            ball_l = -ball_l
-                            ball.style.left = (cur_ball_left - 10) + 'px';
-                            if(list_b[i][1] > 0){
-                                var hp = list_b[i][1] - 1
+
+                            if(ricochet){
+                                ball_l = -ball_l
+                                ball.style.left = (cur_ball_left - 10) + 'px';
+                            }
+                            
+                            var hp = list_b[i][1] - damage_power
+                            if(hp > 0){
                                 list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
                                 document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
                                 plat_k = true
