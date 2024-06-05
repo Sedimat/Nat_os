@@ -4,7 +4,7 @@ var list_element = [new Image(), new Image(), new Image(), new Image(), new Imag
                     new Image(), new Image(), new Image(), new Image(), new Image()]
 
 list_element[0].src = '/media/g_arkanoid/fon.svg';
-list_element[1].src = '/media/g_arkanoid/enemy1.svg';
+list_element[1].src = '/media/g_arkanoid/enemy2.svg';
 list_element[2].src = '/media/g_arkanoid/ball_e.svg';
 list_element[3].src = '/media/g_arkanoid/fon1.svg';
 list_element[4].src = '/media/g_arkanoid/deep.svg';
@@ -62,6 +62,32 @@ list_sp[0].src = '/media/g_arkanoid/sp1.svg';
 list_sp[1].src = '/media/g_arkanoid/sp2.svg';
 list_sp[2].src = '/media/g_arkanoid/sp3.svg';
 list_sp[3].src = '/media/g_arkanoid/sp4.svg';
+
+var list_e1 = [new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_e1[0].src = '/media/g_arkanoid/e_1.svg';
+list_e1[1].src = '/media/g_arkanoid/e_2.svg';
+list_e1[2].src = '/media/g_arkanoid/e_3.svg';
+list_e1[3].src = '/media/g_arkanoid/e_4.svg';
+list_e1[4].src = '/media/g_arkanoid/e_5.svg';
+
+var list_e2 = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_e2[0].src = '/media/g_arkanoid/e2_1.svg';
+list_e2[1].src = '/media/g_arkanoid/e2_2.svg';
+list_e2[2].src = '/media/g_arkanoid/e2_3.svg';
+list_e2[3].src = '/media/g_arkanoid/e2_4.svg';
+list_e2[4].src = '/media/g_arkanoid/e2_5.svg';
+list_e2[5].src = '/media/g_arkanoid/e2_5.svg';
+
+var list_fire = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_fire[0].src = '/media/g_tanks/fire_1.svg';
+list_fire[1].src = '/media/g_tanks/fire_2.svg';
+list_fire[2].src = '/media/g_tanks/fire_3.svg';
+list_fire[3].src = '/media/g_tanks/fire_4.svg';
+list_fire[4].src = '/media/g_tanks/fire_5.svg';
+list_fire[5].src = '/media/g_tanks/fire_6.svg';
 
 var cont = new Image()
 cont.src = "/media/g_uhe/plashka.svg"
@@ -304,7 +330,7 @@ function game_element(){
     // Ворог 1
     var div_enemy = document.createElement('div');
     div_enemy.id = 'div_enemy';
-    div_enemy.style.left = 1020 + 'px';
+    div_enemy.style.left = 1050 + 'px';
     div_enemy.style.top = 80 + 'px';
     div_enemy.style.width = 140 + 'px';
     div_enemy.style.height = 250 + 'px';
@@ -313,13 +339,23 @@ function game_element(){
     div_game_element.appendChild(div_enemy);
 
     var img_enemy = document.createElement('img');
-    img_enemy.setAttribute('src', list_element[1].src);
+    img_enemy.setAttribute('src', list_e2[0].src);
     img_enemy.id = 'img_enemy';
     img_enemy.style.left = -30 + 'px';
     img_enemy.style.top = 0 + 'px';
     img_enemy.style.width = 200 + 'px';
     img_enemy.style.position = 'absolute';
     div_enemy.appendChild(img_enemy);
+
+    // Ворог 2
+    var img_e2 = document.createElement('img');
+    img_e2.setAttribute('src', list_e1[0].src);
+    img_e2.id = 'img_e2';
+    img_e2.style.left = 1100 + 'px';
+    img_e2.style.top = 400 + 'px';
+    img_e2.style.width = 200 + 'px';
+    img_e2.style.position = 'absolute';
+    div_game_element.appendChild(img_e2);
 
     // худ кульки рекошету
     var img_reco = document.createElement('img');
@@ -556,7 +592,6 @@ function add_block(top){
 }
 
 
-
 var m_key = 0
 
 function move_block(){
@@ -682,7 +717,6 @@ function add_improv(top, left){
 }
 
 
-
 var list_coor = []
 
 // відображає швидкість
@@ -741,23 +775,62 @@ function size_platform(){
 
 function fire_enemy(left){
     if(!document.getElementById("ball_e1")){
-        var ball_e1 = document.createElement('img');
-        ball_e1.setAttribute('src', list_element[2].src);
-        ball_e1.id = 'ball_e1';
-        ball_e1.style.left = left + 'px';
-        ball_e1.style.top = 190 + 'px';
-        ball_e1.style.height = 30 + 'px';
-        ball_e1.style.position = 'absolute';
-        div_game_element.appendChild(ball_e1);
+        for (let i = 0; i < 6; i++) {
+            setTimeout(() => {
+                document.getElementById('img_enemy').setAttribute('src', list_e2[i].src)
+                if(i == 2){
+                    var ball_e1 = document.createElement('img');
+                    ball_e1.setAttribute('src', list_element[2].src);
+                    ball_e1.id = 'ball_e1';
+                    ball_e1.style.left = left + 'px';
+                    ball_e1.style.top = 190 + 'px';
+                    ball_e1.style.height = 30 + 'px';
+                    ball_e1.style.position = 'absolute';
+                    div_game_element.appendChild(ball_e1);
 
-        var ball_e2 = document.createElement('img');
-        ball_e2.setAttribute('src', list_element[2].src);
-        ball_e2.id = 'ball_e2';
-        ball_e2.style.left = left + 100 + 'px';
-        ball_e2.style.top = 190 + 'px';
-        ball_e2.style.height = 30 + 'px';
-        ball_e2.style.position = 'absolute';
-        div_game_element.appendChild(ball_e2);
+                    var ball_e2 = document.createElement('img');
+                    ball_e2.setAttribute('src', list_element[2].src);
+                    ball_e2.id = 'ball_e2';
+                    ball_e2.style.left = left + 100 + 'px';
+                    ball_e2.style.top = 190 + 'px';
+                    ball_e2.style.height = 30 + 'px';
+                    ball_e2.style.position = 'absolute';
+                    div_game_element.appendChild(ball_e2);
+                }
+            }, i * 100);
+        }
+    }
+}
+
+function fire_boss(id){
+    var e1_elem = document.getElementById(id);
+    var c_top = parseInt(e1_elem.style.top) || 0;
+    var c_left = parseInt(e1_elem.style.left) || 0;
+
+    var r_word = '';
+    for (let i = 0; i < 3; i++) {
+        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+        r_word += String.fromCharCode(randomCharCode);
+    }
+    var img = document.createElement('img');
+    img.setAttribute('src', list_fire[0].src);
+    img.id = r_word;
+    img.style.left = c_left - 40 + 'px';
+    img.style.top = c_top + 80 + 'px';
+    img.style.width = 200 + 'px';
+    img.style.position = 'absolute';
+    document.getElementById('div_game_element').appendChild(img);
+
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            if(document.getElementById(r_word)){
+                document.getElementById(r_word).setAttribute('src', list_fire[i].src);
+                if(i == 5){
+                    document.getElementById(r_word).remove()
+                    document.getElementById(id).style.left = 1050 + 'px';
+                }
+            }
+        }, i * 100);
     }
 }
 
@@ -794,13 +867,57 @@ var t_key = 0
 var key_l = true
 var key_r = true
 
-var enemy_control = -2
-var list_enemy = [[60, 4], [70, -4], [70, 3], [60, -3]]
-var t_enime = 100
 
+//зміні першого боса
+var enemy1_key = true
+
+var t_e2 = 0
+var anim2 = 0
+
+var enemy_control = 0
+var list_enemy = [[60, 4], [70, -4], [70, 3], [60, -3]]
+var t_enime = -1
+var hp_enemy = 10
+
+var e1_key = true
 
 
 function game(){
+
+    if(score >= 2 && e1_key){
+        e1_key = false
+        t_enime = 100
+        enemy_control = -6
+    }
+    if(hp_enemy <= 9){
+        hp_enemy = 10
+        t_enime = -1
+        enemy_control = -6
+        fire_boss("div_enemy")
+    }
+
+
+    t_e2++
+    if(t_e2 == 8){
+        t_e2 = 0
+        anim2++
+        if(anim2 == 5){
+            anim2 = 0
+        }
+        var anim_e2 = Math.floor(Math.random() * 5);
+        document.getElementById('img_e2').setAttribute('src', list_e1[anim_e2].src)
+
+    }
+
+    var cur_e1_left = parseInt(document.getElementById('div_enemy').style.left) || 0;
+    if(enemy1_key && cur_e1_left < 770 && t_enime > 0){
+        var e_fire = Math.floor(Math.random() * 12);
+        if(e_fire == 1){
+            fire_enemy(cur_e1_left)
+            enemy1_key = false
+        }
+
+    }
 
     if(document.getElementById("ball_e1")){
         var ball_e1 = document.getElementById("ball_e1");
@@ -809,17 +926,19 @@ function game(){
         var cur_ball_e1_left = parseInt(ball_e1.style.left) || 0;
         var cur_ball_e2_left = parseInt(ball_e2.style.left) || 0;
 
-        ball_e1.style.top = (cur_ball_e1_top + 10) + 'px';
-        ball_e2.style.top = (cur_ball_e1_top + 10) + 'px';
+        ball_e1.style.top = (cur_ball_e1_top + 8) + 'px';
+        ball_e2.style.top = (cur_ball_e1_top + 8) + 'px';
 
-        ball_e1.style.left = (cur_ball_e1_left - 1) + 'px';
-        ball_e2.style.left = (cur_ball_e2_left + 1) + 'px';
+        ball_e1.style.left = (cur_ball_e1_left - 2) + 'px';
+        ball_e2.style.left = (cur_ball_e2_left + 2) + 'px';
 
         if(cur_ball_e1_top > 950){
+            enemy1_key = true
             document.getElementById("ball_e1").remove()
             document.getElementById("ball_e2").remove()
         }
     }
+
 
     var div_enemy1 = document.getElementById("div_enemy");
     var cur_enemy1_left = parseInt(div_enemy1.style.left) || 0;
@@ -831,16 +950,13 @@ function game(){
         }else if(cur_enemy1_left < 750 && enemy_control > 0){
             div_enemy1.style.left = (cur_enemy1_left + enemy_control) + 'px';
         }
-
-
     }
+
     if(t_enime == 0){
         var i = Math.floor(Math.random() * 4);
         t_enime = list_enemy[i][0]
         enemy_control = list_enemy[i][1]
     }
-    console.log(cur_enemy1_left)
-
 
     var ball = document.getElementById("ball");
     // умова рекошету
@@ -893,8 +1009,6 @@ function game(){
         document.getElementById("txt_arm").textContent = "0";
         document.getElementById("img_fon3").style.top = 1070 + 'px';
     }
-
-
 
     var cur_ball_left = parseInt(ball.style.left) || 0;
     var cur_ball_top = parseInt(ball.style.top) || 0;
@@ -1037,7 +1151,7 @@ function game(){
     }
 
 
-    // умови колізій платформою
+    // умови колізій 1 ворога
     var ball_reck = document.getElementById('ball').getBoundingClientRect();
     var enemy_reck = document.getElementById('div_enemy').getBoundingClientRect();
 
@@ -1054,6 +1168,7 @@ function game(){
                     ball_r = -ball_r
                     ball.style.top = (cur_ball_top - 10) + 'px';
 
+
                 }else if(ball_reck.left > enemy_reck.right - 15){
                     ball_l = -ball_l
                     ball.style.left = (cur_ball_left + 10) + 'px';
@@ -1063,6 +1178,8 @@ function game(){
                     ball.style.left = (cur_ball_left - 10) + 'px';
                 }
                 plat_k = true
+                hp_enemy--
+                console.log(hp_enemy)
             }
 
 
@@ -1144,7 +1261,8 @@ function game(){
                         if(ball_l > 0){
                             ball_l = -ball_l + 2
                         }else{
-                            ball_l = -10
+                            r_ball_r = Math.abs(ball_r)
+                            ball_l = -r_ball_r
                         }
                     }
                 }else{
@@ -1162,7 +1280,8 @@ function game(){
                         if(ball_l < 0){
                             ball_l = -ball_l - 2
                         }else{
-                            ball_l = 10
+                            r_ball_r = Math.abs(ball_r)
+                            ball_l = r_ball_r
                         }
                     }
                 }else{
@@ -1347,8 +1466,7 @@ document.addEventListener("keydown", function(event) {
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-        var cur_e1_left = parseInt(document.getElementById('div_enemy').style.left) || 0;
-        fire_enemy(cur_e1_left)
+        t_enime = 100
 //        document.getElementById("div_enemy").style.left = 500 + 'px';
     }
 });
@@ -1575,6 +1693,10 @@ function move_menu(nav){
                 r_plat = 0
                 ball_center = 87
 
+                // зміні ворога 1
+                enemy1_key = true
+                t_enime = -1
+
                 game_element()
                 add_block(0)
                 add_block(51)
@@ -1612,6 +1734,7 @@ function move_menu(nav){
                 document.getElementById("div_menu1").remove()
 
                 // швидкість
+
                 ball_r = 0
                 ball_l = 0
                 // рахунок та хп
@@ -1626,6 +1749,10 @@ function move_menu(nav){
                 s_plat = 1
                 r_plat = 0
                 ball_center = 87
+
+                // зміні ворога 1
+                enemy1_key = true
+                t_enime = -1
 
                 game_element()
                 add_block(0)
