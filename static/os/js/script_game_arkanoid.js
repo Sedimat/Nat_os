@@ -8,6 +8,7 @@ list_element[1].src = '/media/g_arkanoid/enemy2.svg';
 list_element[2].src = '/media/g_arkanoid/ball_e.svg';
 list_element[3].src = '/media/g_arkanoid/fon1.svg';
 list_element[4].src = '/media/g_arkanoid/deep.svg';
+list_element[5].src = '/media/g_arkanoid/ball_e2.svg';
 
 var list_ball = [new Image(), new Image(), new Image()]
 
@@ -335,7 +336,7 @@ function game_element(){
     div_enemy.style.width = 140 + 'px';
     div_enemy.style.height = 250 + 'px';
     div_enemy.style.position = 'absolute';
-    div_enemy.style.backgroundColor = 'green';
+//    div_enemy.style.backgroundColor = 'green';
     div_game_element.appendChild(div_enemy);
 
     var img_enemy = document.createElement('img');
@@ -348,14 +349,24 @@ function game_element(){
     div_enemy.appendChild(img_enemy);
 
     // Ворог 2
+    var div_enemy2 = document.createElement('div');
+    div_enemy2.id = 'div_enemy2';
+    div_enemy2.style.left = 1250 + 'px';
+    div_enemy2.style.top = 180 + 'px';
+    div_enemy2.style.width = 140 + 'px';
+    div_enemy2.style.height = 200 + 'px';
+    div_enemy2.style.position = 'absolute';
+//    div_enemy2.style.backgroundColor = 'green';
+    div_game_element.appendChild(div_enemy2);
+
     var img_e2 = document.createElement('img');
     img_e2.setAttribute('src', list_e1[0].src);
     img_e2.id = 'img_e2';
-    img_e2.style.left = 1100 + 'px';
-    img_e2.style.top = 400 + 'px';
+    img_e2.style.left = -30 + 'px';
+    img_e2.style.top = -100 + 'px';
     img_e2.style.width = 200 + 'px';
     img_e2.style.position = 'absolute';
-    div_game_element.appendChild(img_e2);
+    div_enemy2.appendChild(img_e2);
 
     // худ кульки рекошету
     var img_reco = document.createElement('img');
@@ -371,7 +382,7 @@ function game_element(){
     txt_reco.textContent = "0";
     txt_reco.id = 'txt_reco';
     txt_reco.classList.add('menu_txt');
-    txt_reco.style.left = 540 + 'px';
+    txt_reco.style.left = 535 + 'px';
     txt_reco.style.top = 7 + 'px';
     txt_reco.style.minWidth = '290px';
     txt_reco.style.maxWidth = '300px';
@@ -392,7 +403,7 @@ function game_element(){
     txt_dam.textContent = "0";
     txt_dam.id = 'txt_dam';
     txt_dam.classList.add('menu_txt');
-    txt_dam.style.left = 650 + 'px';
+    txt_dam.style.left = 645 + 'px';
     txt_dam.style.top = 7 + 'px';
     txt_dam.style.minWidth = '290px';
     txt_dam.style.maxWidth = '300px';
@@ -413,7 +424,7 @@ function game_element(){
     txt_arm.textContent = "0";
     txt_arm.id = 'txt_arm';
     txt_arm.classList.add('menu_txt');
-    txt_arm.style.left = 760 + 'px';
+    txt_arm.style.left = 755 + 'px';
     txt_arm.style.top = 7 + 'px';
     txt_arm.style.minWidth = '290px';
     txt_arm.style.maxWidth = '300px';
@@ -422,11 +433,11 @@ function game_element(){
 
     // худ кількості кульок
     var img_ball1 = document.createElement('img');
-    img_ball1.setAttribute('src', list_ball[0].src);
+    img_ball1.setAttribute('src', list_improve[2].src);
     img_ball1.id = 'ball1';
-    img_ball1.style.left = 820 + 'px';
-    img_ball1.style.top = 18 + 'px';
-    img_ball1.style.height = 30 + 'px';
+    img_ball1.style.left = 805 + 'px';
+    img_ball1.style.top = 8 + 'px';
+    img_ball1.style.height = 49 + 'px';
     img_ball1.style.position = 'absolute';
     div_game_element.appendChild(img_ball1);
 
@@ -502,44 +513,54 @@ function game_element(){
     img_ball.style.position = 'absolute';
     div_game_element.appendChild(img_ball);
 
+    var div_platform = document.createElement('div');
+    div_platform.id = 'div_platform';
+    div_platform.style.left = 400 + 'px';
+    div_platform.style.top = 870 + 'px';
+    div_platform.style.height = 30 + 'px';
+    div_platform.style.width = 200 + 'px';
+//    div_platform.style.backgroundColor = 'blue';
+    div_platform.style.position = 'absolute';
+    div_game_element.appendChild(div_platform);
+
     var div_pl_l = document.createElement('div');
     div_pl_l.id = 'div_pl_l';
-    div_pl_l.style.left = 400 + 'px';
-    div_pl_l.style.top = 870 + 'px';
+    div_pl_l.style.left = 0 + 'px';
+    div_pl_l.style.top = 0 + 'px';
     div_pl_l.style.height = 30 + 'px';
     div_pl_l.style.width = 40 + 'px';
-    div_pl_l.style.backgroundColor = 'green';
+//    div_pl_l.style.backgroundColor = 'green';
     div_pl_l.style.position = 'absolute';
-    div_game_element.appendChild(div_pl_l);
+    div_platform.appendChild(div_pl_l);
 
     var div_pl_c = document.createElement('div');
     div_pl_c.id = 'div_pl_c';
-    div_pl_c.style.left = 440 + 'px';
-    div_pl_c.style.top = 870 + 'px';
+    div_pl_c.style.left = 40 + 'px';
+    div_pl_c.style.top = 0 + 'px';
     div_pl_c.style.height = 30 + 'px';
     div_pl_c.style.width = 120 + 'px';
-    div_pl_c.style.backgroundColor = 'red';
+//    div_pl_c.style.backgroundColor = 'red';
     div_pl_c.style.position = 'absolute';
-    div_game_element.appendChild(div_pl_c);
+    div_platform.appendChild(div_pl_c);
 
     var div_pl_r = document.createElement('div');
     div_pl_r.id = 'div_pl_r';
-    div_pl_r.style.left = 560 + 'px';
-    div_pl_r.style.top = 870 + 'px';
+    div_pl_r.style.left = 160 + 'px';
+    div_pl_r.style.top = 0 + 'px';
     div_pl_r.style.height = 30 + 'px';
     div_pl_r.style.width = 40 + 'px';
-    div_pl_r.style.backgroundColor = 'blue';
+//    div_pl_r.style.backgroundColor = 'blue';
     div_pl_r.style.position = 'absolute';
-    div_game_element.appendChild(div_pl_r);
+    div_platform.appendChild(div_pl_r);
 
     var img_platform = document.createElement('img');
     img_platform.setAttribute('src', list_plat[1].src);
     img_platform.id = 'platform';
-    img_platform.style.left = 400 + 'px';
-    img_platform.style.top = 870 + 'px';
+    img_platform.style.left = 0 + 'px';
+    img_platform.style.top = 0 + 'px';
     img_platform.style.height = 30 + 'px';
     img_platform.style.position = 'absolute';
-    div_game_element.appendChild(img_platform);
+    div_platform.appendChild(img_platform);
 
     content.appendChild(div_game_element);
 
@@ -628,6 +649,9 @@ function kill_block(id, s){
     var cur_block_left = parseInt(block.style.left) || 0;
     document.getElementById(id).remove()
     score += s + 1
+    score2 += s + 1
+    console.log(score2)
+
     document.getElementById("score").textContent = "Score: " + score;
 
     var r_word = '';
@@ -802,6 +826,19 @@ function fire_enemy(left){
     }
 }
 
+function fire_enemy2(left){
+    if(!document.getElementById("ball_e3")){
+        var ball_e1 = document.createElement('img');
+        ball_e1.setAttribute('src', list_element[5].src);
+        ball_e1.id = 'ball_e3';
+        ball_e1.style.left = left + 30 + 'px';
+        ball_e1.style.top = 340 + 'px';
+        ball_e1.style.height = 40 + 'px';
+        ball_e1.style.position = 'absolute';
+        div_game_element.appendChild(ball_e1);
+    }
+}
+
 function fire_boss(id){
     var e1_elem = document.getElementById(id);
     var c_top = parseInt(e1_elem.style.top) || 0;
@@ -832,6 +869,33 @@ function fire_boss(id){
             }
         }, i * 100);
     }
+}
+
+var key_r = true
+
+function hits_gg(){
+    if(key_r){
+        key_r = false
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+            if(document.getElementById("div_platform")){
+                if(i % 2 == 0){
+                    document.getElementById("div_platform").style.top = 970 + 'px';
+                }
+                if(i % 2 != 0){
+                    document.getElementById("div_platform").style.top = 870 + 'px';
+                }
+
+                if(i == 9){
+                    document.getElementById("div_platform").style.top = 870 + 'px';
+                    key_r = true
+                }
+            }
+
+            }, i * 150);
+        }
+    }
+
 }
 
 var gameinterval = null
@@ -867,46 +931,119 @@ var t_key = 0
 var key_l = true
 var key_r = true
 
+// рахунок спавну босів
+var score2 = 0
 
-//зміні першого боса
+//зміні 1 боса
 var enemy1_key = true
-
-var t_e2 = 0
-var anim2 = 0
-
-var enemy_control = 0
+var enemy_control = -6
 var list_enemy = [[60, 4], [70, -4], [70, 3], [60, -3]]
 var t_enime = -1
-var hp_enemy = 10
+var hp_enemy = 5
 
-var e1_key = true
+
+//зміні 2 боса
+var t_e2 = 0
+var enemy_control2 = -8
+var list_enemy2 = [[60, 4], [70, -4], [70, 3], [60, -3]]
+var t_enime2 = -1
+var fire_e2 = 0
+var hp_enemy2 = 5
+
+var list_bullet = ['ball_e1','ball_e2','ball_e3']
 
 
 function game(){
-
-    if(score >= 2 && e1_key){
-        e1_key = false
-        t_enime = 100
-        enemy_control = -6
+    // умови спавну босів
+    if(score2 >= 100){
+        score2 = 0
+        console.log("Спавн босса")
+        var r_boss = Math.floor(Math.random() * 2);
+        if(r_boss == 0){
+            enemy_control = -6
+            t_enime = 100
+            console.log("Спавн босса1")
+        }else if(r_boss == 1){
+            enemy_control2 = -6
+            t_enime2 = 100
+            console.log("Спавн босса2")
+        }
     }
-    if(hp_enemy <= 9){
-        hp_enemy = 10
-        t_enime = -1
-        enemy_control = -6
-        fire_boss("div_enemy")
+
+    if(hp_enemy2 <= 0){
+        hp_enemy2 = 5
+        t_enime2 = -1
+        enemy_control2 = -8
+        fire_boss("div_enemy2")
+    }
+
+    // переміщеня 2 босу
+    var div_enemy2 = document.getElementById("div_enemy2");
+    var cur_enemy2_left = parseInt(div_enemy2.style.left) || 0;
+
+    if(t_enime2 > 0){
+        t_enime2--
+        if(cur_enemy2_left > 100 && enemy_control2 < 0){
+            div_enemy2.style.left = (cur_enemy2_left + enemy_control2) + 'px';
+        }else if(cur_enemy2_left < 750 && enemy_control2 > 0){
+            div_enemy2.style.left = (cur_enemy2_left + enemy_control2) + 'px';
+        }
+    }
+
+    if(t_enime2 == 0){
+        t_enime2 = -1
+        var j = Math.floor(Math.random() * 4);
+        t_enime2 = list_enemy2[j][0]
+        enemy_control2 = list_enemy2[j][1]
     }
 
 
     t_e2++
     if(t_e2 == 8){
         t_e2 = 0
-        anim2++
-        if(anim2 == 5){
-            anim2 = 0
-        }
         var anim_e2 = Math.floor(Math.random() * 5);
-        document.getElementById('img_e2').setAttribute('src', list_e1[anim_e2].src)
+        if(anim_e2 == 1 && cur_enemy2_left > 100 && cur_enemy2_left < 750){
+            fire_e2 = 1
+            fire_enemy2(cur_enemy2_left)
+        }else if(anim_e2 == 2 && cur_enemy2_left > 100 && cur_enemy2_left < 750){
+            fire_e2 = 2
+            fire_enemy2(cur_enemy2_left)
+        }else if(anim_e2 == 3 && cur_enemy2_left > 100 && cur_enemy2_left < 750){
+            fire_e2 = 3
+            fire_enemy2(cur_enemy2_left)
+        }
 
+        document.getElementById('img_e2').setAttribute('src', list_e1[anim_e2].src)
+    }
+
+    if(document.getElementById('ball_e3')){
+        var ball_e3 = document.getElementById("ball_e3");
+        var cur_ball_e3_top = parseInt(ball_e3.style.top) || 0;
+        var cur_ball_e3_left = parseInt(ball_e3.style.left) || 0;
+
+        if(fire_e2 == 1){
+            ball_e3.style.top = (cur_ball_e3_top + 8) + 'px';
+            ball_e3.style.left = (cur_ball_e3_left - 4) + 'px';
+
+        }else if(fire_e2 == 2){
+            ball_e3.style.top = (cur_ball_e3_top + 8) + 'px';
+
+        }else if(fire_e2 == 3){
+            ball_e3.style.top = (cur_ball_e3_top + 8) + 'px';
+            ball_e3.style.left = (cur_ball_e3_left + 4) + 'px';
+
+        }
+        if(cur_ball_e3_top > 950){
+            document.getElementById("ball_e3").remove()
+        }
+    }
+
+    // переміщення 1 босу
+    if(hp_enemy <= 0){
+        hp_enemy = 5
+        t_enime = -1
+        enemy_control = -6
+        fire_boss("div_enemy")
     }
 
     var cur_e1_left = parseInt(document.getElementById('div_enemy').style.left) || 0;
@@ -919,6 +1056,7 @@ function game(){
 
     }
 
+    // кулі першого боса
     if(document.getElementById("ball_e1")){
         var ball_e1 = document.getElementById("ball_e1");
         var ball_e2 = document.getElementById("ball_e2");
@@ -939,7 +1077,6 @@ function game(){
         }
     }
 
-
     var div_enemy1 = document.getElementById("div_enemy");
     var cur_enemy1_left = parseInt(div_enemy1.style.left) || 0;
 
@@ -958,7 +1095,9 @@ function game(){
         enemy_control = list_enemy[i][1]
     }
 
+
     var ball = document.getElementById("ball");
+
     // умова рекошету
     if(time_ricochet > 0)
         ricochet_t++
@@ -1018,10 +1157,7 @@ function game(){
 
 
     // умови керування платформою
-    var platform = document.getElementById("platform");
-    var div_pl_l = document.getElementById("div_pl_l");
-    var div_pl_c = document.getElementById("div_pl_c");
-    var div_pl_r = document.getElementById("div_pl_r");
+    var platform = document.getElementById("div_platform");
     var cur_platform_left = parseInt(platform.style.left) || 0;
     var cur_platform_top = parseInt(platform.style.top) || 0;
 
@@ -1032,7 +1168,7 @@ function game(){
         time_damage = 0
         time_ricochet = 0
         ball.style.left = (cur_platform_left + ball_center) + 'px';
-        ball.style.top = (cur_platform_top - 30) + 'px';
+        ball.style.top = 840 + 'px';
         n_ball--
         document.getElementById("txt_ball").textContent = n_ball;
         document.getElementById("img_sp").setAttribute('src', list_sp[0].src)
@@ -1045,18 +1181,12 @@ function game(){
 
     if(list_coor[0] && list_coor[0] == 4 && cur_platform_left < (780 - r_plat)){
         platform.style.left = (cur_platform_left + speed_plat) + 'px';
-        div_pl_l.style.left = (cur_platform_left + speed_plat) + 'px';
-        div_pl_c.style.left = (cur_platform_left + 40 + speed_plat) + 'px';
-        div_pl_r.style.left = (cur_platform_left + 160 + r_plat + speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
             ball.style.left = (cur_platform_left + ball_center + speed_plat) + 'px';
         }
 
     }else if(list_coor[0] && list_coor[0] == 3 && cur_platform_left > 15){
         platform.style.left = (cur_platform_left - speed_plat) + 'px';
-        div_pl_l.style.left = (cur_platform_left - speed_plat) + 'px';
-        div_pl_c.style.left = (cur_platform_left + 40 - speed_plat) + 'px';
-        div_pl_r.style.left = (cur_platform_left + 160 + r_plat - speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
             ball.style.left = (cur_platform_left + ball_center - speed_plat) + 'px';
         }
@@ -1068,8 +1198,24 @@ function game(){
     }
 
     // колізії покращень
-
     var div_pl_c_reck = document.getElementById('div_pl_c').getBoundingClientRect();
+
+    for (var i = 0; i < list_bullet.length; i++){
+
+        if(document.getElementById(list_bullet[i])){
+            console.log("Є пуля")
+            var bullet_reck = document.getElementById(list_bullet[i]).getBoundingClientRect();
+            if (!(div_pl_c_reck.right < bullet_reck.left ||
+                div_pl_c_reck.left > bullet_reck.right ||
+                div_pl_c_reck.bottom < bullet_reck.top ||
+                div_pl_c_reck.top > bullet_reck.bottom)) {
+
+                    hits_gg()
+                    document.getElementById(list_bullet[i]).remove()
+                    break
+                }
+        }
+    }
 
     for (var i = 0; i < list_impruve.length; i++){
         if(document.getElementById(list_impruve[i][0])){
@@ -1080,11 +1226,8 @@ function game(){
                 div_pl_c_reck.bottom < imruve_reck.top ||
                 div_pl_c_reck.top > imruve_reck.bottom)) {
 
-
                 plus = Math.abs(ball_r)
-
                 if(list_impruve[i][1] == 2){
-
                     if(plus < 12){
                         if(ball_r > 0){
                             ball_r += 2
@@ -1093,9 +1236,7 @@ function game(){
                         }
                     }
                     hud_speed()
-
                 }else if(list_impruve[i][1] == 1){
-
                     if(plus > 6){
                         if(ball_r > 0){
                             ball_r -= 2
@@ -1120,8 +1261,6 @@ function game(){
                         s_plat--
                         size_platform()
                     }
-
-
 
                 }else if(list_impruve[i][1] == 6){
 
@@ -1150,10 +1289,12 @@ function game(){
         }
     }
 
-
-    // умови колізій 1 ворога
     var ball_reck = document.getElementById('ball').getBoundingClientRect();
+    // умови колізій 1 ворога
     var enemy_reck = document.getElementById('div_enemy').getBoundingClientRect();
+
+    // умови колізій 2 ворога
+    var enemy2_reck = document.getElementById('div_enemy2').getBoundingClientRect();
 
         if (!(ball_reck.right < enemy_reck.left ||
             ball_reck.left > enemy_reck.right ||
@@ -1182,7 +1323,30 @@ function game(){
                 console.log(hp_enemy)
             }
 
+        if (!(ball_reck.right < enemy2_reck.left ||
+            ball_reck.left > enemy2_reck.right ||
+            ball_reck.bottom < enemy2_reck.top ||
+            ball_reck.top > enemy2_reck.bottom)) {
 
+                if(ball_reck.top > enemy2_reck.bottom - 15){
+                    ball_r = -ball_r
+                    ball.style.top = (cur_ball_top + 10) + 'px';
+
+                }else if(ball_reck.bottom < enemy2_reck.top + 15){
+                    ball_r = -ball_r
+                    ball.style.top = (cur_ball_top - 10) + 'px';
+                }else if(ball_reck.left > enemy2_reck.right - 15){
+                    ball_l = -ball_l
+                    ball.style.left = (cur_ball_left + 10) + 'px';
+
+                }else if(ball_reck.right < enemy2_reck.left + 15){
+                    ball_l = -ball_l
+                    ball.style.left = (cur_ball_left - 10) + 'px';
+                }
+                plat_k = true
+                hp_enemy2--
+                console.log(hp_enemy2)
+            }
 
     var div_fon_up_reck = document.getElementById('img_fon').getBoundingClientRect();
     var div_fon_l_reck = document.getElementById('img_fon1').getBoundingClientRect();
@@ -1235,58 +1399,59 @@ function game(){
                 ball_l = -ab_Value2
                 plat_k = true
 
-        // умова колізії платформи
-        }else
-        if (!(ball_reck.right < div_pl_c_reck.left ||
-            ball_reck.left > div_pl_c_reck.right ||
-            ball_reck.bottom < div_pl_c_reck.top ||
-            ball_reck.top > div_pl_c_reck.bottom)) {
-                if(ball_reck.bottom < div_pl_c_reck.top + 15){
-                    if(plat_k){
-                        plat_k = false
-                        ab_Value02 = Math.abs(ball_r)
-                        ball_r = -ab_Value02
-                    }
-                }
 
-        }else
-        if(!(ball_reck.right < div_pl_l_reck.left ||
-                ball_reck.left > div_pl_l_reck.right ||
-                ball_reck.bottom < div_pl_l_reck.top ||
-                ball_reck.top > div_pl_l_reck.bottom)) {
-                if(ball_reck.bottom < div_pl_l_reck.top + 15){
-                    if(plat_k){
-                        plat_k = false
-                        ball_r = -ball_r
-                        if(ball_l > 0){
-                            ball_l = -ball_l + 2
-                        }else{
-                            r_ball_r = Math.abs(ball_r)
-                            ball_l = -r_ball_r
+        }
+        // умова колізії платформи
+        if(key_r){
+            if (!(ball_reck.right < div_pl_c_reck.left ||
+                ball_reck.left > div_pl_c_reck.right ||
+                ball_reck.bottom < div_pl_c_reck.top ||
+                ball_reck.top > div_pl_c_reck.bottom)) {
+                    if(ball_reck.bottom < div_pl_c_reck.top + 15){
+                        if(plat_k){
+                            plat_k = false
+                            ab_Value02 = Math.abs(ball_r)
+                            ball_r = -ab_Value02
                         }
                     }
-                }else{
-                    ball_l = -10
-                }
-        }else
-        if(!(ball_reck.right < div_pl_r_reck.left ||
-                ball_reck.left > div_pl_r_reck.right ||
-                ball_reck.bottom < div_pl_r_reck.top ||
-                ball_reck.top > div_pl_r_reck.bottom)) {
-                if(ball_reck.bottom < div_pl_r_reck.top + 15){
-                    if(plat_k){
-                        plat_k = false
-                        ball_r = -ball_r
-                        if(ball_l < 0){
-                            ball_l = -ball_l - 2
-                        }else{
-                            r_ball_r = Math.abs(ball_r)
-                            ball_l = r_ball_r
+
+            }else if(!(ball_reck.right < div_pl_l_reck.left ||
+                    ball_reck.left > div_pl_l_reck.right ||
+                    ball_reck.bottom < div_pl_l_reck.top ||
+                    ball_reck.top > div_pl_l_reck.bottom)) {
+                    if(ball_reck.bottom < div_pl_l_reck.top + 15){
+                        if(plat_k){
+                            plat_k = false
+                            ball_r = -ball_r
+                            if(ball_l > 0){
+                                ball_l = -ball_l + 2
+                            }else{
+                                r_ball_r = Math.abs(ball_r)
+                                ball_l = -r_ball_r
+                            }
                         }
+                    }else{
+                        ball_l = -10
                     }
-                }else{
-                    ball_l = -10
-                }
+            }else if(!(ball_reck.right < div_pl_r_reck.left ||
+                    ball_reck.left > div_pl_r_reck.right ||
+                    ball_reck.bottom < div_pl_r_reck.top ||
+                    ball_reck.top > div_pl_r_reck.bottom)) {
+                    if(ball_reck.bottom < div_pl_r_reck.top + 15){
+                        if(plat_k){
+                            plat_k = false
+                            ball_r = -ball_r
+                            if(ball_l < 0){
+                                ball_l = -ball_l - 2
+                            }else{
+                                r_ball_r = Math.abs(ball_r)
+                                ball_l = r_ball_r
+                            }
+                        }
+                    }else{
+                        ball_l = -10
+                    }
+            }
         }
 
         for (var i = 0; i < list_b.length; i++){
@@ -1413,7 +1578,6 @@ function start_ball(){
     }
 }
 
-
 var k1 = true
 var k2 = true
 var k3 = true
@@ -1466,8 +1630,6 @@ document.addEventListener("keydown", function(event) {
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-        t_enime = 100
-//        document.getElementById("div_enemy").style.left = 500 + 'px';
     }
 });
 
@@ -1516,14 +1678,16 @@ document.addEventListener("keyup", function(event) {
 
         // натиснута кнопка E
     if (event.keyCode === 69) {
-        }
+
+    }
     // натиснута кнопка F
     if (event.keyCode === 70) {
 
-        }
+    }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-        }
+
+    }
 });
 
 // Кнопки тачу
@@ -1641,20 +1805,6 @@ function right_select_up() {
 
 add_zastavka()
 
-//game_element()
-//
-//add_block(0)
-//add_block(51)
-//add_block(101)
-//add_block(151)
-//add_block(201)
-//
-//gameinterval = setInterval(game, 25)
-
-//gameinterval = null
-//clearInterval(gameiter)
-
-
 var menu_pos = 0;
 var menu_pos1 = 0;
 
@@ -1664,7 +1814,6 @@ function move_menu(nav){
             document.getElementById('div_zastavka').remove()
             add_menu()
         }
-
     }else if(document.getElementById('div_menu') && !document.getElementById('div_game_element')){
         var cur_select = parseInt(document.getElementById("select").style.top) || 0;
         if(nav == "d" && menu_pos < 3){
@@ -1682,6 +1831,7 @@ function move_menu(nav){
                 ball_l = 0
                 // рахунок та хп
                 score = 0
+                score2 = 0
                 n_ball = 3
                 deep = 0
                 // покращення
@@ -1696,6 +1846,8 @@ function move_menu(nav){
                 // зміні ворога 1
                 enemy1_key = true
                 t_enime = -1
+                t_enime2 = -1
+                key_r = true
 
                 game_element()
                 add_block(0)
@@ -1734,11 +1886,11 @@ function move_menu(nav){
                 document.getElementById("div_menu1").remove()
 
                 // швидкість
-
                 ball_r = 0
                 ball_l = 0
                 // рахунок та хп
                 score = 0
+                score2 = 0
                 n_ball = 3
                 deep = 0
                 // покращення
@@ -1753,6 +1905,8 @@ function move_menu(nav){
                 // зміні ворога 1
                 enemy1_key = true
                 t_enime = -1
+                t_enime2 = -1
+                key_r = true
 
                 game_element()
                 add_block(0)
