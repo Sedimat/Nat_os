@@ -36,9 +36,13 @@ list_improve[5].src = '/media/g_arkanoid/im_plus.svg';
 list_improve[6].src = '/media/g_arkanoid/im_b1.svg';
 list_improve[7].src = '/media/g_arkanoid/im_b2.svg';
 
+var list_im_boss = [new Image(), new Image()]
+
+list_im_boss[0].src = '/media/g_arkanoid/im_boss1.svg';
+list_im_boss[1].src = '/media/g_arkanoid/im_boss2.svg';
 
 var list_blok = [new Image(), new Image(), new Image(),
-                 new Image(), new Image(), new Image()]
+                 new Image(), new Image(), new Image(), new Image()]
 
 list_blok[0].src = '/media/g_arkanoid/blok1.svg';
 list_blok[1].src = '/media/g_arkanoid/blok2.svg';
@@ -46,6 +50,7 @@ list_blok[2].src = '/media/g_arkanoid/blok3.svg';
 list_blok[3].src = '/media/g_arkanoid/blok4.svg';
 list_blok[4].src = '/media/g_arkanoid/blok5.svg';
 list_blok[5].src = '/media/g_arkanoid/blok6.svg';
+list_blok[6].src = '/media/g_arkanoid/blok7.svg';
 
 var list_kill = [new Image(), new Image(), new Image(),
                  new Image(), new Image(), new Image()]
@@ -597,7 +602,7 @@ function add_block(top){
                 r_word += String.fromCharCode(randomCharCode);
             }
 
-        var rand = Math.floor(Math.random() * 6);
+        var rand = Math.floor(Math.random() * 7);
         list_b.push([r_word, rand, rand])
         var blok1 = document.createElement('img');
         blok1.setAttribute('src', list_blok[rand].src);
@@ -650,8 +655,6 @@ function kill_block(id, s){
     document.getElementById(id).remove()
     score += s + 1
     score2 += s + 1
-    console.log(score2)
-
     document.getElementById("score").textContent = "Score: " + score;
 
     var r_word = '';
@@ -865,6 +868,8 @@ function fire_boss(id){
                 if(i == 5){
                     document.getElementById(r_word).remove()
                     document.getElementById(id).style.left = 1050 + 'px';
+                    score += 100
+                    document.getElementById("score").textContent = "Score: " + score;
                 }
             }
         }, i * 100);
@@ -886,7 +891,7 @@ function hits_gg(){
                     document.getElementById("div_platform").style.top = 870 + 'px';
                 }
 
-                if(i == 9){
+                if(i == 29){
                     document.getElementById("div_platform").style.top = 870 + 'px';
                     key_r = true
                 }
@@ -898,13 +903,84 @@ function hits_gg(){
 
 }
 
+function hit_boss1(id){
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            if(document.getElementById(id)){
+                if(i % 2 == 0){
+                    document.getElementById(id).style.opacity = 0.7;
+                }
+                if(i % 2 != 0){
+                    document.getElementById(id).style.opacity = 1;
+                }
+
+                if(i == 5){
+                    document.getElementById(id).style.opacity = 1;
+                }
+            }
+        }, i * 150);
+    }
+}
+
+function improve_boss(){
+    var n = 0
+    if(!document.getElementById("im_boss" + n)){
+        var img = document.createElement('img');
+        img.setAttribute('src', list_im_boss[n].src);
+        img.id = "im_boss" + n;
+        img.style.left = 400 + 'px';
+        img.style.top = 400 + 'px';
+        img.style.width = 80 + 'px';
+        img.style.position = 'absolute';
+        document.getElementById('div_game_element').appendChild(img);
+    }
+}
+
+function fire_improve_ball(t, l){
+    var img = document.createElement('img');
+    img.setAttribute('src', list_fire[0].src);
+    img.id = "fire_b";
+    img.style.left = l - 100 + 'px';
+    img.style.top = t - 100 + 'px';
+    img.style.width = 200 + 'px';
+    img.style.position = 'absolute';
+    document.getElementById('div_game_element').appendChild(img);
+
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            if(document.getElementById("fire_b")){
+                document.getElementById("fire_b").setAttribute('src', list_fire[i].src);
+                if(i == 5){
+                    document.getElementById("fire_b").remove()
+                }
+            }
+        }, i * 100);
+    }
+
+}
+
+function add_fire_boss(){
+
+    var platform = document.getElementById("div_platform");
+    var cur_p_left = parseInt(platform.style.left) || 0;
+
+    var ball_e1 = document.createElement('img');
+    ball_e1.setAttribute('src', list_element[5].src);
+    ball_e1.id = 'ball_imp_e2';
+    ball_e1.style.left = cur_p_left + 85 + 'px';
+    ball_e1.style.top = 830 + 'px';
+    ball_e1.style.height = 40 + 'px';
+    ball_e1.style.position = 'absolute';
+    document.getElementById('div_game_element').appendChild(ball_e1);
+
+}
+
 var gameinterval = null
 
 // зміна сили пошкодженя
 var damage_power = 1
 var time_damage = -1
 var damage_t = 0
-
 
 // зміна рекошету від блоків
 var ricochet = true
@@ -954,19 +1030,74 @@ var list_bullet = ['ball_e1','ball_e2','ball_e3']
 
 
 function game(){
+    if(document.getElementById("ball_imp_e2")){
+        var ball_imp_e2 = document.getElementById("ball_imp_e2");
+        var cur_ball_imp_e2_top = parseInt(ball_imp_e2.style.top) || 0;
+        var cur_ball_imp_e2_left = parseInt(ball_imp_e2.style.left) || 0;
+        ball_imp_e2.style.top = cur_ball_imp_e2_top - 8 + 'px';
+
+        if(cur_ball_imp_e2_top < 200){
+            console.log(ball_imp_e2.style.top, ball_imp_e2.style.left)
+            document.getElementById("ball_imp_e2").remove()
+            fire_improve_ball(cur_ball_imp_e2_top, cur_ball_imp_e2_left)
+        }
+    }
+
+    // покращення від боса 1
+    if(document.getElementById("im_boss0")){
+        var im_boss0 = document.getElementById("im_boss0");
+        var cur_im_boss0_top = parseInt(im_boss0.style.top) || 0;
+        im_boss0.style.top = cur_im_boss0_top + 8 + 'px';
+
+        var div_pl_c_reck = document.getElementById('div_pl_c').getBoundingClientRect();
+        var im_boss0_reck = document.getElementById("im_boss0").getBoundingClientRect();
+            if (!(div_pl_c_reck.right < im_boss0_reck.left ||
+            div_pl_c_reck.left > im_boss0_reck.right ||
+            div_pl_c_reck.bottom < im_boss0_reck.top ||
+            div_pl_c_reck.top > im_boss0_reck.bottom)) {
+                document.getElementById("im_boss0").remove()
+                console.log("Пімав покращення 1")
+            }
+
+        if(cur_im_boss0_top > 1000){
+            document.getElementById("im_boss0").remove()
+        }
+
+    }
+
+    // покращення від боса 2
+    if(document.getElementById("im_boss1")){
+        var im_boss1 = document.getElementById("im_boss1");
+        var cur_im_boss1_top = parseInt(im_boss1.style.top) || 0;
+        im_boss1.style.top = cur_im_boss1_top + 8 + 'px';
+
+        var div_pl_c_reck = document.getElementById('div_pl_c').getBoundingClientRect();
+        var im_boss1_reck = document.getElementById("im_boss1").getBoundingClientRect();
+            if (!(div_pl_c_reck.right < im_boss1_reck.left ||
+            div_pl_c_reck.left > im_boss1_reck.right ||
+            div_pl_c_reck.bottom < im_boss1_reck.top ||
+            div_pl_c_reck.top > im_boss1_reck.bottom)) {
+                document.getElementById("im_boss1").remove()
+                console.log("Пімав покращення 2")
+            }
+
+        if(cur_im_boss1_top > 1000){
+            document.getElementById("im_boss1").remove()
+        }
+
+    }
+
+
     // умови спавну босів
     if(score2 >= 100){
         score2 = 0
-        console.log("Спавн босса")
         var r_boss = Math.floor(Math.random() * 2);
         if(r_boss == 0){
             enemy_control = -6
             t_enime = 100
-            console.log("Спавн босса1")
         }else if(r_boss == 1){
             enemy_control2 = -6
             t_enime2 = 100
-            console.log("Спавн босса2")
         }
     }
 
@@ -1057,7 +1188,7 @@ function game(){
     }
 
     // кулі першого боса
-    if(document.getElementById("ball_e1")){
+    if(document.getElementById("ball_e1") && document.getElementById("ball_e2")){
         var ball_e1 = document.getElementById("ball_e1");
         var ball_e2 = document.getElementById("ball_e2");
         var cur_ball_e1_top = parseInt(ball_e1.style.top) || 0;
@@ -1162,7 +1293,7 @@ function game(){
     var cur_platform_top = parseInt(platform.style.top) || 0;
 
     // якщо кулька вилетіла нижче платформу
-    if(cur_ball_top > 940){
+    if(cur_ball_top > 920){
         ball_r = 0
         ball_l = 0
         time_damage = 0
@@ -1180,12 +1311,18 @@ function game(){
     }
 
     if(list_coor[0] && list_coor[0] == 4 && cur_platform_left < (780 - r_plat)){
+        if(document.getElementById("ball_imp_e2")){
+            document.getElementById("ball_imp_e2").style.left = (cur_platform_left + 85 + speed_plat) + 'px';
+        }
         platform.style.left = (cur_platform_left + speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
             ball.style.left = (cur_platform_left + ball_center + speed_plat) + 'px';
         }
 
     }else if(list_coor[0] && list_coor[0] == 3 && cur_platform_left > 15){
+        if(document.getElementById("ball_imp_e2")){
+            document.getElementById("ball_imp_e2").style.left = (cur_platform_left + 85 - speed_plat) + 'px';
+        }
         platform.style.left = (cur_platform_left - speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
             ball.style.left = (cur_platform_left + ball_center - speed_plat) + 'px';
@@ -1203,7 +1340,6 @@ function game(){
     for (var i = 0; i < list_bullet.length; i++){
 
         if(document.getElementById(list_bullet[i])){
-            console.log("Є пуля")
             var bullet_reck = document.getElementById(list_bullet[i]).getBoundingClientRect();
             if (!(div_pl_c_reck.right < bullet_reck.left ||
                 div_pl_c_reck.left > bullet_reck.right ||
@@ -1211,7 +1347,14 @@ function game(){
                 div_pl_c_reck.top > bullet_reck.bottom)) {
 
                     hits_gg()
-                    document.getElementById(list_bullet[i]).remove()
+                    if(list_bullet[i] == "ball_e1" || list_bullet[i] == "ball_e2"){
+                        document.getElementById("ball_e1").remove()
+                        document.getElementById("ball_e2").remove()
+                        enemy1_key = true
+
+                    }else{
+                        document.getElementById(list_bullet[i]).remove()
+                    }
                     break
                 }
         }
@@ -1227,7 +1370,7 @@ function game(){
                 div_pl_c_reck.top > imruve_reck.bottom)) {
 
                 plus = Math.abs(ball_r)
-                if(list_impruve[i][1] == 2){
+                if(list_impruve[i][1] == 2  && ball_r != 0){
                     if(plus < 12){
                         if(ball_r > 0){
                             ball_r += 2
@@ -1236,7 +1379,7 @@ function game(){
                         }
                     }
                     hud_speed()
-                }else if(list_impruve[i][1] == 1){
+                }else if(list_impruve[i][1] == 1  && ball_r != 0){
                     if(plus > 6){
                         if(ball_r > 0){
                             ball_r -= 2
@@ -1320,7 +1463,7 @@ function game(){
                 }
                 plat_k = true
                 hp_enemy--
-                console.log(hp_enemy)
+                hit_boss1("img_enemy")
             }
 
         if (!(ball_reck.right < enemy2_reck.left ||
@@ -1345,7 +1488,7 @@ function game(){
                 }
                 plat_k = true
                 hp_enemy2--
-                console.log(hp_enemy2)
+                hit_boss1("img_e2")
             }
 
     var div_fon_up_reck = document.getElementById('img_fon').getBoundingClientRect();
@@ -1454,9 +1597,25 @@ function game(){
             }
         }
 
+
+
+
+
         for (var i = 0; i < list_b.length; i++){
                 if(document.getElementById(list_b[i][0])){
                     var div_blok1_reck = document.getElementById(list_b[i][0]).getBoundingClientRect();
+
+                    if(document.getElementById("fire_b")){
+                        var fire_b_reck = document.getElementById("fire_b").getBoundingClientRect();
+                        if (!(fire_b_reck.right < div_blok1_reck.left ||
+                            fire_b_reck.left > div_blok1_reck.right ||
+                            fire_b_reck.bottom < div_blok1_reck.top ||
+                            fire_b_reck.top > div_blok1_reck.bottom)) {
+                            kill_block(list_b[i][0], list_b[i][2])
+
+                            }
+                    }
+
 
                     var cur_ball_left = parseInt(ball.style.left) || 0;
                     var cur_ball_top = parseInt(ball.style.top) || 0;
@@ -1471,19 +1630,25 @@ function game(){
                                 if(ricochet){
                                     ball_r = -ball_r
                                     ball.style.top = (cur_ball_top + 10) + 'px';
+                                }else if(list_b[i][1] >= 6){
+                                    ball_r = -ball_r
+                                    ball.style.top = (cur_ball_top + 10) + 'px';
+                                    break
                                 }
 
-                                var hp = list_b[i][1] - damage_power
-                                if(hp > 0){
-                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                    plat_k = true
-                                    break
-                                }else{
-                                    kill_block(list_b[i][0], list_b[i][2])
-                                    list_b.splice(i, 1)
-                                    plat_k = true
-                                    break
+                                if(list_b[i][1] < 6){
+                                    var hp = list_b[i][1] - damage_power
+                                    if(hp > 0){
+                                        list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        plat_k = true
+                                        break
+                                    }else{
+                                        kill_block(list_b[i][0], list_b[i][2])
+                                        list_b.splice(i, 1)
+                                        plat_k = true
+                                        break
+                                    }
                                 }
 
                             }else
@@ -1493,19 +1658,25 @@ function game(){
                                 if(ricochet){
                                     ball_r = -ball_r
                                     ball.style.top = (cur_ball_top - 10) + 'px';
+                                }else if(list_b[i][1] >= 6){
+                                    ball_r = -ball_r
+                                    ball.style.top = (cur_ball_top - 10) + 'px';
+                                    break
                                 }
 
-                                var hp = list_b[i][1] - damage_power
-                                if(hp > 0){
-                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                    plat_k = true
-                                    break
-                                }else{
-                                    kill_block(list_b[i][0], list_b[i][2])
-                                    list_b.splice(i, 1)
-                                    plat_k = true
-                                    break
+                                if(list_b[i][1] < 6){
+                                    var hp = list_b[i][1] - damage_power
+                                    if(hp > 0){
+                                        list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        plat_k = true
+                                        break
+                                    }else{
+                                        kill_block(list_b[i][0], list_b[i][2])
+                                        list_b.splice(i, 1)
+                                        plat_k = true
+                                        break
+                                    }
                                 }
 
                             }else if(ball_reck.left > div_blok1_reck.right - 15){
@@ -1513,19 +1684,25 @@ function game(){
                                 if(ricochet){
                                     ball_l = -ball_l
                                     ball.style.left = (cur_ball_left + 10) + 'px';
+                                }else if(list_b[i][1] >= 6){
+                                    ball_l = -ball_l
+                                    ball.style.left = (cur_ball_left + 10) + 'px';
+                                    break
                                 }
 
-                                var hp = list_b[i][1] - damage_power
-                                if(hp > 0){
-                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                    plat_k = true
-                                    break
-                                }else{
-                                    kill_block(list_b[i][0], list_b[i][2])
-                                    list_b.splice(i, 1)
-                                    plat_k = true
-                                    break
+                                if(list_b[i][1] < 6){
+                                    var hp = list_b[i][1] - damage_power
+                                    if(hp > 0){
+                                        list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        plat_k = true
+                                        break
+                                    }else{
+                                        kill_block(list_b[i][0], list_b[i][2])
+                                        list_b.splice(i, 1)
+                                        plat_k = true
+                                        break
+                                    }
                                 }
 
                             }else if(ball_reck.right < div_blok1_reck.left + 15){
@@ -1533,19 +1710,25 @@ function game(){
                                 if(ricochet){
                                     ball_l = -ball_l
                                     ball.style.left = (cur_ball_left - 10) + 'px';
+                                }else if(list_b[i][1] >= 6){
+                                    ball_l = -ball_l
+                                    ball.style.left = (cur_ball_left - 10) + 'px';
+                                    break
                                 }
 
-                                var hp = list_b[i][1] - damage_power
-                                if(hp > 0){
-                                    list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                    document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                    plat_k = true
-                                    break
-                                }else{
-                                    kill_block(list_b[i][0], list_b[i][2])
-                                    list_b.splice(i, 1)
-                                    plat_k = true
-                                    break
+                                if(list_b[i][1] < 6){
+                                    var hp = list_b[i][1] - damage_power
+                                    if(hp > 0){
+                                        list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
+                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        plat_k = true
+                                        break
+                                    }else{
+                                        kill_block(list_b[i][0], list_b[i][2])
+                                        list_b.splice(i, 1)
+                                        plat_k = true
+                                        break
+                                    }
                                 }
 
                             }
@@ -1630,6 +1813,7 @@ document.addEventListener("keydown", function(event) {
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
+        add_fire_boss()
     }
 });
 
@@ -1852,9 +2036,9 @@ function move_menu(nav){
                 game_element()
                 add_block(0)
                 add_block(51)
-                add_block(101)
-                add_block(151)
-                add_block(201)
+                add_block(102)
+                add_block(153)
+                add_block(204)
 
                 gameinterval = setInterval(game, 25)
 
@@ -1911,9 +2095,9 @@ function move_menu(nav){
                 game_element()
                 add_block(0)
                 add_block(51)
-                add_block(101)
-                add_block(151)
-                add_block(201)
+                add_block(102)
+                add_block(153)
+                add_block(204)
 
                 gameinterval = setInterval(game, 25)
 
