@@ -798,6 +798,13 @@ function size_platform(){
         right.style.left = (cur_right_left + r_plat) + 'px';
 
     }
+
+    var cur_platform_left = parseInt(document.getElementById("div_platform").style.left) || 0;
+
+    if(document.getElementById('ball_imp_e01')){
+            document.getElementById("ball_imp_e01").style.left = (cur_platform_left + ball_center + 50) + 'px';
+            document.getElementById("ball_imp_e02").style.left = (cur_platform_left + ball_center + 50) + 'px';
+    }
 }
 
 function fire_enemy(left){
@@ -922,57 +929,122 @@ function hit_boss1(id){
     }
 }
 
-function improve_boss(){
-    var n = 0
+// випадає покращеня з боса
+function improve_boss(n, l){
     if(!document.getElementById("im_boss" + n)){
         var img = document.createElement('img');
         img.setAttribute('src', list_im_boss[n].src);
         img.id = "im_boss" + n;
-        img.style.left = 400 + 'px';
-        img.style.top = 400 + 'px';
+        img.style.left = l + 'px';
+        img.style.top = 350 + 'px';
         img.style.width = 80 + 'px';
         img.style.position = 'absolute';
         document.getElementById('div_game_element').appendChild(img);
     }
 }
 
-function fire_improve_ball(t, l){
-    var img = document.createElement('img');
-    img.setAttribute('src', list_fire[0].src);
-    img.id = "fire_b";
-    img.style.left = l - 100 + 'px';
-    img.style.top = t - 100 + 'px';
-    img.style.width = 200 + 'px';
-    img.style.position = 'absolute';
-    document.getElementById('div_game_element').appendChild(img);
+// кулька 1 боса у гравця
 
-    for (let i = 0; i < 6; i++) {
-        setTimeout(() => {
-            if(document.getElementById("fire_b")){
-                document.getElementById("fire_b").setAttribute('src', list_fire[i].src);
-                if(i == 5){
-                    document.getElementById("fire_b").remove()
-                }
-            }
-        }, i * 100);
+function add_fire_boss2(){
+    if(!document.getElementById('ball_imp_e01')){
+
+        var platform = document.getElementById("div_platform");
+        var cur_p_left = parseInt(platform.style.left) || 0;
+
+        var ball_e1 = document.createElement('img');
+        ball_e1.setAttribute('src', list_element[2].src);
+        ball_e1.id = 'ball_imp_e01';
+        ball_e1.style.left = cur_p_left + ball_center + 50 + 'px';
+        ball_e1.style.top = 830 + 'px';
+        ball_e1.style.height = 40 + 'px';
+        ball_e1.style.position = 'absolute';
+        ball_e1.style.transform = 'rotate(180deg)';
+        document.getElementById('div_game_element').appendChild(ball_e1);
+
+        var ball_e2 = document.createElement('img');
+        ball_e2.setAttribute('src', list_element[2].src);
+        ball_e2.id = 'ball_imp_e02';
+        ball_e2.style.left = cur_p_left + ball_center + 50 + 'px';
+        ball_e2.style.top = 830 + 'px';
+        ball_e2.style.height = 40 + 'px';
+        ball_e2.style.position = 'absolute';
+        ball_e2.style.transform = 'rotate(180deg)';
+        document.getElementById('div_game_element').appendChild(ball_e2);
     }
-
 }
 
+
+// вибух який руйнує блоки
+function fire_improve_ball(t, l){
+        var img = document.createElement('img');
+        img.setAttribute('src', list_fire[0].src);
+        img.id = "fire_b";
+        img.style.left = l - 100 + 'px';
+        img.style.top = t - 100 + 'px';
+        img.style.width = 200 + 'px';
+        img.style.position = 'absolute';
+        document.getElementById('div_game_element').appendChild(img);
+
+        for (let i = 0; i < 6; i++) {
+            setTimeout(() => {
+                if(document.getElementById("fire_b")){
+                    document.getElementById("fire_b").setAttribute('src', list_fire[i].src);
+                    if(i == 5){
+                        document.getElementById("fire_b").remove()
+                    }
+                }
+            }, i * 100);
+        }
+}
+
+function fire_improve_ball01(l, l1){
+        var img = document.createElement('img');
+        img.setAttribute('src', list_fire[0].src);
+        img.id = "fire_b01";
+        img.style.left = l - 60 + 'px';
+        img.style.top = 140 - 60 + 'px';
+        img.style.width = 120 + 'px';
+        img.style.position = 'absolute';
+        document.getElementById('div_game_element').appendChild(img);
+
+        var img = document.createElement('img');
+        img.setAttribute('src', list_fire[0].src);
+        img.id = "fire_b02";
+        img.style.left = l1 - 60 + 'px';
+        img.style.top = 140 - 60 + 'px';
+        img.style.width = 120 + 'px';
+        img.style.position = 'absolute';
+        document.getElementById('div_game_element').appendChild(img);
+
+        for (let i = 0; i < 6; i++) {
+            setTimeout(() => {
+                if(document.getElementById("fire_b01")){
+                    document.getElementById("fire_b01").setAttribute('src', list_fire[i].src);
+                    document.getElementById("fire_b02").setAttribute('src', list_fire[i].src);
+                    if(i == 5){
+                        document.getElementById("fire_b01").remove()
+                        document.getElementById("fire_b02").remove()
+                    }
+                }
+            }, i * 100);
+        }
+}
+
+// кулька 2 боса у гравця
 function add_fire_boss(){
+    if(!document.getElementById('ball_imp_e2')){
+        var platform = document.getElementById("div_platform");
+        var cur_p_left = parseInt(platform.style.left) || 0;
 
-    var platform = document.getElementById("div_platform");
-    var cur_p_left = parseInt(platform.style.left) || 0;
-
-    var ball_e1 = document.createElement('img');
-    ball_e1.setAttribute('src', list_element[5].src);
-    ball_e1.id = 'ball_imp_e2';
-    ball_e1.style.left = cur_p_left + 85 + 'px';
-    ball_e1.style.top = 830 + 'px';
-    ball_e1.style.height = 40 + 'px';
-    ball_e1.style.position = 'absolute';
-    document.getElementById('div_game_element').appendChild(ball_e1);
-
+        var ball_e1 = document.createElement('img');
+        ball_e1.setAttribute('src', list_element[5].src);
+        ball_e1.id = 'ball_imp_e2';
+        ball_e1.style.left = cur_p_left + 10 + 'px';
+        ball_e1.style.top = 830 + 'px';
+        ball_e1.style.height = 40 + 'px';
+        ball_e1.style.position = 'absolute';
+        document.getElementById('div_game_element').appendChild(ball_e1);
+    }
 }
 
 var gameinterval = null
@@ -1028,15 +1100,63 @@ var hp_enemy2 = 5
 
 var list_bullet = ['ball_e1','ball_e2','ball_e3']
 
+// запускає кульку отриману з боса
+var key_imp_e2 = false
+var key_b_e2 = false
+
+function zapusk_im_e2(){
+
+     if(document.getElementById("ball_imp_e2")){
+         key_imp_e2 = true
+     }else{
+         key_imp_e2 = false
+     }
+
+     if(document.getElementById("ball_imp_e01")){
+         key_b_e2 = true
+     }else{
+         key_b_e2 = false
+     }
+}
 
 function game(){
-    if(document.getElementById("ball_imp_e2")){
+
+    // переміщує кулі верх 1
+    if(document.getElementById("ball_imp_e01") && key_b_e2){
+        var ball_imp_e01 = document.getElementById("ball_imp_e01");
+        var ball_imp_e02 = document.getElementById("ball_imp_e02");
+        var cur_ball_imp_e01_top = parseInt(ball_imp_e01.style.top) || 0;
+
+        var cur_ball_imp_e01_left = parseInt(ball_imp_e01.style.left) || 0;
+        var cur_ball_imp_e02_left = parseInt(ball_imp_e02.style.left) || 0;
+
+        ball_imp_e01.style.top = cur_ball_imp_e01_top - 8 + 'px';
+        if(cur_ball_imp_e01_left > 20){
+            ball_imp_e01.style.left = cur_ball_imp_e01_left - 2 + 'px';
+        }
+
+        ball_imp_e02.style.top = cur_ball_imp_e01_top - 8 + 'px';
+        if(cur_ball_imp_e02_left < 940){
+            ball_imp_e02.style.left = cur_ball_imp_e02_left + 2 + 'px';
+        }
+
+        if(cur_ball_imp_e01_top < 200){
+            key_b_e2 = false
+            fire_improve_ball01(cur_ball_imp_e01_left, cur_ball_imp_e02_left)
+            document.getElementById("ball_imp_e01").remove()
+            document.getElementById("ball_imp_e02").remove()
+        }
+    }
+
+    // переміщує кулі верх 2
+    if(document.getElementById("ball_imp_e2") && key_imp_e2){
         var ball_imp_e2 = document.getElementById("ball_imp_e2");
         var cur_ball_imp_e2_top = parseInt(ball_imp_e2.style.top) || 0;
         var cur_ball_imp_e2_left = parseInt(ball_imp_e2.style.left) || 0;
         ball_imp_e2.style.top = cur_ball_imp_e2_top - 8 + 'px';
 
         if(cur_ball_imp_e2_top < 200){
+            key_imp_e2 = false
             console.log(ball_imp_e2.style.top, ball_imp_e2.style.left)
             document.getElementById("ball_imp_e2").remove()
             fire_improve_ball(cur_ball_imp_e2_top, cur_ball_imp_e2_left)
@@ -1047,7 +1167,7 @@ function game(){
     if(document.getElementById("im_boss0")){
         var im_boss0 = document.getElementById("im_boss0");
         var cur_im_boss0_top = parseInt(im_boss0.style.top) || 0;
-        im_boss0.style.top = cur_im_boss0_top + 8 + 'px';
+        im_boss0.style.top = cur_im_boss0_top + 6 + 'px';
 
         var div_pl_c_reck = document.getElementById('div_pl_c').getBoundingClientRect();
         var im_boss0_reck = document.getElementById("im_boss0").getBoundingClientRect();
@@ -1056,20 +1176,19 @@ function game(){
             div_pl_c_reck.bottom < im_boss0_reck.top ||
             div_pl_c_reck.top > im_boss0_reck.bottom)) {
                 document.getElementById("im_boss0").remove()
-                console.log("Пімав покращення 1")
+                add_fire_boss2()
             }
 
         if(cur_im_boss0_top > 1000){
             document.getElementById("im_boss0").remove()
         }
-
     }
 
     // покращення від боса 2
     if(document.getElementById("im_boss1")){
         var im_boss1 = document.getElementById("im_boss1");
         var cur_im_boss1_top = parseInt(im_boss1.style.top) || 0;
-        im_boss1.style.top = cur_im_boss1_top + 8 + 'px';
+        im_boss1.style.top = cur_im_boss1_top + 6 + 'px';
 
         var div_pl_c_reck = document.getElementById('div_pl_c').getBoundingClientRect();
         var im_boss1_reck = document.getElementById("im_boss1").getBoundingClientRect();
@@ -1078,7 +1197,7 @@ function game(){
             div_pl_c_reck.bottom < im_boss1_reck.top ||
             div_pl_c_reck.top > im_boss1_reck.bottom)) {
                 document.getElementById("im_boss1").remove()
-                console.log("Пімав покращення 2")
+                add_fire_boss()
             }
 
         if(cur_im_boss1_top > 1000){
@@ -1087,9 +1206,8 @@ function game(){
 
     }
 
-
     // умови спавну босів
-    if(score2 >= 100){
+    if(score2 >= 10){
         score2 = 0
         var r_boss = Math.floor(Math.random() * 2);
         if(r_boss == 0){
@@ -1105,7 +1223,10 @@ function game(){
         hp_enemy2 = 5
         t_enime2 = -1
         enemy_control2 = -8
+        var cur_e2_left = parseInt(document.getElementById("div_enemy2").style.left) || 0;
+        improve_boss(1, cur_e2_left)
         fire_boss("div_enemy2")
+
     }
 
     // переміщеня 2 босу
@@ -1174,6 +1295,8 @@ function game(){
         hp_enemy = 5
         t_enime = -1
         enemy_control = -6
+        var cur_e_left = parseInt(document.getElementById("div_enemy").style.left) || 0;
+        improve_boss(0, cur_e_left)
         fire_boss("div_enemy")
     }
 
@@ -1312,7 +1435,11 @@ function game(){
 
     if(list_coor[0] && list_coor[0] == 4 && cur_platform_left < (780 - r_plat)){
         if(document.getElementById("ball_imp_e2")){
-            document.getElementById("ball_imp_e2").style.left = (cur_platform_left + 85 + speed_plat) + 'px';
+            document.getElementById("ball_imp_e2").style.left = (cur_platform_left + 10 + speed_plat) + 'px';
+        }
+        if(document.getElementById('ball_imp_e01') && !key_b_e2){
+            document.getElementById("ball_imp_e01").style.left = (cur_platform_left + ball_center + 50 + speed_plat) + 'px';
+            document.getElementById("ball_imp_e02").style.left = (cur_platform_left + ball_center + 50 + speed_plat) + 'px';
         }
         platform.style.left = (cur_platform_left + speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
@@ -1321,8 +1448,13 @@ function game(){
 
     }else if(list_coor[0] && list_coor[0] == 3 && cur_platform_left > 15){
         if(document.getElementById("ball_imp_e2")){
-            document.getElementById("ball_imp_e2").style.left = (cur_platform_left + 85 - speed_plat) + 'px';
+            document.getElementById("ball_imp_e2").style.left = (cur_platform_left + 10 - speed_plat) + 'px';
         }
+        if(document.getElementById('ball_imp_e01') && !key_b_e2){
+            document.getElementById("ball_imp_e01").style.left = (cur_platform_left + ball_center + 50 - speed_plat) + 'px';
+            document.getElementById("ball_imp_e02").style.left = (cur_platform_left + ball_center + 50 - speed_plat) + 'px';
+        }
+
         platform.style.left = (cur_platform_left - speed_plat) + 'px';
         if(ball_r == 0 && ball_l == 0){
             ball.style.left = (cur_platform_left + ball_center - speed_plat) + 'px';
@@ -1616,6 +1748,26 @@ function game(){
                             }
                     }
 
+                    if(document.getElementById("fire_b01")){
+                        var fire_b01_reck = document.getElementById("fire_b01").getBoundingClientRect();
+                        var fire_b02_reck = document.getElementById("fire_b02").getBoundingClientRect();
+                        if (!(fire_b01_reck.right < div_blok1_reck.left ||
+                            fire_b01_reck.left > div_blok1_reck.right ||
+                            fire_b01_reck.bottom < div_blok1_reck.top ||
+                            fire_b01_reck.top > div_blok1_reck.bottom)) {
+                            kill_block(list_b[i][0], list_b[i][2])
+
+                            }
+
+                        if (!(fire_b02_reck.right < div_blok1_reck.left ||
+                            fire_b02_reck.left > div_blok1_reck.right ||
+                            fire_b02_reck.bottom < div_blok1_reck.top ||
+                            fire_b02_reck.top > div_blok1_reck.bottom)) {
+                            kill_block(list_b[i][0], list_b[i][2])
+
+                            }
+                    }
+
 
                     var cur_ball_left = parseInt(ball.style.left) || 0;
                     var cur_ball_top = parseInt(ball.style.top) || 0;
@@ -1770,6 +1922,7 @@ document.addEventListener("keydown", function(event) {
 
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
+            zapusk_im_e2()
             move_menu("u")
 
             if(k1){
@@ -1813,7 +1966,6 @@ document.addEventListener("keydown", function(event) {
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-        add_fire_boss()
     }
 });
 
