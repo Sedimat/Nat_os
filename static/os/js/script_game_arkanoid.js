@@ -50,7 +50,25 @@ list_blok[2].src = '/media/g_arkanoid/blok3.svg';
 list_blok[3].src = '/media/g_arkanoid/blok4.svg';
 list_blok[4].src = '/media/g_arkanoid/blok5.svg';
 list_blok[5].src = '/media/g_arkanoid/blok6.svg';
-list_blok[6].src = '/media/g_arkanoid/blok7.svg';
+
+var list_blok_b = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(),
+                   new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(),]
+
+list_blok_b[0].src = '/media/g_arkanoid/blok_b14.svg';
+list_blok_b[1].src = '/media/g_arkanoid/blok_b13.svg';
+list_blok_b[2].src = '/media/g_arkanoid/blok_b12.svg';
+list_blok_b[3].src = '/media/g_arkanoid/blok_b11.svg';
+list_blok_b[4].src = '/media/g_arkanoid/blok_b10.svg';
+list_blok_b[5].src = '/media/g_arkanoid/blok_b9.svg';
+list_blok_b[6].src = '/media/g_arkanoid/blok_b8.svg';
+list_blok_b[7].src = '/media/g_arkanoid/blok_b7.svg';
+list_blok_b[8].src = '/media/g_arkanoid/blok_b6.svg';
+list_blok_b[9].src = '/media/g_arkanoid/blok_b5.svg';
+list_blok_b[10].src = '/media/g_arkanoid/blok_b4.svg';
+list_blok_b[11].src = '/media/g_arkanoid/blok_b3.svg';
+list_blok_b[12].src = '/media/g_arkanoid/blok_b2.svg';
+list_blok_b[13].src = '/media/g_arkanoid/blok_b1.svg';
+
 
 var list_kill = [new Image(), new Image(), new Image(),
                  new Image(), new Image(), new Image()]
@@ -602,10 +620,20 @@ function add_block(top){
                 r_word += String.fromCharCode(randomCharCode);
             }
 
-        var rand = Math.floor(Math.random() * 7);
-        list_b.push([r_word, rand, rand])
         var blok1 = document.createElement('img');
-        blok1.setAttribute('src', list_blok[rand].src);
+
+        var rand_b = 0
+        var rand = Math.floor(Math.random() * 7);
+
+        if(rand == 6){
+            rand_b = 13
+            list_b.push([r_word, rand_b, rand_b])
+            blok1.setAttribute('src', list_blok_b[rand_b].src);
+        }else{
+            list_b.push([r_word, rand, rand])
+            blok1.setAttribute('src', list_blok[rand].src);
+
+        }
         blok1.id = r_word;
         blok1.style.left = left_b + 'px';
         blok1.style.top = top + 'px';
@@ -1207,7 +1235,7 @@ function game(){
     }
 
     // умови спавну босів
-    if(score2 >= 10){
+    if(score2 >= 200){
         score2 = 0
         var r_boss = Math.floor(Math.random() * 2);
         if(r_boss == 0){
@@ -1528,7 +1556,7 @@ function game(){
                 }else if(list_impruve[i][1] == 4){
 
                     time_armor = 60
-                    document.getElementById("img_fon3").style.top = 869 + 'px';
+                    document.getElementById("img_fon3").style.top = 875 + 'px';
 
 
                 }else if(list_impruve[i][1] == 5){
@@ -1639,6 +1667,7 @@ function game(){
             ball_reck.top > div_fon_down_reck.bottom)) {
                 ab_Value02 = Math.abs(ball_r)
                 ball_r = -ab_Value02
+//                ball.style.top = (cur_ball_top - 10) + 'px';
                 plat_k = true
 
         }else
@@ -1648,11 +1677,17 @@ function game(){
             ball_reck.top > div_fon_up_reck.bottom)) {
                 // якщо кулька вдарилась в стулю
                 ab_Value01 = Math.abs(ball_r)
-                ball_r = ab_Value01
+                if(ball_l == 0){
+                    ball_l = -2
+                }else{
+                    ball_r = ab_Value01
+                }
+
                 if(m_key == 0){
                    m_key = 1
                    move_block()
                 }
+                ball.style.top = (cur_ball_top + 10) + 'px';
 
                 plat_k = true
 
@@ -1663,6 +1698,7 @@ function game(){
             ball_reck.top > div_fon_l_reck.bottom)) {
                 ab_Value1 = Math.abs(ball_l)
                 ball_l = ab_Value1
+                ball.style.left = (cur_ball_left + 10) + 'px';
                 plat_k = true
 
         }else
@@ -1672,6 +1708,7 @@ function game(){
             ball_reck.top > div_fon_r_reck.bottom)) {
                 ab_Value2 = Math.abs(ball_l)
                 ball_l = -ab_Value2
+                ball.style.left = (cur_ball_left - 10) + 'px';
                 plat_k = true
 
 
@@ -1687,6 +1724,9 @@ function game(){
                             plat_k = false
                             ab_Value02 = Math.abs(ball_r)
                             ball_r = -ab_Value02
+                            if(ball_l != 0){
+                                ball.style.top = (cur_ball_top - 10) + 'px';
+                            }
                         }
                     }
 
@@ -1706,8 +1746,11 @@ function game(){
                             }
                         }
                     }else{
-                        ball_l = -10
+                        r_ball_r = Math.abs(ball_r)
+                        ball_l = -r_ball_r
                     }
+                    ball.style.top = (cur_ball_top - 10) + 'px';
+
             }else if(!(ball_reck.right < div_pl_r_reck.left ||
                     ball_reck.left > div_pl_r_reck.right ||
                     ball_reck.bottom < div_pl_r_reck.top ||
@@ -1724,15 +1767,14 @@ function game(){
                             }
                         }
                     }else{
-                        ball_l = -10
+                        r_ball_r = Math.abs(ball_r)
+                        ball_l = -r_ball_r
                     }
+                    ball.style.top = (cur_ball_top - 10) + 'px';
             }
         }
 
-
-
-
-
+        // видаляє блоки після вибуху
         for (var i = 0; i < list_b.length; i++){
                 if(document.getElementById(list_b[i][0])){
                     var div_blok1_reck = document.getElementById(list_b[i][0]).getBoundingClientRect();
@@ -1778,58 +1820,65 @@ function game(){
                         ball_reck.top > div_blok1_reck.bottom)) {
 
                             if(ball_reck.top > div_blok1_reck.bottom - 15){
-
                                 if(ricochet){
-                                    ball_r = -ball_r
+                                    r_ball_r = Math.abs(ball_r)
+                                    ball_r = r_ball_r
+//                                    ball_r = -ball_r
                                     ball.style.top = (cur_ball_top + 10) + 'px';
+                                    plat_k = true
                                 }else if(list_b[i][1] >= 6){
-                                    ball_r = -ball_r
+                                    r_ball_r = Math.abs(ball_r)
+                                    ball_r = r_ball_r
                                     ball.style.top = (cur_ball_top + 10) + 'px';
+                                    plat_k = true
                                     break
                                 }
-
-                                if(list_b[i][1] < 6){
                                     var hp = list_b[i][1] - damage_power
                                     if(hp > 0){
                                         list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                        plat_k = true
+                                        if(list_b[i][2] == 13){
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok_b[hp].src)
+                                        }else{
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        }
                                         break
                                     }else{
                                         kill_block(list_b[i][0], list_b[i][2])
                                         list_b.splice(i, 1)
-                                        plat_k = true
                                         break
                                     }
-                                }
 
                             }else
 
                              if(ball_reck.bottom < div_blok1_reck.top + 15){
 
                                 if(ricochet){
-                                    ball_r = -ball_r
+                                    ab_Value02 = Math.abs(ball_r)
+                                    ball_r = -ab_Value02
+//                                    ball_r = -ball_r
                                     ball.style.top = (cur_ball_top - 10) + 'px';
                                 }else if(list_b[i][1] >= 6){
-                                    ball_r = -ball_r
+                                    ab_Value02 = Math.abs(ball_r)
+                                    ball_r = -ab_Value02
+//                                    ball_r = -ball_r
                                     ball.style.top = (cur_ball_top - 10) + 'px';
                                     break
                                 }
-
-                                if(list_b[i][1] < 6){
                                     var hp = list_b[i][1] - damage_power
                                     if(hp > 0){
                                         list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                        plat_k = true
+
+                                        if(list_b[i][2] == 13){
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok_b[hp].src)
+                                        }else{
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        }
                                         break
                                     }else{
                                         kill_block(list_b[i][0], list_b[i][2])
                                         list_b.splice(i, 1)
-                                        plat_k = true
                                         break
                                     }
-                                }
 
                             }else if(ball_reck.left > div_blok1_reck.right - 15){
 
@@ -1841,21 +1890,20 @@ function game(){
                                     ball.style.left = (cur_ball_left + 10) + 'px';
                                     break
                                 }
-
-                                if(list_b[i][1] < 6){
                                     var hp = list_b[i][1] - damage_power
                                     if(hp > 0){
                                         list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                        plat_k = true
+                                        if(list_b[i][2] == 13){
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok_b[hp].src)
+                                        }else{
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        }
                                         break
                                     }else{
                                         kill_block(list_b[i][0], list_b[i][2])
                                         list_b.splice(i, 1)
-                                        plat_k = true
                                         break
                                     }
-                                }
 
                             }else if(ball_reck.right < div_blok1_reck.left + 15){
 
@@ -1867,23 +1915,24 @@ function game(){
                                     ball.style.left = (cur_ball_left - 10) + 'px';
                                     break
                                 }
-
-                                if(list_b[i][1] < 6){
                                     var hp = list_b[i][1] - damage_power
                                     if(hp > 0){
                                         list_b[i] =  [list_b[i][0], hp, list_b[i][2]]
-                                        document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
-                                        plat_k = true
+                                        if(list_b[i][2] == 13){
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok_b[hp].src)
+                                        }else{
+                                            document.getElementById(list_b[i][0]).setAttribute('src', list_blok[hp].src)
+                                        }
                                         break
                                     }else{
                                         kill_block(list_b[i][0], list_b[i][2])
                                         list_b.splice(i, 1)
-                                        plat_k = true
                                         break
                                     }
-                                }
-
+                            }else{
+                                ball_l = -ball_l
                             }
+                            plat_k = true
                     }
                 }
         }
@@ -1892,7 +1941,7 @@ function game(){
             if(document.getElementById(list_b[i][0])){
                 var block = document.getElementById(list_b[i][0]);
                 var cur_block_top = parseInt(block.style.top) || 0;
-                if(cur_block_top >= 700){
+                if(cur_block_top >= 600){
                     document.getElementById(list_b[i][0]).remove()
                     list_b.splice(i, 1)
                 }

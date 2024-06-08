@@ -554,11 +554,12 @@ document.addEventListener("keydown", function(event) {
     }
     // натиснута кнопка E
     if (event.keyCode === 69) {
+        move("e")
 
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-
+        move("q")
     }
 });
 
