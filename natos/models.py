@@ -136,3 +136,16 @@ class Animations(models.Model):
     class Meta:
         verbose_name = "Анімація"
         verbose_name_plural = "Анімації"
+
+class UserRating(models.Model):
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Користувач")
+    name_games = models.TextField(blank=True, verbose_name="Назва гри")
+    score = models.TextField(blank=True, verbose_name="Рахунок користувача")
+
+
+    def __str__(self):
+        return f'Рейтинг: {self.id_user}, В грі: {self.name_games} == {self.score} '
+
+    class Meta:
+        verbose_name = "🎃 Рейтинг в грі"
+        verbose_name_plural = "🎃 Рейтинг в грі"

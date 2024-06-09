@@ -3,7 +3,6 @@
 var gameinterval = null
 
 
-
 var mov_up = false;
 var mov_left = false;
 var mov_right = false;

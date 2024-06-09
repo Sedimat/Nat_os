@@ -491,20 +491,20 @@ function about(){
     var about_img = document.createElement('img');
     about_img.setAttribute('src', '/media/img/content.svg');
     about_img.id = 'about_img';
-    about_img.style.left = 20 + 'px';
+    about_img.style.left = 25 + 'px';
     about_img.style.top = 20 + 'px';
-    about_img.style.height = 660 + 'px';
+    about_img.style.height = 730 + 'px';
     about_img.style.position = 'absolute';
     about_img.classList.add('select_img');
     about_div.appendChild(about_img);
 
     var about_txt = document.createElement('h1');
-    about_txt.textContent = "Ball shooting game. You need to aim and knock down the balls or what is attached to them and get bonuses";
+    about_txt.textContent = "Ball shooting game. You need to aim and knock down the balls or what is attached to them and get bonuses.";
     about_txt.id = 'score_n2';
     about_txt.classList.add('menu_txt');
-    about_txt.style.left = 40 + 'px';
-    about_txt.style.top = 120 + 'px';
-    about_txt.style.height = 500 + 'px';
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 50 + 'px';
+    about_txt.style.maxWidth = '850px';
     about_txt.style.position = 'absolute';
     about_div.appendChild(about_txt);
 
@@ -521,9 +521,9 @@ function speed_div(){
     var speed_img = document.createElement('img');
     speed_img.setAttribute('src', '/media/img/content.svg');
     speed_img.id = 'speed_img';
-    speed_img.style.left = 20 + 'px';
+    speed_img.style.left = 25 + 'px';
     speed_img.style.top = 20 + 'px';
-    speed_img.style.height = 660 + 'px';
+    speed_img.style.height = 730 + 'px';
     speed_img.style.position = 'absolute';
 
     speed_div.appendChild(speed_img);
@@ -1558,7 +1558,6 @@ function move_select_p(){
             if (menu_pos < 3){
             menu_pos += 1;
             select.style.top = currentSelect + 125 + 'px';
-            console.log(menu_pos,0)
             }
         }
         if (document.getElementById("div_menu1")){
@@ -1567,7 +1566,6 @@ function move_select_p(){
             if (menu_pos1 < 2){
             menu_pos1 += 1;
             select1.style.top = currentSelect1 + 120 + 'px';
-            console.log(menu_pos1,1)
             }
 
         }
@@ -1587,7 +1585,6 @@ function move_select_m(){
             if (menu_pos > 0){
             menu_pos -= 1;
             select.style.top = currentSelect - 125 + 'px';
-            console.log(menu_pos,0)
             }
         }
         if (document.getElementById("div_menu1")){
@@ -1596,7 +1593,6 @@ function move_select_m(){
             if (menu_pos1 > 0){
             menu_pos1 -= 1;
             select1.style.top = currentSelect1 - 120 + 'px';
-            console.log(menu_pos1,1)
             }
         }
     }

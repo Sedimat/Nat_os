@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserRegistrationForm
 
-from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website, UserProfile, Animations
+from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website, UserProfile, Animations, UserRating
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -329,3 +329,74 @@ def logout_view(request):
     return redirect('settings')
 
 
+def get_games_info(request):
+    context = {}
+
+    if request.method == 'POST':
+        game = request.POST.get('game')
+        score = request.POST.get('score')
+        score = float(score)
+
+        if request.user.username:
+            user = User.objects.get(username=request.user.username)
+            user_rat = UserRating.objects.filter(id_user=user, name_games=game)
+            nickname = user.username
+            user_prof = UserProfile.objects.get(id_user=user)
+            # якщо немає записів з іграми створюємо пустий словник
+            if user_prof.dict_games == "":
+                read_dict_games = {}
+            else:
+                # якщо словник вже є читаємо його
+                read_dict_games = json.loads(user_prof.dict_games)
+
+            if game in read_dict_games:
+                list_score = read_dict_games[game]
+                # якщо менше 5 елементів просто додаємо
+                if len(list_score) < 5:
+                    list_score.append(score)
+
+                list_score.sort(reverse=True)
+                # якщо 5 елементів замінюємо на більший
+                if len(list_score) == 5:
+                    for i, v in enumerate(list_score):
+                        if v <= score:
+                            list_score.insert(i, score)
+                            list_score.pop(5)
+                            break
+                read_dict_games.update({game: list_score})
+                dict_games_json = json.dumps(read_dict_games)
+                user_prof.dict_games = dict_games_json
+                user_prof.save()
+                print(list_score)
+                context.update({"reply": nickname,
+                                "score": list_score})
+
+                if user_rat.exists():
+                    for rating in user_rat:
+                        rating.score = list_score[0]
+                        rating.save()
+                else:
+                    user_rat1 = UserRating(id_user=user, name_games=game, score=list_score[0])
+                    user_rat1.save()
+
+            else:
+                read_dict_games.update({game: [score]})
+                dict_games_json = json.dumps(read_dict_games)
+                user_prof.dict_games = dict_games_json
+                user_prof.save()
+                context.update({"reply": nickname,
+                                "score": score})
+
+                if user_rat.exists():
+                    for rating in user_rat:
+                        rating.score = score
+                        rating.save()
+                else:
+                    user_rat1 = UserRating(id_user=user, name_games=game, score=score)
+                    user_rat1.save()
+
+        else:
+            context.update({"reply": "Sign in to save your rating",
+                            "score": 0})
+
+    return JsonResponse(context)
