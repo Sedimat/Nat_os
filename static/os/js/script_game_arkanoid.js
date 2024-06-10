@@ -166,19 +166,16 @@ function sending_data(sc){
         txt_replay = data.reply
         score_history = data.score
 
-        console.log(data.score)
-
     });
 }
 
 sending_data(0)
 
-
 var content = document.getElementById('content')
 
 var deep = 0
-var score = 0
-var n_ball = 3
+var score1 = 0
+var n45B23 = 3
 
 function add_zastavka(){
     var div_zastavka = document.createElement('div');
@@ -276,7 +273,6 @@ function add_about(){
 
     content.appendChild(div_about);
 }
-
 
 function add_menu(){
     var div_menu = document.createElement('div');
@@ -424,7 +420,7 @@ function game_over(){
     div_game_over.appendChild(txt_over);
 
     var txt_over1 = document.createElement('h1');
-    txt_over1.textContent = "Score: " + score;
+    txt_over1.textContent = "Score: " + score1;
     txt_over1.id = 'txt_over2';
     txt_over1.classList.add('score');
     txt_over1.style.left = 300 + 'px';
@@ -434,7 +430,7 @@ function game_over(){
 
     content.appendChild(div_game_over);
 
-    sending_data(score)
+    sending_data(score1)
 }
 
 function game_element(){
@@ -589,7 +585,7 @@ function game_element(){
     div_game_element.appendChild(img_ball1);
 
     var txt_ball = document.createElement('h1');
-    txt_ball.textContent = n_ball;
+    txt_ball.textContent = n45B23;
     txt_ball.id = 'txt_ball';
     txt_ball.classList.add('menu_txt');
     txt_ball.style.left = 860 + 'px';
@@ -601,7 +597,7 @@ function game_element(){
 
     // худ рахунку
     var txt_score = document.createElement('h1');
-    txt_score.textContent = "Score: " + score;
+    txt_score.textContent = "Score: " + score1;
     txt_score.id = 'score';
     txt_score.classList.add('menu_txt');
     txt_score.style.left = 20 + 'px';
@@ -805,9 +801,9 @@ function kill_block(id, s){
     var cur_block_top = parseInt(block.style.top) || 0;
     var cur_block_left = parseInt(block.style.left) || 0;
     document.getElementById(id).remove()
-    score += s + 1
+    score1 += s + 1
     score2 += s + 1
-    document.getElementById("score").textContent = "Score: " + score;
+    document.getElementById("score").textContent = "Score: " + score1;
 
     var r_word = '';
     for (let i = 0; i < 3; i++) {
@@ -1027,8 +1023,8 @@ function fire_boss(id){
                 if(i == 5){
                     document.getElementById(r_word).remove()
                     document.getElementById(id).style.left = 1050 + 'px';
-                    score += 100
-                    document.getElementById("score").textContent = "Score: " + score;
+                    score1 += 100
+                    document.getElementById("score").textContent = "Score: " + score1;
                 }
             }
         }, i * 100);
@@ -1575,12 +1571,12 @@ function game(){
         time_ricochet = 0
         ball.style.left = (cur_platform_left + ball_center) + 'px';
         ball.style.top = 840 + 'px';
-        n_ball--
-        document.getElementById("txt_ball").textContent = n_ball;
+        n45B23--
+        document.getElementById("txt_ball").textContent = n45B23;
         document.getElementById("img_sp").setAttribute('src', list_sp[0].src)
     }
     // якщо кінчились кульки
-    if(n_ball < 1){
+    if(n45B23 < 1){
         game_over()
         clearInterval(gameinterval)
     }
@@ -1674,8 +1670,8 @@ function game(){
                     hud_speed()
 
                 }else if(list_impruve[i][1] == 3){
-                    n_ball++
-                    document.getElementById("txt_ball").textContent = n_ball;
+                    n45B23++
+                    document.getElementById("txt_ball").textContent = n45B23;
 
                 }else if(list_impruve[i][1] == 4){
 
@@ -2352,9 +2348,9 @@ function move_menu(nav){
                 ball_r = 0
                 ball_l = 0
                 // рахунок та хп
-                score = 0
+                score1 = 0
                 score2 = 0
-                n_ball = 3
+                n45B23 = 3
                 deep = 0
                 // покращення
                 time_ricochet = 0
@@ -2418,9 +2414,9 @@ function move_menu(nav){
                 ball_r = 0
                 ball_l = 0
                 // рахунок та хп
-                score = 0
+                score1 = 0
                 score2 = 0
-                n_ball = 3
+                n45B23 = 3
                 deep = 0
                 // покращення
                 time_ricochet = 0

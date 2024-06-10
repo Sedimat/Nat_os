@@ -64,9 +64,130 @@ zastavka.src = '/media/g_driver/zastavka.svg'
 var cont = new Image()
 cont.src = "/media/g_uhe/plashka.svg"
 
+var plashka = new Image()
+plashka.src = '/media/img/content.svg'
+
+var txt_replay = ""
+var score_history = []
+
+function sending_data(sc){
+    // Отримуєм токен від DTL
+    var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+    // Словник який буде відправлений
+    var data = {
+        game: "driver",
+        score: sc,
+    };
+
+    // конвертує дані для запиту
+    var formData = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+    }
+
+    // відправляє інформацію на бекенд
+    fetch('/get_games_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrfToken,
+        },
+
+        body: formData.toString(),
+    })
+
+    // отримує відповідь від бекенду
+
+    .then(response => response.json())
+    .then(data => {
+        txt_replay = data.reply
+        score_history = data.score
+    });
+}
+
+sending_data(0)
+
+
+function add_score(){
+    var top_t = 170
+    var div_score = document.createElement('div');
+    div_score.id = 'div_score';
+    div_score.style.left = 0 + 'px';
+    div_score.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_score.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = txt_replay + ":";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '850px';
+    about_txt.style.position = 'absolute';
+    div_score.appendChild(about_txt);
+
+    for (var i = 0; i < score_history.length; i++){
+            var about_txt = document.createElement('h1');
+            about_txt.textContent = score_history[i];
+            about_txt.id = 'score_i' + i;
+            about_txt.classList.add('menu');
+            about_txt.style.left = 150 + 'px';
+            about_txt.style.top = top_t + 'px';
+            about_txt.style.maxWidth = '850px';
+            about_txt.style.position = 'absolute';
+            div_score.appendChild(about_txt);
+
+            top_t += 100
+        }
+    content.appendChild(div_score);
+}
+
+function add_about(){
+    var div_about = document.createElement('div');
+    div_about.id = 'div_about';
+    div_about.style.left = 0 + 'px';
+    div_about.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_about.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = "Just drive as far as you can.";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '900px';
+    about_txt.style.position = 'absolute';
+    div_about.appendChild(about_txt);
+
+    content.appendChild(div_about);
+}
+
 var score = 0
 
 function game_over(){
+
+    var s_f = (score / 1000).toFixed(1)
+
     var div_game_over = document.createElement('div');
     div_game_over.id = 'div_game_over';
     div_game_over.style.left = 0 + 'px';
@@ -91,7 +212,7 @@ function game_over(){
     div_game_over.appendChild(txt_over);
 
     var txt_over1 = document.createElement('h1');
-    txt_over1.textContent = "Distance: " + (score / 1000).toFixed(1) + "km";
+    txt_over1.textContent = "Distance: " + s_f + "km";
     txt_over1.id = 'txt_over2';
     txt_over1.classList.add('score');
     txt_over1.style.left = 300 + 'px';
@@ -100,6 +221,8 @@ function game_over(){
     div_game_over.appendChild(txt_over1);
 
     content.appendChild(div_game_over);
+
+    sending_data(s_f)
 }
 
 function add_menu(){
@@ -136,12 +259,21 @@ function add_menu(){
     new_game.style.position = 'absolute';
     div_menu.appendChild(new_game);
 
+    var score = document.createElement('h1');
+    score.textContent = "Score";
+    score.id = 'score';
+    score.classList.add('menu');
+    score.style.left = 60 + 'px';
+    score.style.top = 175 + 'px';
+    score.style.position = 'absolute';
+    div_menu.appendChild(score);
+
     var about = document.createElement('h1');
     about.textContent = "About";
     about.id = 'about';
     about.classList.add('menu');
     about.style.left = 60 + 'px';
-    about.style.top = 175 + 'px';
+    about.style.top = 300 + 'px';
     about.style.position = 'absolute';
     div_menu.appendChild(about);
 
@@ -150,7 +282,7 @@ function add_menu(){
     score_n1.id = 'exit';
     score_n1.classList.add('menu');
     score_n1.style.left = 60 + 'px';
-    score_n1.style.top = 300 + 'px';
+    score_n1.style.top = 425 + 'px';
     score_n1.style.position = 'absolute';
     div_menu.appendChild(score_n1);
 
@@ -1582,6 +1714,7 @@ add_zastavka()
 var menu_pos = 0;
 var menu_pos1 = 0;
 
+
 function move_menu(nav){
     if(document.getElementById('div_zastavka')){
         if(nav == "r"){
@@ -1589,9 +1722,20 @@ function move_menu(nav){
             add_menu()
         }
 
-    }else if(document.getElementById('div_menu') && !document.getElementById('div_game')){
+    }else if(document.getElementById('div_score')){
+        if(nav == "r"){
+            document.getElementById('div_score').remove()
+        }
+
+    }else if(document.getElementById('div_about')){
+        if(nav == "r"){
+            document.getElementById('div_about').remove()
+        }
+
+    }else if(document.getElementById('div_menu') && !document.getElementById('div_game')
+             && !document.getElementById('div_score') && !document.getElementById('div_about')){
         var cur_select = parseInt(document.getElementById("select").style.top) || 0;
-        if(nav == "d" && menu_pos < 2){
+        if(nav == "d" && menu_pos < 3){
             document.getElementById("select").style.top = (cur_select + 125) + 'px';
             menu_pos += 1;
         }else if(nav == "u" && menu_pos > 0){
@@ -1603,7 +1747,6 @@ function move_menu(nav){
                 if(document.getElementById('div_game')){
                     document.getElementById('div_game').remove()
                 }
-
                 // зміні швидкості транспорту
                 speed_fura = 15
                 speed_car1 = 18
@@ -1630,7 +1773,11 @@ function move_menu(nav){
 
 
 
+            }else if(menu_pos == 1){
+                add_score()
             }else if(menu_pos == 2){
+                add_about()
+            }else if(menu_pos == 3){
                 window.location.href = "/games";
             }
         }

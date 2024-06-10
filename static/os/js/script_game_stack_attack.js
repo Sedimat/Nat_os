@@ -270,6 +270,126 @@ menu_h.src = '/media/g_ball/game_menu0.svg'
 var select = new Image()
 select.src = "/media/img/select.svg"
 
+var plashka = new Image()
+plashka.src = '/media/img/content.svg'
+
+function add_score(){
+    var top_t = 170
+    var div_score = document.createElement('div');
+    div_score.id = 'div_score';
+    div_score.style.left = 0 + 'px';
+    div_score.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_score.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = txt_replay + ":";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '850px';
+    about_txt.style.position = 'absolute';
+    div_score.appendChild(about_txt);
+
+    for (var i = 0; i < score_history.length; i++){
+            var about_txt = document.createElement('h1');
+            about_txt.textContent = score_history[i];
+            about_txt.id = 'score_i' + i;
+            about_txt.classList.add('menu');
+            about_txt.style.left = 150 + 'px';
+            about_txt.style.top = top_t + 'px';
+            about_txt.style.maxWidth = '850px';
+            about_txt.style.position = 'absolute';
+            div_score.appendChild(about_txt);
+
+            top_t += 100
+        }
+    content.appendChild(div_score);
+}
+
+function add_about(){
+    var div_about = document.createElement('div');
+    div_about.id = 'div_about';
+    div_about.style.left = 0 + 'px';
+    div_about.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_about.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = "Move the blocks to align them in rows.";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '900px';
+    about_txt.style.position = 'absolute';
+    div_about.appendChild(about_txt);
+
+    content.appendChild(div_about);
+}
+
+var txt_replay = ""
+var score_history = ""
+
+function sending_data(sc){
+    // Отримуєм токен від DTL
+    var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+    // Словник який буде відправлений
+    var data = {
+        game: "stack_attack",
+        score: sc,
+    };
+
+    // конвертує дані для запиту
+    var formData = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+    }
+
+    // відправляє інформацію на бекенд
+    fetch('/get_games_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrfToken,
+        },
+
+        body: formData.toString(),
+    })
+
+    // отримує відповідь від бекенду
+
+    .then(response => response.json())
+    .then(data => {
+        txt_replay = data.reply
+        score_history = data.score
+
+        console.log(data.score)
+
+    });
+}
+
+
+sending_data(0)
 
 var list_game1 = [[0,0], [1,"b2"], [2,"Q4"], [0,0],  [1,"Q6"], [0, 0], [0,0], [1,"g6"], [0,0] ]
 
@@ -476,12 +596,21 @@ function add_menu(){
     about.style.position = 'absolute';
     div_menu.appendChild(about);
 
+    var score = document.createElement('h1');
+    score.textContent = "Score";
+    score.id = 'score';
+    score.classList.add('menu');
+    score.style.left = 60 + 'px';
+    score.style.top = 300 + 'px';
+    score.style.position = 'absolute';
+    div_menu.appendChild(score);
+
     var about = document.createElement('h1');
     about.textContent = "About";
     about.id = 'about';
     about.classList.add('menu');
     about.style.left = 60 + 'px';
-    about.style.top = 300 + 'px';
+    about.style.top = 425 + 'px';
     about.style.position = 'absolute';
     div_menu.appendChild(about);
 
@@ -490,7 +619,7 @@ function add_menu(){
     score_n1.id = 'exit';
     score_n1.classList.add('menu');
     score_n1.style.left = 60 + 'px';
-    score_n1.style.top = 425 + 'px';
+    score_n1.style.top = 550 + 'px';
     score_n1.style.position = 'absolute';
     div_menu.appendChild(score_n1);
 
@@ -637,6 +766,8 @@ function game_over(){
     div_game_over.appendChild(txt_over1);
 
     content.appendChild(div_game_over);
+
+    sending_data(score)
 }
 
 
@@ -1715,6 +1846,7 @@ add_zastavka()
 var menu_pos = 0
 var menu_pos1 = 0
 
+
 function menu(nav){
     if(nav == "r_s"){
         if(document.getElementById("div_game_over")){
@@ -1732,6 +1864,12 @@ function menu(nav){
         }else if(document.getElementById("div_setings")){
               document.getElementById("div_setings").remove()
 
+        }else if(document.getElementById("div_score")){
+              document.getElementById("div_score").remove()
+
+        }else if(document.getElementById("div_about")){
+              document.getElementById("div_about").remove()
+
         }else if (document.getElementById("div_menu")){
             if(menu_pos == 0){
                 document.getElementById("div_menu").remove()
@@ -1747,7 +1885,13 @@ function menu(nav){
             }else if(menu_pos == 1){
                 add_setings()
 
+            }else if(menu_pos == 2){
+                add_score()
+
             }else if(menu_pos == 3){
+                add_about()
+
+            }else if(menu_pos == 4){
                 window.location.href = "/games";
             }
         }else if (document.getElementById("div_game") && !document.getElementById("div_menu1") ){ // Ставе гру на паузу та відкрива меню
@@ -1788,12 +1932,16 @@ function menu(nav){
             }
         }
     //навігація в 1 меню
-    }else if (nav == "down" && menu_pos < 3 && document.getElementById("div_menu") && !document.getElementById("div_setings")){
+    }else if (nav == "down" && menu_pos < 4 && document.getElementById("div_menu")
+              && !document.getElementById("div_setings") && !document.getElementById("div_score")
+              && !document.getElementById("div_about")){
             var cur_select = parseInt(document.getElementById("select").style.top) || 0;
             document.getElementById("select").style.top = (cur_select + 125) + 'px';
             menu_pos += 1;
 
-    }else if (nav == "up" && menu_pos > 0 && document.getElementById("div_menu") && !document.getElementById("div_setings")){
+    }else if (nav == "up" && menu_pos > 0 && document.getElementById("div_menu")
+              && !document.getElementById("div_setings") && !document.getElementById("div_score")
+              && !document.getElementById("div_about")){
             var cur_select = parseInt(document.getElementById("select").style.top) || 0;
             document.getElementById("select").style.top = (cur_select - 125) + 'px';
             menu_pos -= 1;
