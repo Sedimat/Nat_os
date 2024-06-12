@@ -139,7 +139,7 @@ function add_score(){
 
     for (var i = 0; i < score_history.length; i++){
             var about_txt = document.createElement('h1');
-            about_txt.textContent = score_history[i];
+            about_txt.textContent = score_history[i] + " km";
             about_txt.id = 'score_i' + i;
             about_txt.classList.add('menu');
             about_txt.style.left = 150 + 'px';

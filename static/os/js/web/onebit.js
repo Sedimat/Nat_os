@@ -192,7 +192,7 @@ function add_img(img, name, time){
 
 var list_id_img = []
 
-fetch(`/get_Nat_web`)
+fetch(`/get_onebit`)
     .then(response => response.json())
     .then(data => {
         for (let i = 0; i < data.list_imgs.length; i++) {
@@ -242,7 +242,6 @@ function sending_data(id, link, name){
 
 }
 
-
 element()
 
 function anim(name, id, link){
@@ -274,11 +273,7 @@ function anim(name, id, link){
     }
 }
 
-
-
 function move_element(ref){
-
-
 
     var div_cursor = document.getElementById("div_cursor")
     var cursor = document.getElementById("cursor")

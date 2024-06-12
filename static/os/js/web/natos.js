@@ -17,7 +17,7 @@ list_elem[2].src = '/media/browser/w_right.svg';
 list_elem[3].src = '/media/browser/w_up.svg';
 list_elem[4].src = '/media/browser/w_down.svg';
 list_elem[5].src = '/media/browser/img_news.svg';
-list_elem[6].src = '/media/browser/img_pictures.svg';
+list_elem[6].src = '/media/browser/img_rate.svg';
 list_elem[7].src = '/media/browser/hdd.svg';
 list_elem[8].src = '/media/browser/reactor2.svg';
 
@@ -101,12 +101,10 @@ document.addEventListener("keydown", function(event) {
 
     // натиснута кнопка E
     if (event.keyCode === 69) {
-         console.log("E")
         }
     // натиснута кнопка F
     if (event.keyCode === 70) {
         virus_kill()
-        console.log("F")
         }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
@@ -353,6 +351,15 @@ function add_menu(){
     new_game.style.position = 'absolute';
     div_menu.appendChild(new_game);
 
+    var txt_rate = document.createElement('h1');
+    txt_rate.textContent = "Player rating.";
+    txt_rate.id = 'p_r';
+    txt_rate.classList.add('menu_txt1');
+    txt_rate.style.left = -930 + 'px';
+    txt_rate.style.top = 680 + 'px';
+    txt_rate.style.position = 'absolute';
+    div_menu.appendChild(txt_rate);
+
     var img_virus1 = document.createElement('img');
     img_virus1.setAttribute('src', list_virus[2].src);
     img_virus1.id = 'img_virus1';
@@ -499,12 +506,9 @@ var deep2 = 50
 var pos_img = 850;
 var count_pos = 0;
 
-function add_img(img, name, time){
-    count_pos += 1;
+function add_rate(game, list_user){
     var pos_left = -925;
-    if(count_pos == 2){
-        pos_left = 1000;
-    }
+    var pos_txt = pos_img + 120
 
 var div_menu = document.getElementById("div_menu")
 
@@ -518,19 +522,10 @@ var img_news = document.createElement('img');
     img_news.classList.add('select_img');
     div_menu.appendChild(img_news);
 
-var img_mon = document.createElement('img');
-    img_mon.setAttribute('src', "/media/" + img);
-    img_mon.id = 'img_mon';
-    img_mon.style.left = pos_left + 15 + 'px';
-    img_mon.style.top = pos_img + 100 + 'px';
-    img_mon.style.height = 595 + 'px';
-    img_mon.style.position = 'absolute';
-    img_mon.classList.add('select_img');
-    div_menu.appendChild(img_mon);
 
 var news1 = document.createElement('h1');
-    news1.textContent = name;
-    news1.id = 'name_img';
+    news1.textContent = game;
+    news1.id = 'name_game';
     news1.style.left =  pos_left + 35 + 'px';
     news1.style.top = pos_img + 25 + 'px';
     news1.style.minWidth = '790px';
@@ -539,27 +534,34 @@ var news1 = document.createElement('h1');
     news1.classList.add('menu_txt');
     div_menu.appendChild(news1);
 
-var news2 = document.createElement('h1');
-    news2.textContent = time;
-    news2.id = 'time_img';
-    news2.style.left =  pos_left + 560 + 'px';
-    news2.style.top = pos_img + 745 + 'px';
-    news2.style.minWidth = '400px';
-    news2.style.maxWidth = '400px';
-    news2.style.position = 'absolute';
-    news2.classList.add('menu_txt');
-    div_menu.appendChild(news2);
+    for (let i = 0; i < list_user.length; i++) {
 
-    if(count_pos == 2){
-        count_pos = 0;
+        var name = document.createElement('h1');
+            name.textContent = list_user[i][0];
+            name.style.left =  pos_left + 35 + 'px';
+            name.style.top = pos_txt + 'px';
+            name.style.minWidth = '400px';
+            name.style.maxWidth = '400px';
+            name.style.position = 'absolute';
+            name.classList.add('menu_txt');
+            div_menu.appendChild(name);
 
-        pos_img += 820;
-    }else{
-        deep2 += -820
+        var score = document.createElement('h1');
+            score.textContent = ": " + list_user[i][1];
+            score.style.left =  pos_left + 405 + 'px';
+            score.style.top = pos_txt + 'px';
+            score.style.minWidth = '400px';
+            score.style.maxWidth = '400px';
+            score.style.position = 'absolute';
+            score.classList.add('menu_txt');
+            div_menu.appendChild(score);
+
+        pos_txt += 70
     }
 
+    pos_img += 820;
+    deep2 += -820
 }
-
 
 var list_news_len = null
 var list_news = null
@@ -572,10 +574,11 @@ fetch(`/get_Nat_web`)
         for (let i = 0; i < data.list_news.length; i++) {
             add_news(data.list_news[i][0],data.list_news[i][1],data.list_news[i][2])
         }
-        for (let i = 0; i < data.list_imgs.length; i++) {
-            add_img(data.list_imgs[i][0],data.list_imgs[i][1],data.list_imgs[i][3])
+        for (const key in data.list_rate) {
+            if (data.list_rate.hasOwnProperty(key)) {
+                add_rate(key, data.list_rate[key])
+            }
         }
-
     });
 
 var speed = 20
@@ -605,7 +608,7 @@ function add_hud_mini_game(){
     div_mini_game.appendChild(img_hud_g);
 
     var txt_virus = document.createElement('h1');
-    txt_virus.textContent = "Піймай всі віруси " + kill_virus;
+    txt_virus.textContent = "Catch all viruses " + kill_virus;
     txt_virus.id = 'txt_virus';
     txt_virus.classList.add('menu_txt');
     txt_virus.style.left = 30 + 'px';
@@ -615,8 +618,6 @@ function add_hud_mini_game(){
     div_mini_game.appendChild(txt_virus);
 
     content.appendChild(div_mini_game);
-
-    console.log("Додав")
 
 }
 
@@ -707,7 +708,7 @@ function animation(){
     // Умова коли знищені всі віруси
     if(kill_virus == 4){
         kill_virus = 0
-        document.getElementById("txt_virus").textContent = "Віруси видалені. +1 бонус ";
+        document.getElementById("txt_virus").textContent = "Viruses are isolated. +1 bonus ";
     }
 
     anim += 1;
@@ -723,7 +724,7 @@ function animation(){
             caunt_v1 = 0
             kill_virus += 1
 
-            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
+            document.getElementById("txt_virus").textContent = "Another one got caught " + kill_virus;
         }
     }
 
@@ -735,7 +736,7 @@ function animation(){
             caunt_v2 = 0
             kill_virus += 1
 
-            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
+            document.getElementById("txt_virus").textContent = "Another one got caught " + kill_virus;
         }
     }
     if(caunt_v3 > 2){
@@ -746,7 +747,7 @@ function animation(){
             caunt_v3 = 0
             kill_virus += 1
 
-            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
+            document.getElementById("txt_virus").textContent = "Another one got caught " + kill_virus;
         }
     }
     if(caunt_v4 > 2){
@@ -757,7 +758,7 @@ function animation(){
             caunt_v4 = 0
             kill_virus += 1
 
-            document.getElementById("txt_virus").textContent = "Оп ще один попався " + kill_virus;
+            document.getElementById("txt_virus").textContent = "Another one got caught " + kill_virus;
 
         }
     }
@@ -797,7 +798,7 @@ function virus_kill(){
             if(!document.getElementById("div_mini_game")){
                 add_hud_mini_game()
             }else{
-                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+                document.getElementById("txt_virus").textContent = "Ran away, try again " + kill_virus;
             }
 
             if(caunt_v1 < 3){
@@ -817,7 +818,7 @@ function virus_kill(){
                 add_hud_mini_game()
 
             }else{
-                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+                document.getElementById("txt_virus").textContent = "Ran away, try again " + kill_virus;
             }
 
             if(caunt_v2 < 3){
@@ -836,7 +837,7 @@ function virus_kill(){
             if(!document.getElementById("div_mini_game")){
                 add_hud_mini_game()
             }else{
-                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+                document.getElementById("txt_virus").textContent = "Ran away, try again " + kill_virus;
             }
 
             if(caunt_v3 < 3){
@@ -855,7 +856,7 @@ function virus_kill(){
             if(!document.getElementById("div_mini_game")){
                 add_hud_mini_game()
             }else{
-                document.getElementById("txt_virus").textContent = "Втік, спробуй ще " + kill_virus;
+                document.getElementById("txt_virus").textContent = "Ran away, try again " + kill_virus;
             }
 
             if(caunt_v4 < 3){

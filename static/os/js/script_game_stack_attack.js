@@ -382,9 +382,6 @@ function sending_data(sc){
     .then(data => {
         txt_replay = data.reply
         score_history = data.score
-
-        console.log(data.score)
-
     });
 }
 

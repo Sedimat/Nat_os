@@ -113,8 +113,121 @@ fire_2 = new Audio("/media/g_tanks/fire2.mp3");
 rpg_1 = new Audio("/media/g_tanks/rpg.mp3");
 rekoshet_1 = new Audio("/media/g_tanks/rekoshet.mp3");
 
+var plashka = new Image()
+plashka.src = '/media/img/content.svg'
 
+var txt_replay = ""
+var score_history = []
 
+function sending_data(sc){
+    // Отримуєм токен від DTL
+    var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+    // Словник який буде відправлений
+    var data = {
+        game: "tanks",
+        score: sc,
+    };
+
+    // конвертує дані для запиту
+    var formData = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+    }
+
+    // відправляє інформацію на бекенд
+    fetch('/get_games_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrfToken,
+        },
+
+        body: formData.toString(),
+    })
+
+    // отримує відповідь від бекенду
+
+    .then(response => response.json())
+    .then(data => {
+        txt_replay = data.reply
+        score_history = data.score
+    });
+}
+sending_data(0)
+
+function add_score(){
+    var top_t = 170
+    var div_score = document.createElement('div');
+    div_score.id = 'div_score';
+    div_score.style.left = 0 + 'px';
+    div_score.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_score.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = txt_replay + ":";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '850px';
+    about_txt.style.position = 'absolute';
+    div_score.appendChild(about_txt);
+
+    for (var i = 0; i < score_history.length; i++){
+            var about_txt = document.createElement('h1');
+            about_txt.textContent = score_history[i];
+            about_txt.id = 'score_i' + i;
+            about_txt.classList.add('menu');
+            about_txt.style.left = 150 + 'px';
+            about_txt.style.top = top_t + 'px';
+            about_txt.style.maxWidth = '850px';
+            about_txt.style.position = 'absolute';
+            div_score.appendChild(about_txt);
+
+            top_t += 100
+        }
+    content.appendChild(div_score);
+}
+
+function add_about(){
+    var div_about = document.createElement('div');
+    div_about.id = 'div_about';
+    div_about.style.left = 0 + 'px';
+    div_about.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_about.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = "Destroy as many enemy tanks as possible and collect upgrades.";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '900px';
+    about_txt.style.position = 'absolute';
+    div_about.appendChild(about_txt);
+
+    content.appendChild(div_about);
+}
 
 function fire(){
     if(!document.getElementById('div_menu1' ) && !document.getElementById('div_game_over')){
@@ -246,6 +359,8 @@ function game_over(){
     div_game_over.appendChild(txt_over1);
 
     content.appendChild(div_game_over);
+
+    sending_data(score)
 }
 
 function game_elements(){
@@ -391,6 +506,7 @@ function game_elements(){
     img_brick.style.transform = "rotate(180deg)";
     div_game.appendChild(img_brick);
 
+
     var img_brick1 = document.createElement('img');
     img_brick1.setAttribute('src', list_tank[2].src);
     img_brick1.id = 'brick1';
@@ -457,14 +573,14 @@ function add_menu(){
     new_game.style.position = 'absolute';
     div_menu.appendChild(new_game);
 
-    var about = document.createElement('h1');
-    about.textContent = "Settings";
-    about.id = 'settings';
-    about.classList.add('menu');
-    about.style.left = 60 + 'px';
-    about.style.top = 175 + 'px';
-    about.style.position = 'absolute';
-    div_menu.appendChild(about);
+    var score = document.createElement('h1');
+    score.textContent = "Score";
+    score.id = 'score';
+    score.classList.add('menu');
+    score.style.left = 60 + 'px';
+    score.style.top = 175 + 'px';
+    score.style.position = 'absolute';
+    div_menu.appendChild(score);
 
     var about = document.createElement('h1');
     about.textContent = "About";
@@ -841,9 +957,13 @@ function fire_tank(left, top){
 function add_improve(){
     var div_game = document.getElementById('div_game');
 
+
+    var list_top = [50, 160, 510, 680]
+    var r_I = Math.floor(Math.random() * list_top.length);
+    var r_top = list_top[r_I];
+
     var random = Math.floor(Math.random() * 3);
     var r_left = Math.floor(Math.random() * (950 - (0) + 1)) + (0);
-    var r_top = Math.floor(Math.random() * (820 - (0) + 1)) + (0);
 
     var id = ""
     var pic = null
@@ -1434,7 +1554,7 @@ function game(){
                     move_t1 = false
                     kill += 1
                     document.getElementById("kill").textContent = "Kill: " + kill;
-                    score += 50
+                    score += 5
                     document.getElementById("txt_score").textContent = "Score: " + score;
                 }
             }
@@ -1473,7 +1593,7 @@ function game(){
                     move_t2 = false
                     kill += 1
                     document.getElementById("kill").textContent = "Kill: " + kill;
-                    score += 100
+                    score += 10
                     document.getElementById("txt_score").textContent = "Score: " + score;
                 }
             }
@@ -1511,7 +1631,7 @@ function game(){
                     move_t3 = false
                     kill += 1
                     document.getElementById("kill").textContent = "Kill: " + kill;
-                    score += 25
+                    score += 2
                     document.getElementById("txt_score").textContent = "Score: " + score;
                 }
             }
@@ -1550,7 +1670,7 @@ function game(){
                     move_r1 = false
                     kill += 1
                     document.getElementById("kill").textContent = "Kill: " + kill;
-                    score += 50
+                    score += 5
                     document.getElementById("txt_score").textContent = "Score: " + score;
                 }
             }
@@ -1591,7 +1711,7 @@ function game(){
                         document.getElementById('tank_bulet').remove()
                     }
 
-                    score += 1000
+                    score += 100
                     document.getElementById("txt_score").textContent = "Score: " + score;
                     tank_b_hp = 1000
 
@@ -2276,10 +2396,14 @@ function rocet_boss(){
                         clearInterval(inter_r)
                     }
 
-                if(count == 20){
+                if(count == 30){
                     clearInterval(inter_r)
-                    document.getElementById("rocet_b1").remove()
-                    document.getElementById("rocet_b2").remove()
+                    if(document.getElementById("rocet_b1")){
+                        document.getElementById("rocet_b1").remove()
+                    }
+                    if(document.getElementById("rocet_b2")){
+                        document.getElementById("rocet_b2").remove()
+                    }
                     fire_tank(cur_r_b1_left, cur_r_b1_top)
                     fire_tank(cur_r_b2_left, cur_r_b2_top)
                 }
@@ -2848,7 +2972,18 @@ function move_menu(nav){
             add_menu()
         }
 
-    }else if(document.getElementById('div_menu') && !document.getElementById('div_game')){
+    }else if(document.getElementById('div_score')){
+        if(nav == "r"){
+            document.getElementById('div_score').remove()
+        }
+
+    }else if(document.getElementById('div_about')){
+        if(nav == "r"){
+            document.getElementById('div_about').remove()
+        }
+
+    }else if(document.getElementById('div_menu') && !document.getElementById('div_game')
+            && !document.getElementById('div_score')&& !document.getElementById('div_about')){
         var cur_select = parseInt(document.getElementById("select").style.top) || 0;
         if(nav == "d" && menu_pos < 3){
             document.getElementById("select").style.top = (cur_select + 125) + 'px';
@@ -2875,6 +3010,10 @@ function move_menu(nav){
                 game_elements()
                 gameinterval = setInterval(game, 50)
 
+            }else if(menu_pos == 1){
+                add_score()
+            }else if(menu_pos == 2){
+                add_about()
             }else if(menu_pos == 3){
                 window.location.href = "/games";
             }

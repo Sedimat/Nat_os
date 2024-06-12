@@ -43,12 +43,28 @@ body{
     padding: 0px;
     left: 730px;
     top: 680px;
-    position: absolute;
     color: #291701;
+    position: absolute;
 
 }
 
-.menu_txt1{
+.speed_txt{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 70px;
+    margin: 0px;
+    padding: 0px;
+    color: #f7d57e;
+}
+
+.score_txt{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 60px;
+    margin: 0px;
+    padding: 0px;
+    color: #f7d57e;
+}
+
+.menu{
     font-family: 'siemens_B', sans-serif;
     font-size: 80px;
     margin: 0px;
@@ -56,7 +72,6 @@ body{
     left: 730px;
     top: 680px;
     position: absolute;
-    color: #291701;
 
 }
 
@@ -123,6 +138,24 @@ body{
     top: 520px;
     position: absolute;
 }
+.d_left_control{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px 90px 0px 50px;
+    background-color: #291701;
+    left: 20px;
+    top: 270px;
+    position: absolute;
+}
+.d_right_control{
+    width: 300px;
+    height: 200px;
+    border-radius: 90px 5px 50px 0px;
+    background-color: #291701;
+    left: 680px;
+    top: 270px;
+    position: absolute;
+}
 
 .left_control{
     width: 300px;
@@ -174,4 +207,15 @@ body{
     width: 80px;
     transform: rotate(270deg);
     padding: 0px 0px 140px 0px;
+}
+
+.img_diag_right{
+    width: 80px;
+    transform: rotate(90deg);
+    padding: 0px 0px 90px 0px;
+}
+
+.img_diag_left{
+    width: 80px;
+    padding: 0px 90px 0px 0px;
 }

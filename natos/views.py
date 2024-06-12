@@ -8,6 +8,8 @@ from .forms import UserRegistrationForm
 from .models import Menu, Sounds, Pictures, Games, Nat_web, Nat_web_img, Website, UserProfile, Animations, UserRating
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.db.models import IntegerField
+from django.db.models.functions import Cast
 
 
 def index(request):
@@ -135,19 +137,40 @@ def get_games(request):
 def get_Nat_web(request):
     context = {}
     news = Nat_web.objects.all().order_by("-timestamp")
-    imgs = Nat_web_img.objects.all().order_by("-timestamp")
     list_news = []
-    list_imgs = []
     for n in news:
         time = str(n.timestamp)
         list_news.append([str(n.title), str(n.description), time[:16]])
 
+    games = Games.objects.all()
+    list_games = []
+    for g in games:
+        list_games.append([str(g.link), str(g.name)])
+
+    list_rate = {}
+    for game in list_games:
+        dict_rate = UserRating.objects.filter(name_games=game[0]).annotate(
+            score_int=Cast('score', IntegerField())
+            ).order_by('-score_int')[:5]
+        list_n_r = []
+        for d_r in dict_rate:
+            list_n_r.append([str(d_r.id_user), str(d_r.score)])
+        list_rate.update({game[1]: list_n_r})
+
+    context.update({"list_news": list_news,
+                    "list_rate": list_rate})
+
+    return JsonResponse(context)
+
+def get_onebit(request):
+    context = {}
+    imgs = Nat_web_img.objects.all().order_by("-timestamp")
+    list_imgs = []
     for i in imgs:
         img_time = str(i.timestamp)
         list_imgs.append([str(i.picture), str(i.name), str(i.description), img_time[:16], int(i.id)])
 
-    context.update({"list_news": list_news,
-                    "list_imgs": list_imgs})
+    context.update({"list_imgs": list_imgs})
 
     return JsonResponse(context)
 
@@ -367,7 +390,6 @@ def get_games_info(request):
                 dict_games_json = json.dumps(read_dict_games)
                 user_prof.dict_games = dict_games_json
                 user_prof.save()
-                print(list_score)
                 context.update({"reply": nickname,
                                 "score": list_score})
 
@@ -400,3 +422,8 @@ def get_games_info(request):
                             "score": 0})
 
     return JsonResponse(context)
+
+
+def snake(request):
+    context = {}
+    return render(request, 'game/snake.html', context=context)

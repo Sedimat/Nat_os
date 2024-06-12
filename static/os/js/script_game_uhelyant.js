@@ -1,21 +1,3 @@
-var userAgent = navigator.userAgent;
-
-if (/Android/i.test(userAgent)) {
-    console.log("Android");
-} else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-    console.log("iOS");
-} else if (/Windows Phone/i.test(userAgent)) {
-    console.log("Windows Phone");
-} else if (/Mac/i.test(userAgent)) {
-    console.log("macOS");
-} else if (/Windows/i.test(userAgent)) {
-    console.log("Windows");
-} else if (/Linux/i.test(userAgent)) {
-    console.log("Linux");
-} else {
-    console.log("Інша операційна система");
-}
-
 
 var list_floor = [new Image(), new Image(), new Image(),
                   new Image(), new Image(), new Image(),
@@ -102,8 +84,123 @@ var olya = new Image()
 olya.src = "/media/g_uhe/olya.svg"
 
 var score = 0
-
 var meters = 0
+
+var plashka = new Image()
+plashka.src = '/media/img/content.svg'
+
+var txt_replay = ""
+var score_history = []
+
+function sending_data(sc){
+    // Отримуєм токен від DTL
+    var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+    // Словник який буде відправлений
+    var data = {
+        game: "uhelyant",
+        score: sc,
+    };
+
+    // конвертує дані для запиту
+    var formData = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+    }
+
+    // відправляє інформацію на бекенд
+    fetch('/get_games_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrfToken,
+        },
+
+        body: formData.toString(),
+    })
+
+    // отримує відповідь від бекенду
+
+    .then(response => response.json())
+    .then(data => {
+        txt_replay = data.reply
+        score_history = data.score
+    });
+}
+sending_data(0)
+
+function add_score(){
+    var top_t = 170
+    var div_score = document.createElement('div');
+    div_score.id = 'div_score';
+    div_score.style.left = 0 + 'px';
+    div_score.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_score.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = txt_replay + ":";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu_txt1');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '850px';
+    about_txt.style.position = 'absolute';
+    div_score.appendChild(about_txt);
+
+    for (var i = 0; i < score_history.length; i++){
+            var about_txt = document.createElement('h1');
+            about_txt.textContent = score_history[i]  + ".м";
+            about_txt.id = 'score_i' + i;
+            about_txt.classList.add('menu_txt1');
+            about_txt.style.left = 150 + 'px';
+            about_txt.style.top = top_t + 'px';
+            about_txt.style.maxWidth = '850px';
+            about_txt.style.position = 'absolute';
+            div_score.appendChild(about_txt);
+
+            top_t += 100
+        }
+    content.appendChild(div_score);
+}
+
+function add_about(){
+    var div_about = document.createElement('div');
+    div_about.id = 'div_about';
+    div_about.style.left = 0 + 'px';
+    div_about.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'about_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_about.appendChild(about_img);
+
+    var about_txt = document.createElement('h1');
+    about_txt.textContent = "Мета гри. Пройдіть якомога далі і не попадіться. Також ухиляйтеся від коптера з повістками.";
+    about_txt.id = 'score_n2';
+    about_txt.classList.add('menu_txt1');
+    about_txt.style.left = 60 + 'px';
+    about_txt.style.top = 80 + 'px';
+    about_txt.style.maxWidth = '900px';
+    about_txt.style.position = 'absolute';
+    div_about.appendChild(about_txt);
+
+    content.appendChild(div_about);
+}
 
 
 function game_over(txt){
@@ -140,6 +237,8 @@ function game_over(txt){
     div_game_over.appendChild(txt_over1);
 
     content.appendChild(div_game_over);
+
+    sending_data(meters)
 }
 
 
@@ -238,7 +337,7 @@ function add_game_element(){
     var img_floor1 = document.createElement('img');
     img_floor1.setAttribute('src', list_floor[0].src);
     img_floor1.id = 'floor1';
-    img_floor1.style.left = 1200 + 'px';
+    img_floor1.style.left = 1220 + 'px';
     img_floor1.style.top = 510 + 'px';
     img_floor1.style.width = 1220 + 'px';
     img_floor1.style.position = 'absolute';
@@ -368,7 +467,6 @@ function add_game_element(){
     content.appendChild(div_game1);
 }
 
-
 function add_zastavka(){
     // Рахунок та його картинка
     var img_zastavka = document.createElement('img');
@@ -380,7 +478,6 @@ function add_zastavka(){
     img_zastavka.style.position = 'absolute';
     content.appendChild(img_zastavka);
 }
-
 
 function add_menu(){
     var div_menu = document.createElement('div');
@@ -409,7 +506,7 @@ function add_menu(){
     div_menu.appendChild(img_select);
 
     var new_game = document.createElement('h1');
-    new_game.textContent = "New game";
+    new_game.textContent = "Нова гра";
     new_game.id = 'new_game';
     new_game.classList.add('menu_txt1');
     new_game.style.left = 60 + 'px';
@@ -417,22 +514,30 @@ function add_menu(){
     new_game.style.position = 'absolute';
     div_menu.appendChild(new_game);
 
+    var score = document.createElement('h1');
+    score.textContent = "Рекорди";
+    score.id = 'score';
+    score.classList.add('menu_txt1');
+    score.style.left = 60 + 'px';
+    score.style.top = 175 + 'px';
+    score.style.position = 'absolute';
+    div_menu.appendChild(score);
 
     var about = document.createElement('h1');
-    about.textContent = "About";
+    about.textContent = "Про гру";
     about.id = 'about';
     about.classList.add('menu_txt1');
     about.style.left = 60 + 'px';
-    about.style.top = 175 + 'px';
+    about.style.top = 300 + 'px';
     about.style.position = 'absolute';
     div_menu.appendChild(about);
 
     var score_n1 = document.createElement('h1');
-    score_n1.textContent = "Exit";
+    score_n1.textContent = "Вийти";
     score_n1.id = 'exit';
     score_n1.classList.add('menu_txt1');
     score_n1.style.left = 60 + 'px';
-    score_n1.style.top = 300 + 'px';
+    score_n1.style.top = 425 + 'px';
     score_n1.style.position = 'absolute';
     div_menu.appendChild(score_n1);
 
@@ -466,7 +571,7 @@ function add_menu1(){
     div_menu1.appendChild(img_select);
 
     var new_game = document.createElement('h1');
-    new_game.textContent = "Resume game";
+    new_game.textContent = "Продовжити гру";
     new_game.id = 'resume';
     new_game.classList.add('menu_txt1');
     new_game.style.left = 60 + 'px';
@@ -475,7 +580,7 @@ function add_menu1(){
     div_menu1.appendChild(new_game);
 
     var score_n1 = document.createElement('h1');
-    score_n1.textContent = "New game";
+    score_n1.textContent = "Нова гра";
     score_n1.id = 'new';
     score_n1.classList.add('menu_txt1');
     score_n1.style.left = 60 + 'px';
@@ -484,7 +589,7 @@ function add_menu1(){
     div_menu1.appendChild(score_n1);
 
     var exit1 = document.createElement('h1');
-    exit1.textContent = "Exit";
+    exit1.textContent = "Вийти";
     exit1.id = 'exit1';
     exit1.classList.add('menu_txt1');
     exit1.style.left = 60 + 'px';
@@ -694,8 +799,8 @@ add_zastavka()
 
 // зміна запуску гри
 var gameInterval = null
-//add_game_element()
-//gameInterval = setInterval(game, 70);
+
+
 
 
 // правий селект
@@ -709,6 +814,12 @@ function right_select1(event){
     }else if (document.getElementById("zastavka")){
         document.getElementById("zastavka").remove();
         add_menu()
+
+    }else if (document.getElementById("div_score")){
+        document.getElementById("div_score").remove();
+
+    }else if (document.getElementById("div_about")){
+        document.getElementById("div_about").remove();
 
     }else if (document.getElementById("div_menu")){
         if(menu_pos == 0){ // повина запустити цикл гри
@@ -725,8 +836,10 @@ function right_select1(event){
                 gameInterval = null
             }
         }else if(menu_pos == 1){
-
+            add_score()
         }else if(menu_pos == 2){
+            add_about()
+        }else if(menu_pos == 3){
             window.location.href = "/games";
         }
 
@@ -746,6 +859,7 @@ function right_select1(event){
                 anim_man = 1
                 menu_pos1 = 0
 
+
             }else if(menu_pos1 == 2){
                 window.location.href = "/games";
             }
@@ -757,15 +871,16 @@ function right_select1(event){
     }
 }
 
+
 var menu_pos = 0
 var menu_pos1 = 0
 
 function move_select_p(){
-
-        if (document.getElementById("div_menu")){
+        if (document.getElementById("div_menu") && !document.getElementById("div_score")
+            && !document.getElementById("div_about")){
             var select = document.getElementById("select")
             var currentSelect = parseInt(select.style.top) || 0;
-            if (menu_pos < 2){
+            if (menu_pos < 3){
             menu_pos += 1;
             select.style.top = currentSelect + 125 + 'px';
             }
@@ -782,7 +897,8 @@ function move_select_p(){
 }
 
 function move_select_m(){
-        if (document.getElementById("div_menu")){
+        if (document.getElementById("div_menu")  && !document.getElementById("div_score")
+            && !document.getElementById("div_about")){
             var select = document.getElementById("select")
             var currentSelect = parseInt(select.style.top) || 0;
             if (menu_pos > 0){
@@ -977,10 +1093,10 @@ function game(){
     var cur_floor1 = parseInt(floor1.style.left) || 0;
 
     if(cur_floor0 <= -1200){
-        floor.style.left = 1200 + 'px';
+        floor.style.left = cur_floor1 + 1220 + 'px';
     }
     if(cur_floor1 <= -1200){
-        floor1.style.left = 1200 + 'px';
+        floor1.style.left = cur_floor0 + 1220 + 'px';
     }
 
     // Головний гравець

@@ -1,4 +1,3 @@
-console.log("тест")
 
 var list_elem = [new Image(), new Image(), new Image(), new Image()]
 
