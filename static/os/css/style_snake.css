@@ -48,6 +48,17 @@ body{
 
 }
 
+.menu_txt1{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 25px;
+    margin: 0px;
+    padding: 0px;
+    left: 730px;
+    top: 680px;
+    position: absolute;
+
+}
+
 .speed_txt{
     font-family: 'siemens_B', sans-serif;
     font-size: 70px;
