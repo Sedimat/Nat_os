@@ -1,8 +1,10 @@
 
+
 var list_element = [new Image(), new Image(), new Image(), new Image(), new Image(),
                     new Image(), new Image(), new Image(), new Image(), new Image()]
 
-list_element[0].src = '/media/g_arkanoid/fon.svg';
+
+list_element[0].src = '/media/g_snake/score.svg';
 list_element[1].src = '/media/g_snake/b1.svg';
 list_element[2].src = '/media/g_snake/b2.svg';
 list_element[3].src = '/media/g_snake/ball2.svg';
@@ -39,7 +41,7 @@ var cont = new Image()
 cont.src = "/media/g_uhe/plashka.svg"
 
 var zastavka = new Image()
-zastavka.src = '/media/g_arkanoid/arkanoid.svg'
+zastavka.src = '/media/g_snake/snake.svg'
 
 var menu_h = new Image()
 menu_h.src = '/media/g_ball/game_menu0.svg'
@@ -347,9 +349,11 @@ function game_over(){
     div_game_over.appendChild(txt_over1);
 
     content.appendChild(div_game_over);
-//
+
 //    sending_data(score1)
 }
+
+var score = 0
 
 function game_element(){
 
@@ -362,13 +366,23 @@ function game_element(){
     var div_blok = document.createElement('div');
     div_blok.id = 'div_blok';
     div_blok.style.left = 0 + 'px';
-    div_blok.style.top = 73.5 + 'px';
+    div_blok.style.top = 100 + 'px';
     div_blok.style.width = 1000 + 'px';
     div_blok.style.height = 800 + 'px';
 //    div_blok.style.backgroundColor = 'green';
     div_blok.style.position = 'absolute';
     div_blok.style.overflow = 'hidden';
     div_game_element.appendChild(div_blok);
+
+    var s_game = document.createElement('h1');
+    s_game.textContent = "Score: " + score;
+    s_game.id = 's_game';
+    s_game.classList.add('menu');
+    s_game.style.left = 60 + 'px';
+    s_game.style.top = 5 + 'px';
+    s_game.style.minWidth = '500px';
+    s_game.style.position = 'absolute';
+    div_game_element.appendChild(s_game);
 
     var img_fon = document.createElement('img');
     img_fon.setAttribute('src', list_element[0].src);
@@ -382,9 +396,10 @@ function game_element(){
     var img_b = document.createElement('img');
     img_b.setAttribute('src', list_element[3].src);
     img_b.id = "ball";
-    img_b.style.left = 450 + 'px';
-    img_b.style.top = 400 + 'px';
-    img_b.style.width = 49 + 'px';
+    var pos_ball = spawn_ball()
+    img_b.style.left = pos_ball[0] + 7 + 'px';
+    img_b.style.top = pos_ball[1] + 7 + 'px';
+    img_b.style.width = 30 + 'px';
     img_b.style.position = 'absolute';
     div_blok.appendChild(img_b);
 
@@ -408,7 +423,6 @@ function add_ball_l() {
     }
 }
 
-
 // Створює список з пустими місцями для кульок
 function filterPositions() {
     return list_ball.filter(ballPos => {
@@ -419,7 +433,7 @@ function filterPositions() {
 // Ініціалізуємо список кульок
 add_ball_l();
 
-var list_game = [["b1", 800, 200], ["b2", 850, 200], ["b3", 900, 200], ["b4", 950, 200]];
+var list_game = [["b1", 800, 200, 1], ["b2", 850, 200, 1], ["b3", 900, 200, 1], ["b4", 950, 200, 1]];
 
 // Генерує випадкове місце для кульки
 function spawn_ball() {
@@ -439,24 +453,20 @@ function spawn_ball() {
 function add_list(){
     var div_blok = document.getElementById("div_blok")
     for (let i = 0; i < list_game.length; i++) {
-
         var img_b = document.createElement('img');
-        if(i == 0){
-            img_b.setAttribute('src', list_snake[10].src);
-        }else{
-            img_b.setAttribute('src', list_snake[10].src);
-        }
+        img_b.setAttribute('src', list_snake[10].src);
         img_b.id = list_game[i][0];
         img_b.style.left = list_game[i][1] + 'px';
         img_b.style.top = list_game[i][2] + 'px';
         img_b.style.width = 49.8 + 'px';
         img_b.style.position = 'absolute';
+        img_b.style.transform = `rotate(${180}deg)`;
         div_blok.appendChild(img_b);
     }
 }
 
-
-function add_e(id, l, t, r, key_1){
+function add_e(id, l, t, r, key_1, r1){
+    var stop = true
     var id_1 = ""
     var div_blok = document.getElementById("div_blok")
     var img_b = document.createElement('img');
@@ -469,29 +479,38 @@ function add_e(id, l, t, r, key_1){
     img_b.style.transform = `rotate(${r}deg)`;
     div_blok.appendChild(img_b);
 
-        for (let i = 0; i < 11; i++) {
-        setTimeout(() => {
-            document.getElementById(id).setAttribute('src', list_snake[i].src)
-            if(i == 5){
-                if(key_1 == 1){
-                    id_1 = list_game[1][0]
-                    document.getElementById(id_1).setAttribute('src', list_snake[11].src)
-                }else if(key_1 == 2){
-                    id_1 = list_game[1][0]
-                    document.getElementById(id_1).style.transform = `rotate(${180}deg)`;
-                    document.getElementById(id_1).setAttribute('src', list_snake[11].src)
-                }
-            }
-            if(i == 10){
+    var anim_i = null
+    var caunt = 0
+        function anim(){
+            caunt++
+            document.getElementById(id).setAttribute('src', list_snake[caunt].src)
 
+            if(caunt == 5){
+                neck(id)
+                clearInterval(anim_i)
             }
-
-        }, i * speed / 6);
-    }
+        }
+        anim_i = setInterval(anim, speed / 12)
 }
 
-var speed = 200
+function neck(id1){
+    var klv = true
+    for (let i = 7; i < 11; i++) {
+        setTimeout(() => {
+            if(klv){
+                if(k11 == 1){
+                    document.getElementById(id1).setAttribute('src', list_snake[11].src)
+                    document.getElementById(id1).style.transform = `rotate(${r_l1}deg)`;
+                    klv = false
+                    k11 = 0
+                }else{
+                    document.getElementById(id1).setAttribute('src', list_snake[i].src)
+                }
+            }
 
+        }, i * speed / 12);
+    }
+}
 
 function move_s(){
     for (let i = 0; i < 6; i++) {
@@ -506,6 +525,73 @@ function move_s(){
 function dell_b(){
     var len_s = list_game.length
     var elem = list_game[len_s -1][0]
+    var numb = list_game[len_s -1][3]
+
+    var hvist = document.getElementById(elem)
+    var rot = ""
+    var rot1 = hvist.style.transform
+    var src = hvist.src
+
+
+    if(src == "http://127.0.0.1:8000/media/g_snake/s_12.svg"){
+
+        if(numb == "12"){
+            if(rot1 =="rotate(270deg)"){
+                rot = 90
+            }else{
+                rot = 270
+            }
+
+        }else if(numb == "21"){
+            if(rot1 =="rotate(90deg)"){
+                rot = 180
+            }else{
+                rot = 0
+            }
+
+        }else if(numb == "42"){
+            if(rot1 =="rotate(0deg)"){
+                rot = 90
+            }else{
+                rot = 270
+            }
+        }else if(numb == "24"){
+            if(rot1 =="rotate(180deg)"){
+                rot = 0
+            }else{
+                rot = 180
+            }
+        }else if(numb == "43"){
+            if(rot1 =="rotate(90deg)"){
+                rot = -90
+            }else{
+                rot = 90
+            }
+        }else if(numb == "34"){
+            if(rot1 =="rotate(270deg)"){
+                rot = 0
+            }else{
+                rot = 180
+            }
+        }else if(numb == "31"){
+
+            if(rot1 =="rotate(0deg)"){
+                rot = 180
+            }else{
+                rot = 0
+            }
+        }else if(numb == "13"){
+            if(rot1 =="rotate(180deg)"){
+                rot = -90
+            }else{
+                rot = 90
+            }
+
+        }
+    }
+
+    document.getElementById(elem).style.transform = `rotate(${rot}deg)`;
+
 
     for (let i = 0; i < 7; i++) {
         setTimeout(() => {
@@ -520,26 +606,28 @@ function dell_b(){
     }
 }
 
-
-
-var list_coor = [1]
+var list_coor = [1, 3]
 
 var key = list_coor[0]
 
-function game(){
-    var k1 = 0
+var speed = 300
+console.log(speed / 12)
+var k11 = 0
+var r_l1 = 0
 
+function game(){
+
+    k11 = 0
+    r_l1 = 0
 
     var head_l = list_game[0][1]
     var head_t = list_game[0][2]
-
     var r_word = '';
-    for (let i = 0; i < 3; i++) {
+
+    for (let i = 0; i < 5; i++) {
          let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
          r_word += String.fromCharCode(randomCharCode);
     }
-
-
 
     if(list_coor[0] == 1){
         if(head_l <= 0){
@@ -548,10 +636,20 @@ function game(){
 
         if(key != list_coor[0]){
             key = list_coor[0]
-            k1 = 1
+            k11 = 1
         }
-        add_e(r_word, head_l - 50, head_t, 180, k1)
-        list_game.unshift([r_word, head_l - 50, head_t])
+
+        if(list_coor[0] == 1 && list_coor[1] == 3){
+            r_l1 = 0
+        }else{
+            r_l1 = 90
+        }
+
+        var str = list_coor[0].toString() + list_coor[1].toString()
+
+        // вправо
+        add_e(r_word, head_l - 50, head_t, 180, k1, r_l1)
+        list_game.unshift([r_word, head_l - 50, head_t, str])
 
     }else if(list_coor[0] == 2){
         if(head_t >= 750){
@@ -560,10 +658,19 @@ function game(){
 
         if(key != list_coor[0]){
             key = list_coor[0]
-            k1 = 2
+            k11 = 1
         }
-        add_e(r_word, head_l, head_t + 50, 90, k1)
-        list_game.unshift([r_word, head_l, head_t + 50])
+        if(list_coor[0] == 2 && list_coor[1] == 1){
+            r_l1 = 270
+        }else{
+            r_l1 = 0
+        }
+
+        var str = list_coor[0].toString() + list_coor[1].toString()
+
+        // вниз
+        add_e(r_word, head_l, head_t + 50, 90, k1, r_l1)
+        list_game.unshift([r_word, head_l, head_t + 50, str])
 
     }else if(list_coor[0] == 3){
         if(head_t <= 0){
@@ -572,10 +679,20 @@ function game(){
 
         if(key != list_coor[0]){
             key = list_coor[0]
-            k1 = 1
+            k11 = 1
         }
-        add_e(r_word, head_l, head_t - 50, 270, k1)
-        list_game.unshift([r_word, head_l, head_t - 50])
+
+        if(list_coor[0] == 3 && list_coor[1] == 1){
+            r_l1 = 180
+        }else{
+            r_l1 = 90
+        }
+
+        var str = list_coor[0].toString() + list_coor[1].toString()
+
+        // верх
+        add_e(r_word, head_l, head_t - 50, 270, k1, r_l1)
+        list_game.unshift([r_word, head_l, head_t - 50, str])
 
     }else if(list_coor[0] == 4){
         if(head_l >= 950){
@@ -583,13 +700,22 @@ function game(){
         }
         if(key != list_coor[0]){
             key = list_coor[0]
-            k1 = 1
+            k11 = 1
         }
 
-        add_e(r_word, head_l + 50, head_t, 0, k1)
-        list_game.unshift([r_word, head_l + 50, head_t])
+        if(list_coor[0] == 4 && list_coor[1] == 2){
+            r_l1 = 180
+        }else{
+            r_l1 = 270
+        }
 
+        var str = list_coor[0].toString() + list_coor[1].toString()
+
+        // вправо
+        add_e(r_word, head_l + 50, head_t, 0, k11, r_l1)
+        list_game.unshift([r_word, head_l + 50, head_t, str])
     }
+
 
     var ball_reck = document.getElementById("ball").getBoundingClientRect();
     var head_reck = document.getElementById(list_game[0][0]).getBoundingClientRect();
@@ -602,9 +728,11 @@ function game(){
         var ball1 = document.getElementById("ball")
 
         var pos_ball = spawn_ball()
+        score += 10
+        document.getElementById("s_game").textContent = "Score: " + score;
 
-        ball1.style.left = pos_ball[0] + 'px';
-        ball1.style.top = pos_ball[1] + 'px';
+        ball1.style.left = pos_ball[0] + 7 + 'px';
+        ball1.style.top = pos_ball[1] + 7 + 'px';
 
     }else{
 
@@ -623,16 +751,12 @@ function game(){
             head1_reck.left > hw_reck.right ||
             head1_reck.bottom < hw_reck.top ||
             head1_reck.top > hw_reck.bottom)) {
-                console.log(list_game[0][0], list_game[i][0])
                 clearInterval(gameinterval)
                 game_over()
 
             }
         }
     }
-
-
-
 
 //    var b1 = document.getElementById("b1")
 //    var cur_b1_left = parseInt(b1.style.left) || 0;
@@ -710,42 +834,23 @@ document.addEventListener("keyup", function(event) {
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
             k1 = true
-//            for (var i = 0; i < list_coor.length; i++){
-//                if(list_coor[i] == 1){
-//                    list_coor.splice(i, 1);
-//                }
-//            }
+
         }
     // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
             k2 = true
-//            for (var i = 0; i < list_coor.length; i++){
-//                if(list_coor[i] == 2){
-//                    list_coor.splice(i, 1);
-//                }
-//            }
 
         }
 
     // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
             k3 = true
-//            for (var i = 0; i < list_coor.length; i++){
-//                if(list_coor[i] == 3){
-//                    list_coor.splice(i, 1);
-//                }
-//            }
 
         }
 
     // D або стрілка вправо відпущена
         if (event.keyCode === 68 || event.keyCode === 39) {
             k4 = true
-//            for (var i = 0; i < list_coor.length; i++){
-//                if(list_coor[i] == 4){
-//                    list_coor.splice(i, 1);
-//                }
-//            }
 
         }
 
@@ -883,11 +988,11 @@ function right_select_up() {
     document.getElementById('r_s').style.backgroundColor = "#291701";
 }
 
-//add_zastavka()
+add_zastavka()
 
 var gameinterval = null
 
-add_menu()
+//add_menu()
 
 var menu_pos = 0;
 var menu_pos1 = 0;
@@ -923,8 +1028,8 @@ function move_menu(nav){
             if(menu_pos == 0){
                 document.getElementById('div_menu').remove()
 
-                list_game = [["b1", 800, 200], ["b2", 850, 200], ["b3", 900, 200], ["b4", 950, 200]];
-                list_coor = [1]
+                list_game = [["b1", 800, 200, 11], ["b2", 850, 200, 11], ["b3", 900, 200, 11], ["b4", 950, 200, 11]];
+                list_coor = [1, 2]
                 game_element()
                 add_list()
                 gameinterval = setInterval(game, speed)
@@ -962,8 +1067,8 @@ function move_menu(nav){
                 document.getElementById("div_game_element").remove()
                 document.getElementById("div_menu1").remove()
 
-                list_game = [["b1", 800, 200], ["b2", 850, 200], ["b3", 900, 200], ["b4", 950, 200]];
-                list_coor = [1]
+                list_game = [["b1", 800, 200, 11], ["b2", 850, 200, 11], ["b3", 900, 200, 11], ["b4", 950, 200, 11]];
+                list_coor = [1, 2]
                 game_element()
                 add_list()
                 gameinterval = setInterval(game, speed)
