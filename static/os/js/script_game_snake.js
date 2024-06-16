@@ -9,33 +9,81 @@ list_element[1].src = '/media/g_snake/b1.svg';
 list_element[2].src = '/media/g_snake/b2.svg';
 list_element[3].src = '/media/g_snake/ball2.svg';
 
+var list_ball1 = [new Image(), new Image(), new Image(), new Image()]
+
+list_ball1[0].src = '/media/g_snake/ball_1.svg';
+list_ball1[1].src = '/media/g_snake/ball_2.svg';
+list_ball1[2].src = '/media/g_snake/ball_3.svg';
+list_ball1[3].src = '/media/g_snake/ball_4.svg';
+
+
 var list_snake = [new Image(), new Image(), new Image(), new Image(), new Image(),
                   new Image(), new Image(), new Image(), new Image(), new Image(),
                   new Image(), new Image()]
 
-list_snake[0].src = '/media/g_snake/s_1.svg';
-list_snake[1].src = '/media/g_snake/s_2.svg';
-list_snake[2].src = '/media/g_snake/s_3.svg';
-list_snake[3].src = '/media/g_snake/s_4.svg';
-list_snake[4].src = '/media/g_snake/s_5.svg';
-list_snake[5].src = '/media/g_snake/s_6.svg';
-list_snake[6].src = '/media/g_snake/s_7.svg';
-list_snake[7].src = '/media/g_snake/s_8.svg';
-list_snake[8].src = '/media/g_snake/s_9.svg';
-list_snake[9].src = '/media/g_snake/s_10.svg';
-list_snake[10].src = '/media/g_snake/s_11.svg';
-list_snake[11].src = '/media/g_snake/s_12.svg';
+list_snake[0].src = '/media/g_snake/s_0_1.svg';
+list_snake[1].src = '/media/g_snake/s_0_2.svg';
+list_snake[2].src = '/media/g_snake/s_0_3.svg';
+list_snake[3].src = '/media/g_snake/s_0_4.svg';
+list_snake[4].src = '/media/g_snake/s_0_5.svg';
+list_snake[5].src = '/media/g_snake/s_0_6.svg';
+//list_snake[6].src = '/media/g_snake/s_7.svg';
+list_snake[7].src = '/media/g_snake/s_0_8.svg';
+list_snake[8].src = '/media/g_snake/s_0_9.svg';
+list_snake[9].src = '/media/g_snake/s_0_10.svg';
+list_snake[10].src = '/media/g_snake/s_101.svg';
+list_snake[11].src = '/media/g_snake/s_120.svg';
 
 var list_snake1 = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
 
-list_snake1[0].src = '/media/g_snake/h_1.svg';
-list_snake1[1].src = '/media/g_snake/h_2.svg';
-list_snake1[2].src = '/media/g_snake/h_3.svg';
-list_snake1[3].src = '/media/g_snake/h_4.svg';
-list_snake1[4].src = '/media/g_snake/h_5.svg';
-list_snake1[5].src = '/media/g_snake/h_6.svg';
-list_snake1[6].src = '/media/g_snake/h_7.svg';
+list_snake1[0].src = '/media/g_snake/h_0_1.svg';
+list_snake1[1].src = '/media/g_snake/h_0_2.svg';
+list_snake1[2].src = '/media/g_snake/h_0_3.svg';
+list_snake1[3].src = '/media/g_snake/h_0_4.svg';
+list_snake1[4].src = '/media/g_snake/h_0_5.svg';
+list_snake1[5].src = '/media/g_snake/h_0_6.svg';
+list_snake1[6].src = '/media/g_snake/h_0_7.svg';
 
+
+var list_big = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_big[0].src = '/media/g_snake/big_7.svg';
+list_big[1].src = '/media/g_snake/big_6.svg';
+list_big[2].src = '/media/g_snake/big_5.svg';
+list_big[3].src = '/media/g_snake/big_4.svg';
+list_big[4].src = '/media/g_snake/big_3.svg';
+list_big[5].src = '/media/g_snake/big_2.svg';
+list_big[6].src = '/media/g_snake/big_1.svg';
+
+var list_h1 = [new Image(), new Image(), new Image(), new Image()]
+
+list_h1[0].src = '/media/g_ball/h01.svg';
+list_h1[1].src = '/media/g_ball/h02.svg';
+list_h1[2].src = '/media/g_ball/h03.svg';
+list_h1[3].src = '/media/g_ball/h04.svg';
+
+
+function fire_ball(t, l){
+        var img = document.createElement('img');
+        img.setAttribute('src', list_h1[0].src);
+        img.id = "fire_b";
+        img.style.left = l - 25 + 'px';
+        img.style.top = t - 25 + 'px';
+        img.style.width = 100 + 'px';
+        img.style.position = 'absolute';
+        document.getElementById('div_blok').appendChild(img);
+
+        for (let i = 0; i < 4; i++) {
+            setTimeout(() => {
+                if(document.getElementById("fire_b")){
+                    document.getElementById("fire_b").setAttribute('src', list_h1[i].src);
+                    if(i == 3){
+                        document.getElementById("fire_b").remove()
+                    }
+                }
+            }, i * 100);
+        }
+}
 
 var cont = new Image()
 cont.src = "/media/g_uhe/plashka.svg"
@@ -92,6 +140,8 @@ function sending_data(sc){
 
     });
 }
+
+sending_data(0)
 
 var content = document.getElementById('content')
 
@@ -163,6 +213,38 @@ function add_score(){
     content.appendChild(div_score);
 }
 
+var speed_numb = 1
+
+function add_speed(){
+
+    var div_speed = document.createElement('div');
+    div_speed.id = 'div_speed';
+    div_speed.style.left = 0 + 'px';
+    div_speed.style.top = 0 + 'px';
+
+    var about_img = document.createElement('img');
+    about_img.setAttribute('src', plashka.src);
+    about_img.id = 'speed_img';
+    about_img.style.left = 25 + 'px';
+    about_img.style.top = 20 + 'px';
+    about_img.style.height = 730 + 'px';
+    about_img.style.position = 'absolute';
+    about_img.classList.add('select_img');
+    div_speed.appendChild(about_img);
+
+    var txt_speed = document.createElement('h1');
+    txt_speed.textContent = "Speed: " + speed_numb;
+    txt_speed.id = 'txt_speed';
+    txt_speed.classList.add('menu');
+    txt_speed.style.left = 380 + 'px';
+    txt_speed.style.top = 300 + 'px';
+    txt_speed.style.maxWidth = '900px';
+    txt_speed.style.position = 'absolute';
+    div_speed.appendChild(txt_speed);
+
+    content.appendChild(div_speed);
+}
+
 function add_about(){
     var div_about = document.createElement('div');
     div_about.id = 'div_about';
@@ -180,7 +262,7 @@ function add_about(){
     div_about.appendChild(about_img);
 
     var about_txt = document.createElement('h1');
-    about_txt.textContent = "The player controls a small racket platform that can be moved horizontally from one wall to another, placing it under the ball, preventing it from falling down.";
+    about_txt.textContent = "Eat the balls to make the snake longer. Also collect big balls to earn more points.";
     about_txt.id = 'score_n2';
     about_txt.classList.add('menu');
     about_txt.style.left = 60 + 'px';
@@ -226,12 +308,21 @@ function add_menu(){
     new_game.style.position = 'absolute';
     div_menu.appendChild(new_game);
 
+    var speed = document.createElement('h1');
+    speed.textContent = "Speed";
+    speed.id = 'speed';
+    speed.classList.add('menu');
+    speed.style.left = 60 + 'px';
+    speed.style.top = 175 + 'px';
+    speed.style.position = 'absolute';
+    div_menu.appendChild(speed);
+
     var about = document.createElement('h1');
     about.textContent = "Score";
     about.id = 'settings';
     about.classList.add('menu');
     about.style.left = 60 + 'px';
-    about.style.top = 175 + 'px';
+    about.style.top = 300 + 'px';
     about.style.position = 'absolute';
     div_menu.appendChild(about);
 
@@ -240,7 +331,7 @@ function add_menu(){
     about.id = 'about';
     about.classList.add('menu');
     about.style.left = 60 + 'px';
-    about.style.top = 300 + 'px';
+    about.style.top = 425 + 'px';
     about.style.position = 'absolute';
     div_menu.appendChild(about);
 
@@ -249,7 +340,7 @@ function add_menu(){
     score_n1.id = 'exit';
     score_n1.classList.add('menu');
     score_n1.style.left = 60 + 'px';
-    score_n1.style.top = 425 + 'px';
+    score_n1.style.top = 550 + 'px';
     score_n1.style.position = 'absolute';
     div_menu.appendChild(score_n1);
 
@@ -313,7 +404,7 @@ function add_menu1(){
     content.appendChild(div_menu1);
 }
 
-var score1 = 10
+var score = 0
 
 function game_over(){
     var div_game_over = document.createElement('div');
@@ -340,7 +431,7 @@ function game_over(){
     div_game_over.appendChild(txt_over);
 
     var txt_over1 = document.createElement('h1');
-    txt_over1.textContent = "Score: " + score1;
+    txt_over1.textContent = "Score: " + score;
     txt_over1.id = 'txt_over2';
     txt_over1.classList.add('score');
     txt_over1.style.left = 300 + 'px';
@@ -350,10 +441,8 @@ function game_over(){
 
     content.appendChild(div_game_over);
 
-//    sending_data(score1)
+    sending_data(score)
 }
-
-var score = 0
 
 function game_element(){
 
@@ -394,16 +483,52 @@ function game_element(){
     div_game_element.appendChild(img_fon);
 
     var img_b = document.createElement('img');
-    img_b.setAttribute('src', list_element[3].src);
+    img_b.setAttribute('src', list_ball1[0].src);
     img_b.id = "ball";
     var pos_ball = spawn_ball()
-    img_b.style.left = pos_ball[0] + 7 + 'px';
-    img_b.style.top = pos_ball[1] + 7 + 'px';
-    img_b.style.width = 30 + 'px';
+    img_b.style.left = pos_ball[0] + 3  + 'px';
+    img_b.style.top = pos_ball[1] + 3 + 'px';
+    img_b.style.width = 44 + 'px';
     img_b.style.position = 'absolute';
     div_blok.appendChild(img_b);
 
+
     content.appendChild(div_game_element);
+
+}
+
+function add_bigg_ball(){
+    if(!document.getElementById("div_big_ball")){
+        var content = document.getElementById('div_blok')
+
+        var list_l = [100, 200, 300, 400, 500, 600, 700, 800]
+
+        var list_t = [100, 200, 300, 400, 500, 600, 700]
+
+        var r_i = Math.floor(Math.random() * list_l.length);
+        var r_l =  list_l[r_i];
+
+        var r_i1 = Math.floor(Math.random() * list_t.length);
+        var r_t =  list_t[r_i1];
+
+        var div_big_ball = document.createElement('div');
+        div_big_ball.id = 'div_big_ball';
+        div_big_ball.style.left = r_l + 'px';
+        div_big_ball.style.top = r_t + 'px';
+        div_big_ball.style.width = 50 + 'px';
+        div_big_ball.style.height = 50 + 'px';
+        div_big_ball.style.position = 'absolute';
+        div_blok.appendChild(div_big_ball);
+
+        var big_ball = document.createElement('img');
+        big_ball.setAttribute('src', list_big[6].src);
+        big_ball.id = "big_ball";
+        big_ball.style.left = -25 + 'px';
+        big_ball.style.top = -25 + 'px';
+        big_ball.style.width = 100 + 'px';
+        big_ball.style.position = 'absolute';
+        div_big_ball.appendChild(big_ball);
+    }
 
 }
 
@@ -433,7 +558,7 @@ function filterPositions() {
 // Ініціалізуємо список кульок
 add_ball_l();
 
-var list_game = [["b1", 800, 200, 1], ["b2", 850, 200, 1], ["b3", 900, 200, 1], ["b4", 950, 200, 1]];
+var list_game = [["b1", 800, 200, 1], ["b2", 850, 200, 1], ["b3", 900, 200, 1]];
 
 // Генерує випадкове місце для кульки
 function spawn_ball() {
@@ -466,6 +591,7 @@ function add_list(){
 }
 
 function add_e(id, l, t, r, key_1, r1){
+
     var stop = true
     var id_1 = ""
     var div_blok = document.getElementById("div_blok")
@@ -489,6 +615,7 @@ function add_e(id, l, t, r, key_1, r1){
                 neck(id)
                 clearInterval(anim_i)
             }
+
         }
         anim_i = setInterval(anim, speed / 12)
 }
@@ -512,16 +639,7 @@ function neck(id1){
     }
 }
 
-function move_s(){
-    for (let i = 0; i < 6; i++) {
-        setTimeout(() => {
-            var b_2 = document.getElementById(elem[1])
-            var cur_b_2_left = parseInt(b_2.style.left) || 0;
-            b_2.style.left = (cur_b_2_left + 8) + 'px';
-        }, i * speed / 6);
-    }
-}
-
+// видаляє хвіст
 function dell_b(){
     var len_s = list_game.length
     var elem = list_game[len_s -1][0]
@@ -533,7 +651,7 @@ function dell_b(){
     var src = hvist.src
 
 
-    if(src == "http://127.0.0.1:8000/media/g_snake/s_12.svg"){
+    if(src == "http://127.0.0.1:8000/media/g_snake/s_120.svg"){
 
         if(numb == "12"){
             if(rot1 =="rotate(270deg)"){
@@ -592,7 +710,6 @@ function dell_b(){
 
     document.getElementById(elem).style.transform = `rotate(${rot}deg)`;
 
-
     for (let i = 0; i < 7; i++) {
         setTimeout(() => {
             if(document.getElementById(elem)){
@@ -602,18 +719,27 @@ function dell_b(){
                 document.getElementById(elem).remove()
                 list_game.pop()
             }
-        }, i * speed / 7);
+        }, i * speed / 8);
     }
 }
+
 
 var list_coor = [1, 3]
 
 var key = list_coor[0]
 
-var speed = 300
-console.log(speed / 12)
+var speed = 400
 var k11 = 0
 var r_l1 = 0
+
+var anim_ball = 0
+var key_a_b = true
+
+var time_big_b = 0
+var anim_big_ball = 6
+
+var spawn_big = 0
+
 
 function game(){
 
@@ -630,6 +756,7 @@ function game(){
     }
 
     if(list_coor[0] == 1){
+
         if(head_l <= 0){
             head_l = 1000
         }
@@ -652,6 +779,7 @@ function game(){
         list_game.unshift([r_word, head_l - 50, head_t, str])
 
     }else if(list_coor[0] == 2){
+
         if(head_t >= 750){
             head_t = -50
         }
@@ -673,6 +801,7 @@ function game(){
         list_game.unshift([r_word, head_l, head_t + 50, str])
 
     }else if(list_coor[0] == 3){
+
         if(head_t <= 0){
             head_t = 800
         }
@@ -695,6 +824,7 @@ function game(){
         list_game.unshift([r_word, head_l, head_t - 50, str])
 
     }else if(list_coor[0] == 4){
+
         if(head_l >= 950){
             head_l = -50
         }
@@ -728,11 +858,15 @@ function game(){
         var ball1 = document.getElementById("ball")
 
         var pos_ball = spawn_ball()
-        score += 10
+        score += speed_numb * 2
         document.getElementById("s_game").textContent = "Score: " + score;
 
-        ball1.style.left = pos_ball[0] + 7 + 'px';
-        ball1.style.top = pos_ball[1] + 7 + 'px';
+        spawn_big++
+
+
+        ball1.style.left = pos_ball[0] + 3  + 'px';
+        ball1.style.top = pos_ball[1] + 3  + 'px';
+
 
     }else{
 
@@ -745,12 +879,14 @@ function game(){
 
         if (list_game[0][0] != list_game[i][0]){
 
+
             var hw_reck = document.getElementById(list_game[i][0]).getBoundingClientRect();
 
             if (!(head1_reck.right < hw_reck.left ||
             head1_reck.left > hw_reck.right ||
             head1_reck.bottom < hw_reck.top ||
             head1_reck.top > hw_reck.bottom)) {
+                console.log(list_game[0][0], list_game[i][0])
                 clearInterval(gameinterval)
                 game_over()
 
@@ -758,13 +894,79 @@ function game(){
         }
     }
 
-//    var b1 = document.getElementById("b1")
-//    var cur_b1_left = parseInt(b1.style.left) || 0;
-//    b1.style.left = (cur_b1_left + 10) + 'px';
+    if(key_a_b){
+        anim_ball++
+        if(anim_ball == 3){
+            key_a_b = false
+        }
+    }else{
+        anim_ball--
+        if(anim_ball == 0){
+            key_a_b = true
+        }
+    }
 
+    document.getElementById("ball").setAttribute('src', list_ball1[anim_ball].src)
+
+
+    // умови великої кульки
+
+    // спавнить велику кульку
+    if(spawn_big == 10){
+        spawn_big = 0
+        add_bigg_ball()
+    }
+
+    if(document.getElementById("div_big_ball")){
+
+        var div_big_ball_reck = document.getElementById("div_big_ball").getBoundingClientRect();
+
+        if (!(head1_reck.right < div_big_ball_reck.left ||
+            head1_reck.left > div_big_ball_reck.right ||
+            head1_reck.bottom < div_big_ball_reck.top ||
+            head1_reck.top > div_big_ball_reck.bottom)) {
+
+                var d_b_b = document.getElementById("div_big_ball");
+                var cur_d_b_b_top = parseInt(d_b_b.style.top) || 0;
+                var cur_d_b_b_left = parseInt(d_b_b.style.left) || 0;
+                fire_ball(cur_d_b_b_top, cur_d_b_b_left)
+
+                document.getElementById("div_big_ball").remove()
+                score += (anim_big_ball * (speed_numb * 2))
+                anim_big_ball = 6
+                time_big_b = 0
+                document.getElementById("s_game").textContent = "Score: " + score;
+        }
+
+        time_big_b++
+        if(time_big_b == 5){
+            anim_big_ball--
+            time_big_b = 0
+
+            if(anim_big_ball == -1){
+                anim_big_ball = 6
+                document.getElementById("div_big_ball").remove()
+            }
+            if(document.getElementById("big_ball")){
+                document.getElementById("big_ball").setAttribute('src', list_big[anim_big_ball].src)
+            }
+        }
+
+    }
 }
 
+var button = true
 
+function time_b(){
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            if(i == 5){
+                button = true
+            }
+
+        }, i * speed / 6);
+    }
+}
 
 
 var k1 = true
@@ -777,8 +979,9 @@ document.addEventListener("keydown", function(event) {
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
             move_menu("u")
-
-            if(k1){
+            if(k1 && button){
+                button = false
+                time_b()
                 if(list_coor[0] != 2){
                 list_coor.unshift(3);
                 k1 = false
@@ -789,7 +992,9 @@ document.addEventListener("keydown", function(event) {
         if (event.keyCode === 83 || event.keyCode === 40){
             move_menu("d")
 
-            if(k2){
+            if(k2 && button){
+                button = false
+                time_b()
                 if(list_coor[0] != 3){
                 list_coor.unshift(2);
                 k2 = false
@@ -799,7 +1004,9 @@ document.addEventListener("keydown", function(event) {
 
         // A або стрілка вліво
         if (event.keyCode === 65 || event.keyCode === 37){
-            if(k3){
+            if(k3 && button){
+                button = false
+                time_b()
                 if(list_coor[0] != 4){
                 list_coor.unshift(1);
                 k3 = false
@@ -809,7 +1016,9 @@ document.addEventListener("keydown", function(event) {
 
         // D або стрілка вправо
         if (event.keyCode === 68 || event.keyCode === 39){
-            if(k4){
+            if(k4 && button){
+                button = false
+                time_b()
                 if(list_coor[0] != 1){
                 list_coor.unshift(4);
                 k4 = false
@@ -826,7 +1035,6 @@ document.addEventListener("keydown", function(event) {
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-        clearInterval(gameinterval)
     }
 });
 
@@ -873,8 +1081,12 @@ document.addEventListener("keyup", function(event) {
 function downMouseDown(event) {
     document.getElementById('d_C').style.backgroundColor = "#613703";
     move_menu("d")
-    if(list_coor[0] != 3){
-        list_coor.unshift(2);
+    if(button){
+        button = false
+        time_b()
+        if(list_coor[0] != 3){
+            list_coor.unshift(2);
+        }
     }
 
     event.preventDefault(); // Перешкоджаємо дії за замовчуванням
@@ -883,11 +1095,6 @@ function downMouseDown(event) {
 
 function downMouseUp() {
     document.getElementById('d_C').style.backgroundColor = "#291701";
-//    for (var i = 0; i < list_coor.length; i++){
-//        if(list_coor[i] == 2){
-//            list_coor.splice(i, 1);
-//        }
-//    }
 
 }
 
@@ -895,8 +1102,12 @@ function downMouseUp() {
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
     move_menu("u")
-    if(list_coor[0] != 2){
-         list_coor.unshift(3);
+    if(button){
+        button = false
+        time_b()
+        if(list_coor[0] != 2){
+            list_coor.unshift(3);
+        }
     }
 
     event.preventDefault();
@@ -905,18 +1116,17 @@ function upMouseDown(event) {
 
 function upMouseUp() {
     document.getElementById('u_C').style.backgroundColor = "#291701";
-//    for (var i = 0; i < list_coor.length; i++){
-//        if(list_coor[i] == 1){
-//            list_coor.splice(i, 1);
-//        }
-//    }
 }
 
 // кнопка вліво
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
-    if(list_coor[0] != 4){
-        list_coor.unshift(1);
+    if(button){
+        button = false
+        time_b()
+        if(list_coor[0] != 4){
+            list_coor.unshift(1);
+        }
     }
 
     event.preventDefault();
@@ -925,18 +1135,17 @@ function leftMouseDown(event) {
 
 function leftMouseUp() {
     document.getElementById('l_C').style.backgroundColor = "#291701";
-//    for (var i = 0; i < list_coor.length; i++){
-//        if(list_coor[i] == 3){
-//            list_coor.splice(i, 1);
-//        }
-//    }
 }
 
 // кнопка в право
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
-    if(list_coor[0] != 1){
+    if(button){
+        button = false
+        time_b()
+        if(list_coor[0] != 1){
         list_coor.unshift(4);
+        }
     }
 
     event.preventDefault();
@@ -945,11 +1154,6 @@ function rightMouseDown(event) {
 
 function rightMouseUp() {
     document.getElementById('r_C').style.backgroundColor = "#291701";
-//    for (var i = 0; i < list_coor.length; i++){
-//        if(list_coor[i] == 4){
-//            list_coor.splice(i, 1);
-//        }
-//    }
 }
 
 function center(event){
@@ -997,6 +1201,12 @@ var gameinterval = null
 var menu_pos = 0;
 var menu_pos1 = 0;
 
+//var speed_numb = 1
+//
+//function add_speed(){
+//    var div_speed = document.createElement('div');
+//    div_speed.id = 'div_speed';
+
 
 function move_menu(nav){
     if(document.getElementById('div_zastavka')){
@@ -1015,10 +1225,48 @@ function move_menu(nav){
             document.getElementById('div_about').remove()
         }
 
+    }else if(document.getElementById('div_speed')){
+        if(nav == "r"){
+            document.getElementById('div_speed').remove()
+        }else if(nav == "u" && speed_numb < 5){
+            speed_numb++
+
+            if(speed_numb == 1){
+                speed = 400
+            }else if(speed_numb == 2){
+                speed = 350
+            }else if(speed_numb == 3){
+                speed = 300
+            }else if(speed_numb == 4){
+                speed = 200
+            }else if(speed_numb == 5){
+                speed = 100
+            }
+
+            document.getElementById("txt_speed").textContent = "Speed: " + speed_numb;
+        }else if(nav == "d" && speed_numb > 1){
+            speed_numb--
+
+            if(speed_numb == 1){
+                speed = 400
+            }else if(speed_numb == 2){
+                speed = 350
+            }else if(speed_numb == 3){
+                speed = 300
+            }else if(speed_numb == 4){
+                speed = 200
+            }else if(speed_numb == 5){
+                speed = 100
+            }
+
+            document.getElementById("txt_speed").textContent = "Speed: " + speed_numb;
+        }
+
     }else if(document.getElementById('div_menu') && !document.getElementById('div_game_element')
-             && !document.getElementById('div_score') && !document.getElementById('div_about')){
+             && !document.getElementById('div_score') && !document.getElementById('div_about')
+             && !document.getElementById('div_speed') ){
         var cur_select = parseInt(document.getElementById("select").style.top) || 0;
-        if(nav == "d" && menu_pos < 3){
+        if(nav == "d" && menu_pos < 4){
             document.getElementById("select").style.top = (cur_select + 125) + 'px';
             menu_pos += 1;
         }else if(nav == "u" && menu_pos > 0){
@@ -1028,19 +1276,29 @@ function move_menu(nav){
             if(menu_pos == 0){
                 document.getElementById('div_menu').remove()
 
-                list_game = [["b1", 800, 200, 11], ["b2", 850, 200, 11], ["b3", 900, 200, 11], ["b4", 950, 200, 11]];
+                list_game = [["b1", 800, 200, 11], ["b2", 850, 200, 11], ["b3", 900, 200, 11]];
                 list_coor = [1, 2]
+                score = 0
+
+                // зміні великої кульки
+                spawn_big = 0
+                time_big_b = 0
+                anim_big_ball = 6
+
                 game_element()
                 add_list()
                 gameinterval = setInterval(game, speed)
 
             }else if(menu_pos == 1){
-                add_score()
+                add_speed()
 
             }else if(menu_pos == 2){
-                add_about()
+                add_score()
 
             }else if(menu_pos == 3){
+                add_about()
+
+            }else if(menu_pos == 4){
                 window.location.href = "/games";
             }
         }
@@ -1067,8 +1325,15 @@ function move_menu(nav){
                 document.getElementById("div_game_element").remove()
                 document.getElementById("div_menu1").remove()
 
-                list_game = [["b1", 800, 200, 11], ["b2", 850, 200, 11], ["b3", 900, 200, 11], ["b4", 950, 200, 11]];
+                list_game = [["b1", 800, 200, 11], ["b2", 850, 200, 11], ["b3", 900, 200, 11]];
                 list_coor = [1, 2]
+                score = 0
+
+                // зміні великої кульки
+                spawn_big = 0
+                time_big_b = 0
+                anim_big_ball = 6
+
                 game_element()
                 add_list()
                 gameinterval = setInterval(game, speed)
@@ -1090,7 +1355,8 @@ function move_menu(nav){
 document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
 
-        if(!document.getElementById('div_menu1')){
+        if(document.getElementById('div_game_element') &&!document.getElementById('div_menu1')
+           && !document.getElementById('div_game_over') && !document.getElementById('div_menu')){
             console.log('Вкладка неактивна');
             add_menu1()
             clearInterval(gameinterval)

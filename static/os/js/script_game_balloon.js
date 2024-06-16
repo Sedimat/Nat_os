@@ -1202,7 +1202,7 @@ document.addEventListener("keydown", function(event) {
 
     // натиснута кнопка E
     if (event.keyCode === 69) {
-         right_select(event)
+            right_select1(event)
         }
     // натиснута кнопка F
     if (event.keyCode === 70) {
@@ -1210,7 +1210,6 @@ document.addEventListener("keydown", function(event) {
         }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
-        left_select(event)
     }
 });
 
@@ -1604,6 +1603,7 @@ function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
     clearInterval(intervalLEFT);
     intervalLEFT = setInterval(left, 50);
+
     event.preventDefault();
     navigator.vibrate(50);
 }
