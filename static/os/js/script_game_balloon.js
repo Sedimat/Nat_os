@@ -139,7 +139,7 @@ function add_zastavka(){
     img_zastavka.setAttribute('src', zastavka.src);
     img_zastavka.id = 'zastavka';
     img_zastavka.style.left = 0 + 'px';
-    img_zastavka.style.top = 100 + 'px';
+    img_zastavka.style.top = 0 + 'px';
     img_zastavka.style.width = 1000 + 'px';
     img_zastavka.style.position = 'absolute';
     div_zastavka.appendChild(img_zastavka);

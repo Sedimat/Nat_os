@@ -1,3 +1,154 @@
+function add_button(){
+    // Знаходимо дів контролу
+    var controlDiv = document.getElementById('control');
+
+    // Ліва кнопка
+    var leftButton = document.createElement('button');
+    leftButton.id = 'l_s';
+    leftButton.className = 'left_select';
+    leftButton.ontouchstart = function(event) { left_select(event); };
+    leftButton.ontouchend = function() { left_select_up(); };
+    leftButton.onmousedown = function(event) { left_select(event); };
+    leftButton.onmouseup = function() { left_select_up(); };
+
+    var leftImg = document.createElement('img');
+    leftImg.className = 'e_img1';
+    leftImg.src = '/media/img/sel.svg';
+
+    leftButton.appendChild(leftImg);
+    controlDiv.appendChild(leftButton);
+
+    // Права кнопка
+    var rightButton = document.createElement('button');
+    rightButton.id = 'r_s';
+    rightButton.className = 'right_select';
+    rightButton.ontouchstart = function(event) { right_select(event); };
+    rightButton.ontouchend = function() { right_select_up(); };
+    rightButton.onmousedown = function(event) { right_select(event); };
+    rightButton.onmouseup = function() { right_select_up(); };
+
+    var rightImg = document.createElement('img');
+    rightImg.className = 'e_img1';
+    rightImg.src = '/media/img/sel.svg';
+
+    rightButton.appendChild(rightImg);
+    controlDiv.appendChild(rightButton);
+
+    // Верхня кнопка
+    var upButton = document.createElement('button');
+    upButton.id = 'u_C';
+    upButton.className = 'up_control';
+    upButton.ontouchstart = function(event) { upMouseDown(event); };
+    upButton.ontouchend = function() { upMouseUp(); };
+    upButton.onmousedown = function(event) { upMouseDown(event); };
+    upButton.onmouseup = function() { upMouseUp(); };
+
+    var upImg = document.createElement('img');
+    upImg.className = 'img_up';
+    upImg.src = '/media/img/up.svg';
+
+    upButton.appendChild(upImg);
+    controlDiv.appendChild(upButton);
+
+    // Нижня кнопка
+    var downButton = document.createElement('button');
+    downButton.id = 'd_C';
+    downButton.className = 'down_control';
+    downButton.ontouchstart = function(event) { downMouseDown(event); };
+    downButton.ontouchend = function() { downMouseUp(); };
+    downButton.onmousedown = function(event) { downMouseDown(event); };
+    downButton.onmouseup = function() { downMouseUp(); };
+
+    var downImg = document.createElement('img');
+    downImg.className = 'img_down';
+    downImg.src = '/media/img/up.svg';
+
+    downButton.appendChild(downImg);
+    controlDiv.appendChild(downButton);
+
+    // Ліва кнопка управління
+    var leftControlButton = document.createElement('button');
+    leftControlButton.id = 'l_C';
+    leftControlButton.className = 'left_control';
+    leftControlButton.ontouchstart = function(event) { leftMouseDown(event); };
+    leftControlButton.ontouchend = function() { leftMouseUp(); };
+    leftControlButton.onmousedown = function(event) { leftMouseDown(event); };
+    leftControlButton.onmouseup = function() { leftMouseUp(); };
+
+    var leftControlImg = document.createElement('img');
+    leftControlImg.className = 'img_left';
+    leftControlImg.src = '/media/img/up.svg';
+
+    leftControlButton.appendChild(leftControlImg);
+    controlDiv.appendChild(leftControlButton);
+
+    // Права кнопка управління
+    var rightControlButton = document.createElement('button');
+    rightControlButton.id = 'r_C';
+    rightControlButton.className = 'right_control';
+    rightControlButton.ontouchstart = function(event) { rightMouseDown(event); };
+    rightControlButton.ontouchend = function() { rightMouseUp(); };
+    rightControlButton.onmousedown = function(event) { rightMouseDown(event); };
+    rightControlButton.onmouseup = function() { rightMouseUp(); };
+
+    var rightControlImg = document.createElement('img');
+    rightControlImg.className = 'img_right';
+    rightControlImg.src = '/media/img/up.svg';
+
+    rightControlButton.appendChild(rightControlImg);
+    controlDiv.appendChild(rightControlButton);
+
+    // Центральна кнопка
+    var centerButton = document.createElement('button');
+    centerButton.id = 'c_C';
+    centerButton.className = 'center_control';
+    centerButton.ontouchstart = function(event) { center(event); };
+    centerButton.ontouchend = function() { center_up(); };
+    centerButton.onmousedown = function(event) { center(event); };
+    centerButton.onmouseup = function() { center_up(); };
+
+    var centerImg = document.createElement('img');
+    centerImg.className = 'img_center';
+    centerImg.src = '/media/img/center.svg';
+
+    centerButton.appendChild(centerImg);
+    controlDiv.appendChild(centerButton);
+}
+
+add_button()
+
+var zastavka = new Image()
+zastavka.src = '/media/g_uhe/ukhylyant.svg'
+
+var content = document.getElementById('content')
+
+function add_zastavka(){
+    var div_zastavka = document.createElement('div');
+    div_zastavka.id = 'div_zastavka';
+    div_zastavka.style.left = 0 + 'px';
+    div_zastavka.style.top = 0 + 'px';
+    div_zastavka.style.height = 1000 + 'px';
+    div_zastavka.style.width = 1000 + 'px';
+    //div_zastavka.style.backgroundColor = 'green';
+    div_zastavka.classList.add('content');
+    div_zastavka.style.position = 'absolute';
+
+
+    // Рахунок та його картинка
+    var img_zastavka = document.createElement('img');
+    img_zastavka.setAttribute('src', zastavka.src);
+    img_zastavka.id = 'zastavka';
+    img_zastavka.style.left = 0 + 'px';
+    img_zastavka.style.top = 100 + 'px';
+    img_zastavka.style.width = 1000 + 'px';
+    img_zastavka.style.position = 'absolute';
+    div_zastavka.appendChild(img_zastavka);
+
+    content.appendChild(div_zastavka);
+}
+
+add_zastavka()
+
 
 var list_floor = [new Image(), new Image(), new Image(),
                   new Image(), new Image(), new Image(),
@@ -467,17 +618,6 @@ function add_game_element(){
     content.appendChild(div_game1);
 }
 
-function add_zastavka(){
-    // Рахунок та його картинка
-    var img_zastavka = document.createElement('img');
-    img_zastavka.setAttribute('src', '/media/g_uhe/ukhylyant.svg');
-    img_zastavka.id = 'zastavka';
-    img_zastavka.style.left = 10 + 'px';
-    img_zastavka.style.top = 50 + 'px';
-    img_zastavka.style.width = 1000 + 'px';
-    img_zastavka.style.position = 'absolute';
-    content.appendChild(img_zastavka);
-}
 
 function add_menu(){
     var div_menu = document.createElement('div');
@@ -794,13 +934,9 @@ function right_select_up() {
     document.getElementById('r_s').style.backgroundColor = "#291701";
 }
 
-// зміна заставки
-add_zastavka()
 
 // зміна запуску гри
 var gameInterval = null
-
-
 
 
 // правий селект
@@ -811,8 +947,8 @@ function right_select1(event){
         add_menu()
         gameInterval = null
 
-    }else if (document.getElementById("zastavka")){
-        document.getElementById("zastavka").remove();
+    }else if (document.getElementById("div_zastavka")){
+        document.getElementById("div_zastavka").remove();
         add_menu()
 
     }else if (document.getElementById("div_score")){
