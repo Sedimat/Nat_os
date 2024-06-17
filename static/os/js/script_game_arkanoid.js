@@ -1676,7 +1676,7 @@ function game(){
                 }else if(list_impruve[i][1] == 4){
 
                     time_armor = 60
-                    document.getElementById("img_fon3").style.top = 875 + 'px';
+                    document.getElementById("img_fon3").style.top = 877 + 'px';
 
 
                 }else if(list_impruve[i][1] == 5){
