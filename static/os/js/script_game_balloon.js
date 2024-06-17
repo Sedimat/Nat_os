@@ -1,3 +1,153 @@
+function add_button(){
+    // Знаходимо дів контролу
+    var controlDiv = document.getElementById('control');
+
+    // Ліва кнопка
+    var leftButton = document.createElement('button');
+    leftButton.id = 'l_s';
+    leftButton.className = 'left_select';
+    leftButton.ontouchstart = function(event) { left_select(event); };
+    leftButton.ontouchend = function() { left_select_up(); };
+    leftButton.onmousedown = function(event) { left_select(event); };
+    leftButton.onmouseup = function() { left_select_up(); };
+
+    var leftImg = document.createElement('img');
+    leftImg.className = 'e_img1';
+    leftImg.src = '/media/img/sel.svg';
+
+    leftButton.appendChild(leftImg);
+    controlDiv.appendChild(leftButton);
+
+    // Права кнопка
+    var rightButton = document.createElement('button');
+    rightButton.id = 'r_s';
+    rightButton.className = 'right_select';
+    rightButton.ontouchstart = function(event) { right_select(event); };
+    rightButton.ontouchend = function() { right_select_up(); };
+    rightButton.onmousedown = function(event) { right_select(event); };
+    rightButton.onmouseup = function() { right_select_up(); };
+
+    var rightImg = document.createElement('img');
+    rightImg.className = 'e_img1';
+    rightImg.src = '/media/img/sel.svg';
+
+    rightButton.appendChild(rightImg);
+    controlDiv.appendChild(rightButton);
+
+    // Верхня кнопка
+    var upButton = document.createElement('button');
+    upButton.id = 'u_C';
+    upButton.className = 'up_control';
+    upButton.ontouchstart = function(event) { upMouseDown(event); };
+    upButton.ontouchend = function() { upMouseUp(); };
+    upButton.onmousedown = function(event) { upMouseDown(event); };
+    upButton.onmouseup = function() { upMouseUp(); };
+
+    var upImg = document.createElement('img');
+    upImg.className = 'img_up';
+    upImg.src = '/media/img/up.svg';
+
+    upButton.appendChild(upImg);
+    controlDiv.appendChild(upButton);
+
+    // Нижня кнопка
+    var downButton = document.createElement('button');
+    downButton.id = 'd_C';
+    downButton.className = 'down_control';
+    downButton.ontouchstart = function(event) { downMouseDown(event); };
+    downButton.ontouchend = function() { downMouseUp(); };
+    downButton.onmousedown = function(event) { downMouseDown(event); };
+    downButton.onmouseup = function() { downMouseUp(); };
+
+    var downImg = document.createElement('img');
+    downImg.className = 'img_down';
+    downImg.src = '/media/img/up.svg';
+
+    downButton.appendChild(downImg);
+    controlDiv.appendChild(downButton);
+
+    // Ліва кнопка управління
+    var leftControlButton = document.createElement('button');
+    leftControlButton.id = 'l_C';
+    leftControlButton.className = 'left_control';
+    leftControlButton.ontouchstart = function(event) { leftMouseDown(event); };
+    leftControlButton.ontouchend = function() { leftMouseUp(); };
+    leftControlButton.onmousedown = function(event) { leftMouseDown(event); };
+    leftControlButton.onmouseup = function() { leftMouseUp(); };
+
+    var leftControlImg = document.createElement('img');
+    leftControlImg.className = 'img_left';
+    leftControlImg.src = '/media/img/up.svg';
+
+    leftControlButton.appendChild(leftControlImg);
+    controlDiv.appendChild(leftControlButton);
+
+    // Права кнопка управління
+    var rightControlButton = document.createElement('button');
+    rightControlButton.id = 'r_C';
+    rightControlButton.className = 'right_control';
+    rightControlButton.ontouchstart = function(event) { rightMouseDown(event); };
+    rightControlButton.ontouchend = function() { rightMouseUp(); };
+    rightControlButton.onmousedown = function(event) { rightMouseDown(event); };
+    rightControlButton.onmouseup = function() { rightMouseUp(); };
+
+    var rightControlImg = document.createElement('img');
+    rightControlImg.className = 'img_right';
+    rightControlImg.src = '/media/img/up.svg';
+
+    rightControlButton.appendChild(rightControlImg);
+    controlDiv.appendChild(rightControlButton);
+
+    // Центральна кнопка
+    var centerButton = document.createElement('button');
+    centerButton.id = 'c_C';
+    centerButton.className = 'center_control';
+    centerButton.ontouchstart = function(event) { center(event); };
+    centerButton.ontouchend = function() { center_up(); };
+    centerButton.onmousedown = function(event) { center(event); };
+    centerButton.onmouseup = function() { center_up(); };
+
+    var centerImg = document.createElement('img');
+    centerImg.className = 'img_center';
+    centerImg.src = '/media/img/center.svg';
+
+    centerButton.appendChild(centerImg);
+    controlDiv.appendChild(centerButton);
+}
+
+add_button()
+
+var zastavka = new Image()
+zastavka.src = '/media/g_ball/balllon.svg'
+
+var content = document.getElementById('content')
+
+function add_zastavka(){
+    var div_zastavka = document.createElement('div');
+    div_zastavka.id = 'div_zastavka';
+    div_zastavka.style.left = 0 + 'px';
+    div_zastavka.style.top = 0 + 'px';
+    div_zastavka.style.height = 1000 + 'px';
+    div_zastavka.style.width = 1000 + 'px';
+    //div_zastavka.style.backgroundColor = 'green';
+    div_zastavka.classList.add('content');
+    div_zastavka.style.position = 'absolute';
+
+
+    // Рахунок та його картинка
+    var img_zastavka = document.createElement('img');
+    img_zastavka.setAttribute('src', zastavka.src);
+    img_zastavka.id = 'zastavka';
+    img_zastavka.style.left = 0 + 'px';
+    img_zastavka.style.top = 100 + 'px';
+    img_zastavka.style.width = 1000 + 'px';
+    img_zastavka.style.position = 'absolute';
+    div_zastavka.appendChild(img_zastavka);
+
+    content.appendChild(div_zastavka);
+}
+
+add_zastavka()
 
 
 var list_b1 = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
@@ -415,8 +565,6 @@ function add_content(){
     content.appendChild(prc0);
 }
 
-add_content()
-
 
 var menu_h = new Image()
 menu_h.src = '/media/g_ball/game_menu0.svg'
@@ -705,8 +853,7 @@ var prc0 = document.getElementById("prc0")
 var speed = 7
 
 // зміні рахунку та життів
-var score_n = document.getElementById("score_n")
-var score_n1 = document.getElementById("score_n1")
+
 
 
 function move(){
@@ -724,6 +871,46 @@ function move(){
         kill_an7 = true
 
     }
+    var img_v0 = document.getElementById("img_v")
+    var img_x = document.getElementById("img_x")
+
+    // зміні другої кульки та хвоста
+    var img_v2 = document.getElementById("img_v2")
+    var img_x2 = document.getElementById("img_x2")
+
+
+    // зміні третьої кульки та хвоста
+    var img_v3 = document.getElementById("img_v3")
+    var img_x3 = document.getElementById("img_x3")
+    var div_v3 = document.getElementById("div_v3")
+
+    // зміні четвертої кульки та хвоста
+    var img_v4 = document.getElementById("img_v4")
+    var img_x4 = document.getElementById("img_x4")
+
+
+    // зміні пятої кульки та хвоста
+    var img_v5 = document.getElementById("img_v5")
+    var img_x5 = document.getElementById("img_x5")
+
+
+    // зміні шостої кульки та хвоста
+    var img_v6 = document.getElementById("img_v6")
+    var img_x6 = document.getElementById("img_x6")
+
+
+    // зміні сьомої кульки та хвоста
+    var img_v7 = document.getElementById("img_v7")
+    var img_x7 = document.getElementById("img_x7")
+
+    // зміні прицелу
+    var prc = document.getElementById("prc")
+    var prc0 = document.getElementById("prc0")
+
+
+    var score_n = document.getElementById("score_n")
+    var score_n1 = document.getElementById("score_n1")
+
     score_n.textContent = score;
     score_n1.textContent = score_number;
 
@@ -1130,7 +1317,6 @@ function move(){
     }
 
 
-
 }
 
 var intervalId = null;
@@ -1285,6 +1471,42 @@ function center_up(){
 
 
 function center1(){
+
+    var img_v0 = document.getElementById("img_v")
+    var img_x = document.getElementById("img_x")
+
+    // зміні другої кульки та хвоста
+    var img_v2 = document.getElementById("img_v2")
+    var img_x2 = document.getElementById("img_x2")
+
+
+    // зміні третьої кульки та хвоста
+    var img_v3 = document.getElementById("img_v3")
+    var img_x3 = document.getElementById("img_x3")
+    var div_v3 = document.getElementById("div_v3")
+
+    // зміні четвертої кульки та хвоста
+    var img_v4 = document.getElementById("img_v4")
+    var img_x4 = document.getElementById("img_x4")
+
+
+    // зміні пятої кульки та хвоста
+    var img_v5 = document.getElementById("img_v5")
+    var img_x5 = document.getElementById("img_x5")
+
+
+    // зміні шостої кульки та хвоста
+    var img_v6 = document.getElementById("img_v6")
+    var img_x6 = document.getElementById("img_x6")
+
+
+    // зміні сьомої кульки та хвоста
+    var img_v7 = document.getElementById("img_v7")
+    var img_x7 = document.getElementById("img_x7")
+
+    var prc = document.getElementById("prc")
+    var prc0 = document.getElementById("prc0")
+
     if (st == 1){
     var prc_rect = prc0.getBoundingClientRect();
         var img0 = img_v0.getBoundingClientRect();
@@ -1505,6 +1727,8 @@ function center1(){
 }
 
 function up(){
+    var prc = document.getElementById("prc")
+    var prc0 = document.getElementById("prc0")
 
     if (st == 1){
     prc_x = parseInt(prc.style.top) || 0;
@@ -1523,6 +1747,9 @@ function up(){
 
 function down(){
 
+    var prc = document.getElementById("prc")
+    var prc0 = document.getElementById("prc0")
+
     if (st == 1){
     prc_x = parseInt(prc.style.top) || 0;
     prc_y = parseInt(prc.style.left) || 0;
@@ -1539,6 +1766,10 @@ function down(){
 }
 
 function right(){
+
+    var prc = document.getElementById("prc")
+    var prc0 = document.getElementById("prc0")
+
     if (st == 1){
     prc_x = parseInt(prc.style.top) || 0;
     prc_y = parseInt(prc.style.left) || 0;
@@ -1555,6 +1786,10 @@ function right(){
 }
 
 function left(){
+
+    var prc = document.getElementById("prc")
+    var prc0 = document.getElementById("prc0")
+
     if (st == 1){
     prc_x = parseInt(prc.style.top) || 0;
     prc_y = parseInt(prc.style.left) || 0;
@@ -1674,7 +1909,11 @@ function right_select1(event){
     var select_exit = document.getElementById("select_exit")
     var score_n1 = document.getElementById("score_n2")
 
-    if (document.getElementById("div_menu")){
+    if(document.getElementById('div_zastavka')){
+        document.getElementById('div_zastavka').remove()
+        add_menu()
+
+    }else if (document.getElementById("div_menu")){
         if(menu_pos == 0){
             div_menu.remove();
             if(document.getElementById("select_exit")){
@@ -1683,6 +1922,7 @@ function right_select1(event){
                 score = 5;
                 score_number = 0;
             }
+            add_content()
             intervalId = setInterval(move, speed_game);
             inter_m_g = setInterval(move_game, 100 / 2.2);
             st = 1
@@ -1752,7 +1992,6 @@ function right_select1(event){
     }
 }
 
-add_menu()
 
 var menu_pos = 0
 var menu_pos1 = 0
