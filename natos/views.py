@@ -427,3 +427,8 @@ def get_games_info(request):
 def snake(request):
     context = {}
     return render(request, 'game/snake.html', context=context)
+
+
+def natis(request):
+    context = {}
+    return render(request, 'game/natis.html', context=context)

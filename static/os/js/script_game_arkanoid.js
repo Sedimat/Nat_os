@@ -2259,6 +2259,7 @@ document.addEventListener("keydown", function(event) {
     }
     // натиснута кнопка Q
     if (event.keyCode === 81) {
+
     }
 });
 
