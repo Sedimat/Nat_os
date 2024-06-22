@@ -149,8 +149,7 @@ function add_zastavka(){
     content.appendChild(div_zastavka);
 }
 
-
-add_zastavka()
+//add_zastavka()
 
 var cont = new Image()
 cont.src = "/media/g_uhe/plashka.svg"
@@ -541,52 +540,6 @@ function game_element(){
     img_fon.style.position = 'absolute';
     div_game_element.appendChild(img_fon);
 
-    var img_platform = document.createElement('img');
-    img_platform.setAttribute('src', list_element[1].src);
-    img_platform.id = 'img_platform';
-    img_platform.style.left = 330 + 'px';
-    img_platform.style.top = 700 + 'px';
-    img_platform.style.width = 380 + 'px';
-    img_platform.style.position = 'absolute';
-    div_game_element.appendChild(img_platform);
-
-    var img_platform = document.createElement('img');
-    img_platform.setAttribute('src', list_element[1].src);
-    img_platform.id = 'img_platform1';
-    img_platform.style.left = 730 + 'px';
-    img_platform.style.top = 600 + 'px';
-    img_platform.style.width = 380 + 'px';
-    img_platform.style.position = 'absolute';
-    div_game_element.appendChild(img_platform);
-
-    var img_platform = document.createElement('img');
-    img_platform.setAttribute('src', list_element[1].src);
-    img_platform.id = 'img_platform2';
-    img_platform.style.left = 1130 + 'px';
-    img_platform.style.top = 500 + 'px';
-    img_platform.style.width = 380 + 'px';
-    img_platform.style.position = 'absolute';
-    div_game_element.appendChild(img_platform);
-
-    var img_floor1 = document.createElement('img');
-    img_floor1.setAttribute('src', list_element[2].src);
-    img_floor1.id = 'img_floor1';
-    img_floor1.style.left = 0 + 'px';
-    img_floor1.style.top = 810 + 'px';
-    img_floor1.style.width = 1200 + 'px';
-    img_floor1.style.position = 'absolute';
-    div_game_element.appendChild(img_floor1);
-
-    var img_floor2 = document.createElement('img');
-    img_floor2.setAttribute('src', list_element[2].src);
-    img_floor2.id = 'img_floor2';
-    img_floor2.style.left = 1200 + 'px';
-    img_floor2.style.top = 810 + 'px';
-    img_floor2.style.width = 1200 + 'px';
-    img_floor2.style.position = 'absolute';
-    div_game_element.appendChild(img_floor2);
-
-
     var div_robot = document.createElement('div');
     div_robot.id = 'div_robot';
     div_robot.style.left = 200 + 'px';
@@ -599,9 +552,9 @@ function game_element(){
 
     var div_foot = document.createElement('div');
     div_foot.id = 'div_foot';
-    div_foot.style.left = 0 + 'px';
+    div_foot.style.left = 5 + 'px';
     div_foot.style.top = 180 + 'px';
-    div_foot.style.width = 50 + 'px';
+    div_foot.style.width = 40 + 'px';
     div_foot.style.height = 20 + 'px';
     div_foot.style.backgroundColor = 'red';
     div_foot.style.position = 'absolute';
@@ -620,9 +573,90 @@ function game_element(){
 
 }
 
-var list_platform = ['img_platform', 'img_platform1', 'img_platform2']
 
-var list_rect = ['img_platform', 'img_platform1', "img_floor1", "img_floor2", 'img_platform2']
+var list_platform = []
+
+var list_rect = []
+
+function add_div_block(l, t){
+
+    var list_gen = [[30, 520], [130, 500], [230, 480], [800, 320], [300, 120], [400, -80], [600, -280]]
+
+    var list_pl = []
+    var div_blok = document.getElementById('div_blok')
+
+    var r_word_div = '';
+    for (let i = 0; i < 5; i++) {
+        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+        r_word_div += String.fromCharCode(randomCharCode);
+    }
+
+    var div_blok1 = document.createElement('div');
+    div_blok1.id = 'div_' + r_word_div;
+
+    div_blok1.style.left = l + 'px';
+    div_blok1.style.top = t + 'px';
+    div_blok1.style.width = 1200 + 'px';
+    div_blok1.style.height = 800 + 'px';
+//    div_blok.style.backgroundColor = 'green';
+    div_blok1.style.position = 'absolute';
+//    div_blok1.style.overflow = 'hidden';
+    div_blok.appendChild(div_blok1);
+
+
+    var r_floor = '';
+    for (let i = 0; i < 5; i++) {
+        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+        r_floor += String.fromCharCode(randomCharCode);
+    }
+    list_pl.push('img_' + r_floor)
+
+    var img_floor1 = document.createElement('img');
+    img_floor1.setAttribute('src', list_element[2].src);
+    img_floor1.id = 'img_' + r_floor;
+    img_floor1.style.left = 0 + 'px';
+    img_floor1.style.top = 718 + 'px';
+    img_floor1.style.width = 1200 + 'px';
+    img_floor1.style.position = 'absolute';
+    div_blok1.appendChild(img_floor1);
+
+
+    for (var j = 0; j < list_gen.length; j++) {
+
+        var r_plat0 = '';
+        for (let i = 0; i < 5; i++) {
+            let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+            r_plat0 += String.fromCharCode(randomCharCode);
+        }
+        list_pl.push('div_p_'+ r_plat0)
+
+        var div_foot = document.createElement('div');
+        div_foot.id = 'div_p_'+ r_plat0;
+        div_foot.style.left = list_gen[j][0] + 'px';
+        div_foot.style.top = list_gen[j][1] + 'px';
+        div_foot.style.width = 380 + 'px';
+        div_foot.style.height = 10 + 'px';
+        div_foot.style.backgroundColor = 'red';
+        div_foot.style.position = 'absolute';
+        div_blok1.appendChild(div_foot);
+
+        var img_platform = document.createElement('img');
+        img_platform.setAttribute('src', list_element[1].src);
+        img_platform.id = 'plat_' + r_plat0;
+        img_platform.style.left = list_gen[j][0] + 'px';
+        img_platform.style.top = list_gen[j][1] + 'px';
+        img_platform.style.width = 380 + 'px';
+        img_platform.style.position = 'absolute';
+        div_blok1.appendChild(img_platform);
+    }
+
+    var txt = 'div_' + r_word_div
+
+    var buf = [txt, list_pl]
+
+    list_platform.push(buf)
+
+}
 
 var anim = 0
 
@@ -630,134 +664,143 @@ var robot_s_t = 20
 
 var kolisiya_key = true
 
+var skok_key = true
+
 function skok(){
     kolisiya_key = false
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
         setTimeout(() => {
 
             var robot = document.getElementById('div_robot')
             var cur_r_top = parseInt(robot.style.top) || 0;
-            if(i < 4){
-                robot.style.top = (cur_r_top - 20) + 'px';
+
+
+            if(cur_r_top < 245){
+                for (var j = 0; j < list_platform.length; j++){
+                    var platform = document.getElementById(list_platform[j][0])
+                    var cur_platform_top = parseInt(platform.style.top) || 0;
+                    platform.style.top = (cur_platform_top + 25) + 'px';
+                }
+
             }else{
-                robot.style.top = (cur_r_top - 15) + 'px';
+                robot.style.top = (cur_r_top - 25) + 'px';
             }
 
-            if(i == 7){
+            if(i == 9){
                 kolisiya_key = true
-                robot_s_t = 10
+                robot_s_t = 20
             }
 
-        }, i * 30);
+        }, i * 20);
     }
 }
 
-var skok_key = true
+var grav = true
+
 
 function game(){
-
     if(list_coor_l[0] == 4){
         anim++
         if(anim == 7){
             anim = 0
         }
-        console.log(anim)
         document.getElementById('img_robot').setAttribute('src', list_robot[anim].src)
+        document.getElementById('img_robot').style.transform = 'scaleX(1)';
 
-        for (var i = 0; i < list_platform.length; i++){
-            var platform = document.getElementById(list_platform[i])
-            var cur_platform_left = parseInt(platform.style.left) || 0;
-            platform.style.left = (cur_platform_left - 10) + 'px';
 
-            if(cur_platform_left < -400){
-                platform.style.left = 1000 + 'px';
+        var d_robot = document.getElementById("div_robot")
+        var cur_d_robot_left = parseInt(d_robot.style.left) || 0;
+
+        if(cur_d_robot_left < 500){
+            d_robot.style.left = (cur_d_robot_left + 10) + 'px';
+        }else{
+
+            for (var i = 0; i < list_platform.length; i++){
+                var platform = document.getElementById(list_platform[i][0])
+                var cur_platform_left = parseInt(platform.style.left) || 0;
+                platform.style.left = (cur_platform_left - 10) + 'px';
+
             }
         }
+        var div_first = document.getElementById(list_platform[0][0])
+        var cur_div_first_left = parseInt(div_first.style.left) || 0;
 
-        var flour = document.getElementById('img_floor1')
-        var cur_f_left = parseInt(flour.style.left) || 0;
-        flour.style.left = (cur_f_left - 10) + 'px';
+        if(cur_div_first_left < -1200){
+            document.getElementById(list_platform[0][0]).remove()
+            list_platform.splice(0, 1);
 
-        var flour2 = document.getElementById('img_floor2')
-        var cur_f2_left = parseInt(flour2.style.left) || 0;
-        flour2.style.left = (cur_f2_left - 10) + 'px';
-
-        if(cur_f_left < -1200){
-            var cur_f2_left = parseInt(flour2.style.left) || 0;
-            flour.style.left = cur_f2_left + 1200 + 'px';
+            var plat = document.getElementById(list_platform[0][0])
+            cur_first_left = parseInt(plat.style.left) || 0;
+            cur_first_top = parseInt(plat.style.top) || 0;
+            add_div_block(cur_first_left + 1200, cur_first_top)
         }
 
-        if(cur_f2_left < -1200){
-            var cur_f_left = parseInt(flour.style.left) || 0;
-            flour2.style.left = cur_f_left + 1200 + 'px';
-        }
 
     }else if(list_coor_l[0] == 3){
 
-        anim--
-        if(anim <= 0){
-            anim = 6
+        anim++
+        if(anim == 7){
+            anim = 0
         }
-        console.log(anim)
+
         document.getElementById('img_robot').setAttribute('src', list_robot[anim].src)
+        document.getElementById('img_robot').style.transform = 'scaleX(-1)';
 
+        var d_robot = document.getElementById("div_robot")
+        var cur_d_robot_left = parseInt(d_robot.style.left) || 0;
 
-        for (var i = 0; i < list_platform.length; i++){
-            var platform = document.getElementById(list_platform[i])
-            var cur_platform_left = parseInt(platform.style.left) || 0;
-            platform.style.left = (cur_platform_left + 10) + 'px';
+        var first_left = parseInt(document.getElementById(list_platform[0][0]).style.left) || 0;
 
-            if(cur_platform_left >= 1000){
-                platform.style.left = -400 + 'px';
+        if(cur_d_robot_left > 50){
+            d_robot.style.left = (cur_d_robot_left - 10) + 'px';
+
+        }else if(first_left < 0){
+            for (var i = 0; i < list_platform.length; i++){
+                var platform = document.getElementById(list_platform[i][0])
+                var cur_platform_left = parseInt(platform.style.left) || 0;
+                platform.style.left = (cur_platform_left + 10) + 'px';
             }
         }
 
-//        var flour = document.getElementById('img_floor1')
-//        var cur_f_left = parseInt(flour.style.left) || 0;
-//        flour.style.left = (cur_f_left + 10) + 'px';
-//
-//        var flour2 = document.getElementById('img_floor2')
-//        var cur_f2_left = parseInt(flour2.style.left) || 0;
-//        flour2.style.left = (cur_f2_left + 10) + 'px';
-//
-//        if(cur_f_left <= 1200){
-//            var cur_f2_left = parseInt(flour2.style.left) || 0;
-//            flour.style.left = cur_f2_left + 1200 + 'px';
-//        }
-//
-//        if(cur_f2_left < -1200){
-//            var cur_f_left = parseInt(flour.style.left) || 0;
-//
-//        }
-    }
 
-    if(list_coor[0] == 1 && skok_key){
-        skok_key = false
-        skok()
     }
 
     var robot_rect = document.getElementById('div_foot').getBoundingClientRect();
-    var floor1_reck = document.getElementById("img_floor1").getBoundingClientRect();
-    var floor2_reck = document.getElementById("img_floor2").getBoundingClientRect();
-    var platform_reck = document.getElementById("img_platform").getBoundingClientRect();
 
     if(kolisiya_key){
-        var grav = true
-        for (var i = 0; i < list_rect.length; i++){
-            var flor_reck = document.getElementById(list_rect[i]).getBoundingClientRect();
-            if (!(robot_rect.right < flor_reck.left ||
-            robot_rect.left > flor_reck.right ||
-            robot_rect.bottom < flor_reck.top ||
-            robot_rect.top > flor_reck.bottom)) {
-                skok_key = true
-                grav = false
-                break
+        grav = true
+        outerLoop: for (var i = 0; i < list_platform.length; i++) {
+            for (var j = 0; j < list_platform[i][1].length; j++) {
+                var flor_reck = document.getElementById(list_platform[i][1][j]).getBoundingClientRect();
+                if (!(robot_rect.right < flor_reck.left ||
+                      robot_rect.left > flor_reck.right ||
+                      robot_rect.bottom < flor_reck.top ||
+                      robot_rect.top > flor_reck.bottom)) {
+
+                      var top_rect = document.getElementById(list_platform[i][1][j]).getBoundingClientRect();
+                      document.getElementById('div_robot').style.top = top_rect.top - 200 + 'px';
+
+                    skok_key = true;
+                    grav = false;
+//                    break outerLoop; // Виходимо з обох циклів
+                }
             }
         }
+
         if(grav){
-            var robot = document.getElementById('div_robot')
-            var cur_r_top = parseInt(robot.style.top) || 0;
-            robot.style.top = (cur_r_top + robot_s_t) + 'px';
+            var first_top = parseInt(document.getElementById(list_platform[0][0]).style.top) || 0;
+            if(first_top > 0){
+                for (var i = 0; i < list_platform.length; i++){
+                    var platform = document.getElementById(list_platform[i][0])
+                    var cur_platform_top = parseInt(platform.style.top) || 0;
+                    platform.style.top = (cur_platform_top - 20) + 'px';
+                }
+            }
+            else{
+                var robot = document.getElementById('div_robot')
+                var cur_r_top = parseInt(robot.style.top) || 0;
+                robot.style.top = (cur_r_top + robot_s_t) + 'px';
+            }
         }
     }
 
@@ -779,10 +822,15 @@ document.addEventListener("keydown", function(event) {
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
             move_menu("u")
-            if(k1){
-                list_coor.unshift(1);
+            if(k1 && skok_key && !grav){
                 k1 = false
+                skok_key = false
+                skok()
             }
+//            if(k1){
+//                list_coor.unshift(1);
+//                k1 = false
+//            }
         }
         // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
@@ -826,11 +874,13 @@ document.addEventListener("keyup", function(event) {
     // натиснута кнопка W
         if (event.keyCode === 87 || event.keyCode === 38){
             k1 = true
-            for (var i = 0; i < list_coor.length; i++){
-                if(list_coor[i] == 1){
-                    list_coor.splice(i, 1);
-                }
-            }
+
+//            k1 = true
+//            for (var i = 0; i < list_coor.length; i++){
+//                if(list_coor[i] == 1){
+//                    list_coor.splice(i, 1);
+//                }
+//            }
         }
     // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
@@ -977,12 +1027,12 @@ function right_select_up() {
 }
 
 
+add_menu()
 
 var gameinterval = null
 
 var menu_pos = 0;
 var menu_pos1 = 0;
-
 
 function move_menu(nav){
     if(document.getElementById('div_zastavka')){
@@ -1021,8 +1071,11 @@ function move_menu(nav){
             if(menu_pos == 0){
                 document.getElementById('div_menu').remove()
 
+
                 game_element()
-                gameinterval = setInterval(game, 30)
+                add_div_block(0, 0)
+                add_div_block(1200, 0)
+                gameinterval = setInterval(game, 40)
 
 
             }else if(menu_pos == 1){
@@ -1056,7 +1109,7 @@ function move_menu(nav){
         }else if(nav == "r"){
             if(menu_pos1 == 0){
                 document.getElementById('div_menu1').remove()
-                gameinterval = setInterval(game, 50)
+                gameinterval = setInterval(game, 40)
 
             }else if(menu_pos1 == 1){
                 document.getElementById("div_game_element").remove()
