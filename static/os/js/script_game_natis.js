@@ -169,7 +169,8 @@ var list_element = [new Image(), new Image(), new Image(), new Image(), new Imag
 
 list_element[0].src = '/media/g_snake/score.svg';
 list_element[1].src = '/media/g_natis/floor.svg';
-list_element[2].src = '/media/g_natis/floor1.svg';
+//list_element[2].src = '/media/g_natis/floor1.svg';
+list_element[2].src = '/media/g_natis/floor0.svg';
 
 var list_robot = [new Image(), new Image(), new Image(), new Image(), new Image(),
                     new Image(), new Image(), new Image(), new Image(), new Image()]
@@ -183,49 +184,54 @@ list_robot[4].src = '/media/g_natis/natis_a0_5.svg';
 list_robot[5].src = '/media/g_natis/natis_a0_6.svg';
 list_robot[6].src = '/media/g_natis/natis_a0_7.svg';
 
+var list_loc = [new Image(), new Image(), new Image(), new Image(), new Image(),
+                    new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_loc[0].src = '/media/g_natis/loc1.svg';
+
 var txt_replay = ""
 var score_history = ""
 
 
-function sending_data(sc){
-    // Отримуєм токен від DTL
-    var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-
-    // Словник який буде відправлений
-    var data = {
-        game: "snake",
-        score: sc,
-    };
-
-    // конвертує дані для запиту
-    var formData = new URLSearchParams();
-
-    for (const [key, value] of Object.entries(data)) {
-        formData.append(key, value);
-    }
-
-    // відправляє інформацію на бекенд
-    fetch('/get_games_info', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': csrfToken,
-        },
-
-        body: formData.toString(),
-    })
-
-    // отримує відповідь від бекенду
-
-    .then(response => response.json())
-    .then(data => {
-        txt_replay = data.reply
-        score_history = data.score
-
-    });
-}
-
-sending_data(0)
+//function sending_data(sc){
+//    // Отримуєм токен від DTL
+//    var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+//
+//    // Словник який буде відправлений
+//    var data = {
+//        game: "snake",
+//        score: sc,
+//    };
+//
+//    // конвертує дані для запиту
+//    var formData = new URLSearchParams();
+//
+//    for (const [key, value] of Object.entries(data)) {
+//        formData.append(key, value);
+//    }
+//
+//    // відправляє інформацію на бекенд
+//    fetch('/get_games_info', {
+//        method: 'POST',
+//        headers: {
+//            'Content-Type': 'application/x-www-form-urlencoded',
+//            'X-CSRFToken': csrfToken,
+//        },
+//
+//        body: formData.toString(),
+//    })
+//
+//    // отримує відповідь від бекенду
+//
+//    .then(response => response.json())
+//    .then(data => {
+//        txt_replay = data.reply
+//        score_history = data.score
+//
+//    });
+//}
+//
+//sending_data(0)
 
 
 function add_score(){
@@ -518,27 +524,27 @@ function game_element(){
     div_blok.style.height = 800 + 'px';
 //    div_blok.style.backgroundColor = 'green';
     div_blok.style.position = 'absolute';
-    div_blok.style.overflow = 'hidden';
+//    div_blok.style.overflow = 'hidden';
     div_game_element.appendChild(div_blok);
 
-    var s_game = document.createElement('h1');
-    s_game.textContent = "Score: " + score;
-    s_game.id = 's_game';
-    s_game.classList.add('menu');
-    s_game.style.left = 60 + 'px';
-    s_game.style.top = 5 + 'px';
-    s_game.style.minWidth = '500px';
-    s_game.style.position = 'absolute';
-    div_game_element.appendChild(s_game);
+//    var s_game = document.createElement('h1');
+//    s_game.textContent = "Score: " + score;
+//    s_game.id = 's_game';
+//    s_game.classList.add('menu');
+//    s_game.style.left = 60 + 'px';
+//    s_game.style.top = 5 + 'px';
+//    s_game.style.minWidth = '500px';
+//    s_game.style.position = 'absolute';
+//    div_game_element.appendChild(s_game);
 
-    var img_fon = document.createElement('img');
-    img_fon.setAttribute('src', list_element[0].src);
-    img_fon.id = 'img_fon';
-    img_fon.style.left = 0 + 'px';
-    img_fon.style.top = 0 + 'px';
-    img_fon.style.width = 1000 + 'px';
-    img_fon.style.position = 'absolute';
-    div_game_element.appendChild(img_fon);
+//    var img_fon = document.createElement('img');
+//    img_fon.setAttribute('src', list_element[0].src);
+//    img_fon.id = 'img_fon';
+//    img_fon.style.left = 0 + 'px';
+//    img_fon.style.top = 0 + 'px';
+//    img_fon.style.width = 1000 + 'px';
+//    img_fon.style.position = 'absolute';
+//    div_game_element.appendChild(img_fon);
 
     var div_robot = document.createElement('div');
     div_robot.id = 'div_robot';
@@ -580,7 +586,9 @@ var list_rect = []
 
 function add_div_block(l, t){
 
-    var list_gen = [[30, 520], [130, 500], [230, 480], [800, 320], [300, 120], [400, -80], [600, -280]]
+    var list_gen = [[0, -235], [0, 678, 680, 0],  [1075, 305, 95, 0],[2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
+
+     [1240, 242, 370, 1],[1658, 242, 370, 1], [1438, 678, 380, 0], [1870, 679, 480, 0], [2130, 530, 480, 2],]
 
     var list_pl = []
     var div_blok = document.getElementById('div_blok')
@@ -609,19 +617,35 @@ function add_div_block(l, t){
         let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
         r_floor += String.fromCharCode(randomCharCode);
     }
-    list_pl.push('img_' + r_floor)
 
     var img_floor1 = document.createElement('img');
-    img_floor1.setAttribute('src', list_element[2].src);
-    img_floor1.id = 'img_' + r_floor;
+    img_floor1.setAttribute('src', list_loc[list_gen[0][0]].src);
+    img_floor1.id = 'loc_' + r_floor;
     img_floor1.style.left = 0 + 'px';
-    img_floor1.style.top = 718 + 'px';
-    img_floor1.style.width = 1200 + 'px';
+    img_floor1.style.top = list_gen[0][1] + 'px';
+    img_floor1.style.width = 2500 + 'px';
     img_floor1.style.position = 'absolute';
     div_blok1.appendChild(img_floor1);
 
 
-    for (var j = 0; j < list_gen.length; j++) {
+//    var r_floor = '';
+//    for (let i = 0; i < 5; i++) {
+//        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+//        r_floor += String.fromCharCode(randomCharCode);
+//    }
+//    list_pl.push('img_' + r_floor)
+//
+//    var img_floor1 = document.createElement('img');
+//    img_floor1.setAttribute('src', list_element[2].src);
+//    img_floor1.id = 'img_' + r_floor;
+//    img_floor1.style.left = 0 + 'px';
+//    img_floor1.style.top = 718 + 'px';
+//    img_floor1.style.width = 1200 + 'px';
+//    img_floor1.style.position = 'absolute';
+//    div_blok1.appendChild(img_floor1);
+
+
+    for (var j = 1; j < list_gen.length; j++) {
 
         var r_plat0 = '';
         for (let i = 0; i < 5; i++) {
@@ -630,24 +654,37 @@ function add_div_block(l, t){
         }
         list_pl.push('div_p_'+ r_plat0)
 
-        var div_foot = document.createElement('div');
-        div_foot.id = 'div_p_'+ r_plat0;
-        div_foot.style.left = list_gen[j][0] + 'px';
-        div_foot.style.top = list_gen[j][1] + 'px';
-        div_foot.style.width = 380 + 'px';
-        div_foot.style.height = 10 + 'px';
-        div_foot.style.backgroundColor = 'red';
-        div_foot.style.position = 'absolute';
-        div_blok1.appendChild(div_foot);
+        if(list_gen[j][3] == 0){
+            var div_foot = document.createElement('div');
+            div_foot.id = 'div_p_'+ r_plat0;
+            div_foot.style.left = list_gen[j][0] + 'px';
+            div_foot.style.top = list_gen[j][1] + 'px';
+            div_foot.style.width = list_gen[j][2] + 'px';
+            div_foot.style.height = 10 + 'px';
+            div_foot.style.backgroundColor = 'red';
+            div_foot.style.position = 'absolute';
+            div_blok1.appendChild(div_foot);
 
-        var img_platform = document.createElement('img');
-        img_platform.setAttribute('src', list_element[1].src);
-        img_platform.id = 'plat_' + r_plat0;
-        img_platform.style.left = list_gen[j][0] + 'px';
-        img_platform.style.top = list_gen[j][1] + 'px';
-        img_platform.style.width = 380 + 'px';
-        img_platform.style.position = 'absolute';
-        div_blok1.appendChild(img_platform);
+        }else if(list_gen[j][3] >= 0){
+            var div_foot = document.createElement('div');
+            div_foot.id = 'div_p_'+ r_plat0;
+            div_foot.style.left = list_gen[j][0] + 'px';
+            div_foot.style.top = list_gen[j][1] + 'px';
+            div_foot.style.width = 380 + 'px';
+            div_foot.style.height = 10 + 'px';
+            div_foot.style.backgroundColor = 'red';
+            div_foot.style.position = 'absolute';
+            div_blok1.appendChild(div_foot);
+
+            var img_platform = document.createElement('img');
+            img_platform.setAttribute('src', list_element[list_gen[j][3]].src);
+            img_platform.id = 'plat_' + r_plat0;
+            img_platform.style.left = list_gen[j][0] + 'px';
+            img_platform.style.top = list_gen[j][1] + 'px';
+            img_platform.style.width = 380 + 'px';
+            img_platform.style.position = 'absolute';
+            div_blok1.appendChild(img_platform);
+        }
     }
 
     var txt = 'div_' + r_word_div
@@ -688,7 +725,25 @@ function skok(){
 
             if(i == 9){
                 kolisiya_key = true
-                robot_s_t = 20
+            }
+
+        }, i * 20);
+    }
+}
+
+function skok_down(){
+    kolisiya_key = false
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            var robot = document.getElementById('div_robot')
+            var cur_r_top = parseInt(robot.style.top) || 0;
+            if(cur_r_top < 500){
+
+                robot.style.top = (cur_r_top + 10) + 'px';
+
+            }
+            if(i == 4){
+                kolisiya_key = true
             }
 
         }, i * 20);
@@ -725,14 +780,14 @@ function game(){
         var div_first = document.getElementById(list_platform[0][0])
         var cur_div_first_left = parseInt(div_first.style.left) || 0;
 
-        if(cur_div_first_left < -1200){
+        if(cur_div_first_left < -2500){
             document.getElementById(list_platform[0][0]).remove()
             list_platform.splice(0, 1);
 
             var plat = document.getElementById(list_platform[0][0])
             cur_first_left = parseInt(plat.style.left) || 0;
             cur_first_top = parseInt(plat.style.top) || 0;
-            add_div_block(cur_first_left + 1200, cur_first_top)
+            add_div_block(cur_first_left + 2500, cur_first_top)
         }
 
 
@@ -751,15 +806,15 @@ function game(){
 
         var first_left = parseInt(document.getElementById(list_platform[0][0]).style.left) || 0;
 
-        if(cur_d_robot_left > 50){
-            d_robot.style.left = (cur_d_robot_left - 10) + 'px';
-
-        }else if(first_left < 0){
+        if(first_left < 0){
             for (var i = 0; i < list_platform.length; i++){
                 var platform = document.getElementById(list_platform[i][0])
                 var cur_platform_left = parseInt(platform.style.left) || 0;
                 platform.style.left = (cur_platform_left + 10) + 'px';
             }
+        }else if(cur_d_robot_left > 20){
+            d_robot.style.left = (cur_d_robot_left - 10) + 'px';
+
         }
 
 
@@ -777,8 +832,15 @@ function game(){
                       robot_rect.bottom < flor_reck.top ||
                       robot_rect.top > flor_reck.bottom)) {
 
-                      var top_rect = document.getElementById(list_platform[i][1][j]).getBoundingClientRect();
-                      document.getElementById('div_robot').style.top = top_rect.top - 200 + 'px';
+//                      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+//                      console.log('Поточне положення скролу:', scrollTop);
+//                      if(scrollTop == 0){
+                          window.scrollTo(0, 0);
+                          var top_rect = document.getElementById(list_platform[i][1][j]).getBoundingClientRect();
+                          document.getElementById('div_robot').style.top = top_rect.top - 199 + 'px';
+//                      }else{
+//                          window.scrollTo(0, 0);
+//                      }
 
                     skok_key = true;
                     grav = false;
@@ -837,7 +899,8 @@ document.addEventListener("keydown", function(event) {
             move_menu("d")
 
             if(k2){
-                list_coor.unshift(2);
+
+                skok_down()
                 k2 = false
             }
         }
@@ -1074,7 +1137,7 @@ function move_menu(nav){
 
                 game_element()
                 add_div_block(0, 0)
-                add_div_block(1200, 0)
+                add_div_block(2500, 0)
                 gameinterval = setInterval(game, 40)
 
 
