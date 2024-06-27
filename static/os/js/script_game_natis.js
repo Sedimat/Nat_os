@@ -175,7 +175,6 @@ list_element[2].src = '/media/g_natis/floor0.svg';
 var list_robot = [new Image(), new Image(), new Image(), new Image(), new Image(),
                     new Image(), new Image(), new Image(), new Image(), new Image()]
 
-
 list_robot[0].src = '/media/g_natis/natis_a0_1.svg';
 list_robot[1].src = '/media/g_natis/natis_a0_2.svg';
 list_robot[2].src = '/media/g_natis/natis_a0_3.svg';
@@ -189,6 +188,13 @@ var list_loc = [new Image(), new Image(), new Image(), new Image(), new Image(),
 
 list_loc[0].src = '/media/g_natis/loc1.svg';
 list_loc[1].src = '/media/g_natis/loc0.svg';
+
+
+
+var list_enemy2 = [new Image(), new Image(), new Image(), new Image(), new Image()]
+list_enemy2[0].src = '/media/g_natis/enemy2.svg';
+
+
 
 var txt_replay = ""
 var score_history = ""
@@ -560,9 +566,9 @@ function game_element(){
     var div_foot = document.createElement('div');
     div_foot.id = 'div_foot';
     div_foot.style.left = 5 + 'px';
-    div_foot.style.top = 130 + 'px';
+    div_foot.style.top = 140 + 'px';
     div_foot.style.width = 30 + 'px';
-    div_foot.style.height = 20 + 'px';
+    div_foot.style.height = 10 + 'px';
     div_foot.style.backgroundColor = 'red';
     div_foot.style.position = 'absolute';
     div_robot.appendChild(div_foot);
@@ -585,21 +591,37 @@ var list_platform = []
 
 var list_rect = []
 
-function add_div_block(l, t){
+var width_loc = 0
+var count_enemy = 0
 
-//    var list_gen = [[0, -235], [0, 678, 680, 0],  [1075, 305, 95, 0],[2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
-//
-//     [1240, 242, 370, 1],[1658, 242, 370, 1], [1438, 678, 380, 0], [1870, 679, 480, 0], [2130, 530, 480, 2],]
+function add_div_block(l, t, n_loc){
 
-     var list_gen = [[1, -490], [0, 730, 3000, 0], [0, 730, 3000, 0], [1000, 715, 790, 0], [1020, 700, 750, 0], [1040, 685, 710, 0],
-      [1060, 670, 670, 0], [1080, 655, 630, 0] , [1330, 520, 720, 0], [600, 258, 312, 0], [230, -105, 100, 0],  [385, -180, 100, 0],
+    var list_gen = [[0, -235, 2500, [[1500, 380], [1300, -400]]], [0, 678, 680, 0],  [1075, 305, 95, 0],[2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
+      [1240, 242, 370, 1],[1658, 242, 370, 1], [1438, 678, 380, 0], [1870, 679, 480, 0], [2130, 530, 480, 2],]
+
+    var list_gen1 = [[1, -490, 3000, [[1400, 410], [1450, -480]]], [0, 728, 3000, 0], [0, 730, 3000, 0], [1000, 715, 790, 0], [1020, 700, 750, 0], [1040, 685, 710, 0],
+      [1060, 670, 670, 0], [1080, 655, 630, 0] , [1330, 520, 720, 0], [600, 258, 312, 0], [230, -85, 100, 0],  [385, -180, 100, 0],
       [570, -228, 460, 0], [1120, -330, 170, 0], [1425, -395, 525, 0], [2142, -431, 400, 0], [800, 450, 0, 2], [180, 100, 0, 1],
       [2340, 490, 245, -1], [2980, 635, 100, -1], [2258, 241, 450, 0], [2335, 470, 260, 0], [2435, 12, 220, 0], [2670, 115, 260, 0],
       [2680, 605, 50, 0], [2665, 590, 50, 0], [2650, 575, 50, 0], [2635, 560, 50, 0], [2620, 545, 50, 0],[2605, 530, 50, 0],
       [2590, 515, 50, 0], [2575, 500, 50, 0], [2560, 485, 50, 0], [2715, 620, 290, 0],]
 
+
+   var list_location = [list_gen, list_gen1]
+
+   if(n_loc == -1){
+       var rand_list_loc = list_location[Math.floor(Math.random() * list_location.length)];
+   }else if(n_loc == 0){
+       var rand_list_loc = list_location[0];
+   }else if(n_loc == 1){
+       var rand_list_loc = list_location[1];
+   }
+
     var list_pl = []
     var list_wall = []
+    var list_enemy_b = []
+
+    width_loc = rand_list_loc[0][2]
 
     var div_blok = document.getElementById('div_blok')
 
@@ -629,33 +651,33 @@ function add_div_block(l, t){
     }
 
     var img_floor1 = document.createElement('img');
-    img_floor1.setAttribute('src', list_loc[list_gen[0][0]].src);
+    img_floor1.setAttribute('src', list_loc[rand_list_loc[0][0]].src);
     img_floor1.id = 'loc_' + r_floor;
     img_floor1.style.left = 0 + 'px';
-    img_floor1.style.top = list_gen[0][1] + 'px';
-    img_floor1.style.width = 3000 + 'px';
+    img_floor1.style.top = rand_list_loc[0][1] + 'px';
+    img_floor1.style.width = rand_list_loc[0][2] + 'px';
     img_floor1.style.position = 'absolute';
     div_blok1.appendChild(img_floor1);
 
 
-//    var r_floor = '';
-//    for (let i = 0; i < 5; i++) {
-//        let randomCharCode = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
-//        r_floor += String.fromCharCode(randomCharCode);
-//    }
-//    list_pl.push('img_' + r_floor)
-//
-//    var img_floor1 = document.createElement('img');
-//    img_floor1.setAttribute('src', list_element[2].src);
-//    img_floor1.id = 'img_' + r_floor;
-//    img_floor1.style.left = 0 + 'px';
-//    img_floor1.style.top = 718 + 'px';
-//    img_floor1.style.width = 1200 + 'px';
-//    img_floor1.style.position = 'absolute';
-//    div_blok1.appendChild(img_floor1);
+    // додає ворога 1
+    for (var j = 0; j < rand_list_loc[0][3].length; j++) {
+        count_enemy++
+        var r_pos_e = Math.floor(Math.random() * 40);
+//        var r_pos_e = 0
+        list_enemy_b.push(['enemy_' + count_enemy, r_pos_e, true])
 
+        var img_floor1 = document.createElement('img');
+        img_floor1.setAttribute('src', list_enemy2[0].src);
+        img_floor1.id = 'enemy_' + count_enemy;
+        img_floor1.style.left = rand_list_loc[0][3][j][0] + (r_pos_e * 10) + 'px';
+        img_floor1.style.top = rand_list_loc[0][3][j][1] + 'px';
+        img_floor1.style.width = 100 + 'px';
+        img_floor1.style.position = 'absolute';
+        div_blok1.appendChild(img_floor1);
+    }
 
-    for (var j = 1; j < list_gen.length; j++) {
+    for (var j = 1; j < rand_list_loc.length; j++) {
 
         var r_plat0 = '';
         for (let i = 0; i < 5; i++) {
@@ -664,52 +686,52 @@ function add_div_block(l, t){
         }
 
 
-        if(list_gen[j][3] == 0){
+        if(rand_list_loc[j][3] == 0){
             list_pl.push('div_p_'+ r_plat0)
 
             var div_foot = document.createElement('div');
             div_foot.id = 'div_p_'+ r_plat0;
-            div_foot.style.left = list_gen[j][0] + 'px';
-            div_foot.style.top = list_gen[j][1] + 'px';
-            div_foot.style.width = list_gen[j][2] + 'px';
-            div_foot.style.height = 13 + 'px';
-            div_foot.style.backgroundColor = 'red';
+            div_foot.style.left = rand_list_loc[j][0] + 'px';
+            div_foot.style.top = rand_list_loc[j][1] + 'px';
+            div_foot.style.width = rand_list_loc[j][2] + 'px';
+            div_foot.style.height = 20 + 'px';
+//            div_foot.style.backgroundColor = 'red';
             div_foot.style.position = 'absolute';
             div_blok1.appendChild(div_foot);
 
-        }else if(list_gen[j][3] >= 0){
+        }else if(rand_list_loc[j][3] >= 0){
 
             list_pl.push('div_p_'+ r_plat0)
 
             var div_foot = document.createElement('div');
             div_foot.id = 'div_p_'+ r_plat0;
-            div_foot.style.left = list_gen[j][0] + 'px';
-            div_foot.style.top = list_gen[j][1] + 'px';
+            div_foot.style.left = rand_list_loc[j][0] + 'px';
+            div_foot.style.top = rand_list_loc[j][1] + 'px';
             div_foot.style.width = 380 + 'px';
-            div_foot.style.height = 10 + 'px';
+            div_foot.style.height = 20 + 'px';
             div_foot.style.backgroundColor = 'red';
             div_foot.style.position = 'absolute';
             div_blok1.appendChild(div_foot);
 
             var img_platform = document.createElement('img');
-            img_platform.setAttribute('src', list_element[list_gen[j][3]].src);
+            img_platform.setAttribute('src', list_element[rand_list_loc[j][3]].src);
             img_platform.id = 'plat_' + r_plat0;
-            img_platform.style.left = list_gen[j][0] + 'px';
-            img_platform.style.top = list_gen[j][1] + 'px';
+            img_platform.style.left = rand_list_loc[j][0] + 'px';
+            img_platform.style.top = rand_list_loc[j][1] + 'px';
             img_platform.style.width = 380 + 'px';
             img_platform.style.position = 'absolute';
             div_blok1.appendChild(img_platform);
 
-        }else if(list_gen[j][3] == -1){
+        }else if(rand_list_loc[j][3] == -1){
 
             list_wall.push('wall_'+ r_plat0)
 
             var div_foot = document.createElement('div');
             div_foot.id = 'wall_'+ r_plat0;
-            div_foot.style.left = list_gen[j][0] + 'px';
-            div_foot.style.top = list_gen[j][1] + 'px';
+            div_foot.style.left = rand_list_loc[j][0] + 'px';
+            div_foot.style.top = rand_list_loc[j][1] + 'px';
             div_foot.style.width = 20 + 'px';
-            div_foot.style.height = list_gen[j][2] + 'px';
+            div_foot.style.height = rand_list_loc[j][2] + 'px';
             div_foot.style.backgroundColor = 'red';
             div_foot.style.position = 'absolute';
             div_blok1.appendChild(div_foot);
@@ -718,7 +740,7 @@ function add_div_block(l, t){
 
     var txt = 'div_' + r_word_div
 
-    list_platform.push([txt, list_pl, list_wall])
+    list_platform.push([txt, list_pl, list_wall, list_enemy_b])
 
 }
 
@@ -745,11 +767,11 @@ function skok(){
                 for (var j = 0; j < list_platform.length; j++){
                     var platform = document.getElementById(list_platform[j][0])
                     var cur_platform_top = parseInt(platform.style.top) || 0;
-                    platform.style.top = (cur_platform_top + 23) + 'px';
+                    platform.style.top = (cur_platform_top + 20) + 'px';
                 }
 
             }else{
-                robot.style.top = (cur_r_top - 23) + 'px';
+                robot.style.top = (cur_r_top - 20) + 'px';
             }
 
             if(i == 9){
@@ -779,6 +801,52 @@ function skok_down(){
 //    }
 }
 
+function push_r(pos){
+    r_left = false
+    r_right = false
+    for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+
+            var robot = document.getElementById('div_robot')
+            var cur_r_left = parseInt(robot.style.left) || 0;
+
+            // відкидує гравця роботом
+            if(pos > 0){
+
+                if(cur_r_left < 500){
+                    robot.style.left = (cur_r_left + pos) + 'px';
+
+                }else{
+                    for (var j = 0; j < list_platform.length; j++){
+                        var platform = document.getElementById(list_platform[j][0])
+                        var cur_platform_left = parseInt(platform.style.left) || 0;
+                        platform.style.left = (cur_platform_left - pos) + 'px';
+                    }
+                }
+            }else{
+                var first_left = parseInt(document.getElementById(list_platform[0][0]).style.left) || 0;
+
+                if(first_left < 0){
+                    for (var i1 = 0; i1 < list_platform.length; i1++){
+                        var platform = document.getElementById(list_platform[i1][0])
+                        var cur_platform_left = parseInt(platform.style.left) || 0;
+                        platform.style.left = (cur_platform_left - pos) + 'px';
+                    }
+
+                }else if(cur_r_left > 20){
+                    robot.style.left = (cur_r_left - pos) + 'px';
+                }
+            }
+
+            if(i == 9){
+                r_left = true
+                r_right = true
+            }
+
+        }, i * 10);
+    }
+}
+
 var grav = true
 
 var r_right = true
@@ -805,8 +873,8 @@ function game(){
 
         if(cur_d_robot_left < 500){
             d_robot.style.left = (cur_d_robot_left + move_robot) + 'px';
-        }else{
 
+        }else{
             for (var i = 0; i < list_platform.length; i++){
                 var platform = document.getElementById(list_platform[i][0])
                 var cur_platform_left = parseInt(platform.style.left) || 0;
@@ -822,8 +890,6 @@ function game(){
                     robot_rect.top > flor_reck.bottom)) {
 
                     r_right = false
-                    console.log("Право")
-//                    break outerLoop; // Виходимо з обох циклів
                     }
                 }
             }
@@ -838,7 +904,7 @@ function game(){
             var plat = document.getElementById(list_platform[0][0])
             cur_first_left = parseInt(plat.style.left) || 0;
             cur_first_top = parseInt(plat.style.top) || 0;
-            add_div_block(cur_first_left + 3000, cur_first_top)
+            add_div_block(cur_first_left + width_loc, cur_first_top, -1)
         }
 
 
@@ -884,6 +950,7 @@ function game(){
             for (var i = 0; i < list_platform.length; i++){
                 for (var j = 0; j < list_platform[i][2].length; j++) {
 
+
                 var flor_reck = document.getElementById(list_platform[i][2][j]).getBoundingClientRect();
 
                 if (!(robot_rect.right < flor_reck.left ||
@@ -899,9 +966,65 @@ function game(){
         }
     }
 
+
+    // перебирає масив з ворогами
+    for (var i = 0; i < list_platform.length; i++) {
+
+        for (var j = 0; j < list_platform[i][3].length; j++) {
+
+            var numb = list_platform[i][3][j][1]
+            var key = list_platform[i][3][j][2]
+
+            if(numb == 40){
+                list_platform[i][3][j][2] = false
+            }else if(numb == 1){
+                list_platform[i][3][j][2] = true
+            }
+
+            var enemy = document.getElementById(list_platform[i][3][j][0])
+            var cur_enemy_left = parseInt(enemy.style.left) || 0;
+
+            if(key){
+                list_platform[i][3][j][1] = numb + 1
+                enemy.style.left = (cur_enemy_left + 10) + 'px';
+                enemy.style.transform = 'scaleX(-1)';
+
+            }else{
+                list_platform[i][3][j][1] = numb - 1
+                enemy.style.left = (cur_enemy_left - 10) + 'px';
+                enemy.style.transform = 'scaleX(1)';
+            }
+
+            var enemy_rect = enemy.getBoundingClientRect();
+
+            var div_robot = document.getElementById('div_robot')
+
+            var div_robot_rect = div_robot.getBoundingClientRect();
+
+            if (!(div_robot_rect.right < enemy_rect.left ||
+                div_robot_rect.left > enemy_rect.right ||
+                div_robot_rect.bottom < enemy_rect.top ||
+                div_robot_rect.top > enemy_rect.bottom)) {
+
+                if(div_robot_rect.left > enemy_rect.right - 20){
+                    push_r(20)
+                }
+                if(div_robot_rect.right < enemy_rect.left + 20){
+                    push_r(-20)
+                }
+
+            }
+
+
+        }
+
+    }
+
+    // Гравітація та колізія платформ і гравця
     if(kolisiya_key){
         grav = true
-        outerLoop: for (var i = 0; i < list_platform.length; i++) {
+outerLoop: for (var i = 0; i < list_platform.length; i++) {
+
             for (var j = 0; j < list_platform[i][1].length; j++) {
                 var flor_reck = document.getElementById(list_platform[i][1][j]).getBoundingClientRect();
                 if (!(robot_rect.right < flor_reck.left ||
@@ -918,6 +1041,7 @@ function game(){
 //                    break outerLoop; // Виходимо з обох циклів
                 }
             }
+
         }
 
         if(grav){
@@ -1207,8 +1331,8 @@ function move_menu(nav){
 
 
                 game_element()
-                add_div_block(0, 0)
-                add_div_block(3000, 0)
+                add_div_block(0, 0, 1)
+                add_div_block(width_loc, 0, 0)
                 gameinterval = setInterval(game, 40)
 
 
