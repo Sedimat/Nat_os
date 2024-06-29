@@ -188,11 +188,20 @@ var list_loc = [new Image(), new Image(), new Image(), new Image(), new Image(),
 
 list_loc[0].src = '/media/g_natis/loc1.svg';
 list_loc[1].src = '/media/g_natis/loc0.svg';
+list_loc[2].src = '/media/g_natis/loc2.svg';
 
 
+var list_enemy1 = [new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_enemy1[0].src = '/media/g_natis/enemy1_1.svg';
+list_enemy1[1].src = '/media/g_natis/enemy1_2.svg';
+list_enemy1[2].src = '/media/g_natis/enemy1_3.svg';
+list_enemy1[3].src = '/media/g_natis/enemy1_4.svg';
+list_enemy1[4].src = '/media/g_natis/enemy1_5.svg';
 
 var list_enemy2 = [new Image(), new Image(), new Image(), new Image(), new Image()]
 list_enemy2[0].src = '/media/g_natis/enemy2.svg';
+
 
 
 
@@ -592,22 +601,26 @@ var list_platform = []
 var list_rect = []
 
 var width_loc = 0
+
+var cor_deel = 0
 var count_enemy = 0
 
 function add_div_block(l, t, n_loc){
 
-    var list_gen = [[0, -235, 2500, [[1500, 380], [1300, -400]]], [0, 678, 680, 0],  [1075, 305, 95, 0],[2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
+    var list_gen = [[0, -235, 2500, [[1400, 130], [1500, 580]]], [0, 678, 680, 0],  [1075, 305, 95, 0],[2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
       [1240, 242, 370, 1],[1658, 242, 370, 1], [1438, 678, 380, 0], [1870, 679, 480, 0], [2130, 530, 480, 2],]
 
     var list_gen1 = [[1, -490, 3000, [[1400, 410], [1450, -480]]], [0, 728, 3000, 0], [0, 730, 3000, 0], [1000, 715, 790, 0], [1020, 700, 750, 0], [1040, 685, 710, 0],
       [1060, 670, 670, 0], [1080, 655, 630, 0] , [1330, 520, 720, 0], [600, 258, 312, 0], [230, -85, 100, 0],  [385, -180, 100, 0],
-      [570, -228, 460, 0], [1120, -330, 170, 0], [1425, -395, 525, 0], [2142, -431, 400, 0], [800, 450, 0, 2], [180, 100, 0, 1],
+      [570, -223, 460, 0], [1120, -330, 170, 0], [1425, -395, 525, 0], [2142, -431, 400, 0], [800, 450, 0, 2], [180, 100, 0, 1],
       [2340, 490, 245, -1], [2980, 635, 100, -1], [2258, 241, 450, 0], [2335, 470, 260, 0], [2435, 12, 220, 0], [2670, 115, 260, 0],
       [2680, 605, 50, 0], [2665, 590, 50, 0], [2650, 575, 50, 0], [2635, 560, 50, 0], [2620, 545, 50, 0],[2605, 530, 50, 0],
       [2590, 515, 50, 0], [2575, 500, 50, 0], [2560, 485, 50, 0], [2715, 620, 290, 0],]
 
+    var list_gen2 = [[2, -1231, 3416, []], [0, 728, 3416, 0]]
 
-   var list_location = [list_gen, list_gen1]
+
+   var list_location = [list_gen, list_gen1, list_gen2]
 
    if(n_loc == -1){
        var rand_list_loc = list_location[Math.floor(Math.random() * list_location.length)];
@@ -615,13 +628,24 @@ function add_div_block(l, t, n_loc){
        var rand_list_loc = list_location[0];
    }else if(n_loc == 1){
        var rand_list_loc = list_location[1];
+   }else if(n_loc == 2){
+       var rand_list_loc = list_location[2];
    }
 
     var list_pl = []
     var list_wall = []
     var list_enemy_b = []
 
+    if(cor_deel < rand_list_loc[0][2]){
+        cor_deel = rand_list_loc[0][2]
+
+    }
+
+    console.log(cor_deel)
+
     width_loc = rand_list_loc[0][2]
+
+
 
     var div_blok = document.getElementById('div_blok')
 
@@ -665,10 +689,10 @@ function add_div_block(l, t, n_loc){
         count_enemy++
         var r_pos_e = Math.floor(Math.random() * 40);
 //        var r_pos_e = 0
-        list_enemy_b.push(['enemy_' + count_enemy, r_pos_e, true])
+        list_enemy_b.push(['enemy_' + count_enemy, r_pos_e, true, 0])
 
         var img_floor1 = document.createElement('img');
-        img_floor1.setAttribute('src', list_enemy2[0].src);
+        img_floor1.setAttribute('src', list_enemy1[0].src);
         img_floor1.id = 'enemy_' + count_enemy;
         img_floor1.style.left = rand_list_loc[0][3][j][0] + (r_pos_e * 10) + 'px';
         img_floor1.style.top = rand_list_loc[0][3][j][1] + 'px';
@@ -695,7 +719,7 @@ function add_div_block(l, t, n_loc){
             div_foot.style.top = rand_list_loc[j][1] + 'px';
             div_foot.style.width = rand_list_loc[j][2] + 'px';
             div_foot.style.height = 20 + 'px';
-//            div_foot.style.backgroundColor = 'red';
+            div_foot.style.backgroundColor = 'red';
             div_foot.style.position = 'absolute';
             div_blok1.appendChild(div_foot);
 
@@ -897,7 +921,7 @@ function game(){
         var div_first = document.getElementById(list_platform[0][0])
         var cur_div_first_left = parseInt(div_first.style.left) || 0;
 
-        if(cur_div_first_left < -3000){
+        if(cur_div_first_left < -cor_deel){
             document.getElementById(list_platform[0][0]).remove()
             list_platform.splice(0, 1);
 
@@ -924,7 +948,7 @@ function game(){
 
         var first_left = parseInt(document.getElementById(list_platform[0][0]).style.left) || 0;
 
-        if(first_left < 0){
+        if(first_left < -10){
             for (var i = 0; i < list_platform.length; i++){
                 var platform = document.getElementById(list_platform[i][0])
                 var cur_platform_left = parseInt(platform.style.left) || 0;
@@ -974,6 +998,7 @@ function game(){
 
             var numb = list_platform[i][3][j][1]
             var key = list_platform[i][3][j][2]
+            var anim_e = list_platform[i][3][j][3]
 
             if(numb == 40){
                 list_platform[i][3][j][2] = false
@@ -983,6 +1008,15 @@ function game(){
 
             var enemy = document.getElementById(list_platform[i][3][j][0])
             var cur_enemy_left = parseInt(enemy.style.left) || 0;
+
+            if(anim_e == 5){
+                anim_e = 0
+            }
+
+            document.getElementById(list_platform[i][3][j][0]).setAttribute('src', list_enemy1[anim_e].src);
+
+
+            list_platform[i][3][j][3] = anim_e + 1
 
             if(key){
                 list_platform[i][3][j][1] = numb + 1
@@ -1007,10 +1041,10 @@ function game(){
                 div_robot_rect.top > enemy_rect.bottom)) {
 
                 if(div_robot_rect.left > enemy_rect.right - 20){
-                    push_r(20)
+                    push_r(25)
                 }
                 if(div_robot_rect.right < enemy_rect.left + 20){
-                    push_r(-20)
+                    push_r(-25)
                 }
 
             }
@@ -1331,8 +1365,8 @@ function move_menu(nav){
 
 
                 game_element()
-                add_div_block(0, 0, 1)
-                add_div_block(width_loc, 0, 0)
+                add_div_block(0, 0, 2)
+                add_div_block(width_loc, 0, 1)
                 gameinterval = setInterval(game, 40)
 
 
