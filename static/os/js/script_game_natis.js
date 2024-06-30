@@ -203,6 +203,16 @@ var list_enemy2 = [new Image(), new Image(), new Image(), new Image(), new Image
 list_enemy2[0].src = '/media/g_natis/enemy2.svg';
 
 
+var list_vitryak = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
+
+list_vitryak[0].src = '/media/g_natis/1.svg';
+list_vitryak[1].src = '/media/g_natis/2.svg';
+list_vitryak[2].src = '/media/g_natis/3.svg';
+list_vitryak[3].src = '/media/g_natis/4.svg';
+list_vitryak[4].src = '/media/g_natis/5.svg';
+list_vitryak[5].src = '/media/g_natis/6.svg';
+list_vitryak[6].src = '/media/g_natis/7.svg';
+
 
 
 var txt_replay = ""
@@ -604,20 +614,31 @@ var width_loc = 0
 
 var cor_deel = 0
 var count_enemy = 0
+var count_anim = 0
 
 function add_div_block(l, t, n_loc){
 
-    var list_gen = [[0, -235, 2500, [[1400, 130], [1500, 580]]], [0, 678, 680, 0],  [1075, 305, 95, 0],[2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
+
+    // масив з координатами
+
+    // 0 елемент 0 номер зображеня з списку . 1 його задана висота . 2 його ширина 3. масив з ворогами 4. масив анімацій
+
+    var list_gen = [[0, -235, 2500, [[1400, 130], [1500, 580]], []], [0, 678, 680, 0],  [1075, 305, 95, 0],
+      [2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
       [1240, 242, 370, 1],[1658, 242, 370, 1], [1438, 678, 380, 0], [1870, 679, 480, 0], [2130, 530, 480, 2],]
 
-    var list_gen1 = [[1, -490, 3000, [[1400, 410], [1450, -480]]], [0, 728, 3000, 0], [0, 730, 3000, 0], [1000, 715, 790, 0], [1020, 700, 750, 0], [1040, 685, 710, 0],
+    var list_gen1 = [[1, -490, 3000, [[1400, 410], [1450, -480]], []], [0, 728, 3000, 0], [0, 730, 3000, 0], [1000, 715, 790, 0], [1020, 700, 750, 0], [1040, 685, 710, 0],
       [1060, 670, 670, 0], [1080, 655, 630, 0] , [1330, 520, 720, 0], [600, 258, 312, 0], [230, -85, 100, 0],  [385, -180, 100, 0],
       [570, -223, 460, 0], [1120, -330, 170, 0], [1425, -395, 525, 0], [2142, -431, 400, 0], [800, 450, 0, 2], [180, 100, 0, 1],
       [2340, 490, 245, -1], [2980, 635, 100, -1], [2258, 241, 450, 0], [2335, 470, 260, 0], [2435, 12, 220, 0], [2670, 115, 260, 0],
       [2680, 605, 50, 0], [2665, 590, 50, 0], [2650, 575, 50, 0], [2635, 560, 50, 0], [2620, 545, 50, 0],[2605, 530, 50, 0],
       [2590, 515, 50, 0], [2575, 500, 50, 0], [2560, 485, 50, 0], [2715, 620, 290, 0],]
 
-    var list_gen2 = [[2, -1231, 3416, []], [0, 728, 3416, 0]]
+    var list_gen2 = [ [2, -1231, 3416, [], [[880, -980, 6]] ], [600, -1220, 0, 1], [600, -1070, 0, 1], [600, -920, 0, 1], [600, -770, 0, 1], [600, -620, 0, 1],
+
+    [600, -470, 0, 1], [700, -320, 0, 1], [600, -170, 0, 1], [500, -20, 0, 1], [400, 130, 0, 1], [300, 280, 0, 1], [200, 430, 0, 1], [100, 580, 0, 1],
+
+    [0, 728, 3416, 0]]
 
 
    var list_location = [list_gen, list_gen1, list_gen2]
@@ -635,17 +656,13 @@ function add_div_block(l, t, n_loc){
     var list_pl = []
     var list_wall = []
     var list_enemy_b = []
+    var list_anim = []
 
     if(cor_deel < rand_list_loc[0][2]){
         cor_deel = rand_list_loc[0][2]
-
     }
 
-    console.log(cor_deel)
-
     width_loc = rand_list_loc[0][2]
-
-
 
     var div_blok = document.getElementById('div_blok')
 
@@ -699,6 +716,27 @@ function add_div_block(l, t, n_loc){
         img_floor1.style.width = 100 + 'px';
         img_floor1.style.position = 'absolute';
         div_blok1.appendChild(img_floor1);
+    }
+
+    // додає анімації
+    for (var j = 0; j < rand_list_loc[0][4].length; j++) {
+        count_anim++
+
+        var r_pos_e = Math.floor(Math.random() * 40);
+
+        list_anim.push(['vitr_'+ count_anim , 0, rand_list_loc[0][4][j][2]])
+
+        console.log(list_anim)
+
+        var img_floor1 = document.createElement('img');
+        img_floor1.setAttribute('src', list_vitryak[0].src);
+        img_floor1.id = 'vitr_'+ count_anim;
+        img_floor1.style.left = rand_list_loc[0][4][j][0] + 'px';
+        img_floor1.style.top = rand_list_loc[0][4][j][1] + 'px';
+        img_floor1.style.width = 644 + 'px';
+        img_floor1.style.position = 'absolute';
+        div_blok1.appendChild(img_floor1);
+
     }
 
     for (var j = 1; j < rand_list_loc.length; j++) {
@@ -764,7 +802,9 @@ function add_div_block(l, t, n_loc){
 
     var txt = 'div_' + r_word_div
 
-    list_platform.push([txt, list_pl, list_wall, list_enemy_b])
+    list_platform.push([txt, list_pl, list_wall, list_enemy_b, list_anim])
+
+    console.log(list_platform)
 
 }
 
@@ -875,6 +915,8 @@ var grav = true
 
 var r_right = true
 var r_left = true
+
+var anim_key = 0
 
 
 function game(){
@@ -988,8 +1030,13 @@ function game(){
             }
 
         }
+
     }
 
+    anim_key++
+        if(anim_key == 3){
+            anim_key = 0
+        }
 
     // перебирає масив з ворогами
     for (var i = 0; i < list_platform.length; i++) {
@@ -1051,6 +1098,29 @@ function game(){
 
 
         }
+//        if(anim_key == 3){
+//            anim_key = 0
+            console.log(list_platform[i][4])
+            for (var j = 0; j < list_platform[i][4].length; j++) {
+
+
+                if("vitr" == list_platform[i][4][j][0].substring(0, 4) && anim_key == 1){
+
+                    var anim_v = list_platform[i][4][j][1]
+
+                    if(anim_v > list_platform[i][4][j][2]){
+                        list_platform[i][4][j][1] = 0
+                        anim_v = 0
+                    }
+
+                    document.getElementById(list_platform[i][4][j][0]).setAttribute('src', list_vitryak[anim_v].src);
+
+                    list_platform[i][4][j][1] = anim_v + 1
+                }
+
+
+            }
+//        }
 
     }
 
@@ -1366,7 +1436,7 @@ function move_menu(nav){
 
                 game_element()
                 add_div_block(0, 0, 2)
-                add_div_block(width_loc, 0, 1)
+                add_div_block(width_loc, 0, 0)
                 gameinterval = setInterval(game, 40)
 
 
