@@ -562,7 +562,7 @@ function game_element(){
 //    s_game.style.minWidth = '500px';
 //    s_game.style.position = 'absolute';
 //    div_game_element.appendChild(s_game);
-
+//
 //    var img_fon = document.createElement('img');
 //    img_fon.setAttribute('src', list_element[0].src);
 //    img_fon.id = 'img_fon';
@@ -623,22 +623,36 @@ function add_div_block(l, t, n_loc){
 
     // 0 елемент 0 номер зображеня з списку . 1 його задана висота . 2 його ширина 3. масив з ворогами 4. масив анімацій
 
-    var list_gen = [[0, -235, 2500, [[1400, 130], [1500, 580]], []], [0, 678, 680, 0],  [1075, 305, 95, 0],
-      [2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [810, 76, 370, 1],
+    var list_gen = [[0, -235, 2500, [[1400, 145], [1500, 580]], []], [0, 728, 680, 0],  [1075, 305, 95, 0],
+      [2, 475, 0, 2], [2, 75, 0, 2], [419, 275, 0, 1], [419, 605, 0, 1], [810, 76, 370, 1],
       [1240, 242, 370, 1],[1658, 242, 370, 1], [1438, 678, 380, 0], [1870, 679, 480, 0], [2130, 530, 480, 2],]
 
-    var list_gen1 = [[1, -490, 3000, [[1400, 410], [1450, -480]], []], [0, 728, 3000, 0], [0, 730, 3000, 0], [1000, 715, 790, 0], [1020, 700, 750, 0], [1040, 685, 710, 0],
+    var list_gen1 = [[1, -490, 3000, [[1400, 410], [1450, -480]], []], [0, 728, 3000, 0], [1000, 715, 790, 0], [1020, 700, 750, 0], [1040, 685, 710, 0],
       [1060, 670, 670, 0], [1080, 655, 630, 0] , [1330, 520, 720, 0], [600, 258, 312, 0], [230, -85, 100, 0],  [385, -180, 100, 0],
       [570, -223, 460, 0], [1120, -330, 170, 0], [1425, -395, 525, 0], [2142, -431, 400, 0], [800, 450, 0, 2], [180, 100, 0, 1],
       [2340, 490, 245, -1], [2980, 635, 100, -1], [2258, 241, 450, 0], [2335, 470, 260, 0], [2435, 12, 220, 0], [2670, 115, 260, 0],
       [2680, 605, 50, 0], [2665, 590, 50, 0], [2650, 575, 50, 0], [2635, 560, 50, 0], [2620, 545, 50, 0],[2605, 530, 50, 0],
       [2590, 515, 50, 0], [2575, 500, 50, 0], [2560, 485, 50, 0], [2715, 620, 290, 0],]
 
-    var list_gen2 = [ [2, -1231, 3416, [], [[880, -980, 6]] ], [600, -1220, 0, 1], [600, -1070, 0, 1], [600, -920, 0, 1], [600, -770, 0, 1], [600, -620, 0, 1],
+    var list_gen2 = [ [2, -1231, 3416, [[1000, -410],[2200, -1320]], [[880, -980, 6]] ], [0, 728, 3416, 0], [460, 580, 110, 0], [475, 420, 100, 0], [470, 270, 250, 0],
+     [580, 160, 110, 0], [875, 130, 285, 0], [957, 597, 120, 0], [950, 430, 120, 0], [940, 270, 110, 0], [936, -26, 118, 0], [920, -214, 150, 0],
+     [1065, -314, 275, 0], [1532, -425, 315, 0], [1320, -85, 211, 0], [1320, 324, 125, 0], [1300, 485, 120, 0], [1300, 624, 120, 0],
+     [1520, 195, 120, 0], [1630, 75, 160, 0],
 
-    [600, -470, 0, 1], [700, -320, 0, 1], [600, -170, 0, 1], [500, -20, 0, 1], [400, 130, 0, 1], [300, 280, 0, 1], [200, 430, 0, 1], [100, 580, 0, 1],
 
-    [0, 728, 3416, 0]]
+     [2030, 708, 720, 0], [2050, 688, 680, 0], [2090, 668, 600, 0], [2110, 648, 560, 0], [2150, 628, 480, 0],
+
+     [2130, 480, 75, 0], [2130, 345, 75, 0], [2070, 162, 130, 0], [2130, -7, 75, 0], [2130, -142, 75, 0], [2130, -258, 75, 0],
+     [1989, -420, 205, 0], [2130, -560, 75, 0], [2130, -700, 75, 0], [2080, -870, 140, 0],  [2130, -1000, 75, 0], [2130, -1135, 75, 0],
+     [2200, -1225, 430, 0], [2600, 140, 160, 0], [2600, -360, 120, 0],
+
+
+     [570, 290, 440, -1], [700, 290, 440, -1], [1070, 150, 580, -1], [1150, -170, 300, -1], [1070, -300, 140, -1], [1300, 340, 390, -1],
+     [1320, -300, 645, -1],
+     [1630, 90, 640, -1], [1769, 90, 640, -1],
+     [2200, -1210, 1840, -1], [2610, -1210, 480, -1], [2590, -740, 470, -1], [2610, -290, 370, -1], [2580, 70, 310, -1],  [2610, 380, 250, -1],
+
+     ]
 
 
    var list_location = [list_gen, list_gen1, list_gen2]
@@ -726,8 +740,6 @@ function add_div_block(l, t, n_loc){
 
         list_anim.push(['vitr_'+ count_anim , 0, rand_list_loc[0][4][j][2]])
 
-        console.log(list_anim)
-
         var img_floor1 = document.createElement('img');
         img_floor1.setAttribute('src', list_vitryak[0].src);
         img_floor1.id = 'vitr_'+ count_anim;
@@ -747,7 +759,7 @@ function add_div_block(l, t, n_loc){
             r_plat0 += String.fromCharCode(randomCharCode);
         }
 
-
+        // горизонтальна платформа
         if(rand_list_loc[j][3] == 0){
             list_pl.push('div_p_'+ r_plat0)
 
@@ -757,7 +769,7 @@ function add_div_block(l, t, n_loc){
             div_foot.style.top = rand_list_loc[j][1] + 'px';
             div_foot.style.width = rand_list_loc[j][2] + 'px';
             div_foot.style.height = 20 + 'px';
-            div_foot.style.backgroundColor = 'red';
+//            div_foot.style.backgroundColor = 'red';
             div_foot.style.position = 'absolute';
             div_blok1.appendChild(div_foot);
 
@@ -771,7 +783,7 @@ function add_div_block(l, t, n_loc){
             div_foot.style.top = rand_list_loc[j][1] + 'px';
             div_foot.style.width = 380 + 'px';
             div_foot.style.height = 20 + 'px';
-            div_foot.style.backgroundColor = 'red';
+//            div_foot.style.backgroundColor = 'red';
             div_foot.style.position = 'absolute';
             div_blok1.appendChild(div_foot);
 
@@ -784,6 +796,7 @@ function add_div_block(l, t, n_loc){
             img_platform.style.position = 'absolute';
             div_blok1.appendChild(img_platform);
 
+        // вертикальна платформа
         }else if(rand_list_loc[j][3] == -1){
 
             list_wall.push('wall_'+ r_plat0)
@@ -794,7 +807,7 @@ function add_div_block(l, t, n_loc){
             div_foot.style.top = rand_list_loc[j][1] + 'px';
             div_foot.style.width = 20 + 'px';
             div_foot.style.height = rand_list_loc[j][2] + 'px';
-            div_foot.style.backgroundColor = 'red';
+//            div_foot.style.backgroundColor = 'green';
             div_foot.style.position = 'absolute';
             div_blok1.appendChild(div_foot);
         }
@@ -804,13 +817,11 @@ function add_div_block(l, t, n_loc){
 
     list_platform.push([txt, list_pl, list_wall, list_enemy_b, list_anim])
 
-    console.log(list_platform)
-
 }
 
 var anim = 0
 
-var robot_s_t = 20
+var robot_s_t = 30
 
 var kolisiya_key = true
 
@@ -913,19 +924,44 @@ function push_r(pos){
 
 var grav = true
 
-var r_right = true
-var r_left = true
-
 var anim_key = 0
+
+var grav_time = 0
 
 
 function game(){
 
     var robot_rect = document.getElementById('div_foot').getBoundingClientRect();
+    var div_robot_rect = document.getElementById('img_robot').getBoundingClientRect();
 
-    if(list_coor_l[0] == 4 && r_right){
+    var r_right = 0
+    var r_left = 0
 
-        r_left = true
+    for (var i = 0; i < list_platform.length; i++){
+         for (var j = 0; j < list_platform[i][2].length; j++) {
+             var flor_reck = document.getElementById(list_platform[i][2][j]).getBoundingClientRect();
+
+             // зупиняє коло стін
+             if (!(div_robot_rect.right < flor_reck.left ||
+                 div_robot_rect.left > flor_reck.right ||
+                 div_robot_rect.bottom < flor_reck.top ||
+                 div_robot_rect.top > flor_reck.bottom)) {
+
+                 if(div_robot_rect.right < flor_reck.left + 15){
+                    r_right++
+                 }
+                 if(div_robot_rect.left > flor_reck.right - 15){
+                    r_left++
+                 }
+
+             }
+         }
+    }
+
+
+    if(list_coor_l[0] == 4 && r_right == 0){
+
+
         anim++
         if(anim == 7){
             anim = 0
@@ -946,18 +982,6 @@ function game(){
                 var cur_platform_left = parseInt(platform.style.left) || 0;
                 platform.style.left = (cur_platform_left - move_robot) + 'px';
 
-                for (var j = 0; j < list_platform[i][2].length; j++) {
-
-                var flor_reck = document.getElementById(list_platform[i][2][j]).getBoundingClientRect();
-
-                if (!(robot_rect.right < flor_reck.left ||
-                    robot_rect.left > flor_reck.right ||
-                    robot_rect.bottom < flor_reck.top ||
-                    robot_rect.top > flor_reck.bottom)) {
-
-                    r_right = false
-                    }
-                }
             }
         }
         var div_first = document.getElementById(list_platform[0][0])
@@ -974,8 +998,7 @@ function game(){
         }
 
 
-    }else if(list_coor_l[0] == 3 && r_left){
-        r_right = true
+    }else if(list_coor_l[0] == 3 && r_left == 0){
 
         anim++
         if(anim == 7){
@@ -995,39 +1018,10 @@ function game(){
                 var platform = document.getElementById(list_platform[i][0])
                 var cur_platform_left = parseInt(platform.style.left) || 0;
                 platform.style.left = (cur_platform_left + move_robot) + 'px';
-
-                for (var j = 0; j < list_platform[i][2].length; j++) {
-
-                var flor_reck = document.getElementById(list_platform[i][2][j]).getBoundingClientRect();
-
-                if (!(robot_rect.right < flor_reck.left ||
-                    robot_rect.left > flor_reck.right ||
-                    robot_rect.bottom < flor_reck.top ||
-                    robot_rect.top > flor_reck.bottom)) {
-
-                    r_left = false
-                    }
-                }
             }
         }else if(cur_d_robot_left > 20){
 
             d_robot.style.left = (cur_d_robot_left - move_robot) + 'px';
-
-            for (var i = 0; i < list_platform.length; i++){
-                for (var j = 0; j < list_platform[i][2].length; j++) {
-
-
-                var flor_reck = document.getElementById(list_platform[i][2][j]).getBoundingClientRect();
-
-                if (!(robot_rect.right < flor_reck.left ||
-                    robot_rect.left > flor_reck.right ||
-                    robot_rect.bottom < flor_reck.top ||
-                    robot_rect.top > flor_reck.bottom)) {
-
-                    r_left = false
-                    }
-                }
-            }
 
         }
 
@@ -1087,10 +1081,11 @@ function game(){
                 div_robot_rect.bottom < enemy_rect.top ||
                 div_robot_rect.top > enemy_rect.bottom)) {
 
-                if(div_robot_rect.left > enemy_rect.right - 20){
+
+                if(div_robot_rect.left > enemy_rect.right - 15){
                     push_r(25)
                 }
-                if(div_robot_rect.right < enemy_rect.left + 20){
+                if(div_robot_rect.right < enemy_rect.left + 15){
                     push_r(-25)
                 }
 
@@ -1098,11 +1093,7 @@ function game(){
 
 
         }
-//        if(anim_key == 3){
-//            anim_key = 0
-            console.log(list_platform[i][4])
             for (var j = 0; j < list_platform[i][4].length; j++) {
-
 
                 if("vitr" == list_platform[i][4][j][0].substring(0, 4) && anim_key == 1){
 
@@ -1120,13 +1111,12 @@ function game(){
 
 
             }
-//        }
-
     }
 
     // Гравітація та колізія платформ і гравця
     if(kolisiya_key){
         grav = true
+
 outerLoop: for (var i = 0; i < list_platform.length; i++) {
 
             for (var j = 0; j < list_platform[i][1].length; j++) {
@@ -1136,9 +1126,21 @@ outerLoop: for (var i = 0; i < list_platform.length; i++) {
                       robot_rect.bottom < flor_reck.top ||
                       robot_rect.top > flor_reck.bottom)) {
 
+                      var robot = document.getElementById('div_robot')
+                      var cur_r_top = parseInt(robot.style.top) || 0;
+
                       window.scrollTo(0, 0);
+                      if(cur_r_top < 100){
+                          for (var g = 0; g < list_platform.length; g++){
+                              var platform = document.getElementById(list_platform[g][0])
+                              var cur_platform_top = parseInt(platform.style.top) || 0;
+                              platform.style.top = (cur_platform_top + 20) + 'px';
+                          }
+
+                      }
                       var top_rect = document.getElementById(list_platform[i][1][j]).getBoundingClientRect();
                       document.getElementById('div_robot').style.top = top_rect.top - 149 + 'px';
+                      grav_time = 0
 
                     skok_key = true;
                     grav = false;
@@ -1149,12 +1151,13 @@ outerLoop: for (var i = 0; i < list_platform.length; i++) {
         }
 
         if(grav){
+            grav_time++
             var first_top = parseInt(document.getElementById(list_platform[0][0]).style.top) || 0;
             if(first_top > 0){
                 for (var i = 0; i < list_platform.length; i++){
                     var platform = document.getElementById(list_platform[i][0])
                     var cur_platform_top = parseInt(platform.style.top) || 0;
-                    platform.style.top = (cur_platform_top - 20) + 'px';
+                    platform.style.top = (cur_platform_top - robot_s_t) + 'px';
                 }
             }
             else{
@@ -1164,6 +1167,8 @@ outerLoop: for (var i = 0; i < list_platform.length; i++) {
             }
         }
     }
+
+    console.log(grav_time)
 
 }
 
