@@ -86,6 +86,17 @@ body{
 
 }
 
+.hud1{
+    font-family: 'siemens_B', sans-serif;
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
+    left: 730px;
+    top: 680px;
+    position: absolute;
+
+}
+
 .control{
     margin: auto;
     width: 1000px;
