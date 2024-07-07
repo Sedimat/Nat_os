@@ -597,6 +597,9 @@ var cor_deel = 0
 var count_enemy = 0
 var count_anim = 0
 
+// буферна зміна
+var previousArray = null;
+
 function add_div_block(l, t, n_loc){
 
     // масив з координатами
@@ -651,7 +654,19 @@ function add_div_block(l, t, n_loc){
    var list_location = [list_gen, list_gen1, list_gen2, list_gen3]
 
    if(n_loc == -1){
-       var rand_list_loc = list_location[Math.floor(Math.random() * list_location.length)];
+
+        // Отримати новий випадковий масив, що не збігається з попереднім
+        var rand_list_loc;
+        do {
+            var r_numb_l = Math.floor(Math.random() * list_location.length)
+            rand_list_loc = list_location[r_numb_l];
+        } while (r_numb_l === previousArray);
+
+        // Зберегти новий вибраний масив як попередній для наступного виклику
+        previousArray = r_numb_l;
+
+   console.log(previousArray)
+
    }else if(n_loc == 0){
        var rand_list_loc = list_location[0];
    }else if(n_loc == 1){
@@ -1318,12 +1333,6 @@ document.addEventListener("keyup", function(event) {
         if (event.keyCode === 87 || event.keyCode === 38){
             k1 = true
 
-//            k1 = true
-//            for (var i = 0; i < list_coor.length; i++){
-//                if(list_coor[i] == 1){
-//                    list_coor.splice(i, 1);
-//                }
-//            }
         }
     // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
@@ -1390,10 +1399,12 @@ function downMouseUp() {
 // кнопка верх
 function upMouseDown(event) {
     document.getElementById('u_C').style.backgroundColor = "#613703";
+    if(skok_key && !grav){
+        skok_key = false
+        skok()
+   }
+
     move_menu("u")
-        if(list_coor[0] != 2){
-            list_coor.unshift(3);
-        }
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -1406,9 +1417,7 @@ function upMouseUp() {
 // кнопка вліво
 function leftMouseDown(event) {
     document.getElementById('l_C').style.backgroundColor = "#613703";
-        if(list_coor[0] != 4){
-            list_coor.unshift(1);
-        }
+        list_coor_l.unshift(3);
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -1416,14 +1425,17 @@ function leftMouseDown(event) {
 
 function leftMouseUp() {
     document.getElementById('l_C').style.backgroundColor = "#291701";
+    for (var i = 0; i < list_coor_l.length; i++){
+         if(list_coor_l[i] == 3){
+              list_coor_l.splice(i, 1);
+         }
+    }
 }
 
 // кнопка в право
 function rightMouseDown(event) {
     document.getElementById('r_C').style.backgroundColor = "#613703";
-        if(list_coor[0] != 1){
-        list_coor.unshift(4);
-        }
+        list_coor_l.unshift(4);
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -1431,6 +1443,11 @@ function rightMouseDown(event) {
 
 function rightMouseUp() {
     document.getElementById('r_C').style.backgroundColor = "#291701";
+    for (var i = 0; i < list_coor_l.length; i++){
+         if(list_coor_l[i] == 4){
+              list_coor_l.splice(i, 1);
+         }
+    }
 }
 
 function center(event){
@@ -1514,6 +1531,7 @@ function move_menu(nav){
             if(menu_pos == 0){
                 document.getElementById('div_menu').remove()
                 menu_pos1 = 0
+                grav_time = 0
 
                 score = 0
                 health = 100
@@ -1560,13 +1578,14 @@ function move_menu(nav){
                 document.getElementById("div_menu1").remove()
 
                 menu_pos1 = 0
+                grav_time = 0
 
                 score = 0
                 health = 100
                 list_platform = []
 
                 game_element()
-                add_div_block(0, 0, 2)
+                add_div_block(0, 0, 3)
                 add_div_block(width_loc, 0, 1)
                 gameinterval = setInterval(game, 40)
 
