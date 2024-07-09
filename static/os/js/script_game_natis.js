@@ -837,6 +837,7 @@ var kolisiya_key = true
 var skok_key = true
 
 var move_robot = 15
+var shag = true
 
 function skok(){
     if(document.getElementById('div_game_element') && !document.getElementById('div_menu1') && !document.getElementById('div_game_over')){
@@ -868,26 +869,10 @@ function skok(){
     }
 }
 
-function skok_down(){
-//    kolisiya_key = false
-//    for (let i = 0; i < 5; i++) {
-//        setTimeout(() => {
-//            var robot = document.getElementById('div_robot')
-//            var cur_r_top = parseInt(robot.style.top) || 0;
-//            if(cur_r_top < 500){
-//
-//                robot.style.top = (cur_r_top + 10) + 'px';
-//
-//            }
-//            if(i == 4){
-//                kolisiya_key = true
-//            }
-//
-//        }, i * 20);
-//    }
-}
 
 function push_r(pos){
+    shag = false
+    var key_push = true
 
     for (let i = 0; i < 10; i++) {
         setTimeout(() => {
@@ -895,39 +880,60 @@ function push_r(pos){
             var robot = document.getElementById('div_robot')
             var cur_r_left = parseInt(robot.style.left) || 0;
 
-            // відкидує гравця роботом
-            if(pos > 0){
 
-                if(cur_r_left < 500){
-                    robot.style.left = (cur_r_left + pos) + 'px';
+            var div_robot_rect = document.getElementById('img_robot').getBoundingClientRect();
 
+            for (var i1 = 0; i1 < list_platform.length; i1++){
+
+                 for (var j = 0; j < list_platform[i1][2].length; j++) {
+                     var flor_reck = document.getElementById(list_platform[i1][2][j]).getBoundingClientRect();
+
+                     // зупиняє коло стін
+                     if (!(div_robot_rect.right < flor_reck.left ||
+                         div_robot_rect.left > flor_reck.right ||
+                         div_robot_rect.bottom < flor_reck.top ||
+                         div_robot_rect.top > flor_reck.bottom)) {
+                         key_push = false
+                     }
+                 }
+            }
+
+            if(key_push){
+
+                // відкидує гравця роботом
+                if(pos > 0){
+
+                    if(cur_r_left < 500){
+                        robot.style.left = (cur_r_left + pos) + 'px';
+
+                    }else{
+                        for (var j = 0; j < list_platform.length; j++){
+                            var platform = document.getElementById(list_platform[j][0])
+                            var cur_platform_left = parseInt(platform.style.left) || 0;
+                            platform.style.left = (cur_platform_left - pos) + 'px';
+                        }
+                    }
                 }else{
-                    for (var j = 0; j < list_platform.length; j++){
-                        var platform = document.getElementById(list_platform[j][0])
-                        var cur_platform_left = parseInt(platform.style.left) || 0;
-                        platform.style.left = (cur_platform_left - pos) + 'px';
-                    }
-                }
-            }else{
-                var first_left = parseInt(document.getElementById(list_platform[0][0]).style.left) || 0;
+                    var first_left = parseInt(document.getElementById(list_platform[0][0]).style.left) || 0;
 
-                if(first_left < 0){
-                    for (var i1 = 0; i1 < list_platform.length; i1++){
-                        var platform = document.getElementById(list_platform[i1][0])
-                        var cur_platform_left = parseInt(platform.style.left) || 0;
-                        platform.style.left = (cur_platform_left - pos) + 'px';
-                    }
+                    if(first_left < 0){
+                        for (var i1 = 0; i1 < list_platform.length; i1++){
+                            var platform = document.getElementById(list_platform[i1][0])
+                            var cur_platform_left = parseInt(platform.style.left) || 0;
+                            platform.style.left = (cur_platform_left - pos) + 'px';
+                        }
 
-                }else if(cur_r_left > 20){
-                    robot.style.left = (cur_r_left + pos) + 'px';
+                    }else if(cur_r_left > 20){
+                        robot.style.left = (cur_r_left + pos) + 'px';
+                    }
                 }
             }
 
             if(i == 9){
-
+                shag = true
             }
 
-        }, i * 10);
+        }, i * 20);
     }
 }
 
@@ -998,6 +1004,8 @@ function game(){
     var robot_rect = document.getElementById('div_foot').getBoundingClientRect();
     var div_robot_rect = document.getElementById('img_robot').getBoundingClientRect();
 
+    var d_robot = document.getElementById("div_robot")
+
     var r_right = 0
     var r_left = 0
 
@@ -1011,10 +1019,11 @@ function game(){
                  div_robot_rect.bottom < flor_reck.top ||
                  div_robot_rect.top > flor_reck.bottom)) {
 
-                 if(div_robot_rect.right < flor_reck.left + 15){
+                 if(div_robot_rect.right < flor_reck.left + 25){
                     r_right++
+
                  }
-                 if(div_robot_rect.left > flor_reck.right - 15){
+                 if(div_robot_rect.left > flor_reck.right - 25){
                     r_left++
                  }
 
@@ -1023,7 +1032,7 @@ function game(){
     }
 
 
-    if(list_coor_l[0] == 4 && r_right == 0){
+    if(list_coor_l[0] == 4 && r_right == 0 && shag){
 
 
         anim++
@@ -1033,8 +1042,6 @@ function game(){
         document.getElementById('img_robot').setAttribute('src', list_robot[anim].src)
         document.getElementById('img_robot').style.transform = 'scaleX(1)';
 
-
-        var d_robot = document.getElementById("div_robot")
         var cur_d_robot_left = parseInt(d_robot.style.left) || 0;
 
         if(cur_d_robot_left < 500){
@@ -1065,7 +1072,7 @@ function game(){
         }
 
 
-    }else if(list_coor_l[0] == 3 && r_left == 0){
+    }else if(list_coor_l[0] == 3 && r_left == 0 && shag){
 
         anim++
         if(anim == 7){
@@ -1075,7 +1082,6 @@ function game(){
         document.getElementById('img_robot').setAttribute('src', list_robot[anim].src)
         document.getElementById('img_robot').style.transform = 'scaleX(-1)';
 
-        var d_robot = document.getElementById("div_robot")
         var cur_d_robot_left = parseInt(d_robot.style.left) || 0;
 
         var first_left = parseInt(document.getElementById(list_platform[0][0]).style.left) || 0;
@@ -1149,10 +1155,10 @@ function game(){
                 div_robot_rect.top > enemy_rect.bottom)) {
 
 
-                if(div_robot_rect.left > enemy_rect.right - 15){
+                if(div_robot_rect.left > enemy_rect.right - 25){
                     push_r(25)
                 }
-                if(div_robot_rect.right < enemy_rect.left + 15){
+                if(div_robot_rect.right < enemy_rect.left + 25){
                     push_r(-25)
                 }
 
@@ -1255,11 +1261,11 @@ outerLoop: for (var i = 0; i < list_platform.length; i++) {
     var robot = document.getElementById('div_robot')
     var cur_r_top = parseInt(robot.style.top) || 0;
 
-//    if(health == 0 || cur_r_top > 900){
-//        kill()
-//        clearInterval(gameinterval)
-//        game_over()
-//    }
+    if(health == 0 || cur_r_top > 900){
+        kill()
+        clearInterval(gameinterval)
+        game_over()
+    }
 
 }
 
@@ -1402,7 +1408,7 @@ function upMouseDown(event) {
     if(skok_key && !grav){
         skok_key = false
         skok()
-   }
+    }
 
     move_menu("u")
 
@@ -1452,6 +1458,10 @@ function rightMouseUp() {
 
 function center(event){
     document.getElementById('c_C').style.backgroundColor = "#613703";
+    if(skok_key && !grav){
+        skok_key = false
+        skok()
+    }
 
     event.preventDefault();
     navigator.vibrate(50);
@@ -1538,7 +1548,7 @@ function move_menu(nav){
                 list_platform = []
 
                 game_element()
-                add_div_block(0, 0, 3)
+                add_div_block(0, 0, 2)
                 add_div_block(width_loc, 0, 1)
                 gameinterval = setInterval(game, 40)
 
