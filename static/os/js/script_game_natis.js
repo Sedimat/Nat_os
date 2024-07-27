@@ -1298,10 +1298,7 @@ document.addEventListener("keydown", function(event) {
         // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
             move_menu("d")
-
             if(k2){
-
-                skok_down()
                 k2 = false
             }
         }
@@ -1343,11 +1340,6 @@ document.addEventListener("keyup", function(event) {
     // натиснута кнопка S
         if (event.keyCode === 83 || event.keyCode === 40){
             k2 = true
-            for (var i = 0; i < list_coor.length; i++){
-                if(list_coor[i] == 2){
-                    list_coor.splice(i, 1);
-                }
-            }
         }
 
     // A або стрілка вліво
@@ -1548,8 +1540,8 @@ function move_menu(nav){
                 list_platform = []
 
                 game_element()
-                add_div_block(0, 0, 2)
-                add_div_block(width_loc, 0, 1)
+                add_div_block(0, 0, -1)
+                add_div_block(width_loc, 0, -1)
                 gameinterval = setInterval(game, 40)
 
             }else if(menu_pos == 1){
@@ -1595,8 +1587,8 @@ function move_menu(nav){
                 list_platform = []
 
                 game_element()
-                add_div_block(0, 0, 3)
-                add_div_block(width_loc, 0, 1)
+                add_div_block(0, 0, -1)
+                add_div_block(width_loc, 0, -1)
                 gameinterval = setInterval(game, 40)
 
 

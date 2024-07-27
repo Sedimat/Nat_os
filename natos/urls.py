@@ -33,7 +33,11 @@ urlpatterns = [
     path('NatOs_web', views.natos_web, name='NatOs_web'),
     path('OneBit', views.onebit, name='OneBit'),
     path('Pixelmove', views.pixelmove, name='Pixelmove'),
+    path('CreateImg', views.create_img, name='CreateImg'),
     path('browser', views.browser, name='browser'),
+
+
+    path("creat_share", views.creat_share, name='creat_share'),
     path("onebit_share", views.onebit_share, name='onebit_share'),
     path("get_login", views.get_login, name='get_login'),
     path("registration", views.registration, name='registration'),

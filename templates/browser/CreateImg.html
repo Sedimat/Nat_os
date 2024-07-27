@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CreateImg</title>
+    {% load static %}
+    <link href="{% static 'os/css/style_create_img.css' %}" rel="stylesheet">
+    <link rel="icon" href="/media/ico.png" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'siemens_A';
+            src: url('{% static 'os/fonts/siemens_A.ttf' %}') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'siemens_B';
+            src: url('{% static 'os/fonts/siemens_B.ttf' %}') format('truetype');
+        }
+
+    </style>
+</head>
+<body>
+<div id="content" class="content">
+    {% csrf_token %}
+    <form id="uploadForm">
+        <input type="file" id="imageInput" accept="image/*">
+        <label for="imageInput" id="uploadLabel" class="uploadLabel">☑ Your IMG</label>
+        <button type="button" id="imagebutton" onclick="makeGrayscale()">CREAT</button>
+        <input type="range" id="mySlider" class="slider" min="50" max="200" step="1" value="128">
+
+        <input type="radio" id="black" name="color" value="1" checked>
+        <label id="black1" for="black">◼</label><br>
+
+        <input type="radio" id="zero" name="color" value="0">
+        <label id="zero1" for="zero">◻</label><br>
+
+    </form>
+
+        <button type="button" id="save_button" onclick="save_button()">SAVE</button>
+
+
+    <div class="add_img">
+        <canvas id="canvas" style="display:none;"></canvas>
+
+    </div>
+
+    <div class="img_div" id="img_div1">
+
+
+    </div>
+
+</div>
+
+<div id="control" class="control">
+
+    <button id="l_s" class="left_select"
+    ontouchstart="left_select(event)" ontouchend="left_select_up()"
+    onmousedown="left_select(event)" onmouseup="left_select_up()">
+        <img class="e_img1" src="/media/img/sel.svg">
+    </button>
+
+
+    <button id="r_s" class="right_select"
+    ontouchstart="right_select(event)" ontouchend="right_select_up()"
+    onmousedown="right_select(event)" onmouseup="right_select_up()">
+        <img class="e_img1" src="/media/img/sel.svg">
+    </button>
+
+
+    <button id="u_C" class="up_control"
+    ontouchstart="upMouseDown(event)" ontouchend="upMouseUp()"
+    onmousedown="upMouseDown(event)" onmouseup="upMouseUp()">
+        <img class="img_up" src="/media/img/up.svg">
+    </button>
+
+
+    <button id="d_C" class="down_control"
+    ontouchstart="downMouseDown(event)" ontouchend="downMouseUp()"
+    onmousedown="downMouseDown(event)" onmouseup="downMouseUp()">
+        <img class="img_down" src="/media/img/up.svg">
+    </button>
+
+    <button id="l_C" class="left_control"
+    ontouchstart="leftMouseDown(event)" ontouchend="leftMouseUp()"
+    onmousedown="leftMouseDown(event)" onmouseup="leftMouseUp()">
+        <img class="img_left" src="/media/img/up.svg">
+    </button>
+
+    <button id="r_C" class="right_control"
+        ontouchstart="rightMouseDown(event)" ontouchend="rightMouseUp()"
+        onmousedown="rightMouseDown(event)" onmouseup="rightMouseUp()">
+            <img class="img_right" src="/media/img/up.svg">
+    </button>
+
+
+    <button id="c_C" class="center_control"
+    ontouchstart="center(event)" ontouchend="center_up()"
+    onmousedown="center(event)" onmouseup="center_up()">
+        <img class="img_center" src="/media/img/center.svg">
+    </button>
+
+</div>
+
+</body>
+
+<script src="{% static 'os/js/web/create_img.js' %}"></script>
+
+</html>

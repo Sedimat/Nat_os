@@ -11,6 +11,8 @@ from django.shortcuts import render, redirect
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
 
+import sys
+
 
 def index(request):
     current_time = datetime.now().strftime('%H:%M:%S')
@@ -432,3 +434,42 @@ def snake(request):
 def natis(request):
     context = {}
     return render(request, 'game/natis.html', context=context)
+
+
+def create_img(request):
+    context = {}
+    return render(request, 'browser/CreateImg.html', context=context)
+
+
+def creat_share(request):
+    context = {}
+    if request.method == "POST":
+        messeg = request.POST.get('messeg')
+        txt = request.POST.get('txt')
+        messeg_dict = json.loads(messeg)
+
+
+        size_in_bytes = sys.getsizeof(messeg_dict)
+        size_in_bytes1 = sys.getsizeof(txt)
+
+        print(f"Розмір рядка у пам'яті: {size_in_bytes},{size_in_bytes1} байт")
+
+        # if request.user.username:
+        #     user = User.objects.get(username=request.user.username)
+        #     user_prof = UserProfile.objects.get(id_user=user)
+        #     if user_prof.dict_img == "":
+        #         read_dict_img = {}
+        #     else:
+        #         read_dict_img = json.loads(user_prof.dict_img)
+        #     if keys[0] in read_dict_img:
+        #         context.update({"reply": "Таке зображення вже є"})
+        #     else:
+        #         read_dict_img.update(messeg_dict)
+        #         dict_img_json = json.dumps(read_dict_img)
+        #         user_prof.dict_img = dict_img_json
+        #         user_prof.save()
+        #         context.update({"reply": "Успішно завантаженно"})
+        # else:
+        #     context.update({"reply": "Авторизуйтесь"})
+
+    return JsonResponse(context)
