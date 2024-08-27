@@ -30,6 +30,8 @@ urlpatterns = [
     path('arkanoid', views.arkanoid, name='arkanoid'),
     path('snake', views.snake, name='snake'),
     path('natis', views.natis, name='natis'),
+    path('train', views.train, name='Train_to_infinity'),
+
     path('NatOs_web', views.natos_web, name='NatOs_web'),
     path('OneBit', views.onebit, name='OneBit'),
     path('Pixelmove', views.pixelmove, name='Pixelmove'),

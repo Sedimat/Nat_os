@@ -11,7 +11,9 @@ from django.shortcuts import render, redirect
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
 
+
 import sys
+import svgwrite
 
 
 def index(request):
@@ -448,7 +450,7 @@ def creat_share(request):
         txt = request.POST.get('txt')
         messeg_dict = json.loads(messeg)
 
-
+        svg_creat(messeg_dict)
         size_in_bytes = sys.getsizeof(messeg_dict)
         size_in_bytes1 = sys.getsizeof(txt)
 
@@ -470,6 +472,41 @@ def creat_share(request):
         #         user_prof.save()
         #         context.update({"reply": "Успішно завантаженно"})
         # else:
-        #     context.update({"reply": "Авторизуйтесь"})
+        context.update({"reply": "Створений файл"})
 
     return JsonResponse(context)
+
+
+
+def svg_creat(list_i):
+    # Створює svg файл
+    caunt = 0
+    caunt1 = 0
+    x1 = 0
+    y1 = 0
+    dwg = svgwrite.Drawing('exa1234.svg', size=('871px', '590px'))
+    path_data = []
+
+    for i in range(120 * 80):
+        caunt += 1
+
+        if len(list_i) > 0 and list_i[0][0] == i:
+            caunt1 = list_i[0][1]
+            list_i.pop(0)
+
+        if caunt1 > 0:
+            path_data.append(f'M{x1},{y1} h7 v7 h-7 Z')
+            caunt1 -= 1
+
+        x1 += 7.26
+        if (caunt % 120 == 0):
+            x1 = 0
+            y1 += 7.26
+    path_string = ' '.join(path_data)
+    dwg.add(dwg.path(d=path_string, fill='#1e0e01'))
+    dwg.save()
+
+
+def train(request):
+    context = {}
+    return render(request, 'game/train.html', context=context)

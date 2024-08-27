@@ -25,7 +25,7 @@ function makeGrayscale() {
 
                     // Зменшити розмір зображення до 120x120 пікселів
                     canvas.width = 120;
-                    canvas.height = 100;
+                    canvas.height = 80;
 
                     // Масштабувати зображення на canvas
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -80,6 +80,7 @@ function makeGrayscale() {
 var list_div_e = []
 
 function create_img(list_i){
+    list_div_e = []
 
     var pos_left = 50
     var pos_top = 0.7
@@ -133,6 +134,7 @@ function create_img(list_i){
 }
 
 function create_null(){
+    list_div_e = []
 
     var pos_left = 50
     var pos_top = 1
@@ -147,9 +149,10 @@ function create_null(){
 
     var list_area = []
 
-        for (var i = 0; i < 120 * 100; i += 1) {
+        for (var i = 0; i < 120 * 80; i += 1) {
 
             count_div++
+
             var div_foot = document.createElement('div');
             div_foot.id = 'div_' + i;
             list_area.push('div_' + i)
@@ -279,13 +282,13 @@ function updateMouseCoordinates(event) {
                         div_chose(3)
                 }
 
-                if (!(cursor_rect.right < area4_rect.left ||
-                        cursor_rect.left > area4_rect.right ||
-                        cursor_rect.bottom < area4_rect.top ||
-                        cursor_rect.top > area4_rect.bottom)) {
-                        event.preventDefault();
-                        div_chose(4)
-                }
+//                if (!(cursor_rect.right < area4_rect.left ||
+//                        cursor_rect.left > area4_rect.right ||
+//                        cursor_rect.bottom < area4_rect.top ||
+//                        cursor_rect.top > area4_rect.bottom)) {
+//                        event.preventDefault();
+//                        div_chose(4)
+//                }
 
 
         }
@@ -355,8 +358,6 @@ function add_area(elem){
 
 function save_button(){
     console.log("Зберігаєм")
-    var txt = ""
-    var list_img_s1 = []
     var list_img_s2 = []
 
     //список діві з екрану
@@ -372,10 +373,6 @@ function save_button(){
     for (var i = 0; i < list_image_s.length; i += 1) {
 
         if(document.getElementById(list_image_s[i]).style.backgroundColor == "black"){
-            list_img_s1.push(1)
-            txt += "1"
-
-
             count++
             if (count == 1){
                 list_buf = [i, count]
@@ -386,25 +383,18 @@ function save_button(){
             }
 
         }else{
-            list_img_s1.push(0)
-            txt += "0"
-
             if(count > 0){
                 list_img_s2.push(list_buf)
             }
 
-
             count = 0
             list_buf = []
-
 
         }
     }
 
-    console.log("Зробив")
-    console.log(list_img_s2)
-    sending_data(list_img_s2, txt)
-
+    console.log("Зробив", list_image_s.length)
+    sending_data(list_img_s2)
 
     var pos_left = 50
     var pos_top = 1
@@ -421,10 +411,9 @@ function save_button(){
 
     var count_minus = 0
 
-        for (var i = 0; i < 120 * 100; i += 1) {
+        for (var i = 0; i < 120 * 80; i += 1) {
 
             count_div++
-
 
             var div_foot = document.createElement('div');
             div_foot.id = 'div_' + i;
@@ -439,7 +428,6 @@ function save_button(){
                 count_minus--
                 div_foot.style.backgroundColor = 'black';
             }
-
 
             div_foot.style.left = pos_left + 'px';
             div_foot.style.top = pos_top + 'px';
@@ -461,19 +449,17 @@ function save_button(){
             }
 
         }
-
 }
 
 
 
-function sending_data(list_i, text){
+function sending_data(list_i){
     // Отримуєм токен від DTL
     var csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
     // Словник який буде відправлений
     var data = {
         messeg: JSON.stringify(list_i),
-        txt: text,
     };
 
     // конвертує дані для запиту
